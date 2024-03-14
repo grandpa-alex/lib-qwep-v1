@@ -23,6 +23,7 @@ export type TypeColorScheme = {
     backgroundBox: Hex;
     backgroundTooltip: Hex;
     disabled: Hex;
+    shadowColor: Hex;
 
     //text
     title: Hex;
@@ -54,9 +55,10 @@ export const colorsLight: TypeColorScheme = {
     warningItemActive: '#d18730',
     //base
     background: '#ffffff',
-    backgroundBox: '#ffffee',
+    backgroundBox: '#efefef',
     backgroundTooltip: '#1f1f1fc8',
     disabled: '#dadada',
+    shadowColor: '#6e6e6e',
 
     //text
     title: '#1A242A',
@@ -92,6 +94,7 @@ export const colorsDark: TypeColorScheme = {
     backgroundBox: '#ffff00',
     backgroundTooltip: '#1f1f1fc8',
     disabled: '#dadada',
+    shadowColor: '#6e6e6e',
 
     //text
     title: '#1A242A',

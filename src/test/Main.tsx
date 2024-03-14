@@ -1,14 +1,18 @@
 import {
+    BaseBox,
     BaseButton,
     BaseCheckbox,
     BaseInput,
     BaseSlider,
+    BaseSwitch,
     BaseTextField,
     Icon,
     RootTextField,
+    SimpleBox,
     SimpleButton,
     SimpleTextField,
     SubmitCheckbox,
+    SubmitSwitch,
     SubmitTextField,
 } from '@src/lib';
 import { useState } from 'react';
@@ -229,35 +233,111 @@ function Main() {
                 placeholder={'!!!Text ggYY'}
                 iconOnClick={() => setVal(!val)}
             />
+            <div style={{ display: 'flex' }}>
+                <BaseCheckbox mr={'m-5'} />
+                <BaseCheckbox sizeVariant={'M'} colorVariant={'success'} mr="m-5" />
+                <BaseCheckbox checked disabled mr={'m-5'} />
+            </div>
+            <div style={{ display: 'flex' }}>
+                <SubmitCheckbox isLoading={false} mr={'m-5'} />
+                <SubmitCheckbox sizeVariant={'M'} isLoading={true} mr={'m-5'} />
+                <SubmitCheckbox isLoading={true} colorVariant={'success'} mr="m-5" />
+                <SubmitCheckbox isLoading={true} checked disabled mr={'m-5'} />
+            </div>
+            <div style={{ display: 'flex' }}>
+                <BaseSwitch mr={'m-5'} />
+                <BaseSwitch mr={'m-5'} colorVariant={'success'} />
+                <BaseSwitch mr={'m-5'} sizeVariant={'M'} />
+                <BaseSwitch mr={'m-5'} disabled colorVariant={'success'} />
+                <BaseSwitch mr={'m-5'} disabled sizeVariant={'M'} />
+            </div>
+            SubmitSwitch
+            <div style={{ display: 'flex' }}>
+                <SubmitSwitch mr={'m-5'} isLoading={true} />
+                <SubmitSwitch checked mr={'m-5'} isLoading={true} colorVariant={'success'} />
+                <SubmitSwitch mr={'m-5'} isLoading={true} sizeVariant={'M'} />
+                <SubmitSwitch mr={'m-5'} isLoading={false} disabled colorVariant={'success'} />
+                <SubmitSwitch mr={'m-5'} isLoading={true} disabled sizeVariant={'M'} />
+            </div>
+            <BaseBox mr={'m-5'} boxWidthVariant={'w-3'} boxPaddingVariant={'p-3'} boxGapVariant={'g-3'}>
+                base Box
+                <SubmitTextField
+                    isLoading={true}
+                    // mr={'m-5'}
+                    // style={{ width: '200px' }}
 
+                    iconPosition="right"
+                    icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+                    sizeVariant={'L'}
+                    placeholder={'!!!Text ggYY'}
+                    // iconOnClick={() => setVal(!val)}
+                />
+                <SubmitTextField
+                    isLoading={false}
+                    // mr={'m-5'}
+                    // style={{ width: '200px' }}
+                    colorVariant={'success'}
+                    iconPosition="right"
+                    icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+                    sizeVariant={'L'}
+                    placeholder={'!!!Text ggYY'}
+                    // iconOnClick={() => setVal(!val)}
+                />
+            </BaseBox>
+            <SimpleBox
+                mr={'m-5'}
+                boxWidthVariant={'w-3'}
+                boxPaddingVariant={'p-3'}
+                boxGapVariant={'g-3'}
+                boxRadiusVariant={'br-2'}
+                boxShadowVariant={'shd-1'}
+                boxBorderColor={'#ff00dd'}
+            >
+                <SubmitTextField
+                    isLoading={true}
+                    iconPosition="right"
+                    icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+                    sizeVariant={'L'}
+                    placeholder={'!!!Text ggYY'}
+                />
 
-<div style={{display: 'flex'}}>
-<BaseCheckbox mr={'m-5'}/>
-<BaseCheckbox sizeVariant={'M'} colorVariant={'success'} mr='m-5'/>
-<BaseCheckbox checked disabled mr={'m-5'}/>
-</div>
+                <SubmitTextField
+                    isLoading={false}
+                    colorVariant={'success'}
+                    iconPosition="right"
+                    icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+                    sizeVariant={'L'}
+                    placeholder={'!!!Text ggYY'}
+                />
+            </SimpleBox>
+            <SimpleBox
+                mr={'m-5'}
+                boxWidthVariant={'w-3'}
+                boxPaddingVariant={'p-3'}
+                boxGapVariant={'g-3'}
+                boxRadiusVariant={'br-2'}
+                boxShadowVariant={'shd-2'}
+                boxShadowColor={'#ff00dd'}
+            >
+                <SubmitTextField
+                    isLoading={true}
+                    iconPosition="right"
+                    icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+                    sizeVariant={'L'}
+                    placeholder={'!!!Text ggYY'}
+                />
 
-<div style={{display: 'flex'}}>
-<SubmitCheckbox isLoading={false} mr={'m-5'}/>
-<SubmitCheckbox sizeVariant={'M'} isLoading={true} mr={'m-5'}/>
-<SubmitCheckbox isLoading={true} colorVariant={'success'} mr='m-5'/>
-<SubmitCheckbox isLoading={true} checked disabled mr={'m-5'}/>
-</div>
-
-
-
-
-
-
-
-
-
+                <SubmitTextField
+                    isLoading={false}
+                    colorVariant={'success'}
+                    iconPosition="right"
+                    icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+                    sizeVariant={'L'}
+                    placeholder={'!!!Text ggYY'}
+                />
+            </SimpleBox>
         </div>
-
-
     );
 }
 
 export default Main;
-
-

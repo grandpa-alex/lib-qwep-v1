@@ -2,8 +2,6 @@ import { useContext } from 'react';
 import { ThemeContext, ThemeContextType } from './ThemeContext';
 import { TypeSS, styleScheme } from './styleScheme';
 
-
-
 type KeyOfSS = keyof TypeSS;
 
 export const useStyleScheme = <K extends KeyOfSS>(keys: K[]): Pick<TypeSS, K> => {
@@ -19,7 +17,7 @@ export const useStyleScheme = <K extends KeyOfSS>(keys: K[]): Pick<TypeSS, K> =>
             return acc;
         },
         {} as Pick<TypeSS, K>
-    ); 
+    );
 
     return selectedStyles;
 };

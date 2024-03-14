@@ -47,13 +47,19 @@ export type TypeSSIcon = {
 export type TypeSSCheckbox = {
     checkboxSize_L: string;
     checkboxSize_M: string;
-    checkboxLoadingSize_L: string
-    checkboxLoadingSize_M: string
+    checkboxLoadingSize_L: string;
+    checkboxLoadingSize_M: string;
 };
 
 export type TypeSSSwitch = {
-    switchSize_L: string;
-    switchSize_M: string;
+    switchSize_X_L: string;
+    switchSize_Y_L: string;
+    switchSize_X_M: string;
+    switchSize_Y_M: string;
+    switchThumbSize_L: string;
+    switchThumbSize_M: string;
+    switchThumbTranslateX_L: string;
+    switchThumbTranslateX_M: string;
 };
 
 export type TypeSSSlider = {
@@ -75,6 +81,37 @@ export type TypeSSTypography = {
     fontWeightGlobal: string;
 };
 
+export type TypeSSBox = {
+    boxBorderRadius_1: string;
+    boxBorderRadius_2: string;
+    boxBorderRadius_3: string;
+
+    boxShadow_1: string;
+    boxShadow_2: string;
+    boxShadow_3: string;
+
+    boxWidth_1: string;
+    boxWidth_2: string;
+    boxWidth_3: string;
+    boxWidth_4: string;
+    boxWidth_5: string;
+    boxWidth_6: string;
+
+    boxPadding_1: string;
+    boxPadding_2: string;
+    boxPadding_3: string;
+    boxPadding_4: string;
+    boxPadding_5: string;
+    boxPadding_6: string;
+
+    boxGap_1: string;
+    boxGap_2: string;
+    boxGap_3: string;
+    boxGap_4: string;
+    boxGap_5: string;
+    boxGap_6: string;
+};
+
 export type TypeSS = {
     // base
     base: TypeSSBase;
@@ -94,6 +131,9 @@ export type TypeSS = {
     slider: TypeSSSlider;
     //text
     typography: TypeSSTypography;
+
+    //box
+    box: TypeSSBox;
 };
 
 export const styleScheme: TypeSS = {
@@ -152,8 +192,14 @@ export const styleScheme: TypeSS = {
     },
     // switch
     switch: {
-        switchSize_L: '58px',
-        switchSize_M: '36px',
+        switchSize_X_L: '36px',
+        switchSize_Y_L: '20px',
+        switchSize_X_M: '30px',
+        switchSize_Y_M: '18px',
+        switchThumbSize_L: '18px',
+        switchThumbSize_M: '16px',
+        switchThumbTranslateX_L: '17px',
+        switchThumbTranslateX_M: '13px',
     },
 
     // switch
@@ -175,5 +221,37 @@ export const styleScheme: TypeSS = {
         fontWeightTitle: '400',
         fontWeightItem: '700',
         fontWeightGlobal: '400',
+    },
+
+    //box
+    box: {
+        boxBorderRadius_1: '8px',
+        boxBorderRadius_2: '12px',
+        boxBorderRadius_3: '22px',
+
+        boxShadow_1: '2px 3px 6px 0px',
+        boxShadow_2: '3px 4px 12px 3px',
+        boxShadow_3: '4px 5px 18px 5px',
+
+        boxWidth_1: '120px',
+        boxWidth_2: '260px',
+        boxWidth_3: '300px',
+        boxWidth_4: '460px',
+        boxWidth_5: '680px',
+        boxWidth_6: '720px',
+
+        boxPadding_1: '12px',
+        boxPadding_2: '18px',
+        boxPadding_3: '24px',
+        boxPadding_4: '36px',
+        boxPadding_5: '44px',
+        boxPadding_6: '56px',
+
+        boxGap_1: '12px',
+        boxGap_2: '16px',
+        boxGap_3: '18px',
+        boxGap_4: '22px',
+        boxGap_5: '30px',
+        boxGap_6: '44px',
     },
 };

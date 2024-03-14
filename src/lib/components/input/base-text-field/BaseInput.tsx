@@ -18,6 +18,7 @@ export type StyledBaseInputProps = {
 export const StyledBaseInput = styled.input<StyledBaseInputProps>`
     border: none;
     outline: 0;
+    width: 100%;
     line-height: normal;
     background-color: transparent;
     font-size: ${({ $styles }) => $styles.typography.fontSizeItem};

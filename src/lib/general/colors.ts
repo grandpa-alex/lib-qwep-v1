@@ -54,7 +54,7 @@ export const colorsLight: TypeColorScheme = {
     warningItemActive: '#d18730',
     //base
     background: '#ffffff',
-    backgroundBox: '#ffff00',
+    backgroundBox: '#ffffee',
     backgroundTooltip: '#1f1f1fc8',
     disabled: '#dadada',
 

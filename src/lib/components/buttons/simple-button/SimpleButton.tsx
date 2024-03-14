@@ -1,4 +1,3 @@
-import { TypeSSIcon } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { IIP, TypeItemIconPosition, VC, VS } from '@src/lib/types/TypeBase';
@@ -7,7 +6,7 @@ import styled, { css } from 'styled-components';
 import { BaseButton } from '..';
 import { getColor } from '@src/lib/common/getColor';
 import { TypeBtnPosition, VB, VP } from '@src/lib/types/TypeBtn';
-import { BaseButtonProps, StyledBaseButtonProps, TypeStyleBaseBtn } from '../base-button/BaseButton';
+import { BaseButtonProps, StyledBaseButtonProps } from '../base-button/BaseButton';
 
 // export type TypeStyleSimpleBtn = {
 //     icon: TypeSSIcon;
@@ -28,7 +27,7 @@ export type StyledSimpleButtonContentContainerProps = {
     $position: TypeBtnPosition;
 };
 
-export type StyledSimpleButtonProps = {} & StyledBaseButtonProps;
+export type StyledSimpleButtonProps = StyledBaseButtonProps;
 
 export const StyledSimpleButtonIconContainer = styled.div<StyledSimpleButtonIconContainerProps>`
     ${(props) => {

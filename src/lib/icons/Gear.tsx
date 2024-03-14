@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconSVGContainerProps, IconSVGContainer } from './IconSVGContainer';
 
-export type GearProps = {} & IconSVGContainerProps;
+export type GearProps = IconSVGContainerProps;
 
 export const Gear: React.FC<GearProps> = ({ ...rest }) => {
     return (

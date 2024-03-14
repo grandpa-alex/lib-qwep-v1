@@ -47,6 +47,8 @@ export type TypeSSIcon = {
 export type TypeSSCheckbox = {
     checkboxSize_L: string;
     checkboxSize_M: string;
+    checkboxLoadingSize_L: string
+    checkboxLoadingSize_M: string
 };
 
 export type TypeSSSwitch = {
@@ -143,8 +145,10 @@ export const styleScheme: TypeSS = {
     },
     //checkbox
     checkbox: {
-        checkboxSize_L: '22px',
+        checkboxSize_L: '24px',
         checkboxSize_M: '20px',
+        checkboxLoadingSize_L: '20px',
+        checkboxLoadingSize_M: '16px',
     },
     // switch
     switch: {

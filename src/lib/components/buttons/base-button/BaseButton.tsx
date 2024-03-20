@@ -125,6 +125,7 @@ const BTN_VARIANT = {
 };
 
 export const StyledBaseButton = styled.button<StyledBaseButtonProps>`
+    /* all: unset; */
     display: block;
     position: relative;
     overflow: hidden;

@@ -7,10 +7,11 @@ import { BaseBox } from '..';
 import { BaseBoxProps, StyledBaseBoxProps, TypeStyleBaseBox } from '../base-box/BaseBox';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
+import { BOX_BORDER_RADIUS, BOX_SHADOW_VARIANT } from '@src/lib/common-styled-component/StuledComponentBox';
 
 export type TypeStyleSimpleBox = {} & TypeStyleBaseBox;
 
-type SimpleBoxProps = {
+export type SimpleBoxProps = {
     bg?: Hex;
     boxBorderColor?: Hex;
     boxShadowColor?: Hex;
@@ -19,7 +20,7 @@ type SimpleBoxProps = {
     $colors?: TypeColorScheme;
 } & BaseBoxProps;
 
-type StyledSimpleBoxProps = {
+export type StyledSimpleBoxProps = {
     $colors: TypeColorScheme;
     $bg?: Hex;
     $boxBorderColor?: Hex;
@@ -28,35 +29,11 @@ type StyledSimpleBoxProps = {
     $boxRadiusVariant?: TypeBoxRadiusVariant;
 } & StyledBaseBoxProps;
 
-const BORDER_RADIUS = {
-    ['br-1']: (props: TypeSSBox) => css`
-        border-radius: ${props.boxBorderRadius_1};
-    `,
-    ['br-2']: (props: TypeSSBox) => css`
-        border-radius: ${props.boxBorderRadius_2};
-    `,
-    ['br-3']: (props: TypeSSBox) => css`
-        border-radius: ${props.boxBorderRadius_3};
-    `,
-};
-
-const SHADOW_VARIANT = {
-    ['shd-1']: (props: StyledSimpleBoxProps) => css`
-        box-shadow: ${`${props.$styles.box.boxShadow_1}`} ${props.$boxShadowColor ?? props.$colors.shadowColor};
-    `,
-    ['shd-2']: (props: StyledSimpleBoxProps) => css`
-        box-shadow: ${`${props.$styles.box.boxShadow_2}`} ${props.$boxShadowColor ?? props.$colors.shadowColor};
-    `,
-    ['shd-3']: (props: StyledSimpleBoxProps) => css`
-        box-shadow: ${`${props.$styles.box.boxShadow_3}`} ${props.$boxShadowColor ?? props.$colors.shadowColor};
-    `,
-};
 
 export const StyledSimpleBox = styled(BaseBox)<StyledSimpleBoxProps>`
     background-color: ${(props) => props.$bg ?? props.$colors.backgroundBox};
-    ${(props) => props.$boxRadiusVariant && BORDER_RADIUS[props.$boxRadiusVariant](props.$styles.box)};
-    ${(props) => props.$boxRadiusVariant && BORDER_RADIUS[props.$boxRadiusVariant](props.$styles.box)};
-    ${(props) => props.$boxShadowVariant && SHADOW_VARIANT[props.$boxShadowVariant](props)}
+    ${(props) => props.$boxRadiusVariant && BOX_BORDER_RADIUS[props.$boxRadiusVariant](props.$styles.box)};
+    ${(props) => props.$boxShadowVariant && BOX_SHADOW_VARIANT[props.$boxShadowVariant]({$box: props.$styles.box, $colors: props.$colors, $boxShadowColor: props.$boxShadowColor})}
     ${(props) =>
         props.$boxBorderColor &&
         css`

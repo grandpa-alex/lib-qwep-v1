@@ -1,3 +1,8 @@
+import {
+    BOX_GAP_VARIANT,
+    BOX_PADDING_VARIANT,
+    BOX_WIDTH_VARIANT,
+} from '@src/lib/common-styled-component/StuledComponentBox';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
@@ -28,69 +33,6 @@ export type StyledBaseBoxProps = {
     $mr?: TypeMargin;
     $styles: TypeStyleBaseBox;
 } & React.HTMLAttributes<HTMLDivElement>;
-
-const BOX_WIDTH_VARIANT = {
-    ['w-1']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_1};
-    `,
-    ['w-2']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_2};
-    `,
-    ['w-3']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_3};
-    `,
-    ['w-4']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_4};
-    `,
-    ['w-5']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_5};
-    `,
-    ['w-6']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_6};
-    `,
-};
-
-const BOX_GAP_VARIANT = {
-    ['g-1']: (props: TypeSSBox) => css`
-        gap: ${props.boxGap_1};
-    `,
-    ['g-2']: (props: TypeSSBox) => css`
-        gap: ${props.boxGap_2};
-    `,
-    ['g-3']: (props: TypeSSBox) => css`
-        gap: ${props.boxGap_3};
-    `,
-    ['g-4']: (props: TypeSSBox) => css`
-        gap: ${props.boxGap_4};
-    `,
-    ['g-5']: (props: TypeSSBox) => css`
-        gap: ${props.boxGap_5};
-    `,
-    ['g-6']: (props: TypeSSBox) => css`
-        gap: ${props.boxGap_6};
-    `,
-};
-
-const BOX_PADDING_VARIANT = {
-    ['p-1']: (props: TypeSSBox) => css`
-        padding: ${props.boxPadding_1};
-    `,
-    ['p-2']: (props: TypeSSBox) => css`
-        padding: ${props.boxPadding_2};
-    `,
-    ['p-3']: (props: TypeSSBox) => css`
-        padding: ${props.boxPadding_3};
-    `,
-    ['p-4']: (props: TypeSSBox) => css`
-        padding: ${props.boxPadding_4};
-    `,
-    ['p-5']: (props: TypeSSBox) => css`
-        padding: ${props.boxPadding_5};
-    `,
-    ['p-6']: (props: TypeSSBox) => css`
-        padding: ${props.boxPadding_6};
-    `,
-};
 
 export const StyledBaseBox = styled.div<StyledBaseBoxProps>`
     ${(props) => {

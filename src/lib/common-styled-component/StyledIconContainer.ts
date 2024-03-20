@@ -40,5 +40,8 @@ export const StyledIconContainer = styled.svg<StyledIconContainerProps>`
     fill: ${({ $colors, $color, $colorVariant, $disabled, $_importantColor }) =>
         `${getColor({ cs: $colors, color: $color, variant: $colorVariant, disabled: $disabled })} ${$_importantColor ? '!important' : ''}`};
 
+    stroke: ${({ $colors, $color, $colorVariant, $disabled, $_importantColor }) =>
+        `${getColor({ cs: $colors, color: $color, variant: $colorVariant, disabled: $disabled })} ${$_importantColor ? '!important' : ''}`};
+
     ${(props) => ICON_SIZE[props.$sizeVariant](props)}
 `;

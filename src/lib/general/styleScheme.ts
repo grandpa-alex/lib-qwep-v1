@@ -62,6 +62,17 @@ export type TypeSSSwitch = {
     switchThumbTranslateX_M: string;
 };
 
+export type TypeSSSelect = {
+    selectPadding_X_L: string;
+    selectPadding_Y_L:string;
+    selectPadding_X_M: string;
+    selectPadding_Y_M:string;
+    selectHeight_L: string;
+    selectHeight_M: string;
+    selectIconSize_L: string;
+    selectIconSize_M: string;
+}
+
 export type TypeSSSlider = {
     thumbSize_L: string;
     thumbSize_M: string;
@@ -121,6 +132,8 @@ export type TypeSS = {
     btn: TypeSSBtn;
     //inp
     inp: TypeSSInp;
+    //select 
+    select: TypeSSSelect
     // icon
     icon: TypeSSIcon;
     //checkbox
@@ -175,13 +188,24 @@ export const styleScheme: TypeSS = {
         inpPadding_Y_M: '5px',
         inpHeight_L: '38px',
         inpHeight_M: '32px',
-        inpIconSize_L: '18px',
-        inpIconSize_M: '16px',
+        inpIconSize_L: '16px',
+        inpIconSize_M: '14px',
+    },
+    //inp
+    select: {
+        selectPadding_X_L: '14px',
+        selectPadding_Y_L: '5px',
+        selectPadding_X_M: '12px',
+        selectPadding_Y_M: '5px',
+        selectHeight_L: '38px',
+        selectHeight_M: '32px',
+        selectIconSize_L: '16px',
+        selectIconSize_M: '14px',
     },
     // icon
     icon: {
-        iconSize_L: '26px',
-        iconSize_M: '18px',
+        iconSize_L: '28px',
+        iconSize_M: '20px',
     },
     //checkbox
     checkbox: {
@@ -240,8 +264,8 @@ export const styleScheme: TypeSS = {
         boxWidth_5: '680px',
         boxWidth_6: '720px',
 
-        boxPadding_1: '12px',
-        boxPadding_2: '18px',
+        boxPadding_1: '8px',
+        boxPadding_2: '12px',
         boxPadding_3: '24px',
         boxPadding_4: '36px',
         boxPadding_5: '44px',

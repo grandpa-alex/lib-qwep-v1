@@ -35,15 +35,11 @@ export const StyledSimpleButtonIconContainer = styled.div<StyledSimpleButtonIcon
             return css`
                 order: 1;
                 margin-left: 6px;
-                /* padding-left: 10px; */
-                /* border-left: 1px solid red; */
             `;
         } else {
             return css`
                 order: 0;
                 margin-right: 6px;
-                /* padding-right: 10px; */
-                /* border-right: 1px solid red; */
             `;
         }
     }}

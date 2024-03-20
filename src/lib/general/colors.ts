@@ -55,9 +55,9 @@ export const colorsLight: TypeColorScheme = {
     warningItemActive: '#d18730',
     //base
     background: '#ffffff',
-    backgroundBox: '#efefef',
+    backgroundBox: '#ffffff',
     backgroundTooltip: '#1f1f1fc8',
-    disabled: '#dadada',
+    disabled: '#858585',
     shadowColor: '#6e6e6e',
 
     //text
@@ -91,9 +91,9 @@ export const colorsDark: TypeColorScheme = {
     //base
 
     background: '#ffffff',
-    backgroundBox: '#ffff00',
+    backgroundBox: '#ffffff',
     backgroundTooltip: '#1f1f1fc8',
-    disabled: '#dadada',
+    disabled: '#858585',
     shadowColor: '#6e6e6e',
 
     //text

@@ -6,7 +6,7 @@
 //     <Popover.Root>
 //       <Popover.Trigger asChild>
 //         <button className="IconButton" aria-label="Update dimensions">
-        
+
 //         </button>
 //       </Popover.Trigger>
 //       <Popover.Portal>
@@ -41,7 +41,7 @@
 //             </fieldset>
 //           </div>
 //           <Popover.Close className="PopoverClose" aria-label="Close">
-      
+
 //           </Popover.Close>
 //           <Popover.Arrow className="PopoverArrow" />
 //         </Popover.Content>
@@ -49,17 +49,14 @@
 //     </Popover.Root>
 //   );
 
-
-
 // export type SBPopoverRootProps = PopoverProps;
 // export const SBPopoverRoot = styled(Popover.Root)<SBPopoverRootProps>``;
-
 
 // export type SBPopoverTriggerProps = PopoverTriggerProps & React.RefAttributes<HTMLButtonElement>;
 // export const SBPopoverTrigger = styled(Popover.Trigger)<SBPopoverTriggerProps>``;
 
 // export type SBPopoverPortalProps = PopoverPortalProps;
 // export const SBPopoverPortal = styled(Popover.Portal)<SBPopoverPortalProps>``;
-  
+
 // export type SBPopoverPortalProps = PopoverPortalProps;
 // export const SBPopoverPortal = styled(Popover.Portal)<SBPopoverPortalProps>``;

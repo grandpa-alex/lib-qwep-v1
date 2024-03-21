@@ -23,7 +23,7 @@ export default defineConfig({
             entry: path.resolve('', 'src/lib/index.ts'),
             name: 'ReactLibQwepAlex',
             formats: ['es', 'umd'],
-            fileName: (format) => `react-lib-qwep-alex.${format}.js`,
+            fileName: (format) => `ui-kit-qwep.${format}.js`,
         },
         rollupOptions: {
             external: ['react', 'react-dom'],

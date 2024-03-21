@@ -26,11 +26,18 @@ export default defineConfig({
             fileName: (format) => `ui-kit-qwep.${format}.js`,
         },
         rollupOptions: {
-            external: ['react', 'react-dom'],
+            external: [
+                'react',
+                'react-dom',
+                // '@radix-ui/react-checkbox', 
+                // '@radix-ui/react-dialog',
+                // '@radix-ui/react-slider',
+            ],
             output: {
                 globals: {
                     react: 'React',
                     'react-dom': 'ReactDOM',
+
                 },
                 dir: 'dist',
             },

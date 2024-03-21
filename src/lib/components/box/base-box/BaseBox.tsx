@@ -26,7 +26,7 @@ export type BaseBoxProps = {
     $styles?: TypeStyleBaseBox;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export type StyledBaseBoxProps = {
+export type SBBoxProps = {
     $boxWidthVariant?: TypeBoxWidthVariant;
     $boxPaddingVariant?: TypeBoxPaddingVariant;
     $boxGapVariant?: TypeBoxGapVariant;
@@ -34,7 +34,7 @@ export type StyledBaseBoxProps = {
     $styles: TypeStyleBaseBox;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export const StyledBaseBox = styled.div<StyledBaseBoxProps>`
+export const SBBox = styled.div<SBBoxProps>`
     ${(props) => {
         if (props.$boxGapVariant) {
             return css`
@@ -53,7 +53,7 @@ export const BaseBox: React.FC<BaseBoxProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['box', 'mr']);
 
         return (
-            <StyledBaseBox
+            <SBBox
                 as={Component}
                 $styles={styles}
                 $mr={mr}
@@ -63,7 +63,7 @@ export const BaseBox: React.FC<BaseBoxProps> = React.memo(
                 {...rest}
             >
                 {children}
-            </StyledBaseBox>
+            </SBBox>
         );
     }
 );

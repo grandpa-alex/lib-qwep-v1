@@ -64,14 +64,14 @@ export type TypeSSSwitch = {
 
 export type TypeSSSelect = {
     selectPadding_X_L: string;
-    selectPadding_Y_L:string;
+    selectPadding_Y_L: string;
     selectPadding_X_M: string;
-    selectPadding_Y_M:string;
+    selectPadding_Y_M: string;
     selectHeight_L: string;
     selectHeight_M: string;
     selectIconSize_L: string;
     selectIconSize_M: string;
-}
+};
 
 export type TypeSSSlider = {
     thumbSize_L: string;
@@ -132,8 +132,8 @@ export type TypeSS = {
     btn: TypeSSBtn;
     //inp
     inp: TypeSSInp;
-    //select 
-    select: TypeSSSelect
+    //select
+    select: TypeSSSelect;
     // icon
     icon: TypeSSIcon;
     //checkbox

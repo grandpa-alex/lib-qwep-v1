@@ -29,7 +29,7 @@ export type BaseButtonProps = {
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export type StyledBaseButtonProps = {
+export type SBButtonProps = {
     $mr?: TypeMargin;
     $color?: Hex;
     $colors: TypeColorScheme;
@@ -40,18 +40,18 @@ export type StyledBaseButtonProps = {
 };
 
 const BTN_SIZE = {
-    [VS.L]: (props: StyledBaseButtonProps) => css`
+    [VS.L]: (props: SBButtonProps) => css`
         height: ${props.$styles.btn.btnHeight_L};
         padding: ${`${props.$styles.btn.btnPadding_Y_L} ${props.$styles.btn.btnPadding_X_L}`};
     `,
-    [VS.M]: (props: StyledBaseButtonProps) => css`
+    [VS.M]: (props: SBButtonProps) => css`
         height: ${props.$styles.btn.btnHeight_M};
         padding: ${`${props.$styles.btn.btnPadding_Y_M} ${props.$styles.btn.btnPadding_X_M}`};
     `,
 };
 
 const BTN_VARIANT = {
-    [VB.CONTAINED]: (props: StyledBaseButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.CONTAINED]: (props: SBButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
         color: ${props.$colors.textItem};
         background-color: ${getColor({
             cs: props.$colors,
@@ -70,7 +70,7 @@ const BTN_VARIANT = {
             })};
         }
     `,
-    [VB.TEXT]: (props: StyledBaseButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.TEXT]: (props: SBButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
         color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
@@ -89,7 +89,7 @@ const BTN_VARIANT = {
             })};
         }
     `,
-    [VB.OUTLINED]: (props: StyledBaseButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.OUTLINED]: (props: SBButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
         color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
@@ -124,7 +124,7 @@ const BTN_VARIANT = {
     `,
 };
 
-export const StyledBaseButton = styled.button<StyledBaseButtonProps>`
+export const SBButton = styled.button<SBButtonProps>`
     /* all: unset; */
     display: block;
     position: relative;
@@ -169,7 +169,7 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
         };
 
         return (
-            <StyledBaseButton
+            <SBButton
                 $colors={colors}
                 $styles={styles}
                 $sizeVariant={sizeVariant}
@@ -181,7 +181,7 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
                 {...rest}
             >
                 {children}
-            </StyledBaseButton>
+            </SBButton>
         );
     }
 );

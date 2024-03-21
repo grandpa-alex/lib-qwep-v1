@@ -36,16 +36,16 @@ export type StyledRootCheckboxProps = {
     $_isActiveHover?: boolean;
 } & CheckboxProps;
 
-export type StyledBaseCheckboxIconProps = {
+export type SBCheckboxIconProps = {
     $colorVariant: TypeColorVariant;
     $colors: TypeColorScheme;
     $color?: Hex;
     $disabled?: boolean;
 };
 
-export const StyledBaseCheckboxIndicator = styled(Checkbox.Indicator)``;
+export const SBCheckboxIndicator = styled(Checkbox.Indicator)``;
 
-export const StyledBaseCheckboxIcon = styled.svg<StyledBaseCheckboxIconProps>`
+export const SBCheckboxIcon = styled.svg<SBCheckboxIconProps>`
     position: absolute;
     top: 50%;
     left: 50%;
@@ -76,7 +76,7 @@ const SIZE_CHECKBOX = {
     `,
 };
 
-export const StyledBaseCheckboxRoot = styled(Checkbox.Root)<StyledRootCheckboxProps>`
+export const SBCheckboxRoot = styled(Checkbox.Root)<StyledRootCheckboxProps>`
     position: relative;
 
     background-color: transparent;
@@ -110,7 +110,7 @@ export const StyledBaseCheckboxRoot = styled(Checkbox.Root)<StyledRootCheckboxPr
                 hover: props.$_isActiveHover,
                 opacity: '20',
             })};
-        ${StyledBaseCheckboxIcon} {
+        ${SBCheckboxIcon} {
             stroke: ${(props) =>
                 getColor({
                     cs: props.$colors,
@@ -141,7 +141,7 @@ export const BaseCheckbox: React.FC<BaseCheckboxProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['base', 'checkbox', 'mr']);
 
         return (
-            <StyledBaseCheckboxRoot
+            <SBCheckboxRoot
                 $color={color}
                 $mr={mr}
                 $colors={colors}
@@ -151,8 +151,8 @@ export const BaseCheckbox: React.FC<BaseCheckboxProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
-                <StyledBaseCheckboxIndicator>
-                    <StyledBaseCheckboxIcon
+                <SBCheckboxIndicator>
+                    <SBCheckboxIcon
                         $colors={colors}
                         $colorVariant={colorVariant}
                         $disabled={rest.disabled}
@@ -160,9 +160,9 @@ export const BaseCheckbox: React.FC<BaseCheckboxProps> = React.memo(
                         viewBox="0 0 24 24"
                     >
                         <polyline points="20 6 9 17 4 12" />
-                    </StyledBaseCheckboxIcon>
-                </StyledBaseCheckboxIndicator>
-            </StyledBaseCheckboxRoot>
+                    </SBCheckboxIcon>
+                </SBCheckboxIndicator>
+            </SBCheckboxRoot>
         );
     }
 );

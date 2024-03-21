@@ -11,11 +11,11 @@ export type BaseInputProps = {
     $styles?: TypeStyleBaseInput;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-export type StyledBaseInputProps = {
+export type SBInputProps = {
     $styles: TypeStyleBaseInput;
 };
 
-export const StyledBaseInput = styled.input<StyledBaseInputProps>`
+export const SBInput = styled.input<SBInputProps>`
     border: none;
     outline: 0;
     width: 100%;
@@ -26,5 +26,5 @@ export const StyledBaseInput = styled.input<StyledBaseInputProps>`
 
 export const BaseInput: React.FC<BaseInputProps> = React.memo(({ $styles, ...rest }) => {
     const styles = $styles ?? useStyleScheme(['typography']);
-    return <StyledBaseInput $styles={styles} {...rest} />;
+    return <SBInput $styles={styles} {...rest} />;
 });

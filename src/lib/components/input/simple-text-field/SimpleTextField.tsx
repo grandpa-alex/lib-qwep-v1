@@ -10,9 +10,9 @@ import { BaseInput } from '..';
 import { renderIconTextField } from '@src/lib/common/renderIconItem';
 import {
     BaseTextFieldProps,
-    StyledBaseTextFieldInputProps,
-    StyledBaseTextFieldRoot,
-    StyledBaseTextFieldRootProps,
+    SBTextFieldInputProps,
+    SBTextFieldRoot,
+    SBTextFieldRootProps,
 } from '../base-text-field/BaseTextField';
 
 export type TypeStyleSimpleTextField = {
@@ -28,15 +28,15 @@ export type SimpleTextFieldProps = {
     $styles?: TypeStyleSimpleTextField;
 } & BaseTextFieldProps;
 
-export type StyledSimpleTextFieldInputProps = {} & StyledBaseTextFieldInputProps;
+export type SSTextFieldInputProps = {} & SBTextFieldInputProps;
 
-export type StyledSimpleTextFieldRootProps = {} & StyledBaseTextFieldRootProps;
+export type SSTextFieldRootProps = {} & SBTextFieldRootProps;
 
-export type StyledSimpleTextFieldIconContainerProps = {
+export type SSTextFieldIconContainerProps = {
     $iconPosition: TypeItemIconPosition;
 };
 
-export const StyledSimpleTextFieldIconContainer = styled.div<StyledSimpleTextFieldIconContainerProps>`
+export const SSTextFieldIconContainer = styled.div<SSTextFieldIconContainerProps>`
     ${(props) => {
         if (props.$iconPosition === IIP.RIGHT) {
             return css`
@@ -52,10 +52,10 @@ export const StyledSimpleTextFieldIconContainer = styled.div<StyledSimpleTextFie
     }}
 `;
 
-export const StyledSimpleTextFieldRoot = styled(StyledBaseTextFieldRoot)<StyledSimpleTextFieldRootProps>`
+export const SSTextFieldRoot = styled(SBTextFieldRoot)<SSTextFieldRootProps>`
     display: inline-flex;
     align-items: center;
-    ${StyledSimpleTextFieldIconContainer} {
+    ${SSTextFieldIconContainer} {
         svg {
             fill: ${(props) =>
                 getColor({
@@ -68,7 +68,7 @@ export const StyledSimpleTextFieldRoot = styled(StyledBaseTextFieldRoot)<StyledS
         }
     }
     &:hover {
-        ${StyledSimpleTextFieldIconContainer} {
+        ${SSTextFieldIconContainer} {
             svg {
                 fill: ${(props) =>
                     getColor({
@@ -83,7 +83,7 @@ export const StyledSimpleTextFieldRoot = styled(StyledBaseTextFieldRoot)<StyledS
     }
 `;
 
-export const StyledSimpleTextFieldInput = styled(BaseInput)<StyledSimpleTextFieldInputProps>`
+export const SSTextFieldInput = styled(BaseInput)<SSTextFieldInputProps>`
     &:disabled {
         color: ${(props) => props.$colors.disabled};
     }
@@ -126,7 +126,7 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
         }, [icon, colors, styles]);
 
         return (
-            <StyledSimpleTextFieldRoot
+            <SSTextFieldRoot
                 $mr={mr}
                 $colors={colors}
                 $styles={styles}
@@ -148,20 +148,16 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 $_isFocused={isFocused}
             >
-                {icon && (
-                    <StyledSimpleTextFieldIconContainer $iconPosition={iconPosition}>
-                        {renderIcon}
-                    </StyledSimpleTextFieldIconContainer>
-                )}
+                {icon && <SSTextFieldIconContainer $iconPosition={iconPosition}>{renderIcon}</SSTextFieldIconContainer>}
 
-                <StyledSimpleTextFieldInput
+                <SSTextFieldInput
                     $styles={{ typography: styles.typography }}
                     $colors={colors}
                     $color={color}
                     $colorVariant={colorVariant}
                     {...rest}
                 />
-            </StyledSimpleTextFieldRoot>
+            </SSTextFieldRoot>
         );
     }
 );

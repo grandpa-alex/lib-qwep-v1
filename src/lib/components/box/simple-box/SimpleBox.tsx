@@ -1,10 +1,9 @@
-import { TypeSSBox } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { TypeBoxRadiusVariant, TypeBoxShadowVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
 import { css, styled } from 'styled-components';
 import { BaseBox } from '..';
-import { BaseBoxProps, StyledBaseBoxProps, TypeStyleBaseBox } from '../base-box/BaseBox';
+import { BaseBoxProps, SBBoxProps, TypeStyleBaseBox } from '../base-box/BaseBox';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { BOX_BORDER_RADIUS, BOX_SHADOW_VARIANT } from '@src/lib/common-styled-component/StuledComponentBox';
@@ -20,20 +19,25 @@ export type SimpleBoxProps = {
     $colors?: TypeColorScheme;
 } & BaseBoxProps;
 
-export type StyledSimpleBoxProps = {
+export type SSBoxProps = {
     $colors: TypeColorScheme;
     $bg?: Hex;
     $boxBorderColor?: Hex;
     $boxShadowColor?: Hex;
     $boxShadowVariant?: TypeBoxShadowVariant;
     $boxRadiusVariant?: TypeBoxRadiusVariant;
-} & StyledBaseBoxProps;
+} & SBBoxProps;
 
-
-export const StyledSimpleBox = styled(BaseBox)<StyledSimpleBoxProps>`
+export const SSBox = styled(BaseBox)<SSBoxProps>`
     background-color: ${(props) => props.$bg ?? props.$colors.backgroundBox};
     ${(props) => props.$boxRadiusVariant && BOX_BORDER_RADIUS[props.$boxRadiusVariant](props.$styles.box)};
-    ${(props) => props.$boxShadowVariant && BOX_SHADOW_VARIANT[props.$boxShadowVariant]({$box: props.$styles.box, $colors: props.$colors, $boxShadowColor: props.$boxShadowColor})}
+    ${(props) =>
+        props.$boxShadowVariant &&
+        BOX_SHADOW_VARIANT[props.$boxShadowVariant]({
+            $box: props.$styles.box,
+            $colors: props.$colors,
+            $boxShadowColor: props.$boxShadowColor,
+        })}
     ${(props) =>
         props.$boxBorderColor &&
         css`
@@ -62,7 +66,7 @@ export const SimpleBox: React.FC<SimpleBoxProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['box', 'mr']);
 
         return (
-            <StyledSimpleBox
+            <SSBox
                 $styles={styles}
                 $colors={colors}
                 $mr={mr}
@@ -81,7 +85,7 @@ export const SimpleBox: React.FC<SimpleBoxProps> = React.memo(
                 {...rest}
             >
                 {children}
-            </StyledSimpleBox>
+            </SSBox>
         );
     }
 );

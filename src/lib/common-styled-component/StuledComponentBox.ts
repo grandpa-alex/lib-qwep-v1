@@ -1,6 +1,6 @@
-import { css } from "styled-components";
-import { TypeSSBox } from "../general/styleScheme";
-import { Hex, TypeColorScheme } from "../general/colors";
+import { css } from 'styled-components';
+import { TypeSSBox } from '../general/styleScheme';
+import { Hex, TypeColorScheme } from '../general/colors';
 
 export const BOX_WIDTH_VARIANT = {
     ['w-1']: (props: TypeSSBox) => css`
@@ -81,7 +81,7 @@ export type TypeStyledBoxShadowVariant = {
     $boxShadowColor?: Hex;
     $colors: TypeColorScheme;
     $box: TypeSSBox;
-}
+};
 
 export const BOX_SHADOW_VARIANT = {
     ['shd-1']: (props: TypeStyledBoxShadowVariant) => css`

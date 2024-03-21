@@ -35,7 +35,7 @@ export type StyledRootBaseSwitchProps = {
     $_isActiveHover?: boolean;
 } & SwitchProps;
 
-export type StyledBaseSwitchThumbProps = {
+export type SBSwitchThumbProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyleBaseSwitch;
     $sizeVariant: TypeVariantSize;
@@ -61,7 +61,7 @@ const SWITCH_THUMB_TRANSLATE = {
     `,
 };
 
-export const StyledBaseSwitchThumb = styled(Switch.Thumb)<StyledBaseSwitchThumbProps>`
+export const SBSwitchThumb = styled(Switch.Thumb)<SBSwitchThumbProps>`
     display: block;
     background-color: ${(props) => props.$colors.textItem};
     border-radius: 9999px;
@@ -86,7 +86,7 @@ const SWITCH_SIZE = {
     `,
 };
 
-export const StyledBaseSwitchRoot = styled(Switch.Root)<StyledRootBaseSwitchProps>`
+export const SBSwitchRoot = styled(Switch.Root)<StyledRootBaseSwitchProps>`
     all: unset;
     background-color: ${(props) =>
         getColor({
@@ -128,7 +128,7 @@ export const BaseSwitch: React.FC<BaseSwitchProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['switch', 'mr']);
 
         return (
-            <StyledBaseSwitchRoot
+            <SBSwitchRoot
                 $color={color}
                 $mr={mr}
                 $colors={colors}
@@ -138,8 +138,8 @@ export const BaseSwitch: React.FC<BaseSwitchProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
-                <StyledBaseSwitchThumb $colors={colors} $styles={styles} $sizeVariant={sizeVariant} />
-            </StyledBaseSwitchRoot>
+                <SBSwitchThumb $colors={colors} $styles={styles} $sizeVariant={sizeVariant} />
+            </SBSwitchRoot>
         );
     }
 );

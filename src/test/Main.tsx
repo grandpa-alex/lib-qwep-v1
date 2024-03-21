@@ -8,6 +8,7 @@ import {
     Icon,
     SimpleBox,
     SimpleButton,
+    SimpleDialog,
     SimpleSelectContent,
     SimpleSelectGroup,
     SimpleSelectItem,
@@ -21,6 +22,7 @@ import { useState } from 'react';
 
 function Main() {
     const [val, setVal] = useState(false);
+    const [openM, setOpenM] = useState(false);
 
     return (
         <>
@@ -582,7 +584,7 @@ function Main() {
                     </SimpleSelectGroup>
                 </SimpleSelectContent>
                 <SimpleSelectContent
-                    defaultOpen
+                    // defaultOpen
                     mr={'m-12'}
                     placeholder={'Test list'}
                     width={'300px'}
@@ -619,6 +621,44 @@ function Main() {
                     </SimpleSelectGroup>
                 </SimpleSelectContent>
             </div>
+
+<SimpleButton mr={'m-12'} style={{width: '100px'}}
+onClick={() => setOpenM(true)}>Open</SimpleButton>
+
+            <SimpleDialog 
+            overlayBlur={'5px'} 
+            // style={{width: '700px'}}
+            boxGapVariant={'g-3'}
+            open={openM} 
+            onOpenChange={setOpenM}
+
+            >
+                 <SubmitTextField
+                    isLoading={false}
+                    iconPosition="right"
+                    colorVariant={'success'}
+                    sizeVariant={'L'}
+                    placeholder={'!!!Text ggYY'}
+                />
+                 <SubmitTextField
+                    isLoading={false}
+                    iconPosition="right"
+                    colorVariant={'success'}
+                    icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+                    sizeVariant={'L'}
+                    placeholder={'!!!Text ggYY'}
+                    iconOnClick={() => setVal(!val)}
+                />
+                 <SubmitTextField
+                    isLoading={false}
+                    iconPosition="right"
+                    colorVariant={'success'}
+                    icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+                    sizeVariant={'L'}
+                    placeholder={'!!!Text ggYY'}
+                    iconOnClick={() => setVal(!val)}
+                />
+            </SimpleDialog>
         </>
     );
 }

@@ -8,7 +8,7 @@ import { TypeInpVariant, VI } from '@src/lib/types/TypeInp';
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { BaseInput, RootTextField } from '..';
-import { StyledBaseInputProps } from './BaseInput';
+import { SBInputProps } from './BaseInput';
 import { StyledRootTextFieldProps } from './RootTextField';
 
 export type TypeStyleBaseTextField = {
@@ -29,17 +29,17 @@ export type BaseTextFieldProps = {
     _isActiveHover?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-export type StyledBaseTextFieldInputProps = {
+export type SBTextFieldInputProps = {
     $color?: Hex;
     $colors: TypeColorScheme;
     $colorVariant: TypeColorVariant;
-} & StyledBaseInputProps;
+} & SBInputProps;
 
-export type StyledBaseTextFieldRootProps = {
+export type SBTextFieldRootProps = {
     $_isActiveHover?: boolean;
 } & StyledRootTextFieldProps;
 
-export const StyledTextFieldInput = styled(BaseInput)<StyledBaseTextFieldInputProps>`
+export const StyledTextFieldInput = styled(BaseInput)<SBTextFieldInputProps>`
     &:disabled {
         color: ${(props) => props.$colors.disabled};
     }
@@ -57,7 +57,7 @@ export const StyledTextFieldInput = styled(BaseInput)<StyledBaseTextFieldInputPr
     }
 `;
 
-export const StyledBaseTextFieldRoot = styled(RootTextField)<StyledBaseTextFieldRootProps>`
+export const SBTextFieldRoot = styled(RootTextField)<SBTextFieldRootProps>`
     display: inline-flex;
     align-items: center;
 `;
@@ -81,7 +81,7 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
         const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), []);
 
         return (
-            <StyledBaseTextFieldRoot
+            <SBTextFieldRoot
                 $mr={mr}
                 $colors={colors}
                 $styles={styles}
@@ -108,7 +108,7 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
                     $colorVariant={colorVariant}
                     {...rest}
                 />
-            </StyledBaseTextFieldRoot>
+            </SBTextFieldRoot>
         );
     }
 );

@@ -2,17 +2,17 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import styled from 'styled-components';
 import { TooltipProps } from '@radix-ui/react-tooltip';
 
-export const StyledBaseTooltipProvider = styled(Tooltip.Provider)``;
+export const SBTooltipProvider = styled(Tooltip.Provider)``;
 
-export const StyledBaseTooltipRoot = styled(Tooltip.Root)``;
+export const SBTooltipRoot = styled(Tooltip.Root)``;
 
-export const StyledBaseTooltipTrigger = styled(Tooltip.Trigger)`
+export const SBTooltipTrigger = styled(Tooltip.Trigger)`
     all: unset;
 `;
 
-export const StyledBaseTooltipPortal = styled(Tooltip.Portal)``;
+export const SBTooltipPortal = styled(Tooltip.Portal)``;
 
-export const StyledBaseTooltipContent = styled(Tooltip.Content)<TooltipProps>`
+export const SBTooltipContent = styled(Tooltip.Content)<TooltipProps>`
     user-select: none;
     animation-duration: 400ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
@@ -76,6 +76,4 @@ export const StyledBaseTooltipContent = styled(Tooltip.Content)<TooltipProps>`
     }
 `;
 
-export const StyledBaseTooltipArrow = styled(Tooltip.Arrow)`
-
-`;
+export const SBTooltipArrow = styled(Tooltip.Arrow)``;

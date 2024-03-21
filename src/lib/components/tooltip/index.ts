@@ -1,3 +1,3 @@
-import { SimpleTooltip  } from './simple-tooltip/SimpleTooltip'
+import { SimpleTooltip } from './simple-tooltip/SimpleTooltip';
 
-export { SimpleTooltip }
+export { SimpleTooltip };

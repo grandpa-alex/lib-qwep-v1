@@ -9,24 +9,24 @@ import { TypeBtnPosition, VP } from '@src/lib/types/TypeBtn';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import {
-    StyledBaseSelectContent,
-    StyledBaseSelectContentProps,
-    StyledBaseSelectIcon,
-    StyledBaseSelectItem,
-    StyledBaseSelectPortal,
-    StyledBaseSelectRoot,
-    StyledBaseSelectRootProps,
-    StyledBaseSelectTrigger,
-    StyledBaseSelectTriggerProps,
-    StyledBaseSelectValue,
-    StyledBaseSelectValueProps,
-    StyledBaseSelectViewportProps,
+    SBSelectContent,
+    SBSelectContentProps,
+    SBSelectIcon,
+    SBSelectItem,
+    SBSelectPortal,
+    SBSelectRoot,
+    SBSelectRootProps,
+    SBSelectTrigger,
+    SBSelectTriggerProps,
+    SBSelectValue,
+    SBSelectValueProps,
+    SBSelectViewportProps,
 } from '../base-select-component/BaseSelectComponent';
 import { Icon } from '@src/lib';
 
 import { TypeBoxPaddingVariant, TypeBoxShadowVariant } from '@src/lib/types/TypeBox';
 import { BOX_PADDING_VARIANT, BOX_SHADOW_VARIANT } from '@src/lib/common-styled-component/StuledComponentBox';
-import { StyledSimpleSelectGroup } from './SimpleSelectGroup';
+import { SSSelectGroup } from './SimpleSelectGroup';
 
 export type TypeStyleSimpleSelct = {
     base: TypeSSBase;
@@ -51,18 +51,18 @@ export type SimpleSelectContentProps = {
     positionTrigger?: TypeBtnPosition;
     maxHeight?: string;
     _isActiveHover?: boolean;
-} & (StyledBaseSelectRootProps & StyledBaseSelectValueProps & StyledBaseSelectContentProps);
+} & (SBSelectRootProps & SBSelectValueProps & SBSelectContentProps);
 
-export type StyledSimpleSelectRootProps = {
+export type SSSelectRootProps = {
     $mr?: TypeMargin;
     $color?: Hex;
     $colors: TypeColorScheme;
     $styles: TypeStyleSimpleSelct;
     $sizeVariant: TypeVariantSize;
     $colorVariant: TypeColorVariant;
-} & StyledBaseSelectRootProps;
+} & SBSelectRootProps;
 
-export type StyledSimpleSelectTriggerProps = {
+export type SSSelectTriggerProps = {
     $mr?: TypeMargin;
     $color?: Hex;
     $width?: string;
@@ -72,7 +72,7 @@ export type StyledSimpleSelectTriggerProps = {
     $sizeVariant: TypeVariantSize;
     $colorVariant: TypeColorVariant;
     $_isActiveHover?: boolean;
-} & StyledBaseSelectTriggerProps;
+} & SBSelectTriggerProps;
 
 const SELECT_SIZE = {
     [VS.L]: (props: TypeSSSelect) => css`
@@ -91,7 +91,7 @@ const POSITION_TRIGGER = {
     [VP.RIGTH]: 'right',
 };
 
-export const StyledSimpleSelectTrigger = styled(StyledBaseSelectTrigger)<StyledSimpleSelectTriggerProps>`
+export const SSSelectTrigger = styled(SBSelectTrigger)<SSSelectTriggerProps>`
     display: flex;
     overflow: hidden;
     align-items: center;
@@ -147,7 +147,7 @@ export const StyledSimpleSelectTrigger = styled(StyledBaseSelectTrigger)<StyledS
                     hover: props.$_isActiveHover,
                 })};
         }
-        ${StyledBaseSelectIcon} {
+        ${SBSelectIcon} {
             transition: all 0.3s ease-in-out;
             svg {
                 stroke: ${(props) =>
@@ -171,7 +171,7 @@ export const StyledSimpleSelectTrigger = styled(StyledBaseSelectTrigger)<StyledS
             })};
     }
 
-    ${StyledBaseSelectIcon} {
+    ${SBSelectIcon} {
         margin-left: 8px;
         margin-top: -3px;
         transform: rotate(180deg);
@@ -215,7 +215,7 @@ export const StyledSimpleSelectTrigger = styled(StyledBaseSelectTrigger)<StyledS
                 })};
         }
 
-        ${StyledBaseSelectIcon} {
+        ${SBSelectIcon} {
             transform: rotate(0deg);
             margin-top: 5px;
             svg {
@@ -241,7 +241,7 @@ export const StyledSimpleSelectTrigger = styled(StyledBaseSelectTrigger)<StyledS
     }
 `;
 
-export type StyledSimpleSelectWrapperProps = {
+export type SSSelectWrapperProps = {
     $color?: Hex;
     $width?: string;
     $colors: TypeColorScheme;
@@ -250,16 +250,16 @@ export type StyledSimpleSelectWrapperProps = {
     $boxShadowVariant: TypeBoxShadowVariant;
     $boxPaddingVariant: TypeBoxPaddingVariant;
     $_isActiveHover?: boolean;
-} & StyledBaseSelectContentProps;
+} & SBSelectContentProps;
 
-export const StyledSimpleSelectContent = styled(StyledBaseSelectContent)<StyledSimpleSelectWrapperProps>`
+export const SSSelectContent = styled(SBSelectContent)<SSSelectWrapperProps>`
     overflow: hidden;
     background-color: ${(props) => props.$colors.backgroundBox};
     font-size: ${(props) => props.$styles.typography.fontSizeItem};
     border-radius: ${(props) => props.$styles.base.borderRadiusItem};
     width: ${(props) => props.$width};
 
-    ${StyledBaseSelectItem} {
+    ${SBSelectItem} {
         &[data-disabled] {
             color: ${(props) => props.$colors.disabled};
             svg {
@@ -309,24 +309,26 @@ export const StyledSimpleSelectContent = styled(StyledBaseSelectContent)<StyledS
             $colors: props.$colors,
         })}
 
-    ${StyledSimpleSelectGroup} {
+    ${SSSelectGroup} {
         color: ${(props) => props.$colors.disabled};
         border-color: ${(props) => props.$colors.disabled};
     }
+
 `;
 
-export type StyledSimpleSelectViewportProps = {
+export type SSSelectViewportProps = {
     $color?: Hex;
     $maxHeight?: string;
     $colors: TypeColorScheme;
     $colorVariant: TypeColorVariant;
     $_isActiveHover?: boolean;
-} & StyledBaseSelectViewportProps;
+} & SBSelectViewportProps;
 
-export const StyledSimpleSelectViewport = styled.div<StyledSimpleSelectViewportProps>`
+export const SSSelectViewport = styled.div<SSSelectViewportProps>`
     max-height: ${(props) => props.$maxHeight ?? '300px'};
     overflow-y: auto;
-    padding-right: 2px;
+    margin: 0 -3px;
+    padding: 0 3px;
 
     &::-webkit-scrollbar-track {
         width: 3px;
@@ -370,8 +372,8 @@ export const SimpleSelectContent: React.FC<SimpleSelectContentProps> = React.mem
         const styles = $styles ?? useStyleScheme(['base', 'box', 'select', 'typography', 'mr']);
 
         return (
-            <StyledBaseSelectRoot {...rest}>
-                <StyledSimpleSelectTrigger
+            <SBSelectRoot {...rest}>
+                <SSSelectTrigger
                     $mr={mr}
                     $colors={colors}
                     $styles={styles}
@@ -382,15 +384,14 @@ export const SimpleSelectContent: React.FC<SimpleSelectContentProps> = React.mem
                     $positionTrigger={positionTrigger}
                     $_isActiveHover={_isActiveHover}
                     disabled={rest.disabled}
-                   
                 >
-                    <StyledBaseSelectValue placeholder={rest.placeholder} />
-                    <StyledBaseSelectIcon>
+                    <SBSelectValue placeholder={rest.placeholder} />
+                    <SBSelectIcon>
                         <Icon.BaseArrow />
-                    </StyledBaseSelectIcon>
-                </StyledSimpleSelectTrigger>
-                <StyledBaseSelectPortal>
-                    <StyledSimpleSelectContent
+                    </SBSelectIcon>
+                </SSSelectTrigger>
+                <SBSelectPortal>
+                    <SSSelectContent
                         side={rest.side ?? 'bottom'}
                         position="popper"
                         $colorVariant={colorVariant}
@@ -403,7 +404,7 @@ export const SimpleSelectContent: React.FC<SimpleSelectContentProps> = React.mem
                         $boxShadowVariant={boxShadowVariant}
                         $_isActiveHover={_isActiveHover}
                     >
-                        <StyledSimpleSelectViewport
+                        <SSSelectViewport
                             $colors={colors}
                             $color={color}
                             $colorVariant={colorVariant}
@@ -411,10 +412,10 @@ export const SimpleSelectContent: React.FC<SimpleSelectContentProps> = React.mem
                             $_isActiveHover={_isActiveHover}
                         >
                             {children}
-                        </StyledSimpleSelectViewport>
-                    </StyledSimpleSelectContent>
-                </StyledBaseSelectPortal>
-            </StyledBaseSelectRoot>
+                        </SSSelectViewport>
+                    </SSSelectContent>
+                </SBSelectPortal>
+            </SBSelectRoot>
         );
     }
 );

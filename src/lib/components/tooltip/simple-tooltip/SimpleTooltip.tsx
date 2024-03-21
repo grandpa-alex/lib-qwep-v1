@@ -1,20 +1,19 @@
-
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { getMargin } from '@src/lib/common/getMargin';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
-import { TypeSSBox, TypeSSMR,  } from '@src/lib/general/styleScheme';
+import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
 import { TypeMargin } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { TooltipArrowProps, TooltipContentProps, TooltipProps, TooltipTriggerProps } from '@radix-ui/react-tooltip';
 import {
-    StyledBaseTooltipArrow,
-    StyledBaseTooltipContent,
-    StyledBaseTooltipPortal,
-    StyledBaseTooltipProvider,
-    StyledBaseTooltipRoot,
-    StyledBaseTooltipTrigger,
+    SBTooltipArrow,
+    SBTooltipContent,
+    SBTooltipPortal,
+    SBTooltipProvider,
+    SBTooltipRoot,
+    SBTooltipTrigger,
 } from '../base-tooltip-component/BaseTooltipComponent';
 import {
     TypeBoxGapVariant,
@@ -49,7 +48,7 @@ export type SimpleTooltipProps = {
     bg?: Hex;
 } & (TooltipContentProps & TooltipProps);
 
-export type StyledSimpleTooltipProps = {
+export type SSTooltipProps = {
     $bg?: Hex;
     $boxGapVariant?: TypeBoxGapVariant;
     $boxBorderColor?: Hex;
@@ -61,22 +60,21 @@ export type StyledSimpleTooltipProps = {
     $styles: TypeStyleSimpleTooltip;
 } & TooltipContentProps;
 
-export type StyledSimpleTooltipArrayProps = {
+export type SSTooltipArrayProps = {
     $bg?: Hex;
     $colors: TypeColorScheme;
 } & TooltipArrowProps;
 
-export type StyledSimpleTooltipTriggerProps = {
+export type SSTooltipTriggerProps = {
     $mr?: TypeMargin;
     $styles: TypeStyleSimpleTooltip;
 } & TooltipTriggerProps;
 
-export const StyledSimpleTooltipTrigger = styled(StyledBaseTooltipTrigger)<StyledSimpleTooltipTriggerProps>`
+export const SSTooltipTrigger = styled(SBTooltipTrigger)<SSTooltipTriggerProps>`
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
-
 `;
 
-export const StyledSimpleTooltipContent = styled(StyledBaseTooltipContent)<StyledSimpleTooltipProps>`
+export const SSTooltipContent = styled(SBTooltipContent)<SSTooltipProps>`
     background-color: ${(props) => props.$bg ?? props.$colors.backgroundTooltip};
     font-size: 13px;
     margin: 8px;
@@ -108,7 +106,7 @@ export const StyledSimpleTooltipContent = styled(StyledBaseTooltipContent)<Style
         `}
 `;
 
-export const StyledSimpleTooltipArrow = styled(StyledBaseTooltipArrow)<StyledSimpleTooltipArrayProps>`
+export const SSTooltipArrow = styled(SBTooltipArrow)<SSTooltipArrayProps>`
     fill: ${(props) => props.$bg ?? props.$colors.backgroundTooltip};
 `;
 
@@ -133,13 +131,13 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['box', 'mr']);
 
         return (
-            <StyledBaseTooltipProvider>
-                <StyledBaseTooltipRoot>
-                    <StyledSimpleTooltipTrigger $mr={mr} $styles={styles}>
+            <SBTooltipProvider>
+                <SBTooltipRoot>
+                    <SSTooltipTrigger $mr={mr} $styles={styles}>
                         {children}
-                    </StyledSimpleTooltipTrigger>
-                    <StyledBaseTooltipPortal>
-                        <StyledSimpleTooltipContent
+                    </SSTooltipTrigger>
+                    <SBTooltipPortal>
+                        <SSTooltipContent
                             $bg={bg}
                             $colors={colors}
                             $styles={styles}
@@ -152,11 +150,11 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
                             {...rest}
                         >
                             {content}
-                            <StyledSimpleTooltipArrow $bg={bg} $colors={colors}  />
-                        </StyledSimpleTooltipContent>
-                    </StyledBaseTooltipPortal>
-                </StyledBaseTooltipRoot>
-            </StyledBaseTooltipProvider>
+                            <SSTooltipArrow $bg={bg} $colors={colors} />
+                        </SSTooltipContent>
+                    </SBTooltipPortal>
+                </SBTooltipRoot>
+            </SBTooltipProvider>
         );
     }
 );

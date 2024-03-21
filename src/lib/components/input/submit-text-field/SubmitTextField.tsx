@@ -10,12 +10,12 @@ import styled, { css } from 'styled-components';
 
 import {
     SimpleTextFieldProps,
-    StyledSimpleTextFieldIconContainer,
-    StyledSimpleTextFieldIconContainerProps,
-    StyledSimpleTextFieldInput,
-    StyledSimpleTextFieldInputProps,
-    StyledSimpleTextFieldRoot,
-    StyledSimpleTextFieldRootProps,
+    SSTextFieldIconContainer,
+    SSTextFieldIconContainerProps,
+    SSTextFieldInput,
+    SSTextFieldInputProps,
+    SSTextFieldRoot,
+    SSTextFieldRootProps,
 } from '../simple-text-field/SimpleTextField';
 import { renderIconTextField } from '@src/lib/common/renderIconItem';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
@@ -32,23 +32,23 @@ export type SubmitTextFieldProps = {
     isLoading: boolean;
 } & SimpleTextFieldProps;
 
-export type StyledSubmitTextFieldInputProps = {} & StyledSimpleTextFieldInputProps;
+export type StyledSubmitTextFieldInputProps = {} & SSTextFieldInputProps;
 
 export type StyledSubmitTextFieldRootProps = {
     $isLoading: boolean;
-} & StyledSimpleTextFieldRootProps;
+} & SSTextFieldRootProps;
 
-export type StyledSubmitTextFieldIconContainerProps = {} & StyledSimpleTextFieldIconContainerProps;
+export type StyledSubmitTextFieldIconContainerProps = {} & SSTextFieldIconContainerProps;
 
 export const StyledSubmitTextFieldIconContainer = styled(
-    StyledSimpleTextFieldIconContainer
+    SSTextFieldIconContainer
 )<StyledSubmitTextFieldIconContainerProps>`
     background-color: transparent;
     border: none;
     padding: 0;
 `;
 
-export const StyledSubmitTextFieldRoot = styled(StyledSimpleTextFieldRoot)<StyledSubmitTextFieldRootProps>`
+export const StyledSubmitTextFieldRoot = styled(SSTextFieldRoot)<StyledSubmitTextFieldRootProps>`
     ${(props) => {
         if (props.$isLoading) {
             return css`
@@ -59,7 +59,7 @@ export const StyledSubmitTextFieldRoot = styled(StyledSimpleTextFieldRoot)<Style
     }}
 `;
 
-export const StyledSubmitTextFieldInput = styled(StyledSimpleTextFieldInput)<StyledSubmitTextFieldInputProps>``;
+export const StyledSubmitTextFieldInput = styled(SSTextFieldInput)<StyledSubmitTextFieldInputProps>``;
 
 export type StyledSubmitTextFieldInputPropsrProps = {
     $color?: Hex;

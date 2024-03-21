@@ -6,7 +6,7 @@ import styled, { css } from 'styled-components';
 import { BaseButton } from '..';
 import { getColor } from '@src/lib/common/getColor';
 import { TypeBtnPosition, VB, VP } from '@src/lib/types/TypeBtn';
-import { BaseButtonProps, StyledBaseButtonProps } from '../base-button/BaseButton';
+import { BaseButtonProps, SBButtonProps } from '../base-button/BaseButton';
 
 // export type TypeStyleSimpleBtn = {
 //     icon: TypeSSIcon;
@@ -19,17 +19,17 @@ export type SimpleButtonProps = {
     // $styles?: TypeStyleSimpleBtn;
 } & BaseButtonProps;
 
-export type StyledSimpleButtonIconContainerProps = {
+export type SSButtonIconContainerProps = {
     $iconPosition: TypeItemIconPosition;
 };
 
-export type StyledSimpleButtonContentContainerProps = {
+export type SSButtonContentContainerProps = {
     $position: TypeBtnPosition;
 };
 
-export type StyledSimpleButtonProps = StyledBaseButtonProps;
+export type SSButtonProps = SBButtonProps;
 
-export const StyledSimpleButtonIconContainer = styled.div<StyledSimpleButtonIconContainerProps>`
+export const SSButtonIconContainer = styled.div<SSButtonIconContainerProps>`
     ${(props) => {
         if (props.$iconPosition === IIP.RIGHT) {
             return css`
@@ -46,14 +46,10 @@ export const StyledSimpleButtonIconContainer = styled.div<StyledSimpleButtonIcon
 `;
 
 const BTN_VARIANT = {
-    [VB.CONTAINED]: (
-        props: StyledSimpleButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>
-    ) => css`
+    [VB.CONTAINED]: (props: SSButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
         fill: ${props.$colors.textItem};
     `,
-    [VB.TEXT]: (
-        props: StyledSimpleButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>
-    ) => css`
+    [VB.TEXT]: (props: SSButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
         fill: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
@@ -62,9 +58,7 @@ const BTN_VARIANT = {
             hover: props.hover,
         })};
     `,
-    [VB.OUTLINED]: (
-        props: StyledSimpleButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>
-    ) => css`
+    [VB.OUTLINED]: (props: SSButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
         fill: ${getColor({
             cs: props.$colors,
             color: props.$color,
@@ -75,19 +69,19 @@ const BTN_VARIANT = {
     `,
 };
 
-export const StyledSimpleButton = styled(BaseButton)<StyledSimpleButtonProps>`
+export const SSButton = styled(BaseButton)<SSButtonProps>`
     display: flex;
     align-items: center;
     line-height: normal;
     font-weight: ${(props) => props.$styles.typography.fontWeightItem};
 
-    ${StyledSimpleButtonIconContainer} {
+    ${SSButtonIconContainer} {
         svg {
             ${(props) => BTN_VARIANT[props.$variant]({ ...props, hover: false })};
         }
     }
     &:not([disabled]):hover {
-        ${StyledSimpleButtonIconContainer} {
+        ${SSButtonIconContainer} {
             svg {
                 ${(props) => BTN_VARIANT[props.$variant]({ ...props, hover: true })};
             }
@@ -95,7 +89,7 @@ export const StyledSimpleButton = styled(BaseButton)<StyledSimpleButtonProps>`
     }
 `;
 
-export const StyledSimpleButtonContentContainer = styled.div<StyledSimpleButtonContentContainerProps>`
+export const SSButtonContentContainer = styled.div<SSButtonContentContainerProps>`
     flex-grow: 1;
     display: flex;
     align-items: center;
@@ -145,7 +139,7 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
         }, [icon, colors, styles]);
 
         return (
-            <StyledSimpleButton
+            <SSButton
                 $colors={colors}
                 $styles={styles}
                 $sizeVariant={sizeVariant}
@@ -158,11 +152,11 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
                 mr={mr}
                 {...rest}
             >
-                <StyledSimpleButtonIconContainer $iconPosition={iconPosition}>
-                    {renderIcon}
-                </StyledSimpleButtonIconContainer>
-                <StyledSimpleButtonContentContainer $position={position}>{children}</StyledSimpleButtonContentContainer>
-            </StyledSimpleButton>
+                {
+                    renderIcon && <SSButtonIconContainer $iconPosition={iconPosition}>{renderIcon}</SSButtonIconContainer>
+                }
+                <SSButtonContentContainer $position={position}>{children}</SSButtonContentContainer>
+            </SSButton>
         );
     }
 );

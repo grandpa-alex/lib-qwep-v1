@@ -26,7 +26,7 @@ export type BaseSliderProps = {
     $styles?: TypeStyleBaseSlider;
 } & SliderProps;
 
-export type StyledBaseButtonProps = {
+export type SBButtonProps = {
     $mr?: TypeMargin;
     $color?: Hex;
     $width?: string;
@@ -36,20 +36,20 @@ export type StyledBaseButtonProps = {
     $sizeVariant: TypeVariantSize;
 } & SliderProps;
 
-export const StyledBaseSliderTrack = styled(Slider.Track)`
+export const SBSliderTrack = styled(Slider.Track)`
     position: relative;
     flex-grow: 1;
     border-radius: 9999px;
     height: 3px;
 `;
 
-export const StyledBaseSliderRange = styled(Slider.Range)`
+export const SBSliderRange = styled(Slider.Range)`
     position: absolute;
     border-radius: 9999px;
     height: 150%;
 `;
 
-export const StyledBaseSliderThumb = styled(Slider.Thumb)`
+export const SBSliderThumb = styled(Slider.Thumb)`
     display: block;
     border-radius: 50%;
     transition: all 0.3s ease-in-out;
@@ -60,7 +60,7 @@ const THUMB_SIZE = {
     [VS.M]: (props: TypeSSSlider) => props.thumbSize_L,
 };
 
-export const StyledBaseSliderRoot = styled(Slider.Root)<StyledBaseButtonProps>`
+export const SBSliderRoot = styled(Slider.Root)<SBButtonProps>`
     position: relative;
     outline: none;
     display: flex;
@@ -70,10 +70,10 @@ export const StyledBaseSliderRoot = styled(Slider.Root)<StyledBaseButtonProps>`
     width: ${(props) => props.$width ?? '200px'};
     height: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
     ${(props) => getMargin(props.$styles?.mr, props.$mr)};
-    ${StyledBaseSliderTrack} {
+    ${SBSliderTrack} {
         background-color: ${(props) => props.$colors.disabled};
     }
-    ${StyledBaseSliderRange} {
+    ${SBSliderRange} {
         background-color: ${(props) =>
             getColor({
                 cs: props.$colors,
@@ -82,7 +82,7 @@ export const StyledBaseSliderRoot = styled(Slider.Root)<StyledBaseButtonProps>`
                 variant: props.$colorVariant,
             })};
     }
-    ${StyledBaseSliderThumb} {
+    ${SBSliderThumb} {
         background-color: ${(props) => props.$colors.textItem};
         box-shadow: 0 1px 3px #555555;
         width: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
@@ -109,7 +109,7 @@ export const BaseSlider: React.FC<BaseSliderProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['slider', 'mr']);
 
         return (
-            <StyledBaseSliderRoot
+            <SBSliderRoot
                 $color={color}
                 $mr={mr}
                 $width={width}
@@ -119,14 +119,14 @@ export const BaseSlider: React.FC<BaseSliderProps> = React.memo(
                 $sizeVariant={sizeVariant}
                 {...rest}
             >
-                <StyledBaseSliderTrack>
-                    <StyledBaseSliderRange />
-                </StyledBaseSliderTrack>
+                <SBSliderTrack>
+                    <SBSliderRange />
+                </SBSliderTrack>
                 {rest.defaultValue &&
                     rest.defaultValue.map((_, idx) => {
-                        return <StyledBaseSliderThumb key={idx} />;
+                        return <SBSliderThumb key={idx} />;
                     })}
-            </StyledBaseSliderRoot>
+            </SBSliderRoot>
         );
     }
 );

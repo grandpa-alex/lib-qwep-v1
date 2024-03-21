@@ -6,3 +6,4 @@ export * from './checkbox';
 export * from './switch';
 export * from './tooltip';
 export * from './select';
+export * from './dialog';

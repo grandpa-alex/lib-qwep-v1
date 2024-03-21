@@ -1,5 +1,4 @@
 import * as Select from '@radix-ui/react-select';
-
 import { styled } from 'styled-components';
 import {
     SelectProps,
@@ -9,62 +8,47 @@ import {
     SelectContentProps,
     SelectScrollUpButtonProps,
     SelectViewportProps,
-    SelectSeparatorProps,
     SelectItemIndicatorProps,
     SelectItemProps,
     SelectItemTextProps,
     SelectGroupProps,
     SelectValueProps,
-    SelectScrollDownButtonProps,
 } from '@radix-ui/react-select';
 
+export type SBSelectRootProps = SelectProps;
+export const SBSelectRoot = styled(Select.Root)``;
 
-export type StyledBaseSelectRootProps = SelectProps;
-export const StyledBaseSelectRoot = styled(Select.Root)``;
+export type SBSelectTriggerProps = SelectTriggerProps & React.RefAttributes<HTMLButtonElement>;
+export const SBSelectTrigger = styled(Select.Trigger)``;
 
-export type StyledBaseSelectTriggerProps = SelectTriggerProps & React.RefAttributes<HTMLButtonElement>;
-export const StyledBaseSelectTrigger = styled(Select.Trigger)``;
+export type SBSelectValueProps = SelectValueProps & React.RefAttributes<HTMLButtonElement>;
+export const SBSelectValue = styled(Select.Value)``;
 
-export type StyledBaseSelectValueProps = SelectValueProps & React.RefAttributes<HTMLButtonElement>;
-export const StyledBaseSelectValue = styled(Select.Value)`
-  
-`;
+export type SBSelectIconProps = SelectIconProps & React.RefAttributes<HTMLSpanElement>;
+export const SBSelectIcon = styled(Select.Icon)``;
 
-export type StyledBaseSelectIconProps = SelectIconProps & React.RefAttributes<HTMLSpanElement>;
-export const StyledBaseSelectIcon = styled(Select.Icon)``;
+export type SBSelectPortalProps = SelectPortalProps;
+export const SBSelectPortal = styled(Select.Portal)``;
 
-export type StyledBaseSelectPortalProps = SelectPortalProps;
-export const StyledBaseSelectPortal = styled(Select.Portal)``;
+export type SBSelectContentProps = SelectContentProps & React.RefAttributes<HTMLDivElement>;
+export const SBSelectContent = styled(Select.Content)``;
 
-export type StyledBaseSelectGroupProps = SelectGroupProps & React.RefAttributes<HTMLDivElement>;
-export const StyledBaseSelectGroup = styled(Select.Group)``;
+export type SBSelectScrollUpButtonProps = SelectScrollUpButtonProps & React.RefAttributes<HTMLDivElement>;
+export const SBSelectScrollUpButton = styled(Select.ScrollUpButton)``;
 
-export type StyledBaseSelectContentProps = SelectContentProps & React.RefAttributes<HTMLDivElement>;
-export const StyledBaseSelectContent = styled(Select.Content)``;
-
-export type StyledBaseSelectScrollUpButtonProps = SelectScrollUpButtonProps & React.RefAttributes<HTMLDivElement>;
-export const StyledBaseSelectScrollUpButton = styled(Select.ScrollUpButton)``;
-
-export type StyledBaseSelectViewportProps = SelectViewportProps & React.RefAttributes<HTMLDivElement>;
-export const StyledBaseSelectViewport = styled(Select.Viewport)``;
-
-export type StyledBaseSelectSeparatorProps = SelectSeparatorProps & React.RefAttributes<HTMLDivElement>;
-export const StyledBaseSelectSeparator = styled(Select.Separator)``;
-
-export type StyledBaseSelectScrollDownButtonProps = SelectScrollDownButtonProps & React.RefAttributes<HTMLDivElement>;
-export const StyledBaseSelectScrollDownButton = styled(Select.ScrollDownButton)``;
+export type SBSelectViewportProps = SelectViewportProps & React.RefAttributes<HTMLDivElement>;
+export const SBSelectViewport = styled(Select.Viewport)``;
 
 //item
+export type SBSelectItemProps = SelectItemProps & React.RefAttributes<HTMLDivElement>;
+export const SBSelectItem = styled(Select.Item)``;
 
-export type StyledBaseSelectItemProps = SelectItemProps & React.RefAttributes<HTMLDivElement>;
-export const StyledBaseSelectItem = styled(Select.Item)``;
+export type SBSelectItemTextProps = SelectItemTextProps & React.RefAttributes<HTMLSpanElement>;
+export const SBSelectItemText = styled(Select.ItemText)``;
 
-export type StyledBaseSelectItemTextProps = SelectItemTextProps & React.RefAttributes<HTMLSpanElement>;
-export const StyledBaseSelectItemText = styled(Select.ItemText)`
-   
-`;
+export type SBSelectItemIndicatorProps = SelectItemIndicatorProps & React.RefAttributes<HTMLSpanElement>;
+export const SBSelectItemIndicator = styled(Select.ItemIndicator)``;
 
-export type StyledBaseSelectItemIndicatorProps = SelectItemIndicatorProps & React.RefAttributes<HTMLSpanElement>;
-export const StyledBaseSelectItemIndicator = styled(Select.ItemIndicator)``;
-
-
+// group
+export type SBSelectGroupProps = SelectGroupProps & React.RefAttributes<HTMLDivElement>;
+export const SBSelectGroup = styled(Select.Group)``;

@@ -1,20 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-    StyledBaseSelectItem,
-    StyledBaseSelectItemIndicator,
-    StyledBaseSelectItemProps,
-    StyledBaseSelectItemText,
+    SBSelectItem,
+    SBSelectItemIndicator,
+    SBSelectItemProps,
+    SBSelectItemText,
 } from '../base-select-component/BaseSelectComponent';
 import { Icon } from '@src/lib';
 
-
-
 export type SimpleSelectItemProps = {
     children: React.ReactNode;
-} & StyledBaseSelectItemProps;
+} & SBSelectItemProps;
 
-export const StyledSimpleSelectItem = styled(StyledBaseSelectItem)`
+export const SSSelectItem = styled(SBSelectItem)`
     padding: 6px 20px 6px 20px;
     border-radius: 4px;
     position: relative;
@@ -26,7 +24,7 @@ export const StyledSimpleSelectItem = styled(StyledBaseSelectItem)`
     cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
 `;
 
-export const StyledSimpleSelectItemIndicator = styled(StyledBaseSelectItemIndicator)`
+export const SSSelectItemIndicator = styled(SBSelectItemIndicator)`
     position: absolute;
     top: 50%;
     left: 2px;
@@ -37,18 +35,13 @@ export const StyledSimpleSelectItemIndicator = styled(StyledBaseSelectItemIndica
     }
 `;
 
-export const SimpleSelectItem: React.FC<SimpleSelectItemProps> = React.forwardRef(
-    ({ children, ...rest }) => {
-      
-        return (
-            <StyledSimpleSelectItem
-                {...rest}
-            >
-                <StyledSimpleSelectItemIndicator>
-                    <Icon.BaseCheck />
-                </StyledSimpleSelectItemIndicator>
-                <StyledBaseSelectItemText>{children}</StyledBaseSelectItemText>
-            </StyledSimpleSelectItem>
-        );
-    }
-);
+export const SimpleSelectItem: React.FC<SimpleSelectItemProps> = React.forwardRef(({ children, ...rest }) => {
+    return (
+        <SSSelectItem {...rest}>
+            <SSSelectItemIndicator>
+                <Icon.BaseCheck />
+            </SSSelectItemIndicator>
+            <SBSelectItemText>{children}</SBSelectItemText>
+        </SSSelectItem>
+    );
+});

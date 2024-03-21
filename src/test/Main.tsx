@@ -622,25 +622,25 @@ function Main() {
                 </SimpleSelectContent>
             </div>
 
-<SimpleButton mr={'m-12'} style={{width: '100px'}}
-onClick={() => setOpenM(true)}>Open</SimpleButton>
+            <SimpleButton mr={'m-12'} style={{ width: '100px' }} onClick={() => setOpenM(true)}>
+                Open
+            </SimpleButton>
 
-            <SimpleDialog 
-            overlayBlur={'5px'} 
-            // style={{width: '700px'}}
-            boxGapVariant={'g-3'}
-            open={openM} 
-            onOpenChange={setOpenM}
-
+            <SimpleDialog
+                overlayBlur={'5px'}
+                // style={{width: '700px'}}
+                boxGapVariant={'g-3'}
+                open={openM}
+                onOpenChange={setOpenM}
             >
-                 <SubmitTextField
+                <SubmitTextField
                     isLoading={false}
                     iconPosition="right"
                     colorVariant={'success'}
                     sizeVariant={'L'}
                     placeholder={'!!!Text ggYY'}
                 />
-                 <SubmitTextField
+                <SubmitTextField
                     isLoading={false}
                     iconPosition="right"
                     colorVariant={'success'}
@@ -649,7 +649,7 @@ onClick={() => setOpenM(true)}>Open</SimpleButton>
                     placeholder={'!!!Text ggYY'}
                     iconOnClick={() => setVal(!val)}
                 />
-                 <SubmitTextField
+                <SubmitTextField
                     isLoading={false}
                     iconPosition="right"
                     colorVariant={'success'}

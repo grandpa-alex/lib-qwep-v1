@@ -152,9 +152,7 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
                 mr={mr}
                 {...rest}
             >
-                {
-                    renderIcon && <SSButtonIconContainer $iconPosition={iconPosition}>{renderIcon}</SSButtonIconContainer>
-                }
+                {renderIcon && <SSButtonIconContainer $iconPosition={iconPosition}>{renderIcon}</SSButtonIconContainer>}
                 <SSButtonContentContainer $position={position}>{children}</SSButtonContentContainer>
             </SSButton>
         );

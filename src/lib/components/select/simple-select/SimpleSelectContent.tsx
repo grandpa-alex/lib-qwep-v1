@@ -313,7 +313,6 @@ export const SSSelectContent = styled(SBSelectContent)<SSSelectWrapperProps>`
         color: ${(props) => props.$colors.disabled};
         border-color: ${(props) => props.$colors.disabled};
     }
-
 `;
 
 export type SSSelectViewportProps = {

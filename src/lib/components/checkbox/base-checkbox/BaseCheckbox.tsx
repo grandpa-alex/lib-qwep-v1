@@ -26,7 +26,7 @@ export type BaseCheckboxProps = {
     _isActiveHover?: boolean;
 } & CheckboxProps;
 
-export type StyledRootCheckboxProps = {
+export type SBRootCheckboxProps = {
     $color?: Hex;
     $mr?: TypeMargin;
     $colors: TypeColorScheme;
@@ -43,7 +43,6 @@ export type SBCheckboxIconProps = {
     $disabled?: boolean;
 };
 
-export const SBCheckboxIndicator = styled(Checkbox.Indicator)``;
 
 export const SBCheckboxIcon = styled.svg<SBCheckboxIconProps>`
     position: absolute;
@@ -76,9 +75,8 @@ const SIZE_CHECKBOX = {
     `,
 };
 
-export const SBCheckboxRoot = styled(Checkbox.Root)<StyledRootCheckboxProps>`
+export const SBCheckboxRoot = styled(Checkbox.Root)<SBRootCheckboxProps>`
     position: relative;
-
     background-color: transparent;
     cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
     border-radius: 4px;
@@ -151,7 +149,7 @@ export const BaseCheckbox: React.FC<BaseCheckboxProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
-                <SBCheckboxIndicator>
+                <Checkbox.Indicator>
                     <SBCheckboxIcon
                         $colors={colors}
                         $colorVariant={colorVariant}
@@ -161,7 +159,7 @@ export const BaseCheckbox: React.FC<BaseCheckboxProps> = React.memo(
                     >
                         <polyline points="20 6 9 17 4 12" />
                     </SBCheckboxIcon>
-                </SBCheckboxIndicator>
+                </Checkbox.Indicator>
             </SBCheckboxRoot>
         );
     }

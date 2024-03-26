@@ -4,20 +4,19 @@ import { VC, VS } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { BaseCheckbox } from '..';
-import { BaseCheckboxProps, StyledRootCheckboxProps, TypeStyleBaseCheckbox } from '../base-checkbox/BaseCheckbox';
+import { BaseCheckboxProps, SBRootCheckboxProps } from '../base-checkbox/BaseCheckbox';
 import { getColor } from '@src/lib/common/getColor';
 import { TypeSSCheckbox } from '@src/lib/general/styleScheme';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
 
-export type TypeStyleSubmitCheckbox = {} & TypeStyleBaseCheckbox;
 
 export type SubmitCheckboxProps = {
     isLoading: boolean;
 } & BaseCheckboxProps;
 
-export type StyledSubmitCheckboxProps = {
+export type SSUBCheckboxProps = {
     $isLoading: boolean;
-} & StyledRootCheckboxProps;
+} & SBRootCheckboxProps;
 
 const LOADING_SIZE = {
     [VS.L]: (props: TypeSSCheckbox) => css`
@@ -30,7 +29,7 @@ const LOADING_SIZE = {
     `,
 };
 
-export const StyledSubmitCheckboxProps = styled(BaseCheckbox)<StyledSubmitCheckboxProps>`
+export const SSUBCheckboxProps = styled(BaseCheckbox)<SSUBCheckboxProps>`
     ${(props) => {
         if (props.$isLoading && !props.disabled) {
             return css`
@@ -76,7 +75,7 @@ export const SubmitCheckbox: React.FC<SubmitCheckboxProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['base', 'checkbox', 'mr']);
 
         return (
-            <StyledSubmitCheckboxProps
+            <SSUBCheckboxProps
                 $color={color}
                 $mr={mr}
                 $colors={colors}

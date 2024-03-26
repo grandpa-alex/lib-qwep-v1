@@ -15,7 +15,6 @@ export default defineConfig({
     resolve: {
         alias: {
             '@src': path.resolve('', 'src'),
-            '@lib': path.resolve('', 'src/lib'),
         },
     },
     build: {
@@ -29,9 +28,6 @@ export default defineConfig({
             external: [
                 'react',
                 'react-dom',
-                // '@radix-ui/react-checkbox', 
-                // '@radix-ui/react-dialog',
-                // '@radix-ui/react-slider',
             ],
             output: {
                 globals: {

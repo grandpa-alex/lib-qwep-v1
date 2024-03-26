@@ -13,12 +13,11 @@ import {
     SSTextFieldIconContainer,
     SSTextFieldIconContainerProps,
     SSTextFieldInput,
-    SSTextFieldInputProps,
     SSTextFieldRoot,
-    SSTextFieldRootProps,
 } from '../simple-text-field/SimpleTextField';
 import { renderIconTextField } from '@src/lib/common/renderIconItem';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
+import { SBTextFieldInputProps, SBTextFieldRootProps } from '../base-text-field/BaseTextField';
 
 export type TypeStyleSubmitTextField = {
     base: TypeSSBase;
@@ -32,36 +31,31 @@ export type SubmitTextFieldProps = {
     isLoading: boolean;
 } & SimpleTextFieldProps;
 
-export type StyledSubmitTextFieldInputProps = {} & SSTextFieldInputProps;
+export type SSUBTextFieldInputProps = {
+    $isLoading?: boolean;
+} & SBTextFieldInputProps;
 
-export type StyledSubmitTextFieldRootProps = {
+export type SSUBTextFieldRootProps = {
     $isLoading: boolean;
-} & SSTextFieldRootProps;
+} & SBTextFieldRootProps;
 
-export type StyledSubmitTextFieldIconContainerProps = {} & SSTextFieldIconContainerProps;
+export type SSUBTextFieldIconContainerProps = {} & SSTextFieldIconContainerProps;
 
-export const StyledSubmitTextFieldIconContainer = styled(
-    SSTextFieldIconContainer
-)<StyledSubmitTextFieldIconContainerProps>`
+export const SSUBTextFieldIconContainer = styled(SSTextFieldIconContainer)<SSUBTextFieldIconContainerProps>`
     background-color: transparent;
     border: none;
     padding: 0;
 `;
 
-export const StyledSubmitTextFieldRoot = styled(SSTextFieldRoot)<StyledSubmitTextFieldRootProps>`
-    ${(props) => {
-        if (props.$isLoading) {
-            return css`
-                &:hover {
-                }
-            `;
-        }
-    }}
+export const SSUBTextFieldInput = styled(SSTextFieldInput)<SSUBTextFieldInputProps>`
+    ${(props) =>
+        props.$isLoading &&
+        css`
+            pointer-events: none;
+        `}
 `;
 
-export const StyledSubmitTextFieldInput = styled(SSTextFieldInput)<StyledSubmitTextFieldInputProps>``;
-
-export type StyledSubmitTextFieldInputPropsrProps = {
+export type SSUBTextFieldLoadingProps = {
     $color?: Hex;
     $isLoading?: boolean;
     $disabled?: boolean;
@@ -72,17 +66,17 @@ export type StyledSubmitTextFieldInputPropsrProps = {
 };
 
 const LOADING_SIZE = {
-    [VS.L]: (props: StyledSubmitTextFieldInputPropsrProps) => css`
+    [VS.L]: (props: SSUBTextFieldLoadingProps) => css`
         width: ${props.$styles.inp.inpIconSize_L};
         height: ${props.$styles.inp.inpIconSize_L};
     `,
-    [VS.M]: (props: StyledSubmitTextFieldInputPropsrProps) => css`
+    [VS.M]: (props: SSUBTextFieldLoadingProps) => css`
         width: ${props.$styles.inp.inpIconSize_M};
         height: ${props.$styles.inp.inpIconSize_M};
     `,
 };
 
-export const StyledSubmitTextFieldLoading = styled.span<StyledSubmitTextFieldInputPropsrProps>`
+export const SSUBTextFieldLoading = styled.span<SSUBTextFieldLoadingProps>`
     margin: 0 6px 2px 6px;
     ${(props) => LOADING_SIZE[props.$sizeVariant](props)}
     ${(props) => {
@@ -129,7 +123,7 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
         }, [icon, colors, styles]);
 
         return (
-            <StyledSubmitTextFieldRoot
+            <SSTextFieldRoot
                 $mr={mr}
                 $colors={colors}
                 $styles={styles}
@@ -141,7 +135,6 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                 disabled={rest.disabled}
                 mr={mr}
                 color={color}
-                $isLoading={isLoading}
                 variant={variant}
                 sizeVariant={sizeVariant}
                 colorVariant={colorVariant}
@@ -154,27 +147,28 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                 $_isActiveHover={!isLoading && _isActiveHover}
             >
                 {icon && (
-                    <StyledSubmitTextFieldIconContainer
+                    <SSUBTextFieldIconContainer
                         as="button"
                         disabled={rest.disabled || isLoading}
                         onClick={iconOnClick}
                         $iconPosition={iconPosition}
                     >
                         {renderIcon}
-                    </StyledSubmitTextFieldIconContainer>
+                    </SSUBTextFieldIconContainer>
                 )}
 
-                <StyledSubmitTextFieldInput
+                <SSUBTextFieldInput
                     $styles={{ typography: styles.typography }}
                     $colors={colors}
                     $color={color}
                     $colorVariant={colorVariant}
-                    disabled={rest.disabled || isLoading}
+                    $isLoading={isLoading}
+                    disabled={rest.disabled}
                     {...rest}
                     style={{}}
                 />
 
-                <StyledSubmitTextFieldLoading
+                <SSUBTextFieldLoading
                     $styles={styles}
                     $colors={colors}
                     $color={color}
@@ -183,7 +177,7 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                     $sizeVariant={sizeVariant}
                     $disabled={rest.disabled}
                 />
-            </StyledSubmitTextFieldRoot>
+            </SSTextFieldRoot>
         );
     }
 );

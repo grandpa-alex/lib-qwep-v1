@@ -1,18 +1,6 @@
-import {
-    SBDialogClose,
-    SBDialogContent,
-    SBDialogOverlay,
-    SBDialogPortal,
-    SBDialogRoot,
-} from './base-dialog-components/BaseDialogComponents';
-import { SimpleDialog } from './simple-dialog/SimpleDialog';
 
-export const BaseComponentDialog = {
-    SBDialogRoot,
-    SBDialogPortal,
-    SBDialogOverlay,
-    SBDialogContent,
-    SBDialogClose,
-};
+import { BaseDialog } from './base-dialog-components/BaseDialog';
 
-export { SimpleDialog };
+
+
+export { BaseDialog };

@@ -3,12 +3,10 @@ import { TypeBoxRadiusVariant, TypeBoxShadowVariant } from '@src/lib/types/TypeB
 import React from 'react';
 import { css, styled } from 'styled-components';
 import { BaseBox } from '..';
-import { BaseBoxProps, SBBoxProps, TypeStyleBaseBox } from '../base-box/BaseBox';
+import { BaseBoxProps, SBBoxProps } from '../base-box/BaseBox';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
-import { BOX_BORDER_RADIUS, BOX_SHADOW_VARIANT } from '@src/lib/common-styled-component/StuledComponentBox';
-
-export type TypeStyleSimpleBox = {} & TypeStyleBaseBox;
+import { BOX_BORDER_RADIUS, BOX_SHADOW_VARIANT } from '@src/lib/common-styled-component/StyledComponentBox';
 
 export type SimpleBoxProps = {
     bg?: Hex;

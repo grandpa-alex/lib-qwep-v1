@@ -1,30 +1,7 @@
-import {
-    SBSelectRoot,
-    SBSelectContent,
-    SBSelectTrigger,
-    SBSelectIcon,
-    SBSelectGroup,
-    SBSelectItem,
-    SBSelectItemIndicator,
-    SBSelectItemText,
-    SBSelectPortal,
-    SBSelectViewport,
-} from './base-select-component/BaseSelectComponent';
-import { SimpleSelectContent } from './simple-select/SimpleSelectContent';
-import { SimpleSelectItem } from './simple-select/SimpleSelectItem';
-import { SimpleSelectGroup } from './simple-select/SimpleSelectGroup';
 
-export const BaseComponentSelect = {
-    SBSelectRoot,
-    SBSelectContent,
-    SBSelectTrigger,
-    SBSelectIcon,
-    SBSelectGroup,
-    SBSelectItem,
-    SBSelectItemIndicator,
-    SBSelectItemText,
-    SBSelectPortal,
-    SBSelectViewport,
-};
+import { BaseSelectContent } from './base-select/BaseSelectContent';
+import { BaseSelectItem } from './base-select/BaseSelectItem';
+import { BaseSelectGroup } from './base-select/BaseSelectGroup';
 
-export { SimpleSelectItem, SimpleSelectGroup, SimpleSelectContent };
+
+export { BaseSelectItem, BaseSelectGroup, BaseSelectContent };

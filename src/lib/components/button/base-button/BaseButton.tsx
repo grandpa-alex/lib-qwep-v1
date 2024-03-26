@@ -27,6 +27,7 @@ export type BaseButtonProps = {
     $styles?: TypeStyleBaseBtn;
     color?: Hex;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
+    _isActiveHover?:  boolean
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type SBButtonProps = {
@@ -37,6 +38,7 @@ export type SBButtonProps = {
     $sizeVariant: TypeVariantSize;
     $colorVariant: TypeColorVariant;
     $variant: TypeBtnVariant;
+    $_isActiveHover: boolean
 };
 
 const BTN_SIZE = {
@@ -66,7 +68,7 @@ const BTN_VARIANT = {
                 cs: props.$colors,
                 color: props.$color,
                 variant: props.$colorVariant,
-                hover: true,
+                hover: props.$_isActiveHover
             })};
         }
     `,
@@ -85,7 +87,7 @@ const BTN_VARIANT = {
                 cs: props.$colors,
                 color: props.$color,
                 variant: props.$colorVariant,
-                hover: true,
+                hover: props.$_isActiveHover
             })};
         }
     `,
@@ -112,26 +114,28 @@ const BTN_VARIANT = {
                 cs: props.$colors,
                 color: props.$color,
                 variant: props.$colorVariant,
-                hover: true,
+                hover: props.$_isActiveHover
             })};
             border-color: ${getColor({
                 cs: props.$colors,
                 color: props.$color,
                 variant: props.$colorVariant,
-                hover: true,
+                hover: props.$_isActiveHover
             })};
         }
     `,
 };
 
 export const SBButton = styled.button<SBButtonProps>`
-    /* all: unset; */
     display: block;
+    user-select: none;
     position: relative;
     overflow: hidden;
+    line-height: normal;
     outline: 0;
     transition: background-color 400ms;
     font-size: ${({ $styles }) => $styles.typography.fontSizeItem};
+    font-weight: ${(props) => props.$styles.typography.fontWeightItem};
     border-radius: ${({ $styles }) => $styles.base.borderRadiusItem};
     cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
     ${(props) => getMargin(props.$styles?.mr, props.$mr)};
@@ -150,6 +154,7 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
         onClick,
         $colors,
         $styles,
+        _isActiveHover = true,
         ...rest
     }) => {
         const colors = $colors ?? useColorScheme();
@@ -178,6 +183,7 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
                 $colorVariant={colorVariant}
                 $variant={variant}
                 onClick={handleClick}
+                $_isActiveHover={_isActiveHover}
                 {...rest}
             >
                 {children}

@@ -7,16 +7,12 @@ import { BaseButton } from '..';
 import { getColor } from '@src/lib/common/getColor';
 import { TypeBtnPosition, VB, VP } from '@src/lib/types/TypeBtn';
 import { BaseButtonProps, SBButtonProps } from '../base-button/BaseButton';
-
-// export type TypeStyleSimpleBtn = {
-//     icon: TypeSSIcon;
-// } & TypeStyleBaseBtn;
+import { renderIconButton } from '@src/lib/common/renderIconItem';
 
 export type SimpleButtonProps = {
     position?: TypeBtnPosition;
     icon?: React.ReactNode;
     iconPosition?: TypeItemIconPosition;
-    // $styles?: TypeStyleSimpleBtn;
 } & BaseButtonProps;
 
 export type SSButtonIconContainerProps = {
@@ -26,8 +22,6 @@ export type SSButtonIconContainerProps = {
 export type SSButtonContentContainerProps = {
     $position: TypeBtnPosition;
 };
-
-export type SSButtonProps = SBButtonProps;
 
 export const SSButtonIconContainer = styled.div<SSButtonIconContainerProps>`
     ${(props) => {
@@ -46,11 +40,11 @@ export const SSButtonIconContainer = styled.div<SSButtonIconContainerProps>`
 `;
 
 const BTN_VARIANT = {
-    [VB.CONTAINED]: (props: SSButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
-        fill: ${props.$colors.textItem};
+    [VB.CONTAINED]: (props: SBButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+        color: ${props.$colors.textItem};
     `,
-    [VB.TEXT]: (props: SSButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
-        fill: ${getColor({
+    [VB.TEXT]: (props: SBButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+        color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
             color: props.$color,
@@ -58,8 +52,8 @@ const BTN_VARIANT = {
             hover: props.hover,
         })};
     `,
-    [VB.OUTLINED]: (props: SSButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
-        fill: ${getColor({
+    [VB.OUTLINED]: (props: SBButtonProps & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+        color: ${getColor({
             cs: props.$colors,
             color: props.$color,
             disabled: props.disabled,
@@ -69,12 +63,11 @@ const BTN_VARIANT = {
     `,
 };
 
-export const SSButton = styled(BaseButton)<SSButtonProps>`
+export const SSButton = styled(BaseButton)<SBButtonProps>`
     display: flex;
     align-items: center;
-    line-height: normal;
-    font-weight: ${(props) => props.$styles.typography.fontWeightItem};
-
+    flex-wrap: nowrap;
+    min-width: 70px;
     ${SSButtonIconContainer} {
         svg {
             ${(props) => BTN_VARIANT[props.$variant]({ ...props, hover: false })};
@@ -83,7 +76,7 @@ export const SSButton = styled(BaseButton)<SSButtonProps>`
     &:not([disabled]):hover {
         ${SSButtonIconContainer} {
             svg {
-                ${(props) => BTN_VARIANT[props.$variant]({ ...props, hover: true })};
+                ${(props) => BTN_VARIANT[props.$variant]({ ...props, hover: props.$_isActiveHover })};
             }
         }
     }
@@ -91,9 +84,12 @@ export const SSButton = styled(BaseButton)<SSButtonProps>`
 
 export const SSButtonContentContainer = styled.div<SSButtonContentContainerProps>`
     flex-grow: 1;
-    display: flex;
+    display: inline-block;
     align-items: center;
-    justify-content: ${(props) => props.$position};
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: ${(props) => props.$position};
 `;
 
 export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
@@ -101,6 +97,7 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
         children,
         mr,
         icon,
+        color,
         sizeVariant = VS.L,
         colorVariant = VC.DEFAULT,
         variant = VB.CONTAINED,
@@ -108,6 +105,7 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
         iconPosition = IIP.LEFT,
         $colors,
         $styles,
+        _isActiveHover = true,
 
         ...rest
     }) => {
@@ -115,27 +113,7 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
 
         const renderIcon = useMemo(() => {
-            if (!icon) return null;
-            const sizeIcon = {
-                [VS.L]: {
-                    width: styles.btn.btnIconSize_L,
-                    height: styles.btn.btnIconSize_L,
-                },
-                [VS.M]: {
-                    width: styles.btn.btnIconSize_M,
-                    height: styles.btn.btnIconSize_M,
-                },
-            };
-            return React.cloneElement(icon as React.ReactElement, {
-                //@ts-ignore
-                _importantColor: Boolean(icon?.props.color),
-                $colors: colors,
-                style: {
-                    ...sizeIcon[sizeVariant],
-                },
-                //@ts-ignore
-                ...icon?.props,
-            });
+            return renderIconButton({ icon: icon, size: styles.btn, sizeVariant, rest: { $colors: colors } });
         }, [icon, colors, styles]);
 
         return (
@@ -145,11 +123,15 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
                 $sizeVariant={sizeVariant}
                 $colorVariant={colorVariant}
                 $variant={variant}
+                $color={color}
+                color={color}
                 $mr={mr}
                 sizeVariant={sizeVariant}
                 colorVariant={colorVariant}
                 variant={variant}
                 mr={mr}
+                _isActiveHover={_isActiveHover}
+                $_isActiveHover={_isActiveHover}
                 {...rest}
             >
                 {renderIcon && <SSButtonIconContainer $iconPosition={iconPosition}>{renderIcon}</SSButtonIconContainer>}

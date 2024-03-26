@@ -5,7 +5,6 @@
         "outDir": "dist/types",
         "paths": {
             "@src/*": ["src/*"],
-            "@lib/*": ["src/lib/*"]
         },
         "target": "ES2020",
         "useDefineForClassFields": true,
@@ -23,6 +22,7 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["src"],
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist", "some_other_dir"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

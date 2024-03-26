@@ -20,7 +20,7 @@ export type BaseSliderProps = {
     mr?: TypeMargin;
     colorVariant?: TypeColorVariant;
     sizeVariant?: TypeVariantSize;
-    width?: string;
+    length?: string;
     color?: Hex;
     $colors?: TypeColorScheme;
     $styles?: TypeStyleBaseSlider;
@@ -29,7 +29,7 @@ export type BaseSliderProps = {
 export type SBButtonProps = {
     $mr?: TypeMargin;
     $color?: Hex;
-    $width?: string;
+    $length?: string;
     $colors: TypeColorScheme;
     $styles: TypeStyleBaseSlider;
     $colorVariant: TypeColorVariant;
@@ -40,24 +40,35 @@ export const SBSliderTrack = styled(Slider.Track)`
     position: relative;
     flex-grow: 1;
     border-radius: 9999px;
-    height: 3px;
+
+    &[data-orientation='vertical'] {
+        width: 1px;
+    }
+    &[data-orientation='horizontal'] {
+        height: 1px;
+    }
 `;
 
 export const SBSliderRange = styled(Slider.Range)`
     position: absolute;
     border-radius: 9999px;
-    height: 150%;
+
+    &[data-orientation='vertical'] {
+        width: 2px;
+    }
+    &[data-orientation='horizontal'] {
+        height: 2px;
+    }
 `;
 
 export const SBSliderThumb = styled(Slider.Thumb)`
     display: block;
     border-radius: 50%;
-    transition: all 0.3s ease-in-out;
 `;
 
 const THUMB_SIZE = {
     [VS.L]: (props: TypeSSSlider) => props.thumbSize_L,
-    [VS.M]: (props: TypeSSSlider) => props.thumbSize_L,
+    [VS.M]: (props: TypeSSSlider) => props.thumbSize_M,
 };
 
 export const SBSliderRoot = styled(Slider.Root)<SBButtonProps>`
@@ -67,9 +78,16 @@ export const SBSliderRoot = styled(Slider.Root)<SBButtonProps>`
     align-items: center;
     user-select: none;
     touch-action: none;
-    width: ${(props) => props.$width ?? '200px'};
-    height: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
-    ${(props) => getMargin(props.$styles?.mr, props.$mr)};
+    ${(props) => getMargin(props.$styles?.mr, props.$mr)}
+    &[data-orientation='vertical'] {
+        flex-direction: column;
+        width: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
+        height: ${(props) => props.$length ?? '200px'};
+    }
+    &[data-orientation='horizontal'] {
+        width: ${(props) => props.$length ?? '200px'};
+        height: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
+    }
     ${SBSliderTrack} {
         background-color: ${(props) => props.$colors.disabled};
     }
@@ -83,15 +101,14 @@ export const SBSliderRoot = styled(Slider.Root)<SBButtonProps>`
             })};
     }
     ${SBSliderThumb} {
-        background-color: ${(props) => props.$colors.textItem};
-        box-shadow: 0 1px 3px #555555;
+        background-color: ${(props) => (props.disabled ? props.$colors.disabled : props.$colors.backgroundBox)};
+        box-shadow: 0 1px 3px #3d3d3d;
         width: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
         height: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
-        &:focus,
-        &:hover {
+        &:not([disabled]):focus {
             outline: none;
-            border: none;
-            background-color: ${(props) =>
+            border: 2px solid;
+            border-color: ${(props) =>
                 getColor({
                     cs: props.$colors,
                     disabled: props.disabled,
@@ -104,7 +121,7 @@ export const SBSliderRoot = styled(Slider.Root)<SBButtonProps>`
 `;
 
 export const BaseSlider: React.FC<BaseSliderProps> = React.memo(
-    ({ mr, color, width, colorVariant = VC.DEFAULT, sizeVariant = VS.L, $colors, $styles, ...rest }) => {
+    ({ mr, color, length, colorVariant = VC.DEFAULT, sizeVariant = VS.L, $colors, $styles, ...rest }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['slider', 'mr']);
 
@@ -112,7 +129,7 @@ export const BaseSlider: React.FC<BaseSliderProps> = React.memo(
             <SBSliderRoot
                 $color={color}
                 $mr={mr}
-                $width={width}
+                $length={length}
                 $colors={colors}
                 $styles={styles}
                 $colorVariant={colorVariant}

@@ -12,11 +12,6 @@ export enum VP {
 }
 export type TypeBtnPosition = 'left' | 'center' | 'right';
 
-export enum BLT {
-    DEFAULT = 'default',
-    CIRCLE = 'circle',
-}
-export type TypeBtnLoading = 'default' | 'circle';
 
 export enum IHB {
     BG = 'background',

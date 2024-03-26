@@ -1,5 +1,4 @@
 import { getColor } from '@src/lib/common/getColor';
-import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { IIP, TypeItemIconPosition, VC, VS } from '@src/lib/types/TypeBase';
@@ -13,24 +12,14 @@ import {
     SBTextFieldInputProps,
     SBTextFieldRoot,
     SBTextFieldRootProps,
+    TypeStyleBaseTextField,
 } from '../base-text-field/BaseTextField';
-
-export type TypeStyleSimpleTextField = {
-    base: TypeSSBase;
-    inp: TypeSSInp;
-    typography: TypeSSTypography;
-    mr: TypeSSMR;
-};
 
 export type SimpleTextFieldProps = {
     icon?: React.ReactNode;
     iconPosition?: TypeItemIconPosition;
-    $styles?: TypeStyleSimpleTextField;
+    $styles?: TypeStyleBaseTextField;
 } & BaseTextFieldProps;
-
-export type SSTextFieldInputProps = {} & SBTextFieldInputProps;
-
-export type SSTextFieldRootProps = {} & SBTextFieldRootProps;
 
 export type SSTextFieldIconContainerProps = {
     $iconPosition: TypeItemIconPosition;
@@ -52,12 +41,13 @@ export const SSTextFieldIconContainer = styled.div<SSTextFieldIconContainerProps
     }}
 `;
 
-export const SSTextFieldRoot = styled(SBTextFieldRoot)<SSTextFieldRootProps>`
+export const SSTextFieldRoot = styled(SBTextFieldRoot)<SBTextFieldRootProps>`
     display: inline-flex;
     align-items: center;
+    min-width: 100px;
     ${SSTextFieldIconContainer} {
         svg {
-            fill: ${(props) =>
+            color: ${(props) =>
                 getColor({
                     cs: props.$colors,
                     color: props.$color,
@@ -70,7 +60,7 @@ export const SSTextFieldRoot = styled(SBTextFieldRoot)<SSTextFieldRootProps>`
     &:hover {
         ${SSTextFieldIconContainer} {
             svg {
-                fill: ${(props) =>
+                color: ${(props) =>
                     getColor({
                         cs: props.$colors,
                         color: props.$color,
@@ -83,7 +73,7 @@ export const SSTextFieldRoot = styled(SBTextFieldRoot)<SSTextFieldRootProps>`
     }
 `;
 
-export const SSTextFieldInput = styled(BaseInput)<SSTextFieldInputProps>`
+export const SSTextFieldInput = styled(BaseInput)<SBTextFieldInputProps>`
     &:disabled {
         color: ${(props) => props.$colors.disabled};
     }

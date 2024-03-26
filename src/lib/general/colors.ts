@@ -44,7 +44,7 @@ export const colorsLight: TypeColorScheme = {
 
     //items
     primaryItem: '#218EE1',
-    primaryItemActive: '#007ad8',
+    primaryItemActive: '#3a86ff',
     successItem: '#6EBA6E',
     successItemActive: '#3b8c3b',
     infoItem: '#59aeee',
@@ -85,7 +85,7 @@ export const colorsDark: TypeColorScheme = {
     infoItem: '#59aeee',
     infoItemActive: '#2378b8',
     errorItem: '#f77f76',
-    errorItemActive: '#',
+    errorItemActive: '#f77f76',
     warningItem: '#F0BC7F',
     warningItemActive: '#d18730',
     //base

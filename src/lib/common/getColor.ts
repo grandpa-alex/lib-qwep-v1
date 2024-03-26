@@ -1,5 +1,6 @@
-import { TypeColorVariant } from '@lib/types/TypeBase';
+
 import { TypeColorScheme } from '../general/colors';
+import { TypeColorVariant } from '../types/TypeBase';
 
 type getColorProps = {
     cs: TypeColorScheme;

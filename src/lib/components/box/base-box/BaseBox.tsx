@@ -2,7 +2,7 @@ import {
     BOX_GAP_VARIANT,
     BOX_PADDING_VARIANT,
     BOX_WIDTH_VARIANT,
-} from '@src/lib/common-styled-component/StuledComponentBox';
+} from '@src/lib/common-styled-component/StyledComponentBox';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';

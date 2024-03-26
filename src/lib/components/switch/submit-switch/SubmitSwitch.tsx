@@ -5,17 +5,15 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { VC, VS } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { BaseSwitch, BaseSwitchProps, StyledRootBaseSwitchProps, TypeStyleBaseSwitch } from '../base-switch/BaseSwitch';
-
-export type TypeStyleSubmitSwitch = {} & TypeStyleBaseSwitch;
+import { BaseSwitch, BaseSwitchProps, SBRootSwitchProps } from '../base-switch/BaseSwitch';
 
 export type SubmitSwitchProps = {
     isLoading: boolean;
 } & BaseSwitchProps;
 
-export type StyledSubmitSwitchProps = {
+export type SSSwitchProps = {
     $isLoading: boolean;
-} & StyledRootBaseSwitchProps;
+} & SBRootSwitchProps;
 
 const LOADING_SIZE = {
     [VS.L]: (props: TypeSSSwitch) => css`
@@ -28,7 +26,7 @@ const LOADING_SIZE = {
     `,
 };
 
-export const StyledSubmitSwitch = styled(BaseSwitch)<StyledSubmitSwitchProps>`
+export const SSSwitch = styled(BaseSwitch)<SSSwitchProps>`
     ${(props) => {
         if (props.$isLoading && !props.disabled) {
             return css`
@@ -38,7 +36,7 @@ export const StyledSubmitSwitch = styled(BaseSwitch)<StyledSubmitSwitchProps>`
                     position: absolute;
                     border-radius: 50%;
                     top: 0%;
-                    ${props.checked ? 'right: 0%' : 'left: 0%'};
+                    ${props.checked || props.defaultChecked ? 'right: 0%' : 'left: 0%'};
                     ${LOADING_SIZE[props.$sizeVariant](props.$styles.switch)}
                     border: 1px solid ${getColor({
                         cs: props.$colors,
@@ -77,7 +75,7 @@ export const SubmitSwitch: React.FC<SubmitSwitchProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['switch', 'mr']);
 
         return (
-            <StyledSubmitSwitch
+            <SSSwitch
                 $color={color}
                 $mr={mr}
                 $colors={colors}

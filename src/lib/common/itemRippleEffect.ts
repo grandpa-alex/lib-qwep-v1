@@ -1,4 +1,4 @@
-export const itemRippleEffect = (event: React.MouseEvent<HTMLElement>, color: string, duration: number = 1200) => {
+export const itemRippleEffect = (event: React.MouseEvent<HTMLElement>, color: string, duration: number = 800) => {
     const button = event.currentTarget;
     const rect = button.getBoundingClientRect();
     const circle = document.createElement('span');

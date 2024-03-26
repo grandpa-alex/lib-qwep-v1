@@ -25,7 +25,7 @@ export type BaseSwitchProps = {
     _isActiveHover?: boolean;
 } & SwitchProps;
 
-export type StyledRootBaseSwitchProps = {
+export type SBRootSwitchProps = {
     $color?: Hex;
     $mr?: TypeMargin;
     $colors: TypeColorScheme;
@@ -86,7 +86,7 @@ const SWITCH_SIZE = {
     `,
 };
 
-export const SBSwitchRoot = styled(Switch.Root)<StyledRootBaseSwitchProps>`
+export const SBSwitchRoot = styled(Switch.Root)<SBRootSwitchProps>`
     all: unset;
     background-color: ${(props) =>
         getColor({

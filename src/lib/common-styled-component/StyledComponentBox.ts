@@ -1,6 +1,13 @@
 import { css } from 'styled-components';
 import { TypeSSBox } from '../general/styleScheme';
 import { Hex, TypeColorScheme } from '../general/colors';
+import {
+    TypeBoxGapVariant,
+    TypeBoxPaddingVariant,
+    TypeBoxRadiusVariant,
+    TypeBoxShadowVariant,
+    TypeBoxWidthVariant,
+} from '../types/TypeBox';
 
 export const BOX_WIDTH_VARIANT = {
     ['w-1']: (props: TypeSSBox) => css`
@@ -20,6 +27,9 @@ export const BOX_WIDTH_VARIANT = {
     `,
     ['w-6']: (props: TypeSSBox) => css`
         width: ${props.boxWidth_6};
+    `,
+     ['w-null']: () => css`
+     width: auto;
     `,
 };
 
@@ -42,6 +52,9 @@ export const BOX_GAP_VARIANT = {
     ['g-6']: (props: TypeSSBox) => css`
         gap: ${props.boxGap_6};
     `,
+    ['g-null']: () => css`
+        gap: 0;
+    `,
 };
 
 export const BOX_PADDING_VARIANT = {
@@ -63,6 +76,9 @@ export const BOX_PADDING_VARIANT = {
     ['p-6']: (props: TypeSSBox) => css`
         padding: ${props.boxPadding_6};
     `,
+    ['p-null']: () => css`
+    padding: 0;
+`,
 };
 
 export const BOX_BORDER_RADIUS = {
@@ -75,22 +91,69 @@ export const BOX_BORDER_RADIUS = {
     ['br-3']: (props: TypeSSBox) => css`
         border-radius: ${props.boxBorderRadius_3};
     `,
+     ['br-null']: () => css`
+     border-radius: 0;
+ `,
 };
 
-export type TypeStyledBoxShadowVariant = {
+export type StyledBoxShadowVariantProps = {
     $boxShadowColor?: Hex;
     $colors: TypeColorScheme;
     $box: TypeSSBox;
 };
 
 export const BOX_SHADOW_VARIANT = {
-    ['shd-1']: (props: TypeStyledBoxShadowVariant) => css`
+    ['shd-1']: (props: StyledBoxShadowVariantProps) => css`
         box-shadow: ${`${props.$box.boxShadow_1}`} ${props.$boxShadowColor ?? props.$colors.shadowColor};
     `,
-    ['shd-2']: (props: TypeStyledBoxShadowVariant) => css`
+    ['shd-2']: (props: StyledBoxShadowVariantProps) => css`
         box-shadow: ${`${props.$box.boxShadow_2}`} ${props.$boxShadowColor ?? props.$colors.shadowColor};
     `,
-    ['shd-3']: (props: TypeStyledBoxShadowVariant) => css`
+    ['shd-3']: (props: StyledBoxShadowVariantProps) => css`
         box-shadow: ${`${props.$box.boxShadow_3}`} ${props.$boxShadowColor ?? props.$colors.shadowColor};
     `,
+     ['shd-null']: () => css`
+     box-shadow: none;
+    `,
 };
+
+export type CSSBaseBoxProps = {
+    $boxWidthVariant?: TypeBoxWidthVariant;
+    $boxPaddingVariant?: TypeBoxPaddingVariant;
+    $boxGapVariant?: TypeBoxGapVariant;
+    $styles: TypeSSBox;
+};
+
+export const CSSBaseBox = (props: CSSBaseBoxProps) => css`
+    ${props.$boxGapVariant &&
+    css`
+        display: grid;
+        ${BOX_GAP_VARIANT[props.$boxGapVariant](props.$styles)}
+    `}
+    ${props.$boxPaddingVariant && BOX_PADDING_VARIANT[props.$boxPaddingVariant](props.$styles)};
+    ${props.$boxWidthVariant && BOX_WIDTH_VARIANT[props.$boxWidthVariant](props.$styles)};
+`;
+
+export type CSSSimplePropsBox = {
+    $styles: TypeSSBox;
+    $colors: TypeColorScheme;
+    $boxBorderColor?: Hex;
+    $boxShadowColor?: Hex;
+    $boxShadowVariant?: TypeBoxShadowVariant;
+    $boxRadiusVariant?: TypeBoxRadiusVariant;
+};
+
+export const CSSSimpleBox = (props: CSSSimplePropsBox) => css`
+    ${props.$boxRadiusVariant && BOX_BORDER_RADIUS[props.$boxRadiusVariant](props.$styles)};
+    ${props.$boxShadowVariant &&
+    BOX_SHADOW_VARIANT[props.$boxShadowVariant]({
+        $box: props.$styles,
+        $colors: props.$colors,
+        $boxShadowColor: props.$boxShadowColor,
+    })}
+    ${props.$boxBorderColor &&
+    css`
+        border: 1px solid;
+        border-color: ${props.$boxBorderColor};
+    `}
+`;

@@ -1,21 +1,9 @@
-import {
-    DialogCloseProps,
-    DialogContentProps,
-    DialogOverlayProps,
-    DialogPortalProps,
-    DialogProps,
-} from '@radix-ui/react-dialog';
+import { DialogContentProps, DialogOverlayProps } from '@radix-ui/react-dialog';
 import { styled } from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
 
-export type SBDialogRootProps = DialogProps;
-export const SBDialogRoot = styled(Dialog.Root)<SBDialogRootProps>``;
-
-export type SBDialogPortalProps = DialogPortalProps;
-export const SBDialogPortal = styled(Dialog.Portal)<SBDialogPortalProps>``;
-
-export type SBDialogOverlayProps = DialogOverlayProps & React.RefAttributes<HTMLDivElement>;
-export const SBDialogOverlay = styled(Dialog.Overlay)<SBDialogOverlayProps>`
+export type SBCDialogOverlayProps = DialogOverlayProps & React.RefAttributes<HTMLDivElement>;
+export const SBCDialogOverlay = styled(Dialog.Overlay)<SBCDialogOverlayProps>`
     position: fixed;
     inset: 0;
     animation: overlayShow_BaseDialog 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -29,8 +17,8 @@ export const SBDialogOverlay = styled(Dialog.Overlay)<SBDialogOverlayProps>`
     }
 `;
 
-export type SBDialogContentProps = DialogContentProps & React.RefAttributes<HTMLDivElement>;
-export const SBDialogContent = styled(Dialog.Content)<SBDialogContentProps>`
+export type SBCDialogContentProps = DialogContentProps & React.RefAttributes<HTMLDivElement>;
+export const SBCDialogContent = styled(Dialog.Content)<SBCDialogContentProps>`
     position: fixed;
     top: 50%;
     left: 50%;
@@ -47,6 +35,3 @@ export const SBDialogContent = styled(Dialog.Content)<SBDialogContentProps>`
         }
     }
 `;
-
-export type SBDialogCloseProps = DialogCloseProps & React.RefAttributes<HTMLButtonElement>;
-export const SBDialogClose = styled(Dialog.Close)<SBDialogCloseProps>``;

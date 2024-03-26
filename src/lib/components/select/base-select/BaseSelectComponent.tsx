@@ -1,13 +1,8 @@
 import * as Select from '@radix-ui/react-select';
 import { styled } from 'styled-components';
-import {
-    SelectIconProps,
-    SelectItemProps,
-    SelectGroupProps
-} from '@radix-ui/react-select';
+import { SelectIconProps, SelectItemProps, SelectGroupProps } from '@radix-ui/react-select';
 
-
-// content 
+// content
 export type SBCSelectIconProps = SelectIconProps & React.RefAttributes<HTMLSpanElement>;
 export const SBCSelectIcon = styled(Select.Icon)`
     margin-left: 8px;

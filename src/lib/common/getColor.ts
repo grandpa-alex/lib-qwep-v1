@@ -1,4 +1,3 @@
-
 import { TypeColorScheme } from '../general/colors';
 import { TypeColorVariant } from '../types/TypeBase';
 

@@ -9,9 +9,7 @@ import { TypeBtnPosition, VP } from '@src/lib/types/TypeBtn';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import * as Select from '@radix-ui/react-select';
-import {
-    SBCSelectIcon
-} from './BaseSelectComponent';
+import { SBCSelectIcon } from './BaseSelectComponent';
 
 import { TypeBoxPaddingVariant, TypeBoxShadowVariant } from '@src/lib/types/TypeBox';
 import { BOX_PADDING_VARIANT, BOX_SHADOW_VARIANT } from '@src/lib/common-styled-component/StyledComponentBox';
@@ -60,7 +58,8 @@ export type SBSelectTriggerProps = {
     $sizeVariant: TypeVariantSize;
     $colorVariant: TypeColorVariant;
     $_isActiveHover?: boolean;
-} & SelectTriggerProps & React.RefAttributes<HTMLButtonElement>;;
+} & SelectTriggerProps &
+    React.RefAttributes<HTMLButtonElement>;
 
 const SELECT_SIZE = {
     [VS.L]: (props: TypeSSSelect) => css`
@@ -229,12 +228,13 @@ export type SBSelectWrapperProps = {
     $color?: Hex;
     $width?: string;
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseSelect
+    $styles: TypeStyleBaseSelect;
     $colorVariant: TypeColorVariant;
     $boxShadowVariant: TypeBoxShadowVariant;
     $boxPaddingVariant: TypeBoxPaddingVariant;
     $_isActiveHover?: boolean;
-} & SelectContentProps & React.RefAttributes<HTMLDivElement>;;
+} & SelectContentProps &
+    React.RefAttributes<HTMLDivElement>;
 
 export const SBSelectContent = styled(Select.Content)<SBSelectWrapperProps>`
     overflow: hidden;
@@ -304,7 +304,8 @@ export type SBSelectViewportProps = {
     $colors: TypeColorScheme;
     $colorVariant: TypeColorVariant;
     $_isActiveHover?: boolean;
-} & SelectViewportProps & React.RefAttributes<HTMLDivElement>;;
+} & SelectViewportProps &
+    React.RefAttributes<HTMLDivElement>;
 
 export const SBSelectViewport = styled.div<SBSelectViewportProps>`
     max-height: ${(props) => props.$maxHeight ?? '300px'};

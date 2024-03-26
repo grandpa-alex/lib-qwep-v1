@@ -5,7 +5,7 @@ export type GearProps = IconSVGContainerProps;
 
 export const Gear: React.FC<GearProps> = ({ ...rest }) => {
     return (
-        <IconSVGContainer  viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" {...rest}>
+        <IconSVGContainer viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" {...rest}>
             <path
                 stroke="none"
                 fill="currentColor"

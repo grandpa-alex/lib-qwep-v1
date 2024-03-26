@@ -28,8 +28,8 @@ export const BOX_WIDTH_VARIANT = {
     ['w-6']: (props: TypeSSBox) => css`
         width: ${props.boxWidth_6};
     `,
-     ['w-null']: () => css`
-     width: auto;
+    ['w-null']: () => css`
+        width: auto;
     `,
 };
 
@@ -77,8 +77,8 @@ export const BOX_PADDING_VARIANT = {
         padding: ${props.boxPadding_6};
     `,
     ['p-null']: () => css`
-    padding: 0;
-`,
+        padding: 0;
+    `,
 };
 
 export const BOX_BORDER_RADIUS = {
@@ -91,9 +91,9 @@ export const BOX_BORDER_RADIUS = {
     ['br-3']: (props: TypeSSBox) => css`
         border-radius: ${props.boxBorderRadius_3};
     `,
-     ['br-null']: () => css`
-     border-radius: 0;
- `,
+    ['br-null']: () => css`
+        border-radius: 0;
+    `,
 };
 
 export type StyledBoxShadowVariantProps = {
@@ -112,8 +112,8 @@ export const BOX_SHADOW_VARIANT = {
     ['shd-3']: (props: StyledBoxShadowVariantProps) => css`
         box-shadow: ${`${props.$box.boxShadow_3}`} ${props.$boxShadowColor ?? props.$colors.shadowColor};
     `,
-     ['shd-null']: () => css`
-     box-shadow: none;
+    ['shd-null']: () => css`
+        box-shadow: none;
     `,
 };
 

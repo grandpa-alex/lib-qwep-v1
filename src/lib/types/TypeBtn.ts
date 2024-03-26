@@ -12,7 +12,6 @@ export enum VP {
 }
 export type TypeBtnPosition = 'left' | 'center' | 'right';
 
-
 export enum IHB {
     BG = 'background',
     BR = 'border',

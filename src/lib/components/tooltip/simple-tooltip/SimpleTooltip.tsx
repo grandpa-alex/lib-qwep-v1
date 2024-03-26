@@ -6,21 +6,15 @@ import { Hex } from '@src/lib/general/colors';
 import React from 'react';
 import styled from 'styled-components';
 
-import {
-    SBCTooltipContent
-} from '../base-tooltip-component/BaseTooltipComponent';
+import { SBCTooltipContent } from '../base-tooltip-component/BaseTooltipComponent';
 import {
     TypeBoxGapVariant,
     TypeBoxPaddingVariant,
     TypeBoxRadiusVariant,
     TypeBoxShadowVariant,
 } from '@src/lib/types/TypeBox';
-import {
-    CSSBaseBox,
-    CSSSimpleBox,
-} from '@src/lib/common-styled-component/StyledComponentBox';
+import { CSSBaseBox, CSSSimpleBox } from '@src/lib/common-styled-component/StyledComponentBox';
 import { BaseTooltipProps, SBTooltipContentProps, SBTooltipTrigger } from '../base-tooltip-component/BaseTooltip';
-
 
 export type SimpleTooltipProps = {
     boxPaddingVariant?: TypeBoxPaddingVariant;
@@ -30,8 +24,8 @@ export type SimpleTooltipProps = {
     boxShadowVariant?: TypeBoxShadowVariant;
     boxRadiusVariant?: TypeBoxRadiusVariant;
     bg?: Hex;
-    arrow?: boolean
-} & BaseTooltipProps
+    arrow?: boolean;
+} & BaseTooltipProps;
 
 export type SSTooltipContentsProps = {
     $bg?: Hex;
@@ -43,23 +37,24 @@ export type SSTooltipContentsProps = {
     $boxPaddingVariant: TypeBoxPaddingVariant;
 } & SBTooltipContentProps;
 
-
 export const SSTooltipArrow = styled(Tooltip.Arrow)``;
 
 export const SSTooltipContent = styled(SBCTooltipContent)<SSTooltipContentsProps>`
-    ${props => CSSBaseBox({ 
+    ${(props) =>
+        CSSBaseBox({
             $boxPaddingVariant: props.$boxPaddingVariant,
             $boxGapVariant: props.$boxGapVariant,
-            $styles: props.$styles.box
-     })};
-    ${props => CSSSimpleBox({ 
-    $colors: props.$colors,
-    $boxBorderColor: props.$boxBorderColor,
-    $boxShadowColor: props.$boxShadowColor,
-    $boxShadowVariant: props.$boxShadowVariant,
-    $boxRadiusVariant: props.$boxRadiusVariant,
-    $styles: props.$styles.box
-     })};
+            $styles: props.$styles.box,
+        })};
+    ${(props) =>
+        CSSSimpleBox({
+            $colors: props.$colors,
+            $boxBorderColor: props.$boxBorderColor,
+            $boxShadowColor: props.$boxShadowColor,
+            $boxShadowVariant: props.$boxShadowVariant,
+            $boxRadiusVariant: props.$boxRadiusVariant,
+            $styles: props.$styles.box,
+        })};
     background-color: ${(props) => props.$bg ?? props.$colors.backgroundTooltip};
     font-size: 13px;
     margin: 6px;
@@ -69,8 +64,6 @@ export const SSTooltipContent = styled(SBCTooltipContent)<SSTooltipContentsProps
         fill: ${(props) => props.$bg ?? props.$colors.backgroundTooltip};
     }
 `;
-
-
 
 export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
     ({
@@ -94,12 +87,12 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['box', 'mr']);
 
         return (
-            <Tooltip.Provider >
+            <Tooltip.Provider>
                 <Tooltip.Root>
-                    <Tooltip.Trigger asChild >
-                    <SBTooltipTrigger style={trigerStyle} $mr={mr} $styles={styles}>
-                    {children}
-                    </SBTooltipTrigger>
+                    <Tooltip.Trigger asChild>
+                        <SBTooltipTrigger style={trigerStyle} $mr={mr} $styles={styles}>
+                            {children}
+                        </SBTooltipTrigger>
                     </Tooltip.Trigger>
                     <Tooltip.Portal>
                         <SSTooltipContent
@@ -114,8 +107,8 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
                             $boxRadiusVariant={boxRadiusVariant}
                             side={rest.side ?? 'bottom'}
                             {...rest}
-                        > 
-                          {tooltip}                          
+                        >
+                            {tooltip}
                             {arrow && <SSTooltipArrow />}
                         </SSTooltipContent>
                     </Tooltip.Portal>

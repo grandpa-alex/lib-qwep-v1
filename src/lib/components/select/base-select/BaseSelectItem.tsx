@@ -4,10 +4,9 @@ import * as Select from '@radix-ui/react-select';
 import { BaseCheck } from '@src/lib/icons';
 import { SBCSelectItem, SBCSelectItemProps } from './BaseSelectComponent';
 
-
 export type BaseSelectItemProps = {
     children: React.ReactNode;
-} & SBCSelectItemProps
+} & SBCSelectItemProps;
 
 export const SBSelectItem = styled(SBCSelectItem)`
     padding: 6px 20px 6px 20px;

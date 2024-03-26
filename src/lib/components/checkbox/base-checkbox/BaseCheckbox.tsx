@@ -43,7 +43,6 @@ export type SBCheckboxIconProps = {
     $disabled?: boolean;
 };
 
-
 export const SBCheckboxIcon = styled.svg<SBCheckboxIconProps>`
     position: absolute;
     top: 50%;

@@ -25,15 +25,11 @@ export default defineConfig({
             fileName: (format) => `ui-kit-qwep.${format}.js`,
         },
         rollupOptions: {
-            external: [
-                'react',
-                'react-dom',
-            ],
+            external: ['react', 'react-dom'],
             output: {
                 globals: {
                     react: 'React',
                     'react-dom': 'ReactDOM',
-
                 },
                 dir: 'dist',
             },

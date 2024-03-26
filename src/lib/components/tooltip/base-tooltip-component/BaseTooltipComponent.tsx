@@ -2,8 +2,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import styled from 'styled-components';
 import { TooltipProps, TooltipContentProps } from '@radix-ui/react-tooltip';
 
-
-export type SBCTooltipContentProps = TooltipContentProps & React.RefAttributes<HTMLDivElement>
+export type SBCTooltipContentProps = TooltipContentProps & React.RefAttributes<HTMLDivElement>;
 
 export const SBCTooltipContent = styled(Tooltip.Content)<TooltipProps>`
     user-select: none;
@@ -68,4 +67,3 @@ export const SBCTooltipContent = styled(Tooltip.Content)<TooltipProps>`
         }
     }
 `;
-

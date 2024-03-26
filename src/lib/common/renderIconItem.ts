@@ -33,15 +33,12 @@ export const renderIconTextField = ({ icon, size, sizeVariant, rest }: renderIco
     });
 };
 
-
 type renderIconBittonProps = {
     icon?: React.ReactNode;
     size: TypeSSBtn;
     sizeVariant: TypeVariantSize;
     rest?: any;
 };
-
-
 
 export const renderIconButton = ({ icon, size, sizeVariant, rest }: renderIconBittonProps) => {
     if (!icon) return null;
@@ -66,6 +63,3 @@ export const renderIconButton = ({ icon, size, sizeVariant, rest }: renderIconBi
         ...icon?.props,
     });
 };
-
-
-

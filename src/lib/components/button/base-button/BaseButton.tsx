@@ -27,7 +27,7 @@ export type BaseButtonProps = {
     $styles?: TypeStyleBaseBtn;
     color?: Hex;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
-    _isActiveHover?:  boolean
+    _isActiveHover?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type SBButtonProps = {
@@ -38,7 +38,7 @@ export type SBButtonProps = {
     $sizeVariant: TypeVariantSize;
     $colorVariant: TypeColorVariant;
     $variant: TypeBtnVariant;
-    $_isActiveHover: boolean
+    $_isActiveHover: boolean;
 };
 
 const BTN_SIZE = {
@@ -68,7 +68,7 @@ const BTN_VARIANT = {
                 cs: props.$colors,
                 color: props.$color,
                 variant: props.$colorVariant,
-                hover: props.$_isActiveHover
+                hover: props.$_isActiveHover,
             })};
         }
     `,
@@ -87,7 +87,7 @@ const BTN_VARIANT = {
                 cs: props.$colors,
                 color: props.$color,
                 variant: props.$colorVariant,
-                hover: props.$_isActiveHover
+                hover: props.$_isActiveHover,
             })};
         }
     `,
@@ -114,13 +114,13 @@ const BTN_VARIANT = {
                 cs: props.$colors,
                 color: props.$color,
                 variant: props.$colorVariant,
-                hover: props.$_isActiveHover
+                hover: props.$_isActiveHover,
             })};
             border-color: ${getColor({
                 cs: props.$colors,
                 color: props.$color,
                 variant: props.$colorVariant,
-                hover: props.$_isActiveHover
+                hover: props.$_isActiveHover,
             })};
         }
     `,

@@ -9,7 +9,6 @@ import { getColor } from '@src/lib/common/getColor';
 import { TypeSSCheckbox } from '@src/lib/general/styleScheme';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
 
-
 export type SubmitCheckboxProps = {
     isLoading: boolean;
 } & BaseCheckboxProps;

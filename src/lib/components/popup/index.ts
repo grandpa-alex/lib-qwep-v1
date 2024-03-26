@@ -1,5 +1,3 @@
-import { BasePopup } from "./base-popup-components/BasePopup";
+import { BasePopup } from './base-popup-components/BasePopup';
 
-export {
-    BasePopup,
-}
+export { BasePopup };

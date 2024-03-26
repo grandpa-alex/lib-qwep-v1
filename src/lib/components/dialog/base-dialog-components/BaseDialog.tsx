@@ -53,7 +53,8 @@ export type SBDialogOverlayProps = {
 
 export const SBDialogOverlay = styled(SBCDialogOverlay)<SBDialogOverlayProps>`
     backdrop-filter: blur(${(props) => props.$overlayBlur ?? '0px'});
-    background-color: ${(props) => getColor({ cs: props.$colors, color: props.$overlayColor ?? props.$colors.omaga, opacity: '90' })};
+    background-color: ${(props) =>
+        getColor({ cs: props.$colors, color: props.$overlayColor ?? props.$colors.omaga, opacity: '90' })};
 `;
 
 export type SBDialogContentProps = {

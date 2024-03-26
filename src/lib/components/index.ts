@@ -8,3 +8,4 @@ export * from './tooltip';
 export * from './select';
 export * from './popup';
 export * from './dialog';
+export * from './typography';

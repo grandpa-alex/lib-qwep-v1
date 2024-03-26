@@ -63,13 +63,7 @@ export const BasePopup: React.FC<BasePopupProps> = React.memo(
                     </SBPopoverTrigger>
                 </Popover.Trigger>
                 <Popover.Portal>
-                    <SBPopoverContent 
-                    sideOffset={6} 
-                    $colors={colors} 
-                    $styles={styles} 
-                    $bg={bg}
-                    {...rest}
-                    >
+                    <SBPopoverContent sideOffset={6} $colors={colors} $styles={styles} $bg={bg} {...rest}>
                         {popupComponent}
                         <SBPopoverArrow />
                     </SBPopoverContent>

@@ -75,36 +75,36 @@ function DialogTooltip() {
             </div>
             <h2>SIMPLE TOLLTIP CUSTOM</h2>
             <div style={{ display: 'flex' }}>
-                <SimpleTooltip 
-                mr={'m-3'} 
-                tooltip={'Custom Tooltip'}
-                bg={'#f1c69e'}
-                style={{color: '#000000'}}
-                boxPaddingVariant={'p-2'}
-                boxShadowColor={'#ff00007d'}
-                boxRadiusVariant={'br-3'}
+                <SimpleTooltip
+                    mr={'m-3'}
+                    tooltip={'Custom Tooltip'}
+                    bg={'#f1c69e'}
+                    style={{ color: '#000000' }}
+                    boxPaddingVariant={'p-2'}
+                    boxShadowColor={'#ff00007d'}
+                    boxRadiusVariant={'br-3'}
                 >
                     <SimpleButton>Custom Tooltip</SimpleButton>
                 </SimpleTooltip>
             </div>
             <div style={{ display: 'flex' }}>
-                <SimpleTooltip 
-                mr={'m-3'} 
-                boxGapVariant={'g-2'}
-                tooltip={
-                    <>
-                    <SimpleTextField placeholder={'Placeholder 1'} />
-                    <SimpleTextField placeholder={'Placeholder 2'} />
-                    <SimpleButton colorVariant={'error'} onClick={() => setOpenD2(false)}>
-                        Close
-                    </SimpleButton>
-                    </>
-                }
-                bg={'#f1c69e'}
-                style={{color: '#000000'}}
-                boxPaddingVariant={'p-4'}
-                boxShadowColor={'#ff00007d'}
-                boxRadiusVariant={'br-3'}
+                <SimpleTooltip
+                    mr={'m-3'}
+                    boxGapVariant={'g-2'}
+                    tooltip={
+                        <>
+                            <SimpleTextField placeholder={'Placeholder 1'} />
+                            <SimpleTextField placeholder={'Placeholder 2'} />
+                            <SimpleButton colorVariant={'error'} onClick={() => setOpenD2(false)}>
+                                Close
+                            </SimpleButton>
+                        </>
+                    }
+                    bg={'#f1c69e'}
+                    style={{ color: '#000000' }}
+                    boxPaddingVariant={'p-4'}
+                    boxShadowColor={'#ff00007d'}
+                    boxRadiusVariant={'br-3'}
                 >
                     <SimpleButton>Custom Tooltip</SimpleButton>
                 </SimpleTooltip>

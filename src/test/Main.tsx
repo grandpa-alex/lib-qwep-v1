@@ -7,9 +7,10 @@ import Colors from './Colors';
 import Select from './Select';
 import DialogTooltip from './DialogTooltip';
 import Box from './Box';
+import Text from './Text';
 
 function Main() {
-    const [val, setVal] = useState(<Box />);
+    const [val, setVal] = useState(<Text />);
 
     const handler = (val: string) => {
         switch (val) {
@@ -34,12 +35,12 @@ function Main() {
             case 'dialog':
                 setVal(<DialogTooltip />);
                 break;
-
-                case 'box':
-                    setVal(<Box />);
-                    break;
-    
-                
+            case 'box':
+                setVal(<Box />);
+                break;
+            case 'text':
+                setVal(<Text />);
+                break;
         }
     };
 
@@ -53,6 +54,7 @@ function Main() {
                 <button onClick={() => handler('select')}>Select Popup</button>
                 <button onClick={() => handler('dialog')}>Dialog tooltip</button>
                 <button onClick={() => handler('box')}>Box</button>
+                <button onClick={() => handler('text')}>Text</button>
                 <button onClick={() => handler('colors')}>Colors</button>
             </div>
             <div>{val}</div>

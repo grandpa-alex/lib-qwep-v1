@@ -1,9 +1,4 @@
-import {
-    BaseButton,
-    Icon,
-    SimpleButton,
-    SubmitButton,
-} from '@src/lib';
+import { BaseButton, Icon, SimpleButton, SubmitButton } from '@src/lib';
 import { TypeColorVariant } from '@src/lib/types/TypeBase';
 import { TypeBtnVariant } from '@src/lib/types/TypeBtn';
 import { useState } from 'react';
@@ -28,16 +23,15 @@ function Buttons() {
     const [l, setL] = useState(false);
 
     const subCustH = async () => {
-        setL(true)
+        setL(true);
         setTimeout(() => {
-            setL(false)
+            setL(false);
             setTimeout(() => {
-                setC('default')
-            }, 1000)
-            setC('success')
-        }, 2000)
-        
-    }
+                setC('default');
+            }, 1000);
+            setC('success');
+        }, 2000);
+    };
 
     return (
         <div style={{ paddingBottom: '300px' }}>
@@ -493,31 +487,31 @@ function Buttons() {
             </div>
             <h2>SIMPLE BUTTON</h2>
             <SimpleButton
-                    mr={'m-3'}
-                    onClick={() => setLoading(!loading)}
-                    style={{ width: '200px' }}
-                    position={'center'}
-                >
-                    LOADING
-                </SimpleButton>
+                mr={'m-3'}
+                onClick={() => setLoading(!loading)}
+                style={{ width: '200px' }}
+                position={'center'}
+            >
+                LOADING
+            </SimpleButton>
             <div style={{ display: 'flex' }}>
                 <SubmitButton isLoading={loading} mr={'m-3'}>
-                    SubmitButton 
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} variant='outlined' mr={'m-3'} >
-                    SubmitButton 
+                <SubmitButton isLoading={loading} variant="outlined" mr={'m-3'}>
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} variant={'text'} mr={'m-3'} >
-                    SubmitButton 
+                <SubmitButton isLoading={loading} variant={'text'} mr={'m-3'}>
+                    SubmitButton
                 </SubmitButton>
                 <SubmitButton isLoading={loading} sizeVariant={'M'} mr={'m-3'}>
-                    SubmitButton 
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} sizeVariant={'M'} mr={'m-3'} variant='outlined'>
-                    SubmitButton 
+                <SubmitButton isLoading={loading} sizeVariant={'M'} mr={'m-3'} variant="outlined">
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} sizeVariant={'M'} mr={'m-3'} variant='text'>
-                    SubmitButton 
+                <SubmitButton isLoading={loading} sizeVariant={'M'} mr={'m-3'} variant="text">
+                    SubmitButton
                 </SubmitButton>
                 <SubmitButton isLoading={loading} sizeVariant={'M'} mr={'m-3'} color={'#d80097'}>
                     SubmitButton custom
@@ -525,47 +519,87 @@ function Buttons() {
             </div>
             <div style={{ display: 'flex' }}>
                 <SubmitButton isLoading={loading} mr={'m-3'}>
-                    SubmitButton 
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} icon={<Icon.Gear />} variant='outlined' mr={'m-3'} >
-                    SubmitButton 
+                <SubmitButton isLoading={loading} icon={<Icon.Gear />} variant="outlined" mr={'m-3'}>
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} icon={<Icon.Gear />} variant={'text'} mr={'m-3'} >
-                    SubmitButton 
+                <SubmitButton isLoading={loading} icon={<Icon.Gear />} variant={'text'} mr={'m-3'}>
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} iconPosition={'right'} icon={<Icon.Gear />} sizeVariant={'M'} mr={'m-3'}>
-                    SubmitButton 
+                <SubmitButton
+                    isLoading={loading}
+                    iconPosition={'right'}
+                    icon={<Icon.Gear />}
+                    sizeVariant={'M'}
+                    mr={'m-3'}
+                >
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} icon={<Icon.Gear />} sizeVariant={'M'} mr={'m-3'} variant='outlined'>
-                    SubmitButton 
+                <SubmitButton isLoading={loading} icon={<Icon.Gear />} sizeVariant={'M'} mr={'m-3'} variant="outlined">
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} icon={<Icon.Gear />} sizeVariant={'M'} mr={'m-3'} variant='text'>
-                    SubmitButton 
+                <SubmitButton isLoading={loading} icon={<Icon.Gear />} sizeVariant={'M'} mr={'m-3'} variant="text">
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} iconPosition={'right'} icon={<Icon.Gear />} sizeVariant={'M'} mr={'m-3'} color={'#d80097'}>
+                <SubmitButton
+                    isLoading={loading}
+                    iconPosition={'right'}
+                    icon={<Icon.Gear />}
+                    sizeVariant={'M'}
+                    mr={'m-3'}
+                    color={'#d80097'}
+                >
                     SubmitButton custom
                 </SubmitButton>
             </div>
             <div style={{ display: 'flex' }}>
-                <SubmitButton isLoading={loading} style={{width: '200px'}} mr={'m-3'}>
-                    SubmitButton 
+                <SubmitButton isLoading={loading} style={{ width: '200px' }} mr={'m-3'}>
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} style={{width: '200px'}} position={'right'} icon={<Icon.Gear />} variant='outlined' mr={'m-3'} >
-                    SubmitButton 
+                <SubmitButton
+                    isLoading={loading}
+                    style={{ width: '200px' }}
+                    position={'right'}
+                    icon={<Icon.Gear />}
+                    variant="outlined"
+                    mr={'m-3'}
+                >
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} style={{width: '200px'}} icon={<Icon.Gear />} variant={'text'} mr={'m-3'} >
-                    SubmitButton 
+                <SubmitButton
+                    isLoading={loading}
+                    style={{ width: '200px' }}
+                    icon={<Icon.Gear />}
+                    variant={'text'}
+                    mr={'m-3'}
+                >
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} style={{width: '200px'}} iconPosition={'right'} icon={<Icon.Gear />} sizeVariant={'M'} mr={'m-3'}>
-                    SubmitButton 
+                <SubmitButton
+                    isLoading={loading}
+                    style={{ width: '200px' }}
+                    iconPosition={'right'}
+                    icon={<Icon.Gear />}
+                    sizeVariant={'M'}
+                    mr={'m-3'}
+                >
+                    SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} style={{width: '200px'}} icon={<Icon.Gear />} sizeVariant={'M'} mr={'m-3'} variant='outlined'>
-                    SubmitButton 
+                <SubmitButton
+                    isLoading={loading}
+                    style={{ width: '200px' }}
+                    icon={<Icon.Gear />}
+                    sizeVariant={'M'}
+                    mr={'m-3'}
+                    variant="outlined"
+                >
+                    SubmitButton
                 </SubmitButton>
             </div>
             <div style={{ display: 'flex' }}>
-                <SubmitButton onClick={subCustH} colorVariant={c} isLoading={l} style={{width: '200px'}} mr={'m-3'}>
-                    CUSTOM SubmitButton 
+                <SubmitButton onClick={subCustH} colorVariant={c} isLoading={l} style={{ width: '200px' }} mr={'m-3'}>
+                    CUSTOM SubmitButton
                 </SubmitButton>
             </div>
         </div>

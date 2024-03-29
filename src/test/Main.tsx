@@ -10,7 +10,7 @@ import Box from './Box';
 import Text from './Text';
 
 function Main() {
-    const [val, setVal] = useState(<Text />);
+    const [val, setVal] = useState(<Inputs />);
 
     const handler = (val: string) => {
         switch (val) {

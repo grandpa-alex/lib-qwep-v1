@@ -2,7 +2,7 @@ import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSTypography } from '@src/lib/general/styleScheme';
-import React from 'react';
+import React, { LabelHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 export type TypeStyleBaseText = {
@@ -14,8 +14,8 @@ export type BaseTextProps = {
     color?: Hex;
     $colors?: TypeColorScheme;
     $styles?: TypeStyleBaseText;
-    as?: keyof JSX.IntrinsicElements;
-} & React.HTMLAttributes<HTMLElement>;
+    as?: React.ElementType;
+} & React.HTMLAttributes<HTMLElement> & React.LabelHTMLAttributes<HTMLLabelElement>;
 
 export type SBTextProps = {
     $colors: TypeColorScheme;
@@ -35,6 +35,7 @@ export const BaseText: React.FC<BaseTextProps> = React.memo(
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['typography']);
 
+        
         return (
             <SBText as={as} $colors={colors} $styles={styles} $color={color} {...rest}>
                 {children}

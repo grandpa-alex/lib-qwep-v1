@@ -235,7 +235,7 @@ export const styleScheme: TypeSS = {
     //text
     typography: {
         fontSizeItem: '14px',
-        fontSizeGlobal: '16px',
+        fontSizeGlobal: '14px',
         h1: '38px',
         h2: '26px',
         h3: '24px',
@@ -271,8 +271,8 @@ export const styleScheme: TypeSS = {
         boxPadding_5: '44px',
         boxPadding_6: '56px',
 
-        boxGap_1: '12px',
-        boxGap_2: '16px',
+        boxGap_1: '8px',
+        boxGap_2: '12px',
         boxGap_3: '18px',
         boxGap_4: '22px',
         boxGap_5: '30px',

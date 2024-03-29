@@ -1,4 +1,4 @@
-import { BaseTextField, Icon, SimpleTextField, SubmitTextField } from '@src/lib';
+import { BaseBox, BaseTextField, Icon, SimpleTextField, SubmitTextField, WrapperTextField } from '@src/lib';
 import { useState } from 'react';
 
 function Inputs() {
@@ -258,6 +258,39 @@ function Inputs() {
                     placeholder={'Placeholder'}
                 />
             </div>
+
+            <h4>SUBMIT INPUT WrapperTextField</h4>
+            <BaseBox style={{ width: '300px'}} mr={'m-3'} boxGapVariant={'g-3'}>
+                <WrapperTextField 
+                    label={'This is a label'}
+                    message={{
+                        text: 'Error this is invalid input!'
+                    }}
+                    id={'435235'}>
+                    <SubmitTextField
+                        isLoading={false}
+                        colorVariant={'success'}
+                        iconPosition={'left'}
+                        icon={<Icon.Gear />}
+                        placeholder={'Placeholder'}
+                    />
+                </WrapperTextField>
+                <WrapperTextField 
+                    label={'This is a label'}
+                     message={{
+                        text: 'Error this is invalid input!'
+                     }}
+                    id={'435235'}>
+                    <SubmitTextField
+                        isLoading={false}
+                        colorVariant={'success'}
+                        iconPosition={'left'}
+                        icon={<Icon.Gear />}
+                        placeholder={'Placeholder'}
+                    />
+                </WrapperTextField>
+              
+            </BaseBox>
         </div>
     );
 }

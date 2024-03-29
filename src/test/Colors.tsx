@@ -1,6 +1,5 @@
 import { BaseBox, SimpleBox } from '@src/lib';
-import { Hex, TypeColorScheme, colorsDark, colorsLight } from '@src/lib/general/colors';
-import { useState } from 'react';
+import { colorsDark, colorsLight } from '@src/lib/general/colors';
 import styled from 'styled-components';
 
 const StyledTitle = styled.p<{ bg?: boolean }>`

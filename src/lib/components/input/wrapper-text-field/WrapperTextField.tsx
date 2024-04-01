@@ -72,7 +72,7 @@ export const WrapperTextField: React.FC<WrapperTextFieldProps> = React.memo(
 
         const renderInput = useMemo(() => {
             return React.cloneElement(children as React.ReactElement, { id: id });
-        }, [colors, styles]);
+        }, [children, id]);
 
         return (
             <SWrapperTextFieldRoot

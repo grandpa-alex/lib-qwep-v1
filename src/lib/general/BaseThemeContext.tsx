@@ -76,7 +76,7 @@ export const BaseThemeProvider = ({
         } else {
             setCurrentColorScheme({ ...colorsLight, ...addColorsLigth });
         }
-    }, [currentColorThemeName]);
+    }, [currentColorThemeName, addColorsLigth, listThemeColors]);
 
     const setColorThemeHandler = (theme: TypeCustomColorTheme) => {
         setListThemeColors([...listThemeColors, theme]);

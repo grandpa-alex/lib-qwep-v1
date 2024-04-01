@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconSVGContainerProps, IconSVGContainer } from './IconSVGContainer';
 
-export type BaseArrowProps = {} & IconSVGContainerProps;
+export type BaseArrowProps = IconSVGContainerProps;
 
 export const BaseArrow: React.FC<BaseArrowProps> = ({ ...rest }) => {
     return (

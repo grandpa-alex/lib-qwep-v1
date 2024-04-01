@@ -24,7 +24,7 @@ export const SBSelectLabel = styled.div`
     overflow: hidden;
 `;
 
-const BaseSelectGroupRef: React.ForwardRefRenderFunction<unknown | any, BaseSelectGroupProps> = (
+const BaseSelectGroupRef:  React.ForwardRefRenderFunction<HTMLDivElement, BaseSelectGroupProps> = (
     { children, title, ...rest },
     ref
 ) => {

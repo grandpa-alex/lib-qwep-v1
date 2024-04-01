@@ -116,7 +116,7 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
 
         const renderIcon = useMemo(() => {
             return renderIconButton({ icon: icon, size: styles.btn, sizeVariant, rest: { $colors: colors } });
-        }, [icon, colors, styles]);
+        }, [icon, colors, styles, sizeVariant]);
 
         return (
             <SSUBButton

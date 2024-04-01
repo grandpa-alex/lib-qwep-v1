@@ -6,7 +6,7 @@ type renderIconTextFieldProps = {
     icon?: React.ReactNode;
     size: TypeSSInp;
     sizeVariant: TypeVariantSize;
-    rest?: any;
+    rest?: object;
 };
 
 export const renderIconTextField = ({ icon, size, sizeVariant, rest }: renderIconTextFieldProps) => {
@@ -37,7 +37,7 @@ type renderIconBittonProps = {
     icon?: React.ReactNode;
     size: TypeSSBtn;
     sizeVariant: TypeVariantSize;
-    rest?: any;
+    rest?: object;
 };
 
 export const renderIconButton = ({ icon, size, sizeVariant, rest }: renderIconBittonProps) => {

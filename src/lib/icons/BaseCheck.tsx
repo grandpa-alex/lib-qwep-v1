@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconSVGContainerProps, IconSVGContainer } from './IconSVGContainer';
 
-export type BaseCheckProps = {} & IconSVGContainerProps;
+export type BaseCheckProps = IconSVGContainerProps;
 
 export const BaseCheck: React.FC<BaseCheckProps> = ({ ...rest }) => {
     return (

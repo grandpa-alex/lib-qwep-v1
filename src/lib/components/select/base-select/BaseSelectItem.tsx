@@ -24,7 +24,9 @@ export const SBSelectItemIndicator = styled(Select.ItemIndicator)`
     }
 `;
 
-const BaseSelectItemRef: React.ForwardRefRenderFunction<unknown | any, BaseSelectItemProps> = (
+
+
+const BaseSelectItemRef: React.ForwardRefRenderFunction<HTMLDivElement, BaseSelectItemProps> = (
     { children, ...rest },
     ref
 ) => {

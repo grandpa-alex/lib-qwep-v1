@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconSVGContainerProps, IconSVGContainer } from './IconSVGContainer';
 
-export type CallMeProps = {} & IconSVGContainerProps;
+export type CallMeProps = IconSVGContainerProps;
 
 export const CallMe: React.FC<CallMeProps> = ({ ...rest }) => {
     return (

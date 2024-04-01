@@ -114,7 +114,7 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
 
         const renderIcon = useMemo(() => {
             return renderIconButton({ icon: icon, size: styles.btn, sizeVariant, rest: { $colors: colors } });
-        }, [icon, colors, styles]);
+        }, [icon, colors, styles, sizeVariant]);
 
         return (
             <SSButton

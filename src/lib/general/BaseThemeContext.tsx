@@ -15,7 +15,7 @@ export type TypeBaseThemeContext = {
     //values
     currentColorThemeName: string;
     currentColorScheme: TypeColorScheme;
-    listThemeColors: TypeCustomColorTheme[]
+    listThemeColors: TypeCustomColorTheme[];
     // methods
     changeColorThemeHandler: (themeName: TypeColorTheme) => void;
     setColorThemeHandler: (theme: TypeCustomColorTheme) => void;
@@ -56,7 +56,7 @@ export const BaseThemeProvider = ({
     colorThemeName = 'light',
     addColorsLigth,
     addColorsDark,
-    currentStyles = styleScheme
+    currentStyles = styleScheme,
 }: ThemeProviderProps) => {
     const [currentColorThemeName, setCurrentColorThemeName] = useState<TypeColorTheme>(colorThemeName);
     const [currentColorScheme, setCurrentColorScheme] = useState<TypeColorScheme>({

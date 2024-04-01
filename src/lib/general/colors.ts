@@ -26,10 +26,10 @@ export type TypeColorScheme = {
     shadowColor: Hex;
 
     //sec base
-    backgroundSuccess: Hex
-    backgroundError: Hex
-    backgroundInfo: Hex
-    backgroundwarning: Hex
+    backgroundSuccess: Hex;
+    backgroundError: Hex;
+    backgroundInfo: Hex;
+    backgroundwarning: Hex;
 
     //text
     title: Hex;
@@ -44,11 +44,7 @@ export type TypeColorScheme = {
     omaga: Hex;
 } & {
     [key: string]: Hex;
-}
-
-
-
-
+};
 
 export const colorsLight: TypeColorScheme = {
     primary: '#2563EB',
@@ -90,10 +86,6 @@ export const colorsLight: TypeColorScheme = {
     omaga: '#000000',
 };
 
-
-
-
-
 export const colorsDark: TypeColorScheme = {
     primary: '#3B82F6',
     secondary: '#171821',
@@ -117,7 +109,7 @@ export const colorsDark: TypeColorScheme = {
     disabled: '#B9BCBE',
     shadowColor: '#00000000',
 
-    //sec base 
+    //sec base
     backgroundSuccess: '#4ADE80',
     backgroundError: '#F87171',
     backgroundInfo: '#60A5FA',
@@ -136,10 +128,7 @@ export const colorsDark: TypeColorScheme = {
     omaga: '#000000',
 };
 
-
-
-
-// D 
+// D
 // primary: '#2563EB',
 //     secondary: '#171821',
 
@@ -189,9 +178,6 @@ export const colorsDark: TypeColorScheme = {
 //     //general
 //     alpha: '#ffffff',
 //     omaga: '#000000',
-
-
-
 
 //L
 
@@ -244,6 +230,3 @@ export const colorsDark: TypeColorScheme = {
 //     //general
 //     alpha: '#ffffff',
 //     omaga: '#000000',
-
-
-

@@ -35,7 +35,7 @@ function Buttons() {
 
     return (
         <div style={{ paddingBottom: '300px' }}>
-            <BaseTitle as={'h2'} >BASE BUTTON</BaseTitle>
+            <BaseTitle as={'h2'}>BASE BUTTON</BaseTitle>
             <BaseTitle as={'h4'}>BASE BUTTON L COLORS</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <BaseButton mr={'m-3'}>BaseButton</BaseButton>

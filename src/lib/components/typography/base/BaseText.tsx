@@ -15,7 +15,8 @@ export type BaseTextProps = {
     $colors?: TypeColorScheme;
     $styles?: TypeStyleBaseText;
     as?: React.ElementType;
-} & React.HTMLAttributes<HTMLElement> & React.LabelHTMLAttributes<HTMLLabelElement>;
+} & React.HTMLAttributes<HTMLElement> &
+    React.LabelHTMLAttributes<HTMLLabelElement>;
 
 export type SBTextProps = {
     $colors: TypeColorScheme;
@@ -35,7 +36,6 @@ export const BaseText: React.FC<BaseTextProps> = React.memo(
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['typography']);
 
-        
         return (
             <SBText as={as} $colors={colors} $styles={styles} $color={color} {...rest}>
                 {children}

@@ -147,7 +147,7 @@ export type TypeSS = {
 
     //box
     box: TypeSSBox;
-} 
+};
 
 export const styleScheme: TypeSS = {
     // base

@@ -9,16 +9,9 @@ import DialogTooltip from './DialogTooltip';
 import Box from './Box';
 import Text from './Text';
 
-
-
-
-
-
 // const Wrapper = ({children}: any) => {
 //     const colors = useColorScheme();
 //     const { changeColorTheme, themeColorName } = useContext<any>(ThemeContext);
- 
-
 
 //     return <BaseBox style={{ paddingBottom: '300px', background: colors.background }}>
 // <SimpleButton onClick={() => changeColorTheme(themeColorName === 'light' ? 'dark' : 'light')}>Change thame</SimpleButton>
@@ -27,7 +20,6 @@ import Text from './Text';
 // }
 
 function Main() {
-
     const [val, setVal] = useState(<Inputs />);
     // const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
 
@@ -64,12 +56,8 @@ function Main() {
     };
 
     return (
-
         <div>
-     
-
-     
-            <div style={{ display: 'flex'}}>
+            <div style={{ display: 'flex' }}>
                 <button onClick={() => handler('btn')}>buttons</button>
                 <button onClick={() => handler('inp')}>inputs</button>
                 <button onClick={() => handler('check')}>Checkbox Switch</button>
@@ -79,12 +67,8 @@ function Main() {
                 <button onClick={() => handler('box')}>Box</button>
                 <button onClick={() => handler('text')}>Text</button>
                 <button onClick={() => handler('colors')}>Colors</button>
-                
             </div>
-            <div
-           
-            >{val}</div>
-      
+            <div>{val}</div>
         </div>
 
         // <>

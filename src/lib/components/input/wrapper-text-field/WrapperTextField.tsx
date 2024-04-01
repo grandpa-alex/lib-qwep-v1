@@ -11,7 +11,6 @@ import { BOX_GAP_VARIANT } from '@src/lib/common-styled-component/StyledComponen
 import { TypeBoxGapVariant } from '@src/lib/types/TypeBox';
 import { BaseText } from '../../typography';
 
-
 export type TypeStyleWrapperTextField = {
     mr: TypeSSMR;
     box: TypeSSBox;
@@ -21,7 +20,7 @@ export type TypeStyleWrapperTextField = {
 type TypeMessage = {
     text?: string;
     colorVariant?: TypeColorVariant;
-}
+};
 
 export type WrapperTextFieldProps = {
     mr?: TypeMargin;
@@ -31,7 +30,7 @@ export type WrapperTextFieldProps = {
     label: string;
     id: string;
     boxGapVariant?: TypeBoxGapVariant;
-    message?: TypeMessage
+    message?: TypeMessage;
     labelColor?: Hex;
     as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
 } & React.HTMLAttributes<HTMLElement>;
@@ -39,48 +38,35 @@ export type WrapperTextFieldProps = {
 export type SWrapperTextFieldMessageProps = {
     $colors: TypeColorScheme;
     $colorVariant: TypeColorVariant;
-} 
+};
 export const SWrapperTextFieldMessage = styled.span<SWrapperTextFieldMessageProps>`
     position: absolute;
     font-size: 11px;
     bottom: -15px;
     left: 0px;
-    color: ${props => getColor({
-                        cs: props.$colors,
-                        variant: props.$colorVariant,
-                    })};
+    color: ${(props) =>
+        getColor({
+            cs: props.$colors,
+            variant: props.$colorVariant,
+        })};
 `;
-
-
 
 export type SWrapperTextFieldRootProps = {
     $mr?: TypeMargin;
     $colors: TypeColorScheme;
     $styles: TypeStyleWrapperTextField;
     $boxGapVariant: TypeBoxGapVariant;
-} 
+};
 
 export const SWrapperTextFieldRoot = styled.div<SWrapperTextFieldRootProps>`
     position: relative;
     display: grid;
-    ${props => BOX_GAP_VARIANT[props.$boxGapVariant](props.$styles.box)};
+    ${(props) => BOX_GAP_VARIANT[props.$boxGapVariant](props.$styles.box)};
     ${(props) => getMargin(props.$styles.mr, props.$mr)}
 `;
 
 export const WrapperTextField: React.FC<WrapperTextFieldProps> = React.memo(
-    ({
-        as,
-        mr,
-        id,
-        children,
-        $colors,
-        $styles,
-        label,
-        message,
-        boxGapVariant = 'g-1',
-        labelColor,
-        ...rest
-    }) => {
+    ({ as, mr, id, children, $colors, $styles, label, message, boxGapVariant = 'g-1', labelColor, ...rest }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['box', 'mr', 'typography']);
 
@@ -88,32 +74,25 @@ export const WrapperTextField: React.FC<WrapperTextFieldProps> = React.memo(
             return React.cloneElement(children as React.ReactElement, { id: id });
         }, [colors, styles]);
 
-
         return (
-           <SWrapperTextFieldRoot
-            $colors={colors} 
-            $styles={styles} 
-            as={as}
-            $mr={mr}
-            $boxGapVariant={boxGapVariant}
-            {...rest}
+            <SWrapperTextFieldRoot
+                $colors={colors}
+                $styles={styles}
+                as={as}
+                $mr={mr}
+                $boxGapVariant={boxGapVariant}
+                {...rest}
             >
-            <BaseText 
-            $colors={colors} 
-            $styles={styles} 
-            color={labelColor}
-            as={'label'}
-            htmlFor={id}
-            >{label}</BaseText>
-            {renderInput}
-            {
-                message && <SWrapperTextFieldMessage
-                $colors={colors} 
-                $colorVariant={message.colorVariant ?? 'error'}
-                >{message.text}</SWrapperTextFieldMessage>
-            }
-            
-           </SWrapperTextFieldRoot>
+                <BaseText $colors={colors} $styles={styles} color={labelColor} as={'label'} htmlFor={id}>
+                    {label}
+                </BaseText>
+                {renderInput}
+                {message && (
+                    <SWrapperTextFieldMessage $colors={colors} $colorVariant={message.colorVariant ?? 'error'}>
+                        {message.text}
+                    </SWrapperTextFieldMessage>
+                )}
+            </SWrapperTextFieldRoot>
         );
     }
 );

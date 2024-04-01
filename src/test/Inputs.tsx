@@ -5,7 +5,6 @@ function Inputs() {
     const [l, setL] = useState(false);
     const [val, setVal] = useState('');
 
-
     const testH = async (e: string) => {
         setL(true);
 
@@ -261,13 +260,14 @@ function Inputs() {
             </div>
 
             <h4>SUBMIT INPUT WrapperTextField</h4>
-            <BaseBox style={{ width: '300px'}} mr={'m-3'} boxGapVariant={'g-3'}>
-                <WrapperTextField 
+            <BaseBox style={{ width: '300px' }} mr={'m-3'} boxGapVariant={'g-3'}>
+                <WrapperTextField
                     label={'This is a label'}
                     message={{
-                        text: 'Error this is invalid input!'
+                        text: 'Error this is invalid input!',
                     }}
-                    id={'435235'}>
+                    id={'435235'}
+                >
                     <SubmitTextField
                         isLoading={false}
                         colorVariant={'success'}
@@ -276,12 +276,13 @@ function Inputs() {
                         placeholder={'Placeholder'}
                     />
                 </WrapperTextField>
-                <WrapperTextField 
+                <WrapperTextField
                     label={'This is a label'}
-                     message={{
-                        text: 'Error this is invalid input!'
-                     }}
-                    id={'435235'}>
+                    message={{
+                        text: 'Error this is invalid input!',
+                    }}
+                    id={'435235'}
+                >
                     <SubmitTextField
                         isLoading={false}
                         colorVariant={'success'}
@@ -290,7 +291,6 @@ function Inputs() {
                         placeholder={'Placeholder'}
                     />
                 </WrapperTextField>
-              
             </BaseBox>
         </div>
     );

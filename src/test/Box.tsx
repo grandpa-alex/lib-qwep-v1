@@ -47,20 +47,20 @@ function Box() {
                     <SimpleTextField placeholder={'Placeholder'} />
                 </BaseBox>
             </BaseBox>
-            <BaseTitle  as={'h2'}>Simple Box</BaseTitle>
+            <BaseTitle as={'h2'}>Simple Box</BaseTitle>
             <SimpleBox
-            mr={'m-3'}
-                    boxPaddingVariant={'p-4'}
-                    boxGapVariant={'g-4'}
-                    boxWidthVariant={'w-4'}
-                    boxRadiusVariant={'br-3'}
-                    boxShadowVariant={'shd-3'}
-                    // style={{ background: '#f5eee4' }}
-                >
-                    <SimpleTextField placeholder={'Placeholder'} />
-                    <SimpleTextField placeholder={'Placeholder'} />
-                    <SimpleTextField placeholder={'Placeholder'} />
-                </SimpleBox>
+                mr={'m-3'}
+                boxPaddingVariant={'p-4'}
+                boxGapVariant={'g-4'}
+                boxWidthVariant={'w-4'}
+                boxRadiusVariant={'br-3'}
+                boxShadowVariant={'shd-3'}
+                // style={{ background: '#f5eee4' }}
+            >
+                <SimpleTextField placeholder={'Placeholder'} />
+                <SimpleTextField placeholder={'Placeholder'} />
+                <SimpleTextField placeholder={'Placeholder'} />
+            </SimpleBox>
         </BaseBox>
     );
 }

@@ -1,4 +1,4 @@
-import { BaseButton, Icon, SimpleButton, SubmitButton } from '@src/lib';
+import { BaseButton, BaseTitle, Icon, SimpleButton, SubmitButton } from '@src/lib';
 import { TypeColorVariant } from '@src/lib/types/TypeBase';
 import { TypeBtnVariant } from '@src/lib/types/TypeBtn';
 import { useState } from 'react';
@@ -35,8 +35,8 @@ function Buttons() {
 
     return (
         <div style={{ paddingBottom: '300px' }}>
-            <h2>BASE BUTTON</h2>
-            <h4>BASE BUTTON L COLORS</h4>
+            <BaseTitle as={'h2'} >BASE BUTTON</BaseTitle>
+            <BaseTitle as={'h4'}>BASE BUTTON L COLORS</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <BaseButton mr={'m-3'}>BaseButton</BaseButton>
                 <BaseButton mr={'m-3'} colorVariant={'info'}>
@@ -55,7 +55,7 @@ function Buttons() {
                     BaseButton custom
                 </BaseButton>
             </div>
-            <h4>BASE BUTTON M COLORS</h4>
+            <BaseTitle as={'h4'}>BASE BUTTON M COLORS</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <BaseButton mr={'m-3'} sizeVariant={'M'}>
                     BaseButton
@@ -76,7 +76,7 @@ function Buttons() {
                     BaseButton custom
                 </BaseButton>
             </div>
-            <h4>BASE BUTTON VARIANT</h4>
+            <BaseTitle as={'h4'}>BASE BUTTON VARIANT</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <BaseButton mr={'m-3'} variant={'contained'}>
                     BaseButton info
@@ -103,7 +103,7 @@ function Buttons() {
                     BaseButton outlined custom
                 </BaseButton>
             </div>
-            <h4>BASE BUTTON VARIANT DISABLED</h4>
+            <BaseTitle as={'h4'}>BASE BUTTON VARIANT DISABLED</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <BaseButton mr={'m-3'} disabled={true} variant={'contained'}>
                     BaseButton info
@@ -124,8 +124,8 @@ function Buttons() {
                     BaseButton outlined
                 </BaseButton>
             </div>
-            <h2>SIMPLE BUTTON</h2>
-            <h4>SIMPLE BUTTON POSITION</h4>
+            <BaseTitle as={'h2'}>SIMPLE BUTTON</BaseTitle>
+            <BaseTitle as={'h4'}>SIMPLE BUTTON POSITION</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <SimpleButton mr={'m-3'} style={{ width: '200px' }} position={'center'}>
                     SimpleButton def
@@ -155,7 +155,7 @@ function Buttons() {
                     SimpleButton custom
                 </SimpleButton>
             </div>
-            <h4>SIMPLE BUTTON OUTLIN POSITION</h4>
+            <BaseTitle as={'h4'}>SIMPLE BUTTON OUTLIN POSITION</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <SimpleButton mr={'m-3'} variant={'outlined'} style={{ width: '200px' }} position={'center'}>
                     SimpleButton def
@@ -204,7 +204,7 @@ function Buttons() {
                     SimpleButton custom
                 </SimpleButton>
             </div>
-            <h4>SIMPLE BUTTON DEF ICONS LEFT</h4>
+            <BaseTitle as={'h4'}>SIMPLE BUTTON DEF ICONS LEFT</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <SimpleButton mr={'m-3'} icon={<Icon.Gear />} position={'center'}>
                     SimpleButton
@@ -246,7 +246,7 @@ function Buttons() {
                     SimpleButton right
                 </SimpleButton>
             </div>
-            <h4>SIMPLE BUTTON ICONS RIGHT</h4>
+            <BaseTitle as={'h4'}>SIMPLE BUTTON ICONS RIGHT</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <SimpleButton
                     mr={'m-3'}
@@ -306,7 +306,7 @@ function Buttons() {
                     SimpleButton right
                 </SimpleButton>
             </div>
-            <h4>SIMPLE BUTTON ICONS DISABLED</h4>
+            <BaseTitle as={'h4'}>SIMPLE BUTTON ICONS DISABLED</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Gear />} position={'center'}>
                     SimpleButton def
@@ -340,7 +340,7 @@ function Buttons() {
                     SimpleButton right
                 </SimpleButton>
             </div>
-            <h4>SIMPLE BUTTON ICONS OUTLINE DISABLED</h4>
+            <BaseTitle as={'h4'}>SIMPLE BUTTON ICONS OUTLINE DISABLED</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <SimpleButton mr={'m-3'} disabled={true} variant={'outlined'} icon={<Icon.Gear />} position={'center'}>
                     SimpleButton def
@@ -390,7 +390,7 @@ function Buttons() {
                     SimpleButton right
                 </SimpleButton>
             </div>
-            <h4>SIMPLE BUTTON ICONS TEXT DISABLED</h4>
+            <BaseTitle as={'h4'}>SIMPLE BUTTON ICONS TEXT DISABLED</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <SimpleButton mr={'m-3'} disabled={true} variant={'text'} icon={<Icon.Gear />} position={'center'}>
                     SimpleButton def
@@ -440,7 +440,7 @@ function Buttons() {
                     SimpleButton right
                 </SimpleButton>
             </div>
-            <h4>SIMPLE BUTTON CUSTOM</h4>
+            <BaseTitle as={'h4'}>SIMPLE BUTTON CUSTOM</BaseTitle>
             <div style={{ display: 'flex' }}>
                 <SimpleButton
                     mr={'m-3'}
@@ -485,7 +485,7 @@ function Buttons() {
                     SimpleButton custom
                 </SimpleButton>
             </div>
-            <h2>SIMPLE BUTTON</h2>
+            <BaseTitle as={'h2'}>SIMPLE BUTTON</BaseTitle>
             <SimpleButton
                 mr={'m-3'}
                 onClick={() => setLoading(!loading)}

@@ -2,7 +2,7 @@ import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSTypography } from '@src/lib/general/styleScheme';
-import React, { LabelHTMLAttributes } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 export type TypeStyleBaseText = {

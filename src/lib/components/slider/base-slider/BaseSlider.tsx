@@ -102,9 +102,9 @@ export const SBSliderRoot = styled(Slider.Root)<SBButtonProps>`
     }
     ${SBSliderThumb} {
         background-color: ${(props) => (props.disabled ? props.$colors.disabled : props.$colors.backgroundBox)};
-        box-shadow: 0 1px 3px #3d3d3d;
         width: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
         height: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
+        border: 1px solid ${(props) => props.$colors.disabled};
         &:not([disabled]):focus {
             outline: none;
             border: 2px solid;

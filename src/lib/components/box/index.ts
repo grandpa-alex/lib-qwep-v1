@@ -1,3 +1,4 @@
 import { BaseBox } from './base-box/BaseBox';
 import { SimpleBox } from './simple-box/SimpleBox';
-export { BaseBox, SimpleBox };
+import { BaseContainer } from './base-container/BaseContainer'
+export { BaseBox, SimpleBox, BaseContainer};

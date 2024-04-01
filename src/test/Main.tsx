@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Buttons from './Buttons';
 import Inputs from './Inputs';
 import Checkbox from './Checkbox';
@@ -8,9 +8,30 @@ import Select from './Select';
 import DialogTooltip from './DialogTooltip';
 import Box from './Box';
 import Text from './Text';
+import { BaseBox, SimpleButton } from '@src/lib';
+
+import { useColorScheme } from '@src/lib/general/useColorScheme';
+
+
+
+
+
+// const Wrapper = ({children}: any) => {
+//     const colors = useColorScheme();
+//     const { changeColorTheme, themeColorName } = useContext<any>(ThemeContext);
+ 
+
+
+//     return <BaseBox style={{ paddingBottom: '300px', background: colors.background }}>
+// <SimpleButton onClick={() => changeColorTheme(themeColorName === 'light' ? 'dark' : 'light')}>Change thame</SimpleButton>
+// {children}
+//     </BaseBox>
+// }
 
 function Main() {
+
     const [val, setVal] = useState(<Inputs />);
+    const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
 
     const handler = (val: string) => {
         switch (val) {
@@ -45,8 +66,12 @@ function Main() {
     };
 
     return (
+
         <div>
-            <div style={{ display: 'flex' }}>
+     
+
+     
+            <div style={{ display: 'flex'}}>
                 <button onClick={() => handler('btn')}>buttons</button>
                 <button onClick={() => handler('inp')}>inputs</button>
                 <button onClick={() => handler('check')}>Checkbox Switch</button>
@@ -56,8 +81,12 @@ function Main() {
                 <button onClick={() => handler('box')}>Box</button>
                 <button onClick={() => handler('text')}>Text</button>
                 <button onClick={() => handler('colors')}>Colors</button>
+                
             </div>
-            <div>{val}</div>
+            <div
+           
+            >{val}</div>
+      
         </div>
 
         // <>

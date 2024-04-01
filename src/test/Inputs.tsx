@@ -1,9 +1,11 @@
 import { BaseBox, BaseTextField, Icon, SimpleTextField, SubmitTextField, WrapperTextField } from '@src/lib';
+import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useState } from 'react';
 
 function Inputs() {
     const [l, setL] = useState(false);
     const [val, setVal] = useState('');
+
 
     const testH = async (e: string) => {
         setL(true);
@@ -15,7 +17,7 @@ function Inputs() {
     };
 
     return (
-        <div style={{ paddingBottom: '300px' }}>
+        <div>
             <h2>BASE INPUT</h2>
             <h4>BASE INPUT L COLORS</h4>
             <div style={{ display: 'flex' }}>

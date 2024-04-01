@@ -39,6 +39,7 @@ const SIZE_VARIANT = {
 };
 
 export const SBTitle = styled.h1<SBTitleProps>`
+    display: inline-block;
     font-size: ${(props) => SIZE_VARIANT[props.$as](props.$styles)};
     font-weight: ${(props) => props.$styles.typography.fontWeightTitle};
     color: ${(props) => props.$color ?? props.$colors.title};

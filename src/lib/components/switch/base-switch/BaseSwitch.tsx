@@ -65,7 +65,6 @@ export const SBSwitchThumb = styled(Switch.Thumb)<SBSwitchThumbProps>`
     display: block;
     background-color: ${(props) => props.$colors.textItem};
     border-radius: 9999px;
-    box-shadow: 0 2px 6px #0000004c;
     transition: transform 100ms;
     transform: translateX(1px);
     will-change: transform;

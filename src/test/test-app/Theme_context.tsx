@@ -1,5 +1,5 @@
-import { General } from '@src/lib';
-import { createContext, ReactNode, useContext } from 'react';
+// import { General } from '@src/lib';
+import { createContext, ReactNode } from 'react';
 
 
 
@@ -22,7 +22,7 @@ export const ThemeProvider = ({
     children,
 }: ThemeProviderProps) => {
 
-    const { listThemeColors } = useContext(General.BaseThemeContext)
+    // const { listThemeColors } = useContext(General.BaseThemeContext)
 
 
 

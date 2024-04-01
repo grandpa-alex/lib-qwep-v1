@@ -1,5 +1,4 @@
-import { BaseBox, BaseContainer, BaseTitle, General, SimpleBox, SimpleButton } from '@src/lib';
-import { styled } from 'styled-components';
+import { BaseContainer, General } from '@src/lib';
 import { Drawer } from './Drawer';
 import { TypeColorScheme } from '@src/lib/general/colors';
 import { ThemeProvider } from './Theme_context';

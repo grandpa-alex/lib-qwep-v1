@@ -1,5 +1,4 @@
 import { BaseBox, BaseTextField, Icon, SimpleTextField, SubmitTextField, WrapperTextField } from '@src/lib';
-import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useState } from 'react';
 
 function Inputs() {

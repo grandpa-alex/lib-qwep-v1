@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import Buttons from './Buttons';
 import Inputs from './Inputs';
 import Checkbox from './Checkbox';
@@ -8,9 +8,7 @@ import Select from './Select';
 import DialogTooltip from './DialogTooltip';
 import Box from './Box';
 import Text from './Text';
-import { BaseBox, SimpleButton } from '@src/lib';
 
-import { useColorScheme } from '@src/lib/general/useColorScheme';
 
 
 
@@ -31,7 +29,7 @@ import { useColorScheme } from '@src/lib/general/useColorScheme';
 function Main() {
 
     const [val, setVal] = useState(<Inputs />);
-    const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
+    // const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
 
     const handler = (val: string) => {
         switch (val) {

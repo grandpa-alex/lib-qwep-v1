@@ -1,6 +1,5 @@
 import { getColor } from '@src/lib/common/getColor';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
-import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { TypeColorVariant, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
@@ -9,14 +8,7 @@ import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { BaseInput, RootTextField } from '..';
 import { SBInputProps } from './BaseInput';
-import { StyledRootTextFieldProps } from './RootTextField';
-
-export type TypeStyleBaseTextField = {
-    base: TypeSSBase;
-    inp: TypeSSInp;
-    typography: TypeSSTypography;
-    mr: TypeSSMR;
-};
+import { SRootTextFieldProps, TypeStyleTextField } from './RootTextField';
 
 export type BaseTextFieldProps = {
     mr?: TypeMargin;
@@ -24,7 +16,7 @@ export type BaseTextFieldProps = {
     variant?: TypeInpVariant;
     colorVariant?: TypeColorVariant;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleBaseTextField;
+    $styles?: TypeStyleTextField;
     color?: Hex;
     _isActiveHover?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>;
@@ -37,9 +29,9 @@ export type SBTextFieldInputProps = {
 
 export type SBTextFieldRootProps = {
     $_isActiveHover?: boolean;
-} & StyledRootTextFieldProps;
+} & SRootTextFieldProps;
 
-export const StyledTextFieldInput = styled(BaseInput)<SBTextFieldInputProps>`
+export const SBTextFieldInput = styled(BaseInput)<SBTextFieldInputProps>`
     &:disabled {
         color: ${(props) => props.$colors.disabled};
     }
@@ -101,7 +93,7 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
                 _isFocused={isFocused}
                 _isActiveHover={_isActiveHover}
             >
-                <StyledTextFieldInput
+                <SBTextFieldInput
                     $styles={{ typography: styles.typography }}
                     $colors={colors}
                     $color={color}

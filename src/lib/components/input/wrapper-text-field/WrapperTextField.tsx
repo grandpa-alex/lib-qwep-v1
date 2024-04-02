@@ -18,13 +18,13 @@ export type TypeStyleWrapperTextField = {
 };
 
 type TypeMessage = {
-    text?: string;
+    text?: React.ReactNode;
     colorVariant?: TypeColorVariant;
 };
 
 export type WrapperTextFieldProps = {
     mr?: TypeMargin;
-    children: React.ReactNode;
+    children?: React.ReactNode;
     $colors?: TypeColorScheme;
     $styles?: TypeStyleWrapperTextField;
     label: string;

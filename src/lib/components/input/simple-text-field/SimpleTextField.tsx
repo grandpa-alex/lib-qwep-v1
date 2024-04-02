@@ -12,13 +12,13 @@ import {
     SBTextFieldInputProps,
     SBTextFieldRoot,
     SBTextFieldRootProps,
-    TypeStyleBaseTextField,
 } from '../base-text-field/BaseTextField';
+import { TypeStyleTextField } from '../base-text-field/RootTextField';
 
 export type SimpleTextFieldProps = {
     icon?: React.ReactNode;
     iconPosition?: TypeItemIconPosition;
-    $styles?: TypeStyleBaseTextField;
+    $styles?: TypeStyleTextField;
 } & BaseTextFieldProps;
 
 export type SSTextFieldIconContainerProps = {

@@ -1,6 +1,5 @@
 import { getColor } from '@src/lib/common/getColor';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
-import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { IIP, TypeColorVariant, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
@@ -18,13 +17,7 @@ import {
 import { renderIconTextField } from '@src/lib/common/renderIconItem';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
 import { SBTextFieldInputProps, SBTextFieldRootProps } from '../base-text-field/BaseTextField';
-
-export type TypeStyleSubmitTextField = {
-    base: TypeSSBase;
-    inp: TypeSSInp;
-    typography: TypeSSTypography;
-    mr: TypeSSMR;
-};
+import { TypeStyleTextField } from '../base-text-field/RootTextField';
 
 export type SubmitTextFieldProps = {
     iconOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
@@ -39,9 +32,7 @@ export type SSUBTextFieldRootProps = {
     $isLoading: boolean;
 } & SBTextFieldRootProps;
 
-export type SSUBTextFieldIconContainerProps = {} & SSTextFieldIconContainerProps;
-
-export const SSUBTextFieldIconContainer = styled(SSTextFieldIconContainer)<SSUBTextFieldIconContainerProps>`
+export const SSUBTextFieldIconContainer = styled(SSTextFieldIconContainer)<SSTextFieldIconContainerProps>`
     background-color: transparent;
     border: none;
     padding: 0;
@@ -60,7 +51,7 @@ export type SSUBTextFieldLoadingProps = {
     $isLoading?: boolean;
     $disabled?: boolean;
     $colors: TypeColorScheme;
-    $styles: TypeStyleSubmitTextField;
+    $styles: TypeStyleTextField;
     $colorVariant: TypeColorVariant;
     $sizeVariant: TypeVariantSize;
 };

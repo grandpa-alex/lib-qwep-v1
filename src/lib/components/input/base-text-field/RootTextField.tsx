@@ -9,7 +9,7 @@ import { TypeInpVariant, VI } from '@src/lib/types/TypeInp';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export type TypeStyleBaseInput = {
+export type TypeStyleTextField = {
     base: TypeSSBase;
     inp: TypeSSInp;
     typography: TypeSSTypography;
@@ -25,17 +25,17 @@ export type RootTextFieldProps = {
     color?: Hex;
     disabled?: boolean;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleBaseInput;
+    $styles?: TypeStyleTextField;
     _isFocused?: boolean;
     _isActiveHover?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export type StyledRootTextFieldProps = {
+export type SRootTextFieldProps = {
     $color?: Hex;
     $mr?: TypeMargin;
     $disabled?: boolean;
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseInput;
+    $styles: TypeStyleTextField;
     $colorVariant: TypeColorVariant;
     $sizeVariant: TypeVariantSize;
     $variant: TypeInpVariant;
@@ -44,18 +44,18 @@ export type StyledRootTextFieldProps = {
 };
 
 const INPUT_SIZE = {
-    [VS.L]: (props: StyledRootTextFieldProps) => css`
+    [VS.L]: (props: SRootTextFieldProps) => css`
         height: ${props.$styles.inp.inpHeight_L};
         padding: ${`${props.$styles.inp.inpPadding_Y_L} ${props.$styles.inp.inpPadding_X_L}`};
     `,
-    [VS.M]: (props: StyledRootTextFieldProps) => css`
+    [VS.M]: (props: SRootTextFieldProps) => css`
         height: ${props.$styles.inp.inpHeight_M};
         padding: ${`${props.$styles.inp.inpPadding_Y_M} ${props.$styles.inp.inpPadding_X_M}`};
     `,
 };
 
 const INP_VARIANT = {
-    [VI.OUTLINED]: (props: StyledRootTextFieldProps) => css`
+    [VI.OUTLINED]: (props: SRootTextFieldProps) => css`
         color: ${props.$colors.prompt};
         background-color: transparent;
         border: 1px solid;
@@ -93,7 +93,7 @@ const INP_VARIANT = {
     `,
 };
 
-export const StyledRootTextFieldRoot = styled.div<StyledRootTextFieldProps>`
+export const STextFieldRoot = styled.div<SRootTextFieldProps>`
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -125,7 +125,7 @@ export const RootTextField: React.FC<RootTextFieldProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['base', 'inp', 'typography', 'mr']);
 
         return (
-            <StyledRootTextFieldRoot
+            <STextFieldRoot
                 $mr={mr}
                 $colors={colors}
                 $styles={styles}
@@ -139,7 +139,7 @@ export const RootTextField: React.FC<RootTextFieldProps> = React.memo(
                 {...rest}
             >
                 {children}
-            </StyledRootTextFieldRoot>
+            </STextFieldRoot>
         );
     }
 );

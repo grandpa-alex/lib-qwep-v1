@@ -27,7 +27,7 @@ module.exports = {
         // Устанавливаем правило 'react-refresh/only-export-components' с массивом значений, где указываем уровень предупреждения и объект с настройками правила
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
         'react-hooks/rules-of-hooks': 'off',
-        "@typescript-eslint/ban-ts-comment": "off",
+        '@typescript-eslint/ban-ts-comment': 'off',
     },
     ignorePatterns: ['node_modules/', 'build/', 'dist/'],
 };

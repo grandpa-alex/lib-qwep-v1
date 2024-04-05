@@ -6,13 +6,7 @@ import { TypeSSBox } from '@src/lib/general/styleScheme';
 import React from 'react';
 import styled from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
-import {
-    SBCDialogContent,
-    SBCDialogContentProps,
-    SBCDialogOverlay,
-    SBCDialogOverlayProps,
-} from './BaseDialogComponents';
-import { DialogContentProps, DialogProps } from '@radix-ui/react-dialog';
+import { DialogProps } from '@radix-ui/react-dialog';
 import {
     TypeBoxGapVariant,
     TypeBoxPaddingVariant,
@@ -21,15 +15,16 @@ import {
     TypeBoxWidthVariant,
 } from '@src/lib/types/TypeBox';
 import { CSSBaseBox, CSSSimpleBox } from '@src/lib/common-styled-component/StyledComponentBox';
+import { SBaseDialogComponent, TBaseDialogComponent } from './BaseDialogComponents';
 
-export type TypeStyleBaseDialog = {
+type TypeStyles = {
     box: TypeSSBox;
 };
 
-export type BaseDialogProps = {
+type BaseDialogProps = {
     children: React.ReactNode;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleBaseDialog;
+    $styles?: TypeStyles;
     bg?: Hex;
     boxBorderColor?: Hex;
     boxShadowColor?: Hex;
@@ -40,26 +35,24 @@ export type BaseDialogProps = {
     boxGapVariant?: TypeBoxGapVariant;
     overlayBlur?: string;
     overlayColor?: Hex;
-} & DialogProps &
-    DialogContentProps &
-    React.RefAttributes<HTMLDivElement>;
+} & (DialogProps & TBaseDialogComponent.SContent);
 
-export type SBDialogOverlayProps = {
+type SOverlayProps = {
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseDialog;
+    $styles: TypeStyles;
     $overlayBlur?: string;
     $overlayColor?: Hex;
-} & SBCDialogOverlayProps;
+} & TBaseDialogComponent.SOverlay;
 
-export const SBDialogOverlay = styled(SBCDialogOverlay)<SBDialogOverlayProps>`
+const SOverlay = styled(SBaseDialogComponent.Overlay)<SOverlayProps>`
     backdrop-filter: blur(${(props) => props.$overlayBlur ?? '0px'});
     background-color: ${(props) =>
         getColor({ cs: props.$colors, color: props.$overlayColor ?? props.$colors.omaga, opacity: '90' })};
 `;
 
-export type SBDialogContentProps = {
+type SContentProps = {
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseDialog;
+    $styles: TypeStyles;
     $boxPaddingVariant: TypeBoxPaddingVariant;
     $boxShadowVariant?: TypeBoxShadowVariant;
     $boxRadiusVariant: TypeBoxRadiusVariant;
@@ -68,9 +61,9 @@ export type SBDialogContentProps = {
     $boxWidthVariant?: TypeBoxWidthVariant;
     $boxGapVariant?: TypeBoxGapVariant;
     $bg?: Hex;
-} & SBCDialogContentProps;
+} & TBaseDialogComponent.SContent;
 
-export const SBDialogContent = styled(SBCDialogContent)<SBDialogContentProps>`
+const SContent = styled(SBaseDialogComponent.Content)<SContentProps>`
     background-color: ${(props) => props.$bg ?? props.$colors.backgroundBox};
     ${(props) =>
         CSSBaseBox({
@@ -113,13 +106,8 @@ export const BaseDialog: React.FC<BaseDialogProps> = React.memo(
         return (
             <Dialog.Root {...rest}>
                 <Dialog.Portal>
-                    <SBDialogOverlay
-                        $colors={colors}
-                        $styles={styles}
-                        $overlayColor={overlayColor}
-                        $overlayBlur={overlayBlur}
-                    >
-                        <SBDialogContent
+                    <SOverlay $colors={colors} $styles={styles} $overlayColor={overlayColor} $overlayBlur={overlayBlur}>
+                        <SContent
                             $colors={colors}
                             $styles={styles}
                             $boxPaddingVariant={boxPaddingVariant}
@@ -133,10 +121,25 @@ export const BaseDialog: React.FC<BaseDialogProps> = React.memo(
                             style={rest.style}
                         >
                             {children}
-                        </SBDialogContent>
-                    </SBDialogOverlay>
+                        </SContent>
+                    </SOverlay>
                 </Dialog.Portal>
             </Dialog.Root>
         );
     }
 );
+
+//export component
+export const SBaseDialog = {
+    Overlay: SOverlay,
+    Content: SContent,
+};
+
+//export type
+export namespace TBaseDialog {
+    export type Main = BaseDialogProps;
+    export type Styles = TypeStyles;
+
+    export type SOverlay = SOverlayProps;
+    export type SContent = SContentProps;
+}

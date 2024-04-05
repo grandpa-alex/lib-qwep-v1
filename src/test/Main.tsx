@@ -8,6 +8,7 @@ import Select from './Select';
 import DialogTooltip from './DialogTooltip';
 import Box from './Box';
 import Text from './Text';
+import Icons from './Icons';
 
 // const Wrapper = ({children}: any) => {
 //     const colors = useColorScheme();
@@ -20,7 +21,7 @@ import Text from './Text';
 // }
 
 function Main() {
-    const [val, setVal] = useState(<Inputs />);
+    const [val, setVal] = useState(<Icons />);
     // const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
 
     const handler = (val: string) => {
@@ -52,6 +53,9 @@ function Main() {
             case 'text':
                 setVal(<Text />);
                 break;
+            case 'icons':
+                setVal(<Icons />);
+                break;
         }
     };
 
@@ -67,78 +71,79 @@ function Main() {
                 <button onClick={() => handler('box')}>Box</button>
                 <button onClick={() => handler('text')}>Text</button>
                 <button onClick={() => handler('colors')}>Colors</button>
+                <button onClick={() => handler('icons')}>Icons</button>
             </div>
             <div>{val}</div>
         </div>
 
         // <>
         //     <div>
-        //     <Icon.Gear />
+        //     <Icon.Settings />
         //     <Icon.Chat />
-        //     <Icon.BaseArrow />
+        //
         //     <Icon.BaseCheck />
-        //     <SimpleButton onClick={() => setLoading(!loading)} mr={'m-2'} icon={<Icon.Gear />} colorVariant={'info'}>
+        //     <SimpleButton onClick={() => setLoading(!loading)} mr={'m-2'} icon={<Icon.Settings />} colorVariant={'info'}>
         //                 ON
         //     </SimpleButton>
-        //     <SubmitButton mr={'m-12'} isLoading={loading} color={'#d35959'} variant={'outlined'} position={'left'} style={{width: '300px'}} colorVariant={'warning'} icon={<Icon.Gear />}>
+        //     <SubmitButton mr={'m-12'} isLoading={loading} color={'#d35959'} variant={'outlined'} position={'left'} style={{width: '300px'}} colorVariant={'warning'} icon={<Icon.Settings />}>
         //             SubmitButton isLoading
         //             </SubmitButton>
-        //     <SubmitButton mr={'m-12'} isLoading={loading} position={'center'} iconPosition={'right'} style={{width: '300px'}} colorVariant={'warning'} icon={<Icon.Gear color={'#d35959'} />}>
+        //     <SubmitButton mr={'m-12'} isLoading={loading} position={'center'} iconPosition={'right'} style={{width: '300px'}} colorVariant={'warning'} icon={<Icon.Settings color={'#d35959'} />}>
         //     SubmitButton isLoading
         //     </SubmitButton>
 
-        //     <SubmitButton mr={'m-12'} isLoading={loading} position={'right'} iconPosition={'right'} style={{width: '300px'}} colorVariant={'warning'} icon={<Icon.Gear />}>
+        //     <SubmitButton mr={'m-12'} isLoading={loading} position={'right'} iconPosition={'right'} style={{width: '300px'}} colorVariant={'warning'} icon={<Icon.Settings />}>
         //     SubmitButton isLoading
         //     </SubmitButton>
 
         //         <div style={{ display: 'flex' }}>
         //             <SimpleButton
         //                 mr={'m-2'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 style={{ width: '250px', borderRadius: '20px' }}
         //                 position={'left'}
         //                 iconPosition={'right'}
         //             >
         //                 Test
         //             </SimpleButton>
-        //             <SimpleButton mr={'m-2'} icon={<Icon.Gear />} colorVariant={'info'}>
+        //             <SimpleButton mr={'m-2'} icon={<Icon.Settings />} colorVariant={'info'}>
         //                 Test
         //             </SimpleButton>
-        //             <SimpleButton mr={'m-2'} icon={<Icon.Gear />} colorVariant={'warning'}>
+        //             <SimpleButton mr={'m-2'} icon={<Icon.Settings />} colorVariant={'warning'}>
         //                 Test
         //             </SimpleButton>
-        //             <SimpleButton mr={'m-2'} colorVariant={'success'} icon={<Icon.Gear />}>
+        //             <SimpleButton mr={'m-2'} colorVariant={'success'} icon={<Icon.Settings />}>
         //                 Test
         //             </SimpleButton>
-        //             <SimpleButton mr={'m-2'} colorVariant={'error'} icon={<Icon.Gear />}>
-        //                 Test
-        //             </SimpleButton>
-        //         </div>
-        //         <div style={{ display: 'flex' }}>
-        //             <SimpleButton variant={'outlined'} mr={'m-2'} icon={<Icon.Gear />}>
-        //                 Test
-        //             </SimpleButton>
-        //             <SimpleButton mr={'m-2'} variant={'outlined'} icon={<Icon.Gear />} colorVariant={'info'}>
-        //                 Test
-        //             </SimpleButton>
-        //             <SimpleButton mr={'m-2'} variant={'outlined'} icon={<Icon.Gear />} colorVariant={'warning'}>
-        //                 Test
-        //             </SimpleButton>
-        //             <SimpleButton mr={'m-2'} variant={'outlined'} colorVariant={'success'} icon={<Icon.Gear />}>
-        //                 Test
-        //             </SimpleButton>
-        //             <SimpleButton mr={'m-2'} variant={'outlined'} colorVariant={'error'} icon={<Icon.Gear />}>
+        //             <SimpleButton mr={'m-2'} colorVariant={'error'} icon={<Icon.Settings />}>
         //                 Test
         //             </SimpleButton>
         //         </div>
         //         <div style={{ display: 'flex' }}>
-        //             <SimpleButton variant={'outlined'} mr={'m-2'} icon={<Icon.Gear />} sizeVariant={'M'}>
+        //             <SimpleButton variant={'outlined'} mr={'m-2'} icon={<Icon.Settings />}>
+        //                 Test
+        //             </SimpleButton>
+        //             <SimpleButton mr={'m-2'} variant={'outlined'} icon={<Icon.Settings />} colorVariant={'info'}>
+        //                 Test
+        //             </SimpleButton>
+        //             <SimpleButton mr={'m-2'} variant={'outlined'} icon={<Icon.Settings />} colorVariant={'warning'}>
+        //                 Test
+        //             </SimpleButton>
+        //             <SimpleButton mr={'m-2'} variant={'outlined'} colorVariant={'success'} icon={<Icon.Settings />}>
+        //                 Test
+        //             </SimpleButton>
+        //             <SimpleButton mr={'m-2'} variant={'outlined'} colorVariant={'error'} icon={<Icon.Settings />}>
+        //                 Test
+        //             </SimpleButton>
+        //         </div>
+        //         <div style={{ display: 'flex' }}>
+        //             <SimpleButton variant={'outlined'} mr={'m-2'} icon={<Icon.Settings />} sizeVariant={'M'}>
         //                 Test
         //             </SimpleButton>
         //             <SimpleButton
         //                 mr={'m-2'}
         //                 variant={'outlined'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 colorVariant={'info'}
         //                 sizeVariant={'M'}
         //             >
@@ -147,7 +152,7 @@ function Main() {
         //             <SimpleButton
         //                 mr={'m-2'}
         //                 variant={'outlined'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 colorVariant={'warning'}
         //                 sizeVariant={'M'}
         //             >
@@ -157,7 +162,7 @@ function Main() {
         //                 mr={'m-2'}
         //                 variant={'outlined'}
         //                 colorVariant={'success'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 sizeVariant={'M'}
         //             >
         //                 Test
@@ -166,7 +171,7 @@ function Main() {
         //                 mr={'m-2'}
         //                 variant={'outlined'}
         //                 colorVariant={'error'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 sizeVariant={'M'}
         //             >
         //                 Test
@@ -174,13 +179,13 @@ function Main() {
         //         </div>
 
         //         <div>
-        //             <SimpleTextField mr={'m-5'} icon={<Icon.Gear />} placeholder={'!!!Text ggYY'} disabled />
+        //             <SimpleTextField mr={'m-5'} icon={<Icon.Settings />} placeholder={'!!!Text ggYY'} disabled />
         //             <SimpleTextField
         //                 mr={'m-5'}
         //                 color={'#65867586'}
         //                 iconPosition={'right'}
         //                 sizeVariant={'M'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 placeholder={'!!!Text ggYY'}
         //             />
         //             <SimpleTextField
@@ -188,7 +193,7 @@ function Main() {
         //                 color={'#65867586'}
         //                 iconPosition={'right'}
         //                 sizeVariant={'M'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 placeholder={'!!!Text ggYY'}
         //             />
         //             <SimpleTextField
@@ -196,7 +201,7 @@ function Main() {
         //                 color={'#65867586'}
         //                 iconPosition={'right'}
         //                 sizeVariant={'M'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 placeholder={'!!!Text ggYY'}
         //             />
         //             <SimpleTextField
@@ -204,7 +209,7 @@ function Main() {
         //                 color={'#65867586'}
         //                 iconPosition={'right'}
         //                 sizeVariant={'M'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 placeholder={'!!!Text ggYY'}
         //             />
         //         </div>
@@ -252,22 +257,22 @@ function Main() {
         //         <BaseTooltip
         //         tooltip={'Копокпр пршеор'}
         //         >
-        //             <SimpleButton colorVariant={'success'} icon={<Icon.Gear />}>
+        //             <SimpleButton colorVariant={'success'} icon={<Icon.Settings />}>
         //             BaseTooltip
         //             </SimpleButton>
         //         </BaseTooltip>
         //         <SimpleTooltip
         //         tooltip={'Копокпр пршеор 1'}
         //         >
-        //             <SubmitButton isLoading={true} colorVariant={'warning'} icon={<Icon.Gear />}>
+        //             <SubmitButton isLoading={true} colorVariant={'warning'} icon={<Icon.Settings />}>
         //             SubmitButton
         //             </SubmitButton>
         //         </SimpleTooltip>
 
-        //             <SubmitButton disabled isLoading={true} colorVariant={'warning'} icon={<Icon.Gear />}>
+        //             <SubmitButton disabled isLoading={true} colorVariant={'warning'} icon={<Icon.Settings />}>
         //             SubmitButton disabled isLoading
         //             </SubmitButton>
-        //             <SubmitButton disabled isLoading={false} colorVariant={'warning'} icon={<Icon.Gear />}>
+        //             <SubmitButton disabled isLoading={false} colorVariant={'warning'} icon={<Icon.Settings />}>
         //             SubmitButton disabled isLoading false
         //             </SubmitButton>
 
@@ -286,7 +291,7 @@ function Main() {
         //         <BaseButton colorVariant={'success'}>test</BaseButton>
         //         <BaseButton variant={'outlined'}>test</BaseButton>
         //         <SimpleButton variant={'text'}>test</SimpleButton>
-        //         <SimpleButton variant={'outlined'} mr={'m-5'} colorVariant={'success'} icon={<Icon.Gear />}>
+        //         <SimpleButton variant={'outlined'} mr={'m-5'} colorVariant={'success'} icon={<Icon.Settings />}>
         //             Yesttrerey
         //         </SimpleButton>
         //         <SimpleButton
@@ -294,7 +299,7 @@ function Main() {
         //             mr={'m-5'}
         //             sizeVariant={'M'}
         //             colorVariant={'success'}
-        //             icon={<Icon.Gear />}
+        //             icon={<Icon.Settings />}
         //         >
         //             Yesttrerey
         //         </SimpleButton>
@@ -304,7 +309,7 @@ function Main() {
         //             style={{ width: '300px' }}
         //             mr={'m-5'}
         //             colorVariant={'success'}
-        //             icon={<Icon.Gear />}
+        //             icon={<Icon.Settings />}
         //         >
         //             Yesttrereyr
         //         </SimpleButton>
@@ -314,7 +319,7 @@ function Main() {
         //             style={{ width: '300px' }}
         //             mr={'m-5'}
         //             colorVariant={'success'}
-        //             icon={<Icon.Gear />}
+        //             icon={<Icon.Settings />}
         //         >
         //             Yesttrerey
         //         </SimpleButton>
@@ -325,11 +330,11 @@ function Main() {
         //             style={{ width: '300px' }}
         //             mr={'m-5'}
         //             colorVariant={'success'}
-        //             icon={<Icon.Gear />}
+        //             icon={<Icon.Settings />}
         //         >
         //             Yesttrerey
         //         </SimpleButton>
-        //         <SimpleButton variant={'contained'} disabled mr={'m-5'} colorVariant={'success'} icon={<Icon.Gear />}>
+        //         <SimpleButton variant={'contained'} disabled mr={'m-5'} colorVariant={'success'} icon={<Icon.Settings />}>
         //             Yesttrerey
         //         </SimpleButton>
         //         <SimpleButton
@@ -337,7 +342,7 @@ function Main() {
         //             style={{ width: '300px' }}
         //             mr={'m-5'}
         //             colorVariant={'success'}
-        //             icon={<Icon.Gear />}
+        //             icon={<Icon.Settings />}
         //         >
         //             Yesttrereyr
         //         </SimpleButton>
@@ -347,7 +352,7 @@ function Main() {
         //             style={{ width: '300px' }}
         //             mr={'m-5'}
         //             colorVariant={'success'}
-        //             icon={<Icon.Gear />}
+        //             icon={<Icon.Settings />}
         //         >
         //             Yesttrerey
         //         </SimpleButton>
@@ -358,11 +363,11 @@ function Main() {
         //             style={{ width: '300px' }}
         //             mr={'m-5'}
         //             colorVariant={'success'}
-        //             icon={<Icon.Gear />}
+        //             icon={<Icon.Settings />}
         //         >
         //             Yesttrerey
         //         </SimpleButton>
-        //         <SimpleButton variant={'text'} disabled mr={'m-5'} colorVariant={'success'} icon={<Icon.Gear />}>
+        //         <SimpleButton variant={'text'} disabled mr={'m-5'} colorVariant={'success'} icon={<Icon.Settings />}>
         //             Yesttrerey
         //         </SimpleButton>
         //         <SimpleButton
@@ -370,7 +375,7 @@ function Main() {
         //             style={{ width: '300px' }}
         //             mr={'m-5'}
         //             colorVariant={'success'}
-        //             icon={<Icon.Gear />}
+        //             icon={<Icon.Settings />}
         //         >
         //             Yesttrereyr
         //         </SimpleButton>
@@ -402,7 +407,7 @@ function Main() {
         //             style={{ width: '300px' }}
         //             mr={'m-5'}
         //             colorVariant={'success'}
-        //             icon={<Icon.Gear />}
+        //             icon={<Icon.Settings />}
         //         >
         //             Yesttrerey
         //         </SimpleButton>
@@ -429,7 +434,7 @@ function Main() {
         //         >
         //             Yesttrerey
         //         </SimpleButton>
-        //         <Icon.CallMe mr={'m-4'} sizeVariant={'M'} />
+        //         <Icon.Phone mr={'m-4'} sizeVariant={'M'} />
         //         <Icon.Chat mr={'m-4'} color={'#65867586'} />
         //         <BaseTextField mr={'m-5'} color={'#65867586'} sizeVariant={'M'} placeholder={'!!!Text ggYY'} />
         //         <BaseTextField mr={'m-5'} color={'#65867586'} disabled={true} placeholder={'!!!Text ggYY'} />
@@ -438,7 +443,7 @@ function Main() {
         //             <SimpleTextField
         //                 mr={'m-5'}
         //                 color={'#c04615e6'}
-        //                 icon={<Icon.Gear color={'#65867586'} />}
+        //                 icon={<Icon.Settings color={'#65867586'} />}
         //                 placeholder={'!!!Text ggYY'}
         //             />
 
@@ -449,7 +454,7 @@ function Main() {
         //                 colorVariant={'success'}
         //                 placeholder={'!!!Text ggYY'}
         //             />
-        //             <SimpleTextField mr={'m-5'} icon={<Icon.Gear />} placeholder={'!!!Text ggYY'} />
+        //             <SimpleTextField mr={'m-5'} icon={<Icon.Settings />} placeholder={'!!!Text ggYY'} />
         //         </div>
         //         <div>
         //             <SimpleTextField
@@ -457,13 +462,13 @@ function Main() {
         //                 color={'#65867586'}
         //                 iconPosition={'right'}
         //                 sizeVariant={'M'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 placeholder={'!!!Text ggYY'}
         //             />
         //             <SimpleTextField
         //                 mr={'m-5'}
         //                 sizeVariant={'M'}
-        //                 icon={<Icon.Gear />}
+        //                 icon={<Icon.Settings />}
         //                 colorVariant={'success'}
         //                 placeholder={'!!!Text ggYY'}
         //             />
@@ -474,7 +479,7 @@ function Main() {
         //             mr={'m-5'}
         //             style={{ padding: '30px' }}
         //             iconPosition="right"
-        //             icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //             icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //             sizeVariant={'L'}
         //             placeholder={'!!!Text ggYY'}
         //             iconOnClick={() => setVal(!val)}
@@ -484,7 +489,7 @@ function Main() {
         //             mr={'m-5'}
         //             iconPosition="right"
         //             colorVariant={'success'}
-        //             icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //             icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //             sizeVariant={'L'}
         //             placeholder={'!!!Text ggYY'}
         //             iconOnClick={() => setVal(!val)}
@@ -494,7 +499,7 @@ function Main() {
         //             mr={'m-5'}
         //             iconPosition="right"
         //             colorVariant={'success'}
-        //             icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //             icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //             sizeVariant={'L'}
         //             placeholder={'!!!Text ggYY'}
         //             iconOnClick={() => setVal(!val)}
@@ -504,7 +509,7 @@ function Main() {
         //             mr={'m-5'}
         //             disabled
         //             colorVariant={'success'}
-        //             icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //             icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //             sizeVariant={'M'}
         //             placeholder={'!!!Text ggYY'}
         //             iconOnClick={() => setVal(!val)}
@@ -543,7 +548,7 @@ function Main() {
         //                 // style={{ width: '200px' }}
 
         //                 iconPosition="right"
-        //                 icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //                 icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //                 sizeVariant={'L'}
         //                 placeholder={'!!!Text ggYY'}
         //                 // iconOnClick={() => setVal(!val)}
@@ -554,7 +559,7 @@ function Main() {
         //                 // style={{ width: '200px' }}
         //                 colorVariant={'success'}
         //                 iconPosition="right"
-        //                 icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //                 icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //                 sizeVariant={'L'}
         //                 placeholder={'!!!Text ggYY'}
         //                 // iconOnClick={() => setVal(!val)}
@@ -573,7 +578,7 @@ function Main() {
         //             <SubmitTextField
         //                 isLoading={true}
         //                 iconPosition="right"
-        //                 icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //                 icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //                 sizeVariant={'L'}
         //                 placeholder={'!!!Text ggYY'}
         //             />
@@ -581,7 +586,7 @@ function Main() {
         //                 isLoading={false}
         //                 colorVariant={'success'}
         //                 iconPosition="right"
-        //                 icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //                 icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //                 sizeVariant={'L'}
         //                 placeholder={'!!!Text ggYY'}
         //             />
@@ -598,7 +603,7 @@ function Main() {
         //             <SubmitTextField
         //                 isLoading={true}
         //                 iconPosition="right"
-        //                 icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //                 icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //                 sizeVariant={'L'}
         //                 placeholder={'!!!Text ggYY'}
         //             />
@@ -607,7 +612,7 @@ function Main() {
         //                 isLoading={false}
         //                 colorVariant={'success'}
         //                 iconPosition="right"
-        //                 icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //                 icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //                 sizeVariant={'L'}
         //                 placeholder={'!!!Text ggYY'}
         //             />
@@ -622,7 +627,7 @@ function Main() {
         //             collisionPadding={3}
         //             arrowPadding={10}
         //         >
-        //             <SimpleButton colorVariant={'success'} icon={<Icon.Gear />}>
+        //             <SimpleButton colorVariant={'success'} icon={<Icon.Settings />}>
         //                 Yesttrereyr
         //             </SimpleButton>
         //         </SimpleTooltip> */}
@@ -726,7 +731,7 @@ function Main() {
         //             isLoading={false}
         //             iconPosition="right"
         //             colorVariant={'success'}
-        //             icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //             icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //             sizeVariant={'L'}
         //             placeholder={'!!!Text ggYY'}
         //             iconOnClick={() => setVal(!val)}
@@ -735,7 +740,7 @@ function Main() {
         //             isLoading={false}
         //             iconPosition="right"
         //             colorVariant={'success'}
-        //             icon={val ? <Icon.CallMe /> : <Icon.Gear />}
+        //             icon={val ? <Icon.Phone /> : <Icon.Settings />}
         //             sizeVariant={'L'}
         //             placeholder={'!!!Text ggYY'}
         //             iconOnClick={() => setVal(!val)}

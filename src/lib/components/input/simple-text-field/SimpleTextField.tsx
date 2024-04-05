@@ -5,27 +5,36 @@ import { IIP, TypeItemIconPosition, VC, VS } from '@src/lib/types/TypeBase';
 import { VI } from '@src/lib/types/TypeInp';
 import React, { useCallback, useMemo, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { BaseInput } from '..';
 import { renderIconTextField } from '@src/lib/common/renderIconItem';
-import {
-    BaseTextFieldProps,
-    SBTextFieldInputProps,
-    SBTextFieldRoot,
-    SBTextFieldRootProps,
-} from '../base-text-field/BaseTextField';
-import { TypeStyleTextField } from '../base-text-field/RootTextField';
+import { SBaseTextField, TBaseTextField } from '../base-text-field/BaseTextField';
 
-export type SimpleTextFieldProps = {
+type SimpleTextFieldProps = {
     icon?: React.ReactNode;
     iconPosition?: TypeItemIconPosition;
-    $styles?: TypeStyleTextField;
-} & BaseTextFieldProps;
+    iconOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
+} & TBaseTextField.Main;
 
-export type SSTextFieldIconContainerProps = {
+type SIconContProps = {
     $iconPosition: TypeItemIconPosition;
+    $useBtn: boolean;
+    $disabled?: boolean;
 };
 
-export const SSTextFieldIconContainer = styled.div<SSTextFieldIconContainerProps>`
+export const SIconContainer = styled.div<SIconContProps>`
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    ${(props) =>
+        props.$disabled &&
+        css`
+            pointer-events: none;
+        `};
+    ${(props) =>
+        props.$useBtn &&
+        css`
+            cursor: pointer;
+        `};
     ${(props) => {
         if (props.$iconPosition === IIP.RIGHT) {
             return css`
@@ -41,11 +50,11 @@ export const SSTextFieldIconContainer = styled.div<SSTextFieldIconContainerProps
     }}
 `;
 
-export const SSTextFieldRoot = styled(SBTextFieldRoot)<SBTextFieldRootProps>`
+export const SRoot = styled(SBaseTextField.Root)<TBaseTextField.SRoot>`
     display: inline-flex;
     align-items: center;
     min-width: 100px;
-    ${SSTextFieldIconContainer} {
+    ${SIconContainer} {
         svg {
             color: ${(props) =>
                 getColor({
@@ -58,7 +67,7 @@ export const SSTextFieldRoot = styled(SBTextFieldRoot)<SBTextFieldRootProps>`
         }
     }
     &:hover {
-        ${SSTextFieldIconContainer} {
+        ${SIconContainer} {
             svg {
                 color: ${(props) =>
                     getColor({
@@ -73,7 +82,7 @@ export const SSTextFieldRoot = styled(SBTextFieldRoot)<SBTextFieldRootProps>`
     }
 `;
 
-export const SSTextFieldInput = styled(BaseInput)<SBTextFieldInputProps>`
+export const SInput = styled(SBaseTextField.Input)<TBaseTextField.SInput>`
     &:disabled {
         color: ${(props) => props.$colors.disabled};
     }
@@ -96,6 +105,7 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
         mr,
         icon,
         color,
+        iconOnClick,
         _isActiveHover = true,
         iconPosition = IIP.LEFT,
         variant = VI.OUTLINED,
@@ -116,7 +126,7 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
         }, [icon, colors, styles]);
 
         return (
-            <SSTextFieldRoot
+            <SRoot
                 $mr={mr}
                 $colors={colors}
                 $styles={styles}
@@ -137,17 +147,41 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
                 _isActiveHover={_isActiveHover}
                 $_isActiveHover={_isActiveHover}
                 $_isFocused={isFocused}
+                $blocked={rest.blocked}
             >
-                {icon && <SSTextFieldIconContainer $iconPosition={iconPosition}>{renderIcon}</SSTextFieldIconContainer>}
+                {icon && (
+                    <SIconContainer
+                        as={iconOnClick ? 'button' : 'div'}
+                        onClick={iconOnClick}
+                        $disabled={rest.disabled}
+                        $iconPosition={iconPosition}
+                        $useBtn={Boolean(iconOnClick)}
+                    >
+                        {renderIcon}
+                    </SIconContainer>
+                )}
 
-                <SSTextFieldInput
+                <SInput
                     $styles={{ typography: styles.typography }}
                     $colors={colors}
                     $color={color}
                     $colorVariant={colorVariant}
                     {...rest}
                 />
-            </SSTextFieldRoot>
+            </SRoot>
         );
     }
 );
+
+//export component
+export const SSimpleTextField = {
+    Root: SRoot,
+    IconContainer: SIconContainer,
+    Input: SInput,
+};
+
+//export type
+export namespace TSimpleTextField {
+    export type Main = SimpleTextFieldProps;
+    export type SIconContainer = SIconContProps;
+}

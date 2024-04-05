@@ -5,70 +5,85 @@ import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSMR } from '@src/lib/general/styleScheme';
 import React from 'react';
 import styled from 'styled-components';
-
-import { PopoverContentProps, PopoverTriggerProps } from '@radix-ui/react-popover';
+import { PopoverArrowProps, PopoverContentProps, PopoverProps, PopoverTriggerProps } from '@radix-ui/react-popover';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeMargin } from '@src/lib/types/TypeBase';
 
-export type TypeStyleBaseDialog = {
+type TypeStyles = {
     mr: TypeSSMR;
 };
 
-export type BasePopupProps = {
+type BasePopupProps = {
     children: React.ReactNode;
-    popupComponent: React.ReactNode;
+    trigger: React.ReactNode;
     mr?: TypeMargin;
     bg?: Hex;
     triggerStyle?: React.CSSProperties;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleBaseDialog;
-};
+    $styles?: TypeStyles;
+} & (PopoverProps & PopoverContentProps);
 
-export type SBPopoverTriggerProps = {
+type STriggerProps = {
     $mr?: TypeMargin;
-    $styles: TypeStyleBaseDialog;
+    $styles: TypeStyles;
 } & PopoverTriggerProps &
     React.RefAttributes<HTMLButtonElement>;
-export const SBPopoverTrigger = styled.div<SBPopoverTriggerProps>`
+
+const STrigger = styled.div<STriggerProps>`
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
 `;
 
-export const SBPopoverArrow = styled(Popover.Arrow)``;
+const SArrow = styled(Popover.Arrow)<PopoverArrowProps & React.RefAttributes<SVGSVGElement>>``;
 
-export type SBPopoverContentProps = {
+type SContentProps = {
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseDialog;
+    $styles: TypeStyles;
     $bg?: Hex;
 } & PopoverContentProps &
     React.RefAttributes<HTMLDivElement>;
 
-export const SBPopoverContent = styled(Popover.Content)<SBPopoverContentProps>`
+const SContent = styled(Popover.Content)<SContentProps>`
     background-color: ${(props) => props.$bg ?? props.$colors.backgroundBox};
-    ${SBPopoverArrow} {
+    ${SArrow} {
         fill: ${(props) => props.$bg ?? props.$colors.backgroundBox};
     }
-    font-size: 14px;
 `;
 
 export const BasePopup: React.FC<BasePopupProps> = React.memo(
-    ({ mr, children, triggerStyle, popupComponent, bg, $colors, $styles, ...rest }) => {
+    ({ mr, children, triggerStyle, trigger, bg, $colors, $styles, ...rest }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['mr']);
 
         return (
             <Popover.Root {...rest}>
                 <Popover.Trigger asChild>
-                    <SBPopoverTrigger style={triggerStyle} $mr={mr} $styles={styles}>
-                        {children}
-                    </SBPopoverTrigger>
+                    <STrigger style={triggerStyle} $mr={mr} $styles={styles}>
+                        {trigger}
+                    </STrigger>
                 </Popover.Trigger>
                 <Popover.Portal>
-                    <SBPopoverContent sideOffset={6} $colors={colors} $styles={styles} $bg={bg} {...rest}>
-                        {popupComponent}
-                        <SBPopoverArrow />
-                    </SBPopoverContent>
+                    <SContent $colors={colors} $styles={styles} $bg={bg} sideOffset={8} {...rest}>
+                        {children}
+                        <SArrow />
+                    </SContent>
                 </Popover.Portal>
             </Popover.Root>
         );
     }
 );
+
+//export component
+export const SBasePopup = {
+    SContent: SContent,
+    Trigger: STrigger,
+    Arrow: SArrow,
+};
+
+//export type
+export namespace TBasePopup {
+    export type Main = BasePopupProps;
+    export type Styles = TypeStyles;
+    export type SContent = SContentProps;
+    export type STrigger = STriggerProps;
+    export type SArrow = PopoverArrowProps & React.RefAttributes<SVGSVGElement>;
+}

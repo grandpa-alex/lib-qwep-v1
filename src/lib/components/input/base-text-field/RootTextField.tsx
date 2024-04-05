@@ -4,39 +4,39 @@ import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeColorVariant, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
 import { TypeInpVariant, VI } from '@src/lib/types/TypeInp';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export type TypeStyleTextField = {
+type TypeStyles = {
     base: TypeSSBase;
     inp: TypeSSInp;
     typography: TypeSSTypography;
     mr: TypeSSMR;
 };
 
-export type RootTextFieldProps = {
+type RootTextFieldProps = {
     children: React.ReactNode;
     mr?: TypeMargin;
     variant?: TypeInpVariant;
-    colorVariant?: TypeColorVariant;
+    colorVariant?: TypeVariantColor;
     sizeVariant?: TypeVariantSize;
     color?: Hex;
     disabled?: boolean;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleTextField;
+    $styles?: TypeStyles;
     _isFocused?: boolean;
     _isActiveHover?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export type SRootTextFieldProps = {
+type SRootTextFieldProps = {
     $color?: Hex;
     $mr?: TypeMargin;
     $disabled?: boolean;
     $colors: TypeColorScheme;
-    $styles: TypeStyleTextField;
-    $colorVariant: TypeColorVariant;
+    $styles: TypeStyles;
+    $colorVariant: TypeVariantColor;
     $sizeVariant: TypeVariantSize;
     $variant: TypeInpVariant;
     $_isFocused?: boolean;
@@ -93,7 +93,7 @@ const INP_VARIANT = {
     `,
 };
 
-export const STextFieldRoot = styled.div<SRootTextFieldProps>`
+const SRoot = styled.div<SRootTextFieldProps>`
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -125,7 +125,7 @@ export const RootTextField: React.FC<RootTextFieldProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['base', 'inp', 'typography', 'mr']);
 
         return (
-            <STextFieldRoot
+            <SRoot
                 $mr={mr}
                 $colors={colors}
                 $styles={styles}
@@ -139,7 +139,19 @@ export const RootTextField: React.FC<RootTextFieldProps> = React.memo(
                 {...rest}
             >
                 {children}
-            </STextFieldRoot>
+            </SRoot>
         );
     }
 );
+
+//export component
+export const SRootTextField = {
+    Root: SRoot,
+};
+
+//export type
+export namespace TRootTextField {
+    export type Main = RootTextFieldProps;
+    export type Styles = TypeStyles;
+    export type SRoot = SRootTextFieldProps;
+}

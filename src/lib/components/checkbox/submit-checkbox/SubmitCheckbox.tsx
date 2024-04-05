@@ -4,18 +4,19 @@ import { VC, VS } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { BaseCheckbox } from '..';
-import { BaseCheckboxProps, SBRootCheckboxProps } from '../base-checkbox/BaseCheckbox';
+// import { BaseCheckboxProps, SBRootCheckboxProps } from '../base-checkbox/BaseCheckbox';
 import { getColor } from '@src/lib/common/getColor';
 import { TypeSSCheckbox } from '@src/lib/general/styleScheme';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
+import { TBaseCheckbox } from '../base-checkbox/BaseCheckbox';
 
-export type SubmitCheckboxProps = {
+type SubmitCheckboxProps = {
     isLoading: boolean;
-} & BaseCheckboxProps;
+} & TBaseCheckbox.Main;
 
-export type SSUBCheckboxProps = {
+type SCheckboxProps = {
     $isLoading: boolean;
-} & SBRootCheckboxProps;
+} & TBaseCheckbox.SRoot;
 
 const LOADING_SIZE = {
     [VS.L]: (props: TypeSSCheckbox) => css`
@@ -28,7 +29,7 @@ const LOADING_SIZE = {
     `,
 };
 
-export const SSUBCheckboxProps = styled(BaseCheckbox)<SSUBCheckboxProps>`
+const SCheckbox = styled(BaseCheckbox)<SCheckboxProps>`
     ${(props) => {
         if (props.$isLoading && !props.disabled) {
             return css`
@@ -74,7 +75,7 @@ export const SubmitCheckbox: React.FC<SubmitCheckboxProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['base', 'checkbox', 'mr']);
 
         return (
-            <SSUBCheckboxProps
+            <SCheckbox
                 $color={color}
                 $mr={mr}
                 $colors={colors}
@@ -82,6 +83,7 @@ export const SubmitCheckbox: React.FC<SubmitCheckboxProps> = React.memo(
                 $colorVariant={colorVariant}
                 $sizeVariant={sizeVariant}
                 $isLoading={isLoading}
+                $blocked={rest.blocked}
                 mr={mr}
                 color={color}
                 colorVariant={colorVariant}
@@ -93,3 +95,14 @@ export const SubmitCheckbox: React.FC<SubmitCheckboxProps> = React.memo(
         );
     }
 );
+
+//export component
+export const SSubmitCheckbox = {
+    Checkbox: SCheckbox,
+};
+
+//export type
+export namespace TSubmitCheckbox {
+    export type Main = SubmitCheckboxProps;
+    export type SCheckbox = SCheckboxProps;
+}

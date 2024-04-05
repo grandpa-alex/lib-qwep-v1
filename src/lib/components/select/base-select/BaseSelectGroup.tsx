@@ -3,20 +3,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { SelectGroupProps } from '@radix-ui/react-select';
 
-export type BaseSelectGroupProps = {
+type BaseSelectGroupProps = {
     children: React.ReactNode;
     title?: string;
 } & SelectGroupProps &
     React.RefAttributes<HTMLDivElement>;
 
-export const SBSelectGroup = styled(Select.Group)`
+const SGroup = styled(Select.Group)<SelectGroupProps & React.RefAttributes<HTMLDivElement>>`
     padding: 10px 0px;
     &:not(:last-child) {
         border-bottom: 1px solid;
     }
 `;
 
-export const SBSelectLabel = styled.div`
+const SLabel = styled.div`
     font-size: 13px;
     padding: 2px 20px 6px 20px;
     text-overflow: ellipsis;
@@ -29,11 +29,23 @@ const BaseSelectGroupRef: React.ForwardRefRenderFunction<HTMLDivElement, BaseSel
     ref
 ) => {
     return (
-        <SBSelectGroup ref={ref} {...rest}>
-            {title && <SBSelectLabel>{title}</SBSelectLabel>}
+        <SGroup ref={ref} {...rest}>
+            {title && <SLabel>{title}</SLabel>}
             {children}
-        </SBSelectGroup>
+        </SGroup>
     );
 };
 
 export const BaseSelectGroup = React.forwardRef(BaseSelectGroupRef);
+
+//export component
+export const SBaseSelectGroup = {
+    Label: SLabel,
+    Group: SGroup,
+};
+
+//export type
+export namespace TBaseSelectGroup {
+    export type Main = BaseSelectGroupProps;
+    export type SGroup = SelectGroupProps & React.RefAttributes<HTMLDivElement>;
+}

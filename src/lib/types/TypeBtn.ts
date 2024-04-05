@@ -3,17 +3,11 @@ export enum VB {
     CONTAINED = 'contained',
     OUTLINED = 'outlined',
 }
-export type TypeBtnVariant = 'text' | 'contained' | 'outlined';
+export type TypeVariantBtn = 'text' | 'contained' | 'outlined';
 
-export enum VP {
+export enum BP {
     LEFT = 'left',
     CENTER = 'center',
     RIGTH = 'right',
 }
 export type TypeBtnPosition = 'left' | 'center' | 'right';
-
-export enum IHB {
-    BG = 'background',
-    BR = 'border',
-}
-export type TypeIconHoverBtn = 'background' | 'border';

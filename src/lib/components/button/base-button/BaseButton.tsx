@@ -5,55 +5,57 @@ import { getMargin } from '@src/lib/common/getMargin';
 import { itemRippleEffect } from '@src/lib/common/itemRippleEffect';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSBtn, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
-import { TypeColorVariant, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
-import { TypeBtnVariant, VB } from '@src/lib/types/TypeBtn';
+import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { TypeVariantBtn, VB } from '@src/lib/types/TypeBtn';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export type TypeStyleBaseBtn = {
+type TypeStyles = {
     base: TypeSSBase;
     btn: TypeSSBtn;
     typography: TypeSSTypography;
     mr: TypeSSMR;
 };
 
-export type BaseButtonProps = {
+type BaseButtonProps = {
     children: React.ReactNode;
     mr?: TypeMargin;
     sizeVariant?: TypeVariantSize;
-    colorVariant?: TypeColorVariant;
-    variant?: TypeBtnVariant;
+    colorVariant?: TypeVariantColor;
+    variant?: TypeVariantBtn;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleBaseBtn;
+    $styles?: TypeStyles;
     color?: Hex;
+    blocked?: boolean;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
     _isActiveHover?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export type SBButtonProps = {
+type SButtonProps = {
     $mr?: TypeMargin;
     $color?: Hex;
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseBtn;
+    $styles: TypeStyles;
     $sizeVariant: TypeVariantSize;
-    $colorVariant: TypeColorVariant;
-    $variant: TypeBtnVariant;
+    $colorVariant: TypeVariantColor;
+    $variant: TypeVariantBtn;
     $_isActiveHover: boolean;
+    $blocked?: boolean;
 };
 
 const BTN_SIZE = {
-    [VS.L]: (props: SBButtonProps) => css`
+    [VS.L]: (props: SButtonProps) => css`
         height: ${props.$styles.btn.btnHeight_L};
         padding: ${`${props.$styles.btn.btnPadding_Y_L} ${props.$styles.btn.btnPadding_X_L}`};
     `,
-    [VS.M]: (props: SBButtonProps) => css`
+    [VS.M]: (props: SButtonProps) => css`
         height: ${props.$styles.btn.btnHeight_M};
         padding: ${`${props.$styles.btn.btnPadding_Y_M} ${props.$styles.btn.btnPadding_X_M}`};
     `,
 };
 
 const BTN_VARIANT = {
-    [VB.CONTAINED]: (props: SBButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.CONTAINED]: (props: SButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
         color: ${props.$colors.textItem};
         background-color: ${getColor({
             cs: props.$colors,
@@ -72,7 +74,7 @@ const BTN_VARIANT = {
             })};
         }
     `,
-    [VB.TEXT]: (props: SBButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.TEXT]: (props: SButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
         color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
@@ -91,7 +93,7 @@ const BTN_VARIANT = {
             })};
         }
     `,
-    [VB.OUTLINED]: (props: SBButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.OUTLINED]: (props: SButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
         color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
@@ -126,7 +128,7 @@ const BTN_VARIANT = {
     `,
 };
 
-export const SBButton = styled.button<SBButtonProps>`
+export const SBButton = styled.button<SButtonProps>`
     display: block;
     user-select: none;
     position: relative;
@@ -141,6 +143,11 @@ export const SBButton = styled.button<SBButtonProps>`
     ${(props) => getMargin(props.$styles?.mr, props.$mr)};
     ${(props) => BTN_SIZE[props.$sizeVariant](props)};
     ${(props) => BTN_VARIANT[props.$variant](props)};
+    ${(props) =>
+        props.$blocked &&
+        css`
+            pointer-events: none;
+        `}
 `;
 
 export const BaseButton: React.FC<BaseButtonProps> = React.memo(
@@ -154,6 +161,7 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
         onClick,
         $colors,
         $styles,
+        blocked,
         _isActiveHover = true,
         ...rest
     }) => {
@@ -183,6 +191,7 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
                 $colorVariant={colorVariant}
                 $variant={variant}
                 onClick={handleClick}
+                $blocked={blocked}
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
@@ -191,3 +200,15 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
         );
     }
 );
+
+//export component
+export const SBaseButton = {
+    Button: SBButton,
+};
+
+//export type
+export namespace TBaseButton {
+    export type Styles = TypeStyles;
+    export type Main = BaseButtonProps;
+    export type SButton = SButtonProps;
+}

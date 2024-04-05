@@ -1,21 +1,20 @@
 import * as Select from '@radix-ui/react-select';
 import { styled } from 'styled-components';
-import { SelectIconProps, SelectItemProps, SelectGroupProps } from '@radix-ui/react-select';
+import { SelectIconProps, SelectItemProps } from '@radix-ui/react-select';
 
 // content
-export type SBCSelectIconProps = SelectIconProps & React.RefAttributes<HTMLSpanElement>;
-export const SBCSelectIcon = styled(Select.Icon)`
+type SIconProps = SelectIconProps & React.RefAttributes<HTMLSpanElement>;
+const SIcon = styled(Select.Icon)`
     margin-left: 8px;
-    margin-top: -3px;
     svg {
-        width: 15px;
-        height: 15px;
+        width: 20px;
+        height: 20px;
     }
 `;
 
 // item
-export type SBCSelectItemProps = SelectItemProps & React.RefAttributes<HTMLDivElement>;
-export const SBCSelectItem = styled(Select.Item)`
+type SItemProps = SelectItemProps & React.RefAttributes<HTMLDivElement>;
+const SItem = styled(Select.Item)`
     position: relative;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -25,6 +24,14 @@ export const SBCSelectItem = styled(Select.Item)`
     cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
 `;
 
-// group
-export type SBSelectGroupProps = SelectGroupProps & React.RefAttributes<HTMLDivElement>;
-export const SBSelectGroup = styled(Select.Group)``;
+//export component
+export const SBaseSelectComponent = {
+    Icon: SIcon,
+    Item: SItem,
+};
+
+//export type
+export namespace TBaseSelectComponent {
+    export type SIcon = SIconProps;
+    export type SItem = SItemProps;
+}

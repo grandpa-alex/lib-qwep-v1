@@ -1,25 +1,35 @@
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { IIP, TypeColorVariant, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { IIP, TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
-import { TypeBtnVariant, VB, VP } from '@src/lib/types/TypeBtn';
-import {
-    SSButton,
-    SSButtonContentContainer,
-    SSButtonIconContainer,
-    SimpleButtonProps,
-} from '../simple-button/SimpleButton';
-import { SBButtonProps, TypeStyleBaseBtn } from '../base-button/BaseButton';
+import { TypeVariantBtn, VB, BP } from '@src/lib/types/TypeBtn';
+import { SSimpleButton, TSimpleButton } from '../simple-button/SimpleButton';
+import { TBaseButton } from '../base-button/BaseButton';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBtn } from '@src/lib/general/styleScheme';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
 import { getColor } from '@src/lib/common/getColor';
 import { renderIconButton } from '@src/lib/common/renderIconItem';
 
-export type SubmitButtonProps = {
+type SubmitButtonProps = {
     isLoading: boolean;
-} & SimpleButtonProps;
+} & TSimpleButton.Main;
+
+type SButtonProps = {
+    $isLoading?: boolean;
+} & TBaseButton.SButton;
+
+type SLoadingProps = {
+    $color?: Hex;
+    $isLoading?: boolean;
+    $disabled?: boolean;
+    $colors: TypeColorScheme;
+    $styles: TBaseButton.Styles;
+    $colorVariant: TypeVariantColor;
+    $sizeVariant: TypeVariantSize;
+    $variant: TypeVariantBtn;
+};
 
 const LOADING_SIZE = {
     [VS.L]: (props: TypeSSBtn) => css`
@@ -32,11 +42,27 @@ const LOADING_SIZE = {
     `,
 };
 
-export type SSUBButtonProps = {
-    $isLoading?: boolean;
-} & SBButtonProps;
+const BTN_VARIANT = {
+    [VB.CONTAINED]: (props: SLoadingProps) => css`
+        border-color: ${props.$colors.textItem};
+    `,
+    [VB.TEXT]: (props: SLoadingProps) => css`
+        border-color: ${getColor({
+            cs: props.$colors,
+            color: props.$color,
+            variant: props.$colorVariant,
+        })};
+    `,
+    [VB.OUTLINED]: (props: SLoadingProps) => css`
+        border-color: ${getColor({
+            cs: props.$colors,
+            color: props.$color,
+            variant: props.$colorVariant,
+        })};
+    `,
+};
 
-export const SSUBButton = styled(SSButton)<SSUBButtonProps>`
+const SButton = styled(SSimpleButton.Button)<SButtonProps>`
     ${(props) =>
         props.$isLoading &&
         css`
@@ -44,38 +70,7 @@ export const SSUBButton = styled(SSButton)<SSUBButtonProps>`
         `}
 `;
 
-export type SSUBButtonLoadingProps = {
-    $color?: Hex;
-    $isLoading?: boolean;
-    $disabled?: boolean;
-    $colors: TypeColorScheme;
-    $styles: TypeStyleBaseBtn;
-    $colorVariant: TypeColorVariant;
-    $sizeVariant: TypeVariantSize;
-    $variant: TypeBtnVariant;
-};
-
-const BTN_VARIANT = {
-    [VB.CONTAINED]: (props: SSUBButtonLoadingProps) => css`
-        border-color: ${props.$colors.textItem};
-    `,
-    [VB.TEXT]: (props: SSUBButtonLoadingProps) => css`
-        border-color: ${getColor({
-            cs: props.$colors,
-            color: props.$color,
-            variant: props.$colorVariant,
-        })};
-    `,
-    [VB.OUTLINED]: (props: SSUBButtonLoadingProps) => css`
-        border-color: ${getColor({
-            cs: props.$colors,
-            color: props.$color,
-            variant: props.$colorVariant,
-        })};
-    `,
-};
-
-export const SSUBButtonLoading = styled.span<SSUBButtonLoadingProps>`
+const SLoading = styled.span<SLoadingProps>`
     position: relative;
     margin: 0 6px 2px 6px;
     ${(props) => LOADING_SIZE[props.$sizeVariant](props.$styles.btn)}
@@ -104,7 +99,7 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
         sizeVariant = VS.L,
         colorVariant = VC.DEFAULT,
         variant = VB.CONTAINED,
-        position = VP.CENTER,
+        position = BP.CENTER,
         iconPosition = IIP.LEFT,
         $colors,
         $styles,
@@ -119,7 +114,7 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
         }, [icon, colors, styles, sizeVariant]);
 
         return (
-            <SSUBButton
+            <SButton
                 $colors={colors}
                 $styles={styles}
                 $sizeVariant={sizeVariant}
@@ -129,6 +124,7 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
                 $isLoading={isLoading}
                 sizeVariant={sizeVariant}
                 colorVariant={colorVariant}
+                $blocked={rest.blocked}
                 variant={variant}
                 $color={color}
                 color={color}
@@ -137,9 +133,11 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
                 $_isActiveHover={!isLoading && _isActiveHover}
                 {...rest}
             >
-                {renderIcon && <SSButtonIconContainer $iconPosition={iconPosition}>{renderIcon}</SSButtonIconContainer>}
-                <SSButtonContentContainer $position={position}>{children}</SSButtonContentContainer>
-                <SSUBButtonLoading
+                {renderIcon && (
+                    <SSimpleButton.IconContainer $iconPosition={iconPosition}>{renderIcon}</SSimpleButton.IconContainer>
+                )}
+                <SSimpleButton.ContentContainer $position={position}>{children}</SSimpleButton.ContentContainer>
+                <SLoading
                     $isLoading={isLoading}
                     $disabled={rest.disabled}
                     $colors={colors}
@@ -149,7 +147,20 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
                     $variant={variant}
                     $color={color}
                 />
-            </SSUBButton>
+            </SButton>
         );
     }
 );
+
+//export component
+export const SSubmitButton = {
+    Button: SButton,
+    Loading: SLoading,
+};
+
+//export type
+export namespace TSubmitButton {
+    export type Main = SubmitButtonProps;
+    export type SButton = SButtonProps;
+    export type SLoading = SLoadingProps;
+}

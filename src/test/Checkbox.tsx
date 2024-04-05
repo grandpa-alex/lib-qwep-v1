@@ -51,7 +51,7 @@ function Checkbox() {
             <h2>SUBMIT CECKBOX</h2>
             <h4>SUBMIT CECKBOX COLORS</h4>
             <div style={{ display: 'flex' }}>
-                <SubmitCheckbox mr={'m-3'} isLoading={true} />
+                <SubmitCheckbox mr={'m-3'} blocked isLoading={false} />
                 <SubmitCheckbox mr={'m-3'} isLoading={true} colorVariant={'info'} />
                 <SubmitCheckbox mr={'m-3'} isLoading={true} checked colorVariant={'success'} />
                 <SubmitCheckbox mr={'m-3'} isLoading={true} colorVariant={'warning'} />
@@ -93,7 +93,7 @@ function Checkbox() {
             <h2>SUBMIT SWITH</h2>
             <h4>SUBMIT SWITH L COLORS</h4>
             <div style={{ display: 'flex' }}>
-                <SubmitSwitch mr={'m-3'} isLoading={true} />
+                <SubmitSwitch mr={'m-3'} isLoading={false} />
                 <SubmitSwitch mr={'m-3'} isLoading={true} colorVariant={'info'} />
                 <SubmitSwitch mr={'m-3'} isLoading={true} checked colorVariant={'success'} />
                 <SubmitSwitch mr={'m-3'} isLoading={true} colorVariant={'warning'} />

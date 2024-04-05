@@ -1,31 +1,31 @@
 import { TypeSSMR } from '@src/lib/general/styleScheme';
 import React from 'react';
-import { BaseTextProps, SBText, SBTextProps, TypeStyleBaseText } from './BaseText';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import styled from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeMargin } from '@src/lib/types/TypeBase';
+import { SBaseText, TBaseText } from './BaseText';
 
-export type TypeStyleParagraph = {
+type TypeStyles = {
     mr: TypeSSMR;
-} & TypeStyleBaseText;
+} & TBaseText.Styles;
 
-export type ParagraphProps = {
+type BaseParagraphProps = {
     mr?: TypeMargin;
-    $styles?: TypeStyleParagraph;
-} & BaseTextProps;
+    $styles?: TypeStyles;
+} & TBaseText.Main;
 
-export type SParagraphProps = {
+type SParagraphProps = {
     $mr?: TypeMargin;
-    $styles: TypeStyleParagraph;
-} & SBTextProps;
+    $styles: TypeStyles;
+} & TBaseText.SText;
 
-export const SParagraph = styled(SBText)<SParagraphProps>`
+const SParagraph = styled(SBaseText.Text)<SParagraphProps>`
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
 `;
 
-export const BaseParagraph: React.FC<ParagraphProps> = React.memo(
+export const BaseParagraph: React.FC<BaseParagraphProps> = React.memo(
     ({ as = 'p', children, mr, color, $colors, $styles, ...rest }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['typography', 'mr']);
@@ -37,3 +37,15 @@ export const BaseParagraph: React.FC<ParagraphProps> = React.memo(
         );
     }
 );
+
+//export component
+export const SBaseParagraph = {
+    Paragraph: SParagraph,
+};
+
+//export type
+export namespace TBaseParagraph {
+    export type Styles = TypeStyles;
+    export type Main = BaseParagraphProps;
+    export type SParagraph = SParagraphProps;
+}

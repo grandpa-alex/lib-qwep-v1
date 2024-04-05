@@ -4,16 +4,13 @@ import { getColor } from '@src/lib/common/getColor';
 import { getMargin } from '@src/lib/common/getMargin';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSBox, TypeSSMR, TypeSSSelect, TypeSSTypography } from '@src/lib/general/styleScheme';
-import { TypeColorVariant, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
-import { TypeBtnPosition, VP } from '@src/lib/types/TypeBtn';
+import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { TypeBtnPosition, BP } from '@src/lib/types/TypeBtn';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import * as Select from '@radix-ui/react-select';
-import { SBCSelectIcon } from './BaseSelectComponent';
-
 import { TypeBoxPaddingVariant, TypeBoxShadowVariant } from '@src/lib/types/TypeBox';
 import { BOX_PADDING_VARIANT, BOX_SHADOW_VARIANT } from '@src/lib/common-styled-component/StyledComponentBox';
-import { SBSelectGroup } from './BaseSelectGroup';
 import {
     SelectProps,
     SelectTriggerProps,
@@ -21,10 +18,12 @@ import {
     SelectViewportProps,
     SelectValueProps,
 } from '@radix-ui/react-select';
-import { BaseArrow } from '@src/lib/icons';
-import { SBSelectItem } from './BaseSelectItem';
+import { Arrow } from '@src/lib/icons';
+import { SBaseSelectComponent } from './BaseSelectComponent';
+import { SBaseSelectGroup } from './BaseSelectGroup';
+import { StyledScrollbarItem } from '@src/lib/common-styled-component/StyledBase';
 
-export type TypeStyleBaseSelect = {
+type TypeStyles = {
     base: TypeSSBase;
     select: TypeSSSelect;
     typography: TypeSSTypography;
@@ -32,31 +31,33 @@ export type TypeStyleBaseSelect = {
     box: TypeSSBox;
 };
 
-export type BaseSelectContentProps = {
+type BaseSelectContentProps = {
     children: React.ReactNode;
     mr?: TypeMargin;
     width?: string;
     sizeVariant?: TypeVariantSize;
-    colorVariant?: TypeColorVariant;
+    colorVariant?: TypeVariantColor;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleBaseSelect;
+    $styles?: TypeStyles;
     boxShadowVariant?: TypeBoxShadowVariant;
     boxPaddingVariant?: TypeBoxPaddingVariant;
     color?: Hex;
+    blocked?: boolean;
     positionTrigger?: TypeBtnPosition;
     maxHeight?: string;
     _isActiveHover?: boolean;
 } & (SelectProps & SelectValueProps & SelectContentProps & React.RefAttributes<HTMLDivElement>);
 
-export type SBSelectTriggerProps = {
+type STriggerProps = {
     $mr?: TypeMargin;
     $color?: Hex;
     $width?: string;
+    $blocked?: boolean;
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseSelect;
+    $styles: TypeStyles;
     $positionTrigger: TypeBtnPosition;
     $sizeVariant: TypeVariantSize;
-    $colorVariant: TypeColorVariant;
+    $colorVariant: TypeVariantColor;
     $_isActiveHover?: boolean;
 } & SelectTriggerProps &
     React.RefAttributes<HTMLButtonElement>;
@@ -73,12 +74,12 @@ const SELECT_SIZE = {
 };
 
 const POSITION_TRIGGER = {
-    [VP.CENTER]: 'center',
-    [VP.LEFT]: 'space-between',
-    [VP.RIGTH]: 'right',
+    [BP.CENTER]: 'center',
+    [BP.LEFT]: 'space-between',
+    [BP.RIGTH]: 'right',
 };
 
-export const SBSelectTrigger = styled(Select.Trigger)<SBSelectTriggerProps>`
+const STrigger = styled(Select.Trigger)<STriggerProps>`
     display: flex;
     overflow: hidden;
     align-items: center;
@@ -134,7 +135,7 @@ export const SBSelectTrigger = styled(Select.Trigger)<SBSelectTriggerProps>`
                     hover: props.$_isActiveHover,
                 })};
         }
-        ${SBCSelectIcon} {
+        ${SBaseSelectComponent.Icon} {
             transition: all 0.3s ease-in-out;
             svg {
                 color: ${(props) =>
@@ -158,7 +159,7 @@ export const SBSelectTrigger = styled(Select.Trigger)<SBSelectTriggerProps>`
             })};
     }
 
-    ${SBCSelectIcon} {
+    ${SBaseSelectComponent.Icon} {
         transform: rotate(180deg);
         svg {
             color: ${(props) =>
@@ -198,9 +199,8 @@ export const SBSelectTrigger = styled(Select.Trigger)<SBSelectTriggerProps>`
                 })};
         }
 
-        ${SBCSelectIcon} {
+        ${SBaseSelectComponent.Icon} {
             transform: rotate(0deg);
-            margin-top: 5px;
             svg {
                 color: ${(props) =>
                     getColor({
@@ -217,33 +217,39 @@ export const SBSelectTrigger = styled(Select.Trigger)<SBSelectTriggerProps>`
     ${(props) => SELECT_SIZE[props.$sizeVariant](props.$styles.select)};
     span {
         &:nth-child(1) {
+            user-select: none;
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
         }
     }
+    ${(props) =>
+        props.$blocked &&
+        css`
+            pointer-events: none;
+        `}
 `;
 
-export type SBSelectWrapperProps = {
+type SContentProps = {
     $color?: Hex;
     $width?: string;
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseSelect;
-    $colorVariant: TypeColorVariant;
+    $styles: TypeStyles;
+    $colorVariant: TypeVariantColor;
     $boxShadowVariant: TypeBoxShadowVariant;
     $boxPaddingVariant: TypeBoxPaddingVariant;
     $_isActiveHover?: boolean;
 } & SelectContentProps &
     React.RefAttributes<HTMLDivElement>;
 
-export const SBSelectContent = styled(Select.Content)<SBSelectWrapperProps>`
+const SContent = styled(Select.Content)<SContentProps>`
     overflow: hidden;
     background-color: ${(props) => props.$colors.backgroundBox};
     font-size: ${(props) => props.$styles.typography.fontSizeItem};
     border-radius: ${(props) => props.$styles.base.borderRadiusItem};
     width: ${(props) => props.$width};
 
-    ${SBSelectItem} {
+    ${SBaseSelectComponent.Item} {
         &[data-disabled] {
             color: ${(props) => props.$colors.disabled};
             svg {
@@ -292,46 +298,33 @@ export const SBSelectContent = styled(Select.Content)<SBSelectWrapperProps>`
             $colors: props.$colors,
         })}
 
-    ${SBSelectGroup} {
+    ${SBaseSelectGroup.Group} {
         color: ${(props) => props.$colors.disabled};
         border-color: ${(props) => props.$colors.disabled};
     }
 `;
 
-export type SBSelectViewportProps = {
+type SViewportProps = {
     $color?: Hex;
     $maxHeight?: string;
     $colors: TypeColorScheme;
-    $colorVariant: TypeColorVariant;
+    $colorVariant: TypeVariantColor;
     $_isActiveHover?: boolean;
 } & SelectViewportProps &
     React.RefAttributes<HTMLDivElement>;
 
-export const SBSelectViewport = styled.div<SBSelectViewportProps>`
+const SViewport = styled.div<SViewportProps>`
     max-height: ${(props) => props.$maxHeight ?? '300px'};
     overflow-y: auto;
     margin: 0 -3px;
     padding: 0 3px;
-
-    &::-webkit-scrollbar-track {
-        width: 3px;
-    }
-    &::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 3px;
-        max-height: 3px;
-        border-radius: 3px;
-    }
-    &::-webkit-scrollbar-thumb {
-        border-radius: 2px;
-        background-color: ${(props) =>
-            getColor({
-                cs: props.$colors,
-                color: props.$color,
-                variant: props.$colorVariant,
-                hover: props.$_isActiveHover,
-            })};
-    }
+    ${(props) =>
+        StyledScrollbarItem({
+            $colors: props.$colors,
+            $color: props.$color,
+            $colorVariant: props.$colorVariant,
+            $hover: props.$_isActiveHover,
+        })}
 `;
 
 export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
@@ -341,11 +334,12 @@ export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
         color,
         width,
         maxHeight,
-        positionTrigger = VP.CENTER,
+        positionTrigger = BP.CENTER,
         sizeVariant = VS.L,
         colorVariant = VC.DEFAULT,
         boxPaddingVariant = 'p-1',
         boxShadowVariant = 'shd-1',
+        blocked,
         $colors,
         $styles,
         _isActiveHover = true,
@@ -356,7 +350,7 @@ export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
 
         return (
             <Select.Root {...rest}>
-                <SBSelectTrigger
+                <STrigger
                     $mr={mr}
                     $colors={colors}
                     $styles={styles}
@@ -366,15 +360,16 @@ export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
                     $colorVariant={colorVariant}
                     $positionTrigger={positionTrigger}
                     $_isActiveHover={_isActiveHover}
+                    $blocked={blocked}
                     disabled={rest.disabled}
                 >
                     <Select.Value placeholder={rest.placeholder} />
-                    <SBCSelectIcon>
-                        <BaseArrow />
-                    </SBCSelectIcon>
-                </SBSelectTrigger>
+                    <SBaseSelectComponent.Icon>
+                        <Arrow />
+                    </SBaseSelectComponent.Icon>
+                </STrigger>
                 <Select.Portal>
-                    <SBSelectContent
+                    <SContent
                         side={rest.side ?? 'bottom'}
                         position="popper"
                         $colorVariant={colorVariant}
@@ -387,7 +382,7 @@ export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
                         $boxShadowVariant={boxShadowVariant}
                         $_isActiveHover={_isActiveHover}
                     >
-                        <SBSelectViewport
+                        <SViewport
                             $colors={colors}
                             $color={color}
                             $colorVariant={colorVariant}
@@ -395,10 +390,26 @@ export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
                             $_isActiveHover={_isActiveHover}
                         >
                             {children}
-                        </SBSelectViewport>
-                    </SBSelectContent>
+                        </SViewport>
+                    </SContent>
                 </Select.Portal>
             </Select.Root>
         );
     }
 );
+
+// //export component
+export const SBaseSelectContent = {
+    Trigger: STrigger,
+    Viewport: SViewport,
+    Content: SContent,
+};
+
+// //export type
+export namespace TBaseSelectContent {
+    export type Styles = TypeStyles;
+    export type Main = BaseSelectContentProps;
+    export type SViewport = SViewportProps;
+    export type STrigger = STriggerProps;
+    export type SContent = SContentProps;
+}

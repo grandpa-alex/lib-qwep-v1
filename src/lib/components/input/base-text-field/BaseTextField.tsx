@@ -2,40 +2,51 @@ import { getColor } from '@src/lib/common/getColor';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeColorVariant, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
 import { TypeInpVariant, VI } from '@src/lib/types/TypeInp';
 import React, { useCallback, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { BaseInput, RootTextField } from '..';
-import { SBInputProps } from './BaseInput';
-import { SRootTextFieldProps, TypeStyleTextField } from './RootTextField';
+import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/general';
+import { TBaseInput } from './BaseInput';
+import { TRootTextField } from './RootTextField';
 
-export type BaseTextFieldProps = {
+type TypeStyles = {
+    base: TypeSSBase;
+    inp: TypeSSInp;
+    typography: TypeSSTypography;
+    mr: TypeSSMR;
+};
+
+type BaseTextFieldProps = {
     mr?: TypeMargin;
     sizeVariant?: TypeVariantSize;
     variant?: TypeInpVariant;
-    colorVariant?: TypeColorVariant;
+    colorVariant?: TypeVariantColor;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleTextField;
+    $styles?: TypeStyles;
     color?: Hex;
+    blocked?: boolean;
     _isActiveHover?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-export type SBTextFieldInputProps = {
+type SInpProps = {
     $color?: Hex;
     $colors: TypeColorScheme;
-    $colorVariant: TypeColorVariant;
-} & SBInputProps;
+    $colorVariant: TypeVariantColor;
+} & TBaseInput.SInput;
 
-export type SBTextFieldRootProps = {
+type SRProps = {
     $_isActiveHover?: boolean;
-} & SRootTextFieldProps;
+    $blocked?: boolean;
+} & TRootTextField.SRoot;
 
-export const SBTextFieldInput = styled(BaseInput)<SBTextFieldInputProps>`
+const SInput = styled(BaseInput)<SInpProps>`
     &:disabled {
         color: ${(props) => props.$colors.disabled};
     }
     &::placeholder {
+        user-select: none;
         color: ${(props) =>
             getColor({
                 cs: props.$colors,
@@ -49,9 +60,14 @@ export const SBTextFieldInput = styled(BaseInput)<SBTextFieldInputProps>`
     }
 `;
 
-export const SBTextFieldRoot = styled(RootTextField)<SBTextFieldRootProps>`
+const SRoot = styled(RootTextField)<SRProps>`
     display: inline-flex;
     align-items: center;
+    ${(props) =>
+        props.$blocked &&
+        css`
+            pointer-events: none;
+        `}
 `;
 
 export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
@@ -62,6 +78,7 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
         variant = VI.OUTLINED,
         sizeVariant = VS.L,
         colorVariant = VC.DEFAULT,
+        blocked,
         $colors,
         $styles,
         ...rest
@@ -73,7 +90,7 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
         const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), []);
 
         return (
-            <SBTextFieldRoot
+            <SRoot
                 $mr={mr}
                 $colors={colors}
                 $styles={styles}
@@ -92,15 +109,30 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
                 onBlur={handleBlur}
                 _isFocused={isFocused}
                 _isActiveHover={_isActiveHover}
+                $blocked={blocked}
             >
-                <SBTextFieldInput
+                <SInput
                     $styles={{ typography: styles.typography }}
                     $colors={colors}
                     $color={color}
                     $colorVariant={colorVariant}
                     {...rest}
                 />
-            </SBTextFieldRoot>
+            </SRoot>
         );
     }
 );
+
+//export component
+export const SBaseTextField = {
+    Root: SRoot,
+    Input: SInput,
+};
+
+//export type
+export namespace TBaseTextField {
+    export type Styles = TypeStyles;
+    export type Main = BaseTextFieldProps;
+    export type SInput = SInpProps;
+    export type SRoot = SRProps;
+}

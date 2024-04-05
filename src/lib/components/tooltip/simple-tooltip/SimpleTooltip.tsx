@@ -2,11 +2,8 @@ import { useColorScheme } from '@src/lib/general/useColorScheme';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { Hex } from '@src/lib/general/colors';
-
 import React from 'react';
 import styled from 'styled-components';
-
-import { SBCTooltipContent } from '../base-tooltip-component/BaseTooltipComponent';
 import {
     TypeBoxGapVariant,
     TypeBoxPaddingVariant,
@@ -14,9 +11,11 @@ import {
     TypeBoxShadowVariant,
 } from '@src/lib/types/TypeBox';
 import { CSSBaseBox, CSSSimpleBox } from '@src/lib/common-styled-component/StyledComponentBox';
-import { BaseTooltipProps, SBTooltipContentProps, SBTooltipTrigger } from '../base-tooltip-component/BaseTooltip';
+import { TBaseTooltip, SBaseTooltip } from '../base-tooltip/BaseTooltip';
+import { TooltipArrowProps } from '@radix-ui/react-tooltip';
+import { SBaseTooltipComponent } from '../base-tooltip/BaseTooltipComponent';
 
-export type SimpleTooltipProps = {
+type SimpleTooltipProps = {
     boxPaddingVariant?: TypeBoxPaddingVariant;
     boxGapVariant?: TypeBoxGapVariant;
     boxBorderColor?: Hex;
@@ -25,9 +24,9 @@ export type SimpleTooltipProps = {
     boxRadiusVariant?: TypeBoxRadiusVariant;
     bg?: Hex;
     arrow?: boolean;
-} & BaseTooltipProps;
+} & TBaseTooltip.Main;
 
-export type SSTooltipContentsProps = {
+type SContentProps = {
     $bg?: Hex;
     $boxGapVariant?: TypeBoxGapVariant;
     $boxBorderColor?: Hex;
@@ -35,11 +34,11 @@ export type SSTooltipContentsProps = {
     $boxShadowVariant?: TypeBoxShadowVariant;
     $boxRadiusVariant: TypeBoxRadiusVariant;
     $boxPaddingVariant: TypeBoxPaddingVariant;
-} & SBTooltipContentProps;
+} & TBaseTooltip.SContent;
 
-export const SSTooltipArrow = styled(Tooltip.Arrow)``;
+const SArrow = styled(Tooltip.Arrow)``;
 
-export const SSTooltipContent = styled(SBCTooltipContent)<SSTooltipContentsProps>`
+const SContent = styled(SBaseTooltipComponent.Content)<SContentProps>`
     ${(props) =>
         CSSBaseBox({
             $boxPaddingVariant: props.$boxPaddingVariant,
@@ -60,7 +59,7 @@ export const SSTooltipContent = styled(SBCTooltipContent)<SSTooltipContentsProps
     margin: 6px;
     line-height: normal;
     color: ${(props) => props.$colors.textItem};
-    ${SSTooltipArrow} {
+    ${SArrow} {
         fill: ${(props) => props.$bg ?? props.$colors.backgroundTooltip};
     }
 `;
@@ -90,12 +89,12 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
             <Tooltip.Provider>
                 <Tooltip.Root>
                     <Tooltip.Trigger asChild>
-                        <SBTooltipTrigger style={triggerStyle} $mr={mr} $styles={styles}>
+                        <SBaseTooltip.Trigger style={triggerStyle} $mr={mr} $styles={styles}>
                             {children}
-                        </SBTooltipTrigger>
+                        </SBaseTooltip.Trigger>
                     </Tooltip.Trigger>
                     <Tooltip.Portal>
-                        <SSTooltipContent
+                        <SContent
                             $bg={bg}
                             $colors={colors}
                             $styles={styles}
@@ -109,11 +108,24 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
                             {...rest}
                         >
                             {tooltip}
-                            {arrow && <SSTooltipArrow />}
-                        </SSTooltipContent>
+                            {arrow && <SArrow />}
+                        </SContent>
                     </Tooltip.Portal>
                 </Tooltip.Root>
             </Tooltip.Provider>
         );
     }
 );
+
+//export component
+export const SSimpleTooltip = {
+    Content: SContent,
+    Arrow: SArrow,
+};
+
+//export type
+export namespace TSimpleTooltip {
+    export type Main = SimpleTooltipProps;
+    export type SContent = SContentProps;
+    export type SArrow = TooltipArrowProps & React.RefAttributes<SVGSVGElement>;
+}

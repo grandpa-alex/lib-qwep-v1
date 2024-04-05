@@ -7,40 +7,40 @@ import styled from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeMargin } from '@src/lib/types/TypeBase';
 
-export type TypeStyleBaseTitle = {
+type TypeStyles = {
     typography: TypeSSTypography;
     mr: TypeSSMR;
 };
 
-export type BaseTitleProps = {
+type BaseTitleProps = {
     children?: React.ReactNode;
     color?: Hex;
     mr?: TypeMargin;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleBaseTitle;
+    $styles?: TypeStyles;
     as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 } & React.HTMLAttributes<HTMLElement>;
 
-export type SBTitleProps = {
+type STitleProps = {
     $mr?: TypeMargin;
     $as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseTitle;
+    $styles: TypeStyles;
     $color?: Hex;
 };
 
 const SIZE_VARIANT = {
-    ['h1']: (props: TypeStyleBaseTitle) => props.typography.h1,
-    ['h2']: (props: TypeStyleBaseTitle) => props.typography.h2,
-    ['h3']: (props: TypeStyleBaseTitle) => props.typography.h3,
-    ['h4']: (props: TypeStyleBaseTitle) => props.typography.h4,
-    ['h5']: (props: TypeStyleBaseTitle) => props.typography.h5,
-    ['h6']: (props: TypeStyleBaseTitle) => props.typography.h6,
+    ['h1']: (props: TypeSSTypography) => props.h1,
+    ['h2']: (props: TypeSSTypography) => props.h2,
+    ['h3']: (props: TypeSSTypography) => props.h3,
+    ['h4']: (props: TypeSSTypography) => props.h4,
+    ['h5']: (props: TypeSSTypography) => props.h5,
+    ['h6']: (props: TypeSSTypography) => props.h6,
 };
 
-export const SBTitle = styled.h1<SBTitleProps>`
+const STitle = styled.h1<STitleProps>`
     display: inline-block;
-    font-size: ${(props) => SIZE_VARIANT[props.$as](props.$styles)};
+    font-size: ${(props) => SIZE_VARIANT[props.$as](props.$styles.typography)};
     font-weight: ${(props) => props.$styles.typography.fontWeightTitle};
     color: ${(props) => props.$color ?? props.$colors.title};
     line-height: normal;
@@ -53,9 +53,21 @@ export const BaseTitle: React.FC<BaseTitleProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['typography', 'mr']);
 
         return (
-            <SBTitle as={as} $as={as} $mr={mr} $colors={colors} $styles={styles} $color={color} {...rest}>
+            <STitle as={as} $as={as} $mr={mr} $colors={colors} $styles={styles} $color={color} {...rest}>
                 {children}
-            </SBTitle>
+            </STitle>
         );
     }
 );
+
+//export component
+export const SBaseTitle = {
+    Title: STitle,
+};
+
+//export type
+export namespace TBaseTitle {
+    export type Styles = TypeStyles;
+    export type Main = BaseTitleProps;
+    export type STitle = STitleProps;
+}

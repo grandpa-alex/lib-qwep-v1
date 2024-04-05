@@ -8,39 +8,39 @@ import { TypeMargin } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled from 'styled-components';
 import { TooltipProps, TooltipTriggerProps } from '@radix-ui/react-tooltip';
-import { SBCTooltipContent, SBCTooltipContentProps } from '../base-tooltip-component/BaseTooltipComponent';
+import { SBaseTooltipComponent, TBaseTooltipComponent } from './BaseTooltipComponent';
 
-export type TypeStyleBaseTooltip = {
+type TypeStyles = {
     mr: TypeSSMR;
     box: TypeSSBox;
 };
 
-export type BaseTooltipProps = {
+type BaseTooltipProps = {
     children: React.ReactNode;
     tooltip: string | React.ReactNode;
     mr?: TypeMargin;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleBaseTooltip;
+    $styles?: TypeStyles;
     triggerStyle?: React.CSSProperties;
 } & TooltipProps &
-    SBCTooltipContentProps;
+    TBaseTooltipComponent.SContent;
 
-export type SBTooltipTriggerProps = {
+type STriggerProps = {
     $mr?: TypeMargin;
-    $styles: TypeStyleBaseTooltip;
+    $styles: TypeStyles;
 } & TooltipTriggerProps;
 
-export const SBTooltipTrigger = styled.div<SBTooltipTriggerProps>`
+const STrigger = styled.div<STriggerProps>`
     display: inline-block;
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
 `;
 
-export type SBTooltipContentProps = {
+type SContentProps = {
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseTooltip;
-} & SBCTooltipContentProps;
+    $styles: TypeStyles;
+} & TBaseTooltipComponent.SContent;
 
-export const SBTooltipContent = styled(SBCTooltipContent)<SBTooltipContentProps>`
+const SContent = styled(SBaseTooltipComponent.Content)<SContentProps>`
     background-color: ${(props) => props.$colors.backgroundTooltip};
     color: ${(props) => props.$colors.textItem};
     font-size: 13px;
@@ -60,17 +60,31 @@ export const BaseTooltip: React.FC<BaseTooltipProps> = React.memo(
             <Tooltip.Provider>
                 <Tooltip.Root>
                     <Tooltip.Trigger asChild>
-                        <SBTooltipTrigger style={triggerStyle} $mr={mr} $styles={styles}>
+                        <STrigger style={triggerStyle} $mr={mr} $styles={styles}>
                             {children}
-                        </SBTooltipTrigger>
+                        </STrigger>
                     </Tooltip.Trigger>
                     <Tooltip.Portal>
-                        <SBTooltipContent $colors={colors} $styles={styles} side={rest.side ?? 'bottom'} {...rest}>
+                        <SContent $colors={colors} $styles={styles} side={rest.side ?? 'bottom'} {...rest}>
                             {tooltip}
-                        </SBTooltipContent>
+                        </SContent>
                     </Tooltip.Portal>
                 </Tooltip.Root>
             </Tooltip.Provider>
         );
     }
 );
+
+//export component
+export const SBaseTooltip = {
+    Content: SContent,
+    Trigger: STrigger,
+};
+
+//export type
+export namespace TBaseTooltip {
+    export type Main = BaseTooltipProps;
+    export type Styles = TypeStyles;
+    export type STrigger = STriggerProps;
+    export type SContent = SContentProps;
+}

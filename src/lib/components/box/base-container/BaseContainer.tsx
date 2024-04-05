@@ -7,25 +7,25 @@ import { TypeBoxPaddingVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
 import { styled } from 'styled-components';
 
-export type TypeStyleBaseContainer = {
+type TypeStyles = {
     box: TypeSSBox;
 };
 
-export type BaseContainerProps = {
+type BaseContainerProps = {
     children?: React.ReactNode;
     boxPaddingVariant?: TypeBoxPaddingVariant;
     as?: string;
-    $styles?: TypeStyleBaseContainer;
+    $styles?: TypeStyles;
     $colors?: TypeColorScheme;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export type SBContainerProps = {
+type SContainerProps = {
     $boxPaddingVariant?: TypeBoxPaddingVariant;
-    $styles: TypeStyleBaseContainer;
+    $styles: TypeStyles;
     $colors: TypeColorScheme;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export const SBContainer = styled.div<SBContainerProps>`
+const SContainer = styled.div<SContainerProps>`
     width: 100%;
     height: 100vh;
     background-color: ${(props) => props.$colors.background};
@@ -38,7 +38,7 @@ export const BaseContainer: React.FC<BaseContainerProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['box']);
 
         return (
-            <SBContainer
+            <SContainer
                 as={Component}
                 $styles={styles}
                 $colors={colors}
@@ -46,7 +46,19 @@ export const BaseContainer: React.FC<BaseContainerProps> = React.memo(
                 {...rest}
             >
                 {children}
-            </SBContainer>
+            </SContainer>
         );
     }
 );
+
+//export component
+export const SBaseContainer = {
+    Container: SContainer,
+};
+
+//export type
+export namespace TBaseContainer {
+    export type Main = BaseContainerProps;
+    export type Styles = TypeStyles;
+    export type SContainer = SContainerProps;
+}

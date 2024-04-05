@@ -1,10 +1,10 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
 import styled from 'styled-components';
-import { TooltipProps, TooltipContentProps } from '@radix-ui/react-tooltip';
+import { TooltipContentProps } from '@radix-ui/react-tooltip';
 
-export type SBCTooltipContentProps = TooltipContentProps & React.RefAttributes<HTMLDivElement>;
+type SContentProps = TooltipContentProps & React.RefAttributes<HTMLDivElement>;
 
-export const SBCTooltipContent = styled(Tooltip.Content)<TooltipProps>`
+const SContent = styled(Tooltip.Content)<SContentProps>`
     user-select: none;
     animation-duration: 400ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
@@ -67,3 +67,13 @@ export const SBCTooltipContent = styled(Tooltip.Content)<TooltipProps>`
         }
     }
 `;
+
+//export component
+export const SBaseTooltipComponent = {
+    Content: SContent,
+};
+
+//export type
+export namespace TBaseTooltipComponent {
+    export type SContent = SContentProps;
+}

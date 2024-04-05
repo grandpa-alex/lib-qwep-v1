@@ -1,13 +1,14 @@
 import { BaseButton, BaseTitle, Icon, SimpleButton, SubmitButton } from '@src/lib';
-import { TypeColorVariant } from '@src/lib/types/TypeBase';
-import { TypeBtnVariant } from '@src/lib/types/TypeBtn';
+import { TypeVariantColor } from '@src/lib/types/TypeBase';
+import { TypeVariantBtn } from '@src/lib/types/TypeBtn';
 import { useState } from 'react';
+import { Warning } from '../lib/icons/Warning';
 
 function Buttons() {
     const [loading, setLoading] = useState(false);
 
-    const [status, setStatus] = useState<TypeColorVariant>('default');
-    const [v, setV] = useState<TypeBtnVariant>('contained');
+    const [status, setStatus] = useState<TypeVariantColor>('default');
+    const [v, setV] = useState<TypeVariantBtn>('contained');
 
     const simpleBtnH = () => {
         if (status === 'default') {
@@ -19,7 +20,7 @@ function Buttons() {
         }
     };
 
-    const [c, setC] = useState<TypeColorVariant>('default');
+    const [c, setC] = useState<TypeVariantColor>('default');
     const [l, setL] = useState(false);
 
     const subCustH = async () => {
@@ -38,7 +39,9 @@ function Buttons() {
             <BaseTitle as={'h2'}>BASE BUTTON</BaseTitle>
             <BaseTitle as={'h4'}>BASE BUTTON L COLORS</BaseTitle>
             <div style={{ display: 'flex' }}>
-                <BaseButton mr={'m-3'}>BaseButton</BaseButton>
+                <BaseButton blocked mr={'m-3'}>
+                    BaseButton
+                </BaseButton>
                 <BaseButton mr={'m-3'} colorVariant={'info'}>
                     BaseButton info
                 </BaseButton>
@@ -127,7 +130,7 @@ function Buttons() {
             <BaseTitle as={'h2'}>SIMPLE BUTTON</BaseTitle>
             <BaseTitle as={'h4'}>SIMPLE BUTTON POSITION</BaseTitle>
             <div style={{ display: 'flex' }}>
-                <SimpleButton mr={'m-3'} style={{ width: '200px' }} position={'center'}>
+                <SimpleButton blocked mr={'m-3'} style={{ width: '200px' }} position={'center'}>
                     SimpleButton def
                 </SimpleButton>
                 <SimpleButton mr={'m-3'} style={{ width: '200px' }} position={'left'}>
@@ -206,22 +209,22 @@ function Buttons() {
             </div>
             <BaseTitle as={'h4'}>SIMPLE BUTTON DEF ICONS LEFT</BaseTitle>
             <div style={{ display: 'flex' }}>
-                <SimpleButton mr={'m-3'} icon={<Icon.Gear />} position={'center'}>
+                <SimpleButton mr={'m-3'} icon={<Icon.Settings />} position={'center'}>
                     SimpleButton
                 </SimpleButton>
-                <SimpleButton mr={'m-3'} style={{ width: '200px' }} icon={<Icon.Gear />} position={'center'}>
+                <SimpleButton mr={'m-3'} style={{ width: '200px' }} icon={<Icon.Settings />} position={'center'}>
                     SimpleButton def
                 </SimpleButton>
-                <SimpleButton mr={'m-3'} style={{ width: '200px' }} icon={<Icon.CallMe />} position={'left'}>
+                <SimpleButton mr={'m-3'} style={{ width: '200px' }} icon={<Icon.Phone />} position={'left'}>
                     SimpleButton left
                 </SimpleButton>
-                <SimpleButton mr={'m-3'} style={{ width: '200px' }} icon={<Icon.Gear />} position={'right'}>
+                <SimpleButton mr={'m-3'} style={{ width: '200px' }} icon={<Icon.Settings />} position={'right'}>
                     SimpleButton right
                 </SimpleButton>
                 <SimpleButton
                     mr={'m-3'}
                     style={{ width: '200px' }}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     sizeVariant={'M'}
                     position={'center'}
                 >
@@ -230,7 +233,7 @@ function Buttons() {
                 <SimpleButton
                     mr={'m-3'}
                     style={{ width: '200px' }}
-                    icon={<Icon.CallMe />}
+                    icon={<Icon.Phone />}
                     sizeVariant={'M'}
                     position={'left'}
                 >
@@ -239,7 +242,7 @@ function Buttons() {
                 <SimpleButton
                     mr={'m-3'}
                     style={{ width: '200px' }}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     sizeVariant={'M'}
                     position={'right'}
                 >
@@ -252,7 +255,7 @@ function Buttons() {
                     mr={'m-3'}
                     style={{ width: '200px' }}
                     iconPosition={'right'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     position={'center'}
                 >
                     SimpleButton def
@@ -261,7 +264,7 @@ function Buttons() {
                     mr={'m-3'}
                     style={{ width: '200px' }}
                     iconPosition={'right'}
-                    icon={<Icon.CallMe />}
+                    icon={<Icon.Phone />}
                     position={'left'}
                 >
                     SimpleButton left
@@ -270,7 +273,7 @@ function Buttons() {
                     mr={'m-3'}
                     style={{ width: '200px' }}
                     iconPosition={'right'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     position={'right'}
                 >
                     SimpleButton right
@@ -279,7 +282,7 @@ function Buttons() {
                     mr={'m-3'}
                     style={{ width: '200px' }}
                     iconPosition={'right'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     sizeVariant={'M'}
                     position={'center'}
                 >
@@ -289,7 +292,7 @@ function Buttons() {
                     mr={'m-3'}
                     style={{ width: '200px' }}
                     iconPosition={'right'}
-                    icon={<Icon.CallMe />}
+                    icon={<Icon.Phone />}
                     sizeVariant={'M'}
                     position={'left'}
                 >
@@ -299,7 +302,7 @@ function Buttons() {
                     mr={'m-3'}
                     style={{ width: '200px' }}
                     iconPosition={'right'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     sizeVariant={'M'}
                     position={'right'}
                 >
@@ -308,61 +311,67 @@ function Buttons() {
             </div>
             <BaseTitle as={'h4'}>SIMPLE BUTTON ICONS DISABLED</BaseTitle>
             <div style={{ display: 'flex' }}>
-                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Gear />} position={'center'}>
+                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Settings />} position={'center'}>
                     SimpleButton def
                 </SimpleButton>
-                <SimpleButton
-                    mr={'m-3'}
-                    disabled={true}
-                    icon={<Icon.CallMe />}
-                    iconPosition={'right'}
-                    position={'left'}
-                >
+                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Phone />} iconPosition={'right'} position={'left'}>
                     SimpleButton left
                 </SimpleButton>
-                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Gear />} position={'right'}>
+                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Settings />} position={'right'}>
                     SimpleButton right
                 </SimpleButton>
-                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Gear />} sizeVariant={'M'} position={'center'}>
+                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Settings />} sizeVariant={'M'} position={'center'}>
                     SimpleButton def
                 </SimpleButton>
                 <SimpleButton
                     mr={'m-3'}
                     disabled={true}
-                    icon={<Icon.CallMe />}
+                    icon={<Icon.Phone />}
                     iconPosition={'right'}
                     sizeVariant={'M'}
                     position={'left'}
                 >
                     SimpleButton left
                 </SimpleButton>
-                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Gear />} sizeVariant={'M'} position={'right'}>
+                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Settings />} sizeVariant={'M'} position={'right'}>
                     SimpleButton right
                 </SimpleButton>
             </div>
             <BaseTitle as={'h4'}>SIMPLE BUTTON ICONS OUTLINE DISABLED</BaseTitle>
             <div style={{ display: 'flex' }}>
-                <SimpleButton mr={'m-3'} disabled={true} variant={'outlined'} icon={<Icon.Gear />} position={'center'}>
+                <SimpleButton
+                    mr={'m-3'}
+                    disabled={true}
+                    variant={'outlined'}
+                    icon={<Icon.Settings />}
+                    position={'center'}
+                >
                     SimpleButton def
                 </SimpleButton>
                 <SimpleButton
                     mr={'m-3'}
                     disabled={true}
                     variant={'outlined'}
-                    icon={<Icon.CallMe />}
+                    icon={<Icon.Phone />}
                     iconPosition={'right'}
                     position={'left'}
                 >
                     SimpleButton left
                 </SimpleButton>
-                <SimpleButton mr={'m-3'} disabled={true} variant={'outlined'} icon={<Icon.Gear />} position={'right'}>
+                <SimpleButton
+                    mr={'m-3'}
+                    disabled={true}
+                    variant={'outlined'}
+                    icon={<Icon.Settings />}
+                    position={'right'}
+                >
                     SimpleButton right
                 </SimpleButton>
                 <SimpleButton
                     mr={'m-3'}
                     disabled={true}
                     variant={'outlined'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     sizeVariant={'M'}
                     position={'center'}
                 >
@@ -372,7 +381,7 @@ function Buttons() {
                     mr={'m-3'}
                     disabled={true}
                     variant={'outlined'}
-                    icon={<Icon.CallMe />}
+                    icon={<Icon.Phone />}
                     iconPosition={'right'}
                     sizeVariant={'M'}
                     position={'left'}
@@ -383,7 +392,7 @@ function Buttons() {
                     mr={'m-3'}
                     disabled={true}
                     variant={'outlined'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     sizeVariant={'M'}
                     position={'right'}
                 >
@@ -392,27 +401,27 @@ function Buttons() {
             </div>
             <BaseTitle as={'h4'}>SIMPLE BUTTON ICONS TEXT DISABLED</BaseTitle>
             <div style={{ display: 'flex' }}>
-                <SimpleButton mr={'m-3'} disabled={true} variant={'text'} icon={<Icon.Gear />} position={'center'}>
+                <SimpleButton mr={'m-3'} disabled={true} variant={'text'} icon={<Icon.Settings />} position={'center'}>
                     SimpleButton def
                 </SimpleButton>
                 <SimpleButton
                     mr={'m-3'}
                     disabled={true}
                     variant={'text'}
-                    icon={<Icon.CallMe />}
+                    icon={<Icon.Phone />}
                     iconPosition={'right'}
                     position={'left'}
                 >
                     SimpleButton left
                 </SimpleButton>
-                <SimpleButton mr={'m-3'} disabled={true} variant={'text'} icon={<Icon.Gear />} position={'right'}>
+                <SimpleButton mr={'m-3'} disabled={true} variant={'text'} icon={<Icon.Settings />} position={'right'}>
                     SimpleButton right
                 </SimpleButton>
                 <SimpleButton
                     mr={'m-3'}
                     disabled={true}
                     variant={'text'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     sizeVariant={'M'}
                     position={'center'}
                 >
@@ -422,7 +431,7 @@ function Buttons() {
                     mr={'m-3'}
                     disabled={true}
                     variant={'text'}
-                    icon={<Icon.CallMe />}
+                    icon={<Icon.Phone />}
                     iconPosition={'right'}
                     sizeVariant={'M'}
                     position={'left'}
@@ -433,7 +442,7 @@ function Buttons() {
                     mr={'m-3'}
                     disabled={true}
                     variant={'text'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     sizeVariant={'M'}
                     position={'right'}
                 >
@@ -446,14 +455,14 @@ function Buttons() {
                     mr={'m-3'}
                     color={'#161616'}
                     style={{ color: '#aa06aa' }}
-                    icon={<Icon.Gear color={'#aa06aa'} />}
+                    icon={<Icon.Settings color={'#aa06aa'} />}
                 >
                     SimpleButton
                 </SimpleButton>
                 <SimpleButton mr={'m-3'} variant={'outlined'} color={'#811f69'}>
                     SimpleButton
                 </SimpleButton>
-                <SimpleButton mr={'m-3'} color={'#161616'} variant={'text'} icon={<Icon.Gear color={'#aa06aa'} />}>
+                <SimpleButton mr={'m-3'} color={'#161616'} variant={'text'} icon={<Icon.Settings color={'#aa06aa'} />}>
                     SimpleButton
                 </SimpleButton>
                 <SimpleButton
@@ -521,31 +530,37 @@ function Buttons() {
                 <SubmitButton isLoading={loading} mr={'m-3'}>
                     SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} icon={<Icon.Gear />} variant="outlined" mr={'m-3'}>
+                <SubmitButton isLoading={loading} icon={<Icon.Settings />} variant="outlined" mr={'m-3'}>
                     SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} icon={<Icon.Gear />} variant={'text'} mr={'m-3'}>
+                <SubmitButton isLoading={loading} icon={<Icon.Settings />} variant={'text'} mr={'m-3'}>
                     SubmitButton
                 </SubmitButton>
                 <SubmitButton
                     isLoading={loading}
                     iconPosition={'right'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     sizeVariant={'M'}
                     mr={'m-3'}
                 >
                     SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} icon={<Icon.Gear />} sizeVariant={'M'} mr={'m-3'} variant="outlined">
+                <SubmitButton
+                    isLoading={loading}
+                    icon={<Icon.Settings />}
+                    sizeVariant={'M'}
+                    mr={'m-3'}
+                    variant="outlined"
+                >
                     SubmitButton
                 </SubmitButton>
-                <SubmitButton isLoading={loading} icon={<Icon.Gear />} sizeVariant={'M'} mr={'m-3'} variant="text">
+                <SubmitButton isLoading={loading} icon={<Icon.Settings />} sizeVariant={'M'} mr={'m-3'} variant="text">
                     SubmitButton
                 </SubmitButton>
                 <SubmitButton
                     isLoading={loading}
                     iconPosition={'right'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Warning />}
                     sizeVariant={'M'}
                     mr={'m-3'}
                     color={'#d80097'}
@@ -561,7 +576,7 @@ function Buttons() {
                     isLoading={loading}
                     style={{ width: '200px' }}
                     position={'right'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Warning />}
                     variant="outlined"
                     mr={'m-3'}
                 >
@@ -570,7 +585,7 @@ function Buttons() {
                 <SubmitButton
                     isLoading={loading}
                     style={{ width: '200px' }}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.AddCircle />}
                     variant={'text'}
                     mr={'m-3'}
                 >
@@ -580,7 +595,7 @@ function Buttons() {
                     isLoading={loading}
                     style={{ width: '200px' }}
                     iconPosition={'right'}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Add />}
                     sizeVariant={'M'}
                     mr={'m-3'}
                 >
@@ -589,7 +604,7 @@ function Buttons() {
                 <SubmitButton
                     isLoading={loading}
                     style={{ width: '200px' }}
-                    icon={<Icon.Gear />}
+                    icon={<Icon.Settings />}
                     sizeVariant={'M'}
                     mr={'m-3'}
                     variant="outlined"
@@ -600,6 +615,30 @@ function Buttons() {
             <div style={{ display: 'flex' }}>
                 <SubmitButton onClick={subCustH} colorVariant={c} isLoading={l} style={{ width: '200px' }} mr={'m-3'}>
                     CUSTOM SubmitButton
+                </SubmitButton>
+            </div>
+            <div style={{ display: 'flex' }}>
+                <SubmitButton isLoading={loading} style={{ width: '200px' }} mr={'m-3'}>
+                    SubmitButton
+                </SubmitButton>
+                <SubmitButton
+                    isLoading={loading}
+                    // style={{ width: '300px' }}
+                    icon={<div />}
+                    variant="outlined"
+                    mr={'m-3'}
+                >
+                    SubmitButton
+                </SubmitButton>
+                <SubmitButton
+                    isLoading={loading}
+                    iconPosition={'right'}
+                    style={{ width: '300px' }}
+                    icon={<Icon.Settings />}
+                    variant="outlined"
+                    mr={'m-3'}
+                >
+                    SubmitButton
                 </SubmitButton>
             </div>
         </div>

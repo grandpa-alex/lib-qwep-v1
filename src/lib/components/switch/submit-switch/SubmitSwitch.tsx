@@ -5,15 +5,15 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { VC, VS } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { BaseSwitch, BaseSwitchProps, SBRootSwitchProps } from '../base-switch/BaseSwitch';
+import { BaseSwitch, TBaseSwitch } from '../base-switch/BaseSwitch';
 
-export type SubmitSwitchProps = {
+type SubmitSwitchProps = {
     isLoading: boolean;
-} & BaseSwitchProps;
+} & TBaseSwitch.Main;
 
-export type SSSwitchProps = {
+type SSwitchProps = {
     $isLoading: boolean;
-} & SBRootSwitchProps;
+} & TBaseSwitch.SRoot;
 
 const LOADING_SIZE = {
     [VS.L]: (props: TypeSSSwitch) => css`
@@ -26,7 +26,7 @@ const LOADING_SIZE = {
     `,
 };
 
-export const SSSwitch = styled(BaseSwitch)<SSSwitchProps>`
+const SSwitch = styled(BaseSwitch)<SSwitchProps>`
     ${(props) => {
         if (props.$isLoading && !props.disabled) {
             return css`
@@ -75,7 +75,7 @@ export const SubmitSwitch: React.FC<SubmitSwitchProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['switch', 'mr']);
 
         return (
-            <SSSwitch
+            <SSwitch
                 $color={color}
                 $mr={mr}
                 $colors={colors}
@@ -85,6 +85,7 @@ export const SubmitSwitch: React.FC<SubmitSwitchProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 $isLoading={isLoading}
                 mr={mr}
+                $blocked={rest.blocked}
                 color={color}
                 colorVariant={colorVariant}
                 sizeVariant={sizeVariant}
@@ -94,3 +95,14 @@ export const SubmitSwitch: React.FC<SubmitSwitchProps> = React.memo(
         );
     }
 );
+
+//export component
+export const SSubmitSwitch = {
+    Switch: SSwitch,
+};
+
+//export type
+export namespace TSubmitSwitch {
+    export type Main = SubmitSwitchProps;
+    export type SSwitch = SSwitchProps;
+}

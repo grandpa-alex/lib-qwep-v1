@@ -2,18 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import * as Select from '@radix-ui/react-select';
 import { BaseCheck } from '@src/lib/icons';
-import { SBCSelectItem, SBCSelectItemProps } from './BaseSelectComponent';
+import { SBaseSelectComponent, TBaseSelectComponent } from './BaseSelectComponent';
+import { SelectItemIndicatorProps } from '@radix-ui/react-select';
 
-export type BaseSelectItemProps = {
+type BaseSelectItemProps = {
     children: React.ReactNode;
-} & SBCSelectItemProps;
+} & TBaseSelectComponent.SItem;
 
-export const SBSelectItem = styled(SBCSelectItem)`
+const SItem = styled(SBaseSelectComponent.Item)<TBaseSelectComponent.SItem>`
     padding: 6px 20px 6px 20px;
     border-radius: 4px;
 `;
 
-export const SBSelectItemIndicator = styled(Select.ItemIndicator)`
+const SIndicator = styled(Select.ItemIndicator)<SelectItemIndicatorProps & React.RefAttributes<HTMLSpanElement>>`
     position: absolute;
     top: 50%;
     left: 2px;
@@ -29,13 +30,25 @@ const BaseSelectItemRef: React.ForwardRefRenderFunction<HTMLDivElement, BaseSele
     ref
 ) => {
     return (
-        <SBSelectItem ref={ref} {...rest}>
-            <SBSelectItemIndicator>
+        <SItem ref={ref} {...rest}>
+            <SIndicator>
                 <BaseCheck />
-            </SBSelectItemIndicator>
+            </SIndicator>
             <Select.ItemText>{children}</Select.ItemText>
-        </SBSelectItem>
+        </SItem>
     );
 };
 
 export const BaseSelectItem = React.forwardRef(BaseSelectItemRef);
+
+//export component
+export const SBaseSelectItem = {
+    Item: SItem,
+    Indicator: SIndicator,
+};
+
+//export type
+export namespace TBaseSelectItem {
+    export type Main = BaseSelectItemProps;
+    export type SIndicator = SelectItemIndicatorProps & React.RefAttributes<HTMLSpanElement>;
+}

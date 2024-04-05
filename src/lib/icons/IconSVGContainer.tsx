@@ -3,14 +3,14 @@ import { StyledIconContainer, TypeStyleIconContainer } from '../common-styled-co
 import { Hex, TypeColorScheme } from '../general/colors';
 import { useColorScheme } from '../general/useColorScheme';
 import { useStyleScheme } from '../general/useStyleScheme';
-import { TypeColorVariant, TypeMargin, TypeVariantSize, VC, VS } from '../types/TypeBase';
+import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '../types/TypeBase';
 
 export type IconSVGContainerProps = {
     children?: React.ReactNode;
     xmlns?: string;
     viewBox?: string;
     sizeVariant?: TypeVariantSize;
-    colorVariant?: TypeColorVariant;
+    colorVariant?: TypeVariantColor;
     color?: Hex;
     style?: React.CSSProperties;
     mr?: TypeMargin;

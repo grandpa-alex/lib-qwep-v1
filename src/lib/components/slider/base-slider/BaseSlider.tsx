@@ -6,41 +6,41 @@ import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSMR, TypeSSSlider } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeColorVariant, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
-
+import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export type TypeStyleBaseSlider = {
+type TypeStyles = {
     mr: TypeSSMR;
     slider: TypeSSSlider;
 };
 
-export type BaseSliderProps = {
+type BaseSliderProps = {
     mr?: TypeMargin;
-    colorVariant?: TypeColorVariant;
+    colorVariant?: TypeVariantColor;
     sizeVariant?: TypeVariantSize;
     length?: string;
     color?: Hex;
+    blocked?: boolean;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleBaseSlider;
+    $styles?: TypeStyles;
 } & SliderProps;
 
-export type SBButtonProps = {
+type SRootProps = {
     $mr?: TypeMargin;
     $color?: Hex;
     $length?: string;
+    $blocked?: boolean;
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseSlider;
-    $colorVariant: TypeColorVariant;
+    $styles: TypeStyles;
+    $colorVariant: TypeVariantColor;
     $sizeVariant: TypeVariantSize;
 } & SliderProps;
 
-export const SBSliderTrack = styled(Slider.Track)`
+const STrack = styled(Slider.Track)`
     position: relative;
     flex-grow: 1;
     border-radius: 9999px;
-
     &[data-orientation='vertical'] {
         width: 1px;
     }
@@ -49,10 +49,9 @@ export const SBSliderTrack = styled(Slider.Track)`
     }
 `;
 
-export const SBSliderRange = styled(Slider.Range)`
+const SRange = styled(Slider.Range)`
     position: absolute;
     border-radius: 9999px;
-
     &[data-orientation='vertical'] {
         width: 2px;
     }
@@ -61,7 +60,7 @@ export const SBSliderRange = styled(Slider.Range)`
     }
 `;
 
-export const SBSliderThumb = styled(Slider.Thumb)`
+const SThumb = styled(Slider.Thumb)`
     display: block;
     border-radius: 50%;
 `;
@@ -71,7 +70,7 @@ const THUMB_SIZE = {
     [VS.M]: (props: TypeSSSlider) => props.thumbSize_M,
 };
 
-export const SBSliderRoot = styled(Slider.Root)<SBButtonProps>`
+const SRoot = styled(Slider.Root)<SRootProps>`
     position: relative;
     outline: none;
     display: flex;
@@ -88,10 +87,10 @@ export const SBSliderRoot = styled(Slider.Root)<SBButtonProps>`
         width: ${(props) => props.$length ?? '200px'};
         height: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
     }
-    ${SBSliderTrack} {
+    ${STrack} {
         background-color: ${(props) => props.$colors.disabled};
     }
-    ${SBSliderRange} {
+    ${SRange} {
         background-color: ${(props) =>
             getColor({
                 cs: props.$colors,
@@ -100,7 +99,7 @@ export const SBSliderRoot = styled(Slider.Root)<SBButtonProps>`
                 variant: props.$colorVariant,
             })};
     }
-    ${SBSliderThumb} {
+    ${SThumb} {
         background-color: ${(props) => (props.disabled ? props.$colors.disabled : props.$colors.backgroundBox)};
         width: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
         height: ${(props) => THUMB_SIZE[props.$sizeVariant](props.$styles.slider)};
@@ -118,32 +117,53 @@ export const SBSliderRoot = styled(Slider.Root)<SBButtonProps>`
                 })};
         }
     }
+    ${(props) =>
+        props.$blocked &&
+        css`
+            pointer-events: none;
+        `}
 `;
 
 export const BaseSlider: React.FC<BaseSliderProps> = React.memo(
-    ({ mr, color, length, colorVariant = VC.DEFAULT, sizeVariant = VS.L, $colors, $styles, ...rest }) => {
+    ({ mr, color, length, blocked, colorVariant = VC.DEFAULT, sizeVariant = VS.L, $colors, $styles, ...rest }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['slider', 'mr']);
 
         return (
-            <SBSliderRoot
+            <SRoot
                 $color={color}
                 $mr={mr}
                 $length={length}
                 $colors={colors}
                 $styles={styles}
+                $blocked={blocked}
                 $colorVariant={colorVariant}
                 $sizeVariant={sizeVariant}
                 {...rest}
             >
-                <SBSliderTrack>
-                    <SBSliderRange />
-                </SBSliderTrack>
+                <STrack>
+                    <SRange />
+                </STrack>
                 {rest.defaultValue &&
                     rest.defaultValue.map((_, idx) => {
-                        return <SBSliderThumb key={idx} />;
+                        return <SThumb key={idx} />;
                     })}
-            </SBSliderRoot>
+            </SRoot>
         );
     }
 );
+
+//export component
+export const SBaseSlider = {
+    Root: SRoot,
+    Thumb: SThumb,
+    Range: SRange,
+    Track: STrack,
+};
+
+//export type
+export namespace TBaseSlider {
+    export type Main = BaseSliderProps;
+    export type Styles = TypeStyles;
+    export type SRoot = SRootProps;
+}

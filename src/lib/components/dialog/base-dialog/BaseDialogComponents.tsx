@@ -2,8 +2,8 @@ import { DialogContentProps, DialogOverlayProps } from '@radix-ui/react-dialog';
 import { styled } from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
 
-export type SBCDialogOverlayProps = DialogOverlayProps & React.RefAttributes<HTMLDivElement>;
-export const SBCDialogOverlay = styled(Dialog.Overlay)<SBCDialogOverlayProps>`
+type SOverlayProps = DialogOverlayProps & React.RefAttributes<HTMLDivElement>;
+const SOverlay = styled(Dialog.Overlay)<SOverlayProps>`
     position: fixed;
     inset: 0;
     animation: overlayShow_BaseDialog 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -17,8 +17,8 @@ export const SBCDialogOverlay = styled(Dialog.Overlay)<SBCDialogOverlayProps>`
     }
 `;
 
-export type SBCDialogContentProps = DialogContentProps & React.RefAttributes<HTMLDivElement>;
-export const SBCDialogContent = styled(Dialog.Content)<SBCDialogContentProps>`
+type SContentProps = DialogContentProps & React.RefAttributes<HTMLDivElement>;
+const SContent = styled(Dialog.Content)<SContentProps>`
     position: fixed;
     top: 50%;
     left: 50%;
@@ -35,3 +35,15 @@ export const SBCDialogContent = styled(Dialog.Content)<SBCDialogContentProps>`
         }
     }
 `;
+
+//export component
+export const SBaseDialogComponent = {
+    Overlay: SOverlay,
+    Content: SContent,
+};
+
+//export type
+export namespace TBaseDialogComponent {
+    export type SOverlay = SOverlayProps;
+    export type SContent = SContentProps;
+}

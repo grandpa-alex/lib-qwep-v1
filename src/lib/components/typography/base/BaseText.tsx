@@ -5,26 +5,26 @@ import { TypeSSTypography } from '@src/lib/general/styleScheme';
 import React from 'react';
 import styled from 'styled-components';
 
-export type TypeStyleBaseText = {
+type TypeStyles = {
     typography: TypeSSTypography;
 };
 
-export type BaseTextProps = {
+type BaseTextProps = {
     children?: React.ReactNode;
     color?: Hex;
     $colors?: TypeColorScheme;
-    $styles?: TypeStyleBaseText;
+    $styles?: TypeStyles;
     as?: React.ElementType;
 } & React.HTMLAttributes<HTMLElement> &
     React.LabelHTMLAttributes<HTMLLabelElement>;
 
-export type SBTextProps = {
+type STextProps = {
     $colors: TypeColorScheme;
-    $styles: TypeStyleBaseText;
+    $styles: TypeStyles;
     $color?: Hex;
 };
 
-export const SBText = styled.p<SBTextProps>`
+const SText = styled.p<STextProps>`
     font-size: ${(props) => props.$styles.typography.fontSizeGlobal};
     font-weight: ${(props) => props.$styles.typography.fontWeightGlobal};
     color: ${(props) => props.$color ?? props.$colors.text};
@@ -37,9 +37,21 @@ export const BaseText: React.FC<BaseTextProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['typography']);
 
         return (
-            <SBText as={as} $colors={colors} $styles={styles} $color={color} {...rest}>
+            <SText as={as} $colors={colors} $styles={styles} $color={color} {...rest}>
                 {children}
-            </SBText>
+            </SText>
         );
     }
 );
+
+//export component
+export const SBaseText = {
+    Text: SText,
+};
+
+//export type
+export namespace TBaseText {
+    export type Styles = TypeStyles;
+    export type Main = BaseTextProps;
+    export type SText = STextProps;
+}

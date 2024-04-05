@@ -2,43 +2,36 @@ import { getColor } from '@src/lib/common/getColor';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { IIP, TypeColorVariant, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { IIP, TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
 import { VI } from '@src/lib/types/TypeInp';
 import React, { useCallback, useMemo, useState } from 'react';
 import styled, { css } from 'styled-components';
 
-import {
-    SimpleTextFieldProps,
-    SSTextFieldIconContainer,
-    SSTextFieldIconContainerProps,
-    SSTextFieldInput,
-    SSTextFieldRoot,
-} from '../simple-text-field/SimpleTextField';
+import { SSimpleTextField, TSimpleTextField } from '../simple-text-field/SimpleTextField';
 import { renderIconTextField } from '@src/lib/common/renderIconItem';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
-import { SBTextFieldInputProps, SBTextFieldRootProps } from '../base-text-field/BaseTextField';
-import { TypeStyleTextField } from '../base-text-field/RootTextField';
+import { TBaseTextField } from '../base-text-field/BaseTextField';
 
-export type SubmitTextFieldProps = {
+type SubmitTextFieldProps = {
     iconOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
     isLoading: boolean;
-} & SimpleTextFieldProps;
+} & TSimpleTextField.Main;
 
-export type SSUBTextFieldInputProps = {
+type SInpProps = {
     $isLoading?: boolean;
-} & SBTextFieldInputProps;
+} & TBaseTextField.SInput;
 
-export type SSUBTextFieldRootProps = {
-    $isLoading: boolean;
-} & SBTextFieldRootProps;
+type SLoaderProps = {
+    $color?: Hex;
+    $isLoading?: boolean;
+    $disabled?: boolean;
+    $colors: TypeColorScheme;
+    $styles: TBaseTextField.Styles;
+    $colorVariant: TypeVariantColor;
+    $sizeVariant: TypeVariantSize;
+};
 
-export const SSUBTextFieldIconContainer = styled(SSTextFieldIconContainer)<SSTextFieldIconContainerProps>`
-    background-color: transparent;
-    border: none;
-    padding: 0;
-`;
-
-export const SSUBTextFieldInput = styled(SSTextFieldInput)<SSUBTextFieldInputProps>`
+const SInput = styled(SSimpleTextField.Input)<SInpProps>`
     ${(props) =>
         props.$isLoading &&
         css`
@@ -46,28 +39,18 @@ export const SSUBTextFieldInput = styled(SSTextFieldInput)<SSUBTextFieldInputPro
         `}
 `;
 
-export type SSUBTextFieldLoadingProps = {
-    $color?: Hex;
-    $isLoading?: boolean;
-    $disabled?: boolean;
-    $colors: TypeColorScheme;
-    $styles: TypeStyleTextField;
-    $colorVariant: TypeColorVariant;
-    $sizeVariant: TypeVariantSize;
-};
-
 const LOADING_SIZE = {
-    [VS.L]: (props: SSUBTextFieldLoadingProps) => css`
+    [VS.L]: (props: SLoaderProps) => css`
         width: ${props.$styles.inp.inpIconSize_L};
         height: ${props.$styles.inp.inpIconSize_L};
     `,
-    [VS.M]: (props: SSUBTextFieldLoadingProps) => css`
+    [VS.M]: (props: SLoaderProps) => css`
         width: ${props.$styles.inp.inpIconSize_M};
         height: ${props.$styles.inp.inpIconSize_M};
     `,
 };
 
-export const SSUBTextFieldLoading = styled.span<SSUBTextFieldLoadingProps>`
+const SLoading = styled.span<SLoaderProps>`
     margin: 0 6px 2px 6px;
     ${(props) => LOADING_SIZE[props.$sizeVariant](props)}
     ${(props) => {
@@ -114,7 +97,7 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
         }, [icon, colors, styles]);
 
         return (
-            <SSTextFieldRoot
+            <SSimpleTextField.Root
                 $mr={mr}
                 $colors={colors}
                 $styles={styles}
@@ -132,23 +115,26 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 style={rest.style}
+                $blocked={rest.blocked}
                 _isFocused={isFocused}
                 $_isFocused={isFocused}
                 _isActiveHover={!isLoading && _isActiveHover}
                 $_isActiveHover={!isLoading && _isActiveHover}
             >
                 {icon && (
-                    <SSUBTextFieldIconContainer
-                        as="button"
+                    <SSimpleTextField.IconContainer
+                        as={iconOnClick ? 'button' : 'div'}
                         disabled={rest.disabled || isLoading}
                         onClick={iconOnClick}
                         $iconPosition={iconPosition}
+                        $disabled={rest.disabled || isLoading}
+                        $useBtn={Boolean(iconOnClick)}
                     >
                         {renderIcon}
-                    </SSUBTextFieldIconContainer>
+                    </SSimpleTextField.IconContainer>
                 )}
 
-                <SSUBTextFieldInput
+                <SInput
                     $styles={{ typography: styles.typography }}
                     $colors={colors}
                     $color={color}
@@ -159,7 +145,7 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                     style={{}}
                 />
 
-                <SSUBTextFieldLoading
+                <SLoading
                     $styles={styles}
                     $colors={colors}
                     $color={color}
@@ -168,7 +154,20 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                     $sizeVariant={sizeVariant}
                     $disabled={rest.disabled}
                 />
-            </SSTextFieldRoot>
+            </SSimpleTextField.Root>
         );
     }
 );
+
+//export component
+export const SSubmitTextField = {
+    Input: SInput,
+    Loading: SLoading,
+};
+
+//export type
+export namespace TSubmitTextField {
+    export type Main = SubmitTextFieldProps;
+    export type SInput = SInpProps;
+    export type SLoading = SLoaderProps;
+}

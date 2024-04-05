@@ -84,7 +84,7 @@ export type TypeMargin =
     | 'my-11'
     | 'my-12';
 
-export enum PM {
+export enum MP {
     BOTTOM = 'bottom',
     TOP = 'top',
     RIGHT = 'right',
@@ -107,7 +107,7 @@ export enum VC {
     SUCCESS = 'success',
     DEFAULT = 'default',
 }
-export type TypeColorVariant = 'error' | 'info' | 'warning' | 'success' | 'default';
+export type TypeVariantColor = 'error' | 'info' | 'warning' | 'success' | 'default';
 
 export enum IIP {
     RIGHT = 'right',

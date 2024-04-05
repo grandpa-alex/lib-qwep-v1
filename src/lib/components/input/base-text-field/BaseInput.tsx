@@ -3,19 +3,19 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import React from 'react';
 import styled from 'styled-components';
 
-export type TypeStyleBaseInput = {
+type TypeStyles = {
     typography: TypeSSTypography;
 };
 
-export type BaseInputProps = {
-    $styles?: TypeStyleBaseInput;
+type BaseInputProps = {
+    $styles?: TypeStyles;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-export type SBInputProps = {
-    $styles: TypeStyleBaseInput;
+type SInputProps = {
+    $styles: TypeStyles;
 };
 
-export const SBInput = styled.input<SBInputProps>`
+const SInput = styled.input<SInputProps>`
     border: none;
     outline: 0;
     width: 100%;
@@ -26,5 +26,17 @@ export const SBInput = styled.input<SBInputProps>`
 
 export const BaseInput: React.FC<BaseInputProps> = React.memo(({ $styles, ...rest }) => {
     const styles = $styles ?? useStyleScheme(['typography']);
-    return <SBInput $styles={styles} {...rest} />;
+    return <SInput $styles={styles} {...rest} />;
 });
+
+//export component
+export const SBaseInput = {
+    Input: SInput,
+};
+
+//export type
+export namespace TBaseInput {
+    export type Main = BaseInputProps;
+    export type Styles = TypeStyles;
+    export type SInput = SInputProps;
+}

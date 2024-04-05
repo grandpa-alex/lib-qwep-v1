@@ -177,8 +177,8 @@ export const styleScheme: TypeSS = {
         btnPadding_Y_M: '3px',
         btnHeight_L: '38px',
         btnHeight_M: '32px',
-        btnIconSize_L: '16px',
-        btnIconSize_M: '14px',
+        btnIconSize_L: '20px',
+        btnIconSize_M: '18px',
     },
     //inp
     inp: {
@@ -188,8 +188,8 @@ export const styleScheme: TypeSS = {
         inpPadding_Y_M: '5px',
         inpHeight_L: '38px',
         inpHeight_M: '32px',
-        inpIconSize_L: '16px',
-        inpIconSize_M: '14px',
+        inpIconSize_L: '20px',
+        inpIconSize_M: '18px',
     },
     //inp
     select: {
@@ -199,8 +199,8 @@ export const styleScheme: TypeSS = {
         selectPadding_Y_M: '5px',
         selectHeight_L: '38px',
         selectHeight_M: '32px',
-        selectIconSize_L: '16px',
-        selectIconSize_M: '14px',
+        selectIconSize_L: '20px',
+        selectIconSize_M: '18px',
     },
     // icon
     icon: {
@@ -237,11 +237,11 @@ export const styleScheme: TypeSS = {
         fontSizeItem: '14px',
         fontSizeGlobal: '14px',
         h1: '38px',
-        h2: '26px',
+        h2: '30px',
         h3: '24px',
-        h4: '22px',
-        h5: '20px',
-        h6: '18px',
+        h4: '20px',
+        h5: '18px',
+        h6: '16px',
         fontWeightTitle: '400',
         fontWeightItem: '700',
         fontWeightGlobal: '400',

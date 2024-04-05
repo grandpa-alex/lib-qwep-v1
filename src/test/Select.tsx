@@ -6,6 +6,7 @@ import {
     Icon,
     SimpleBox,
     SimpleButton,
+    SimplePopup,
     SimpleTextField,
     SubmitButton,
 } from '@src/lib';
@@ -16,7 +17,7 @@ function Select() {
             <h2>BASE SELECT</h2>
             <h4>BASE SELECT L COLORS</h4>
             <div style={{ display: 'flex' }}>
-                <BaseSelectContent mr={'m-3'} placeholder={'Default select'}>
+                <BaseSelectContent blocked mr={'m-3'} placeholder={'Default select'}>
                     <BaseSelectItem value={'1'}>Item 1</BaseSelectItem>
                     <BaseSelectItem value={'2'}>Item 2</BaseSelectItem>
                     <BaseSelectItem value={'3'}>Item 3</BaseSelectItem>
@@ -252,25 +253,132 @@ function Select() {
 
             <h2>BASE POPUP L COLORS</h2>
             <div style={{ display: 'flex' }}>
-                <BasePopup
-                    mr={'m-3'}
-                    popupComponent={
-                        <SimpleBox
-                            boxGapVariant={'g-2'}
-                            boxPaddingVariant={'p-2'}
-                            boxShadowVariant={'shd-3'}
-                            boxRadiusVariant={'br-1'}
-                        >
-                            <SimpleTextField placeholder={'Placeholder'} />
-                            <SimpleTextField placeholder={'Placeholder'} />
-                            <SubmitButton icon={<Icon.Gear />} isLoading={false}>
-                                Submit
-                            </SubmitButton>
-                        </SimpleBox>
-                    }
-                >
-                    <SimpleButton>Popup</SimpleButton>
+                <BasePopup mr={'m-3'} trigger={<SimpleButton>Popup</SimpleButton>}>
+                    <SimpleBox
+                        boxGapVariant={'g-2'}
+                        boxPaddingVariant={'p-2'}
+                        boxShadowVariant={'shd-3'}
+                        boxRadiusVariant={'br-1'}
+                    >
+                        <SimpleTextField placeholder={'Placeholder'} />
+                        <SimpleTextField placeholder={'Placeholder'} />
+                        <SubmitButton icon={<Icon.Settings />} isLoading={false}>
+                            Submit
+                        </SubmitButton>
+                    </SimpleBox>
                 </BasePopup>
+
+                <SimplePopup
+                    sideOffset={8}
+                    // color={'#830088'}
+                    icon={<Icon.Settings />}
+                    title={'Title Simple Popup '}
+                    mr={'m-3'}
+                    trigger={<SimpleButton>Simple Popup</SimpleButton>}
+                >
+                    bgbgfbfgb bgbgfbgfbg jtrjkhrtjhkrtj hrth rthrth Lorem ipsum dolor sit amet consectetur adipisicing
+                    elit. Iusto nemo earum commodi nostrum odit harum aliquam quasi assumenda! Reiciendis minima
+                    consequuntur omnis quo? Eius vero in nemo, ratione esse unde? Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Iusto nemo earum commodi nostrum odit harum aliquam quasi assumenda! Reiciendis
+                    minima consequuntur omnis quo? Eius vero in nemo, ratione esse unde? Lorem ipsum dolor sit amet
+                    consectetur adipisicing elit. Iusto nemo earum commodi nostrum odit harum aliquam quasi assumenda!
+                    Reiciendis minima consequuntur omnis quo? Eius vero in nemo, ratione esse unde? Lorem ipsum dolor
+                    sit amet consectetur adipisicing elit. Iusto nemo earum commodi nostrum odit harum aliquam quasi
+                    assumenda! Reiciendis minima consequuntur omnis quo? Eius vero in nemo, ratione esse unde? Lorem
+                    ipsum dolor sit amet consectetur adipisicing elit. Iusto nemo earum commodi nostrum odit harum
+                    aliquam quasi assumenda! Reiciendis minima consequuntur omnis quo? Eius vero in nemo, ratione esse
+                    unde?
+                </SimplePopup>
+                <SimplePopup
+                    sideOffset={8}
+                    // color={'#830088'}
+                    width={'150px'}
+                    height={'500px'}
+                    maxHeight={'400px'}
+                    icon={<Icon.Settings />}
+                    title={'Title Simple Popup Test longtitle'}
+                    mr={'m-3'}
+                    trigger={<SimpleButton>Simple Popup</SimpleButton>}
+                >
+                    bgbgfbfgb bgbgfbgfbg jtrjkhrtjhkrtj hrth Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Placeat quae ipsam laboriosam alias eligendi consequatur perspiciatis et nostrum est? Tempore sint
+                    neque minima molestias repellendus aperiam enim hic suscipit laborum. Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Placeat quae ipsam laboriosam alias eligendi consequatur perspiciatis
+                    et nostrum est? Tempore sint neque minima molestias repellendus aperiam enim hic suscipit laborum.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat quae ipsam laboriosam alias
+                    eligendi consequatur perspiciatis et nostrum est? Tempore sint neque minima molestias repellendus
+                    aperiam enim hic suscipit laborum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat
+                    quae ipsam laboriosam alias eligendi consequatur perspiciatis et nostrum est? Tempore sint neque
+                    minima molestias repellendus aperiam enim hic suscipit laborum.
+                </SimplePopup>
+
+                <SimplePopup
+                    sideOffset={8}
+                    // color={'#830088'}
+                    // width={'150px'}
+                    // height={'500px'}
+                    maxHeight={'400px'}
+                    icon={<Icon.Settings />}
+                    title={'Title Simple Popup Test longtitle'}
+                    mr={'m-3'}
+                    trigger={<SimpleButton>Simple Popup</SimpleButton>}
+                >
+                    bgbgfbfgb bgbgfbgfbg
+                </SimplePopup>
+
+                <SimplePopup
+                    sideOffset={8}
+                    // color={'#830088'}
+                    // width={'150px'}
+                    // height={'500px'}
+                    as={'form'}
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        console.log(e);
+                    }}
+                    maxHeight={'200px'}
+                    boxGapVariant={'g-2'}
+                    icon={<Icon.Settings />}
+                    title={'Title Simple'}
+                    mr={'m-3'}
+                    trigger={<SimpleButton>Simple Popup</SimpleButton>}
+                >
+                    <input type="text" name="name" placeholder="Name" />
+                    <BaseSelectContent
+                        name={'BaseSelectContent'}
+                        positionTrigger={'left'}
+                        onValueChange={(e) => console.log(e)}
+                        width={'100%'}
+                        placeholder={'Default select'}
+                    >
+                        <BaseSelectGroup title={'Group 1'}>
+                            <BaseSelectItem value={'1'}>Item 1</BaseSelectItem>
+                            <BaseSelectItem value={'2'}>Item 2</BaseSelectItem>
+                            <BaseSelectItem value={'3'}>Item 3</BaseSelectItem>
+                            <BaseSelectItem value={'4'}>Item 4</BaseSelectItem>
+                            <BaseSelectItem value={'5'}>Item 5</BaseSelectItem>
+                        </BaseSelectGroup>
+                        <BaseSelectGroup title={'Group 2'}>
+                            <BaseSelectItem value={'6'}>Item 1</BaseSelectItem>
+                            <BaseSelectItem value={'7'}>Item 2</BaseSelectItem>
+                            <BaseSelectItem value={'8'}>Item 3</BaseSelectItem>
+                            <BaseSelectItem value={'9'}>Item 4</BaseSelectItem>
+                            <BaseSelectItem value={'10'}>Item 5</BaseSelectItem>
+                        </BaseSelectGroup>
+                        <BaseSelectGroup title={'Group 3'}>
+                            <BaseSelectItem value={'11'}>Item 1</BaseSelectItem>
+                            <BaseSelectItem value={'12'}>Item 2</BaseSelectItem>
+                            <BaseSelectItem value={'13'}>Item 3</BaseSelectItem>
+                            <BaseSelectItem value={'14'}>Item 4</BaseSelectItem>
+                            <BaseSelectItem value={'15'}>Item 5</BaseSelectItem>
+                        </BaseSelectGroup>
+                    </BaseSelectContent>
+                    <SimpleTextField name={'SimpleTextField'} placeholder={'test input'} />
+                    <SimpleTextField placeholder={'test input'} />
+                    <SimpleTextField placeholder={'test input'} />
+                    <SimpleTextField placeholder={'test input'} />
+                    <SimpleButton type={'submit'}>Submit</SimpleButton>
+                </SimplePopup>
             </div>
         </div>
     );

@@ -30,7 +30,7 @@ type WrapperInputProps = {
     message?: TMessageBox.Message;
     labelColor?: Hex;
     blocked?: boolean;
-    as?: keyof JSX.IntrinsicElements
+    as?: keyof JSX.IntrinsicElements;
 } & React.HTMLAttributes<HTMLElement>;
 
 type SRootProps = {
@@ -103,6 +103,7 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
                 $positionLabel={positionLabel}
                 $boxGapVariant={boxGapVariant}
                 {...rest}
+                data={'uthtihjtirjhitrjhi'}
             >
                 <BaseText
                     style={{ cursor: 'pointer', userSelect: 'none' }}

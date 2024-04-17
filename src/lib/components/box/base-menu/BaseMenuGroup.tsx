@@ -144,7 +144,7 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
                         $colors,
                         tabIndex: 0,
                         'aria-pressed': child.props.value === activeValue ? 'true' : 'false',
-                        ...rest,
+                        ...child.props,
                     });
                 }
                 return child;

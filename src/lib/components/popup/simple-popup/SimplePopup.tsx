@@ -24,7 +24,7 @@ type TypeStyles = {
 type SimplePopupProps = {
     icon: React.ReactNode;
     title: React.ReactNode;
-    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+    as?: keyof JSX.IntrinsicElements;
     boxPaddingVariant?: TypeBoxPaddingVariant;
     boxGapVariant?: TypeBoxGapVariant;
     boxBorderColor?: Hex;

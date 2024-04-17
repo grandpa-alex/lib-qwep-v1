@@ -91,8 +91,8 @@ export type TypeSSAvatar = {
 export type TypeSSRadio = {
     radioSize_L: string;
     radioSize_M: string;
-    radioSizeIndicator_L: string
-    radioSizeIndicator_M: string
+    radioSizeIndicator_L: string;
+    radioSizeIndicator_M: string;
 };
 
 export type TypeSSTypography = {
@@ -171,7 +171,6 @@ export type TypeSS = {
 };
 
 export const styleScheme: TypeSS = {
-    
     // base
     base: {
         borderRadiusItem: '8px',
@@ -217,7 +216,7 @@ export const styleScheme: TypeSS = {
         inpIconSize_M: '18px',
     },
 
-    //select 
+    //select
     select: {
         selectPadding_X_L: '14px',
         selectPadding_Y_L: '5px',

@@ -6,21 +6,27 @@ import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { CSSBaseBox, CSSSimpleBox } from '@src/lib/common-styled-component/StyledComponentBox';
 import { getMargin } from '@src/lib/common/getMargin';
 import { OC, TypeMargin, TypeOrientationContent, TypeVariantSize, VS } from '@src/lib/types/TypeBase';
-import { TypeBoxGapVariant, TypeBoxPaddingVariant, TypeBoxRadiusVariant, TypeBoxShadowVariant, TypeBoxWidthVariant } from '@src/lib/types/TypeBox';
+import {
+    TypeBoxGapVariant,
+    TypeBoxPaddingVariant,
+    TypeBoxRadiusVariant,
+    TypeBoxShadowVariant,
+    TypeBoxWidthVariant,
+} from '@src/lib/types/TypeBox';
 import { Hex, TypeColorScheme } from '@src/lib/general';
 
 type TypeStyles = {
     box: TypeSSBox;
     mr: TypeSSMR;
-    btn: TypeSSBtn
+    btn: TypeSSBtn;
     typography: TypeSSTypography;
 };
 
 type BaseMenuGroupProps = {
-    //group 
+    //group
     children?: React.ReactNode;
     mr?: TypeMargin;
-    orientation?: TypeOrientationContent
+    orientation?: TypeOrientationContent;
     boxWidthVariant?: TypeBoxWidthVariant;
     boxPaddingVariant?: TypeBoxPaddingVariant;
     boxGapVariant?: TypeBoxGapVariant;
@@ -33,7 +39,7 @@ type BaseMenuGroupProps = {
 
     //items
     itemSizeVariant?: TypeVariantSize;
-    itemColor?: Hex
+    itemColor?: Hex;
 
     $styles?: TypeStyles;
     $colors?: TypeColorScheme;
@@ -43,7 +49,7 @@ type SRootProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $bg?: Hex;
-    $orientation: TypeOrientationContent
+    $orientation: TypeOrientationContent;
     $boxBorderColor?: Hex;
     $boxShadowColor?: Hex;
     $boxShadowVariant?: TypeBoxShadowVariant;
@@ -54,22 +60,18 @@ type SRootProps = {
     $mr?: TypeMargin;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-
 const ORIENTATION = {
     [OC.HORIZONTAL]: css`
-    display: inline-flex;
-    align-items: center;
-`,
+        display: inline-flex;
+        align-items: center;
+    `,
     [OC.VERTICAL]: css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: fit-content;
-    `
-}
-
-
-
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: fit-content;
+    `,
+};
 
 const SRoot = styled.div<SRootProps>`
     background-color: ${(props) => props.$bg ?? props.$colors.secondary};
@@ -89,82 +91,87 @@ const SRoot = styled.div<SRootProps>`
             $boxGapVariant: props.$boxGapVariant,
             $styles: props.$styles.box,
         })};
-    ${props => ORIENTATION[props.$orientation]}
+    ${(props) => ORIENTATION[props.$orientation]}
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
 `;
 
-export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(({
-    children,
-    mr,
-    boxWidthVariant,
-    boxPaddingVariant = 'p-1',
-    bg,
-    boxGapVariant = 'g-1',
-    boxBorderColor,
-    boxRadiusVariant = 'br-1',
-    boxShadowVariant = 'shd-1',
-    boxShadowColor,
-    orientation = OC.HORIZONTAL,
-    onChange,
+export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
+    ({
+        children,
+        mr,
+        boxWidthVariant,
+        boxPaddingVariant = 'p-1',
+        bg,
+        boxGapVariant = 'g-1',
+        boxBorderColor,
+        boxRadiusVariant = 'br-1',
+        boxShadowVariant = 'shd-1',
+        boxShadowColor,
+        orientation = OC.HORIZONTAL,
+        onChange,
 
-    itemSizeVariant = VS.L,
-    itemColor,
+        itemSizeVariant = VS.L,
+        itemColor,
 
-    $styles,
-    $colors,
-    ...rest
-}) => {
-    const styles = $styles ?? useStyleScheme(['box', 'mr', 'btn', 'typography']);
-    const colors = $colors ?? useColorScheme();
+        $styles,
+        $colors,
+        ...rest
+    }) => {
+        const styles = $styles ?? useStyleScheme(['box', 'mr', 'btn', 'typography']);
+        const colors = $colors ?? useColorScheme();
 
-    const [activeValue, setActiveValue] = useState<string | null>(null);
+        const [activeValue, setActiveValue] = useState<string | null>(null);
 
-    const handleClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-        const newValue = event.currentTarget.getAttribute('value');
-        setActiveValue(newValue);
-        onChange && onChange(newValue);
-    }, [onChange]);
+        const handleClick = useCallback(
+            (event: React.MouseEvent<HTMLButtonElement>) => {
+                const newValue = event.currentTarget.getAttribute('value');
+                setActiveValue(newValue);
+                onChange && onChange(newValue);
+            },
+            [onChange]
+        );
 
-    const renderItems = useMemo(() => {
-        return React.Children.map(children, (child: React.ReactNode) => {
-            if (React.isValidElement(child) && child.props.value) {
-                return React.cloneElement(child, {
-                    onClick: handleClick,
-                    //@ts-ignore
-                    activeItem: Boolean(child.props.value === activeValue),
-                    sizeVariant: itemSizeVariant,
-                    color: itemColor,
-                    $styles,
-                    $colors,
-                    tabIndex: 0,  
-                    'aria-pressed': child.props.value === activeValue ? 'true' : 'false',  
-                    ...rest,
-                });
-            }
-            return child;
-        });
-    }, [children, handleClick, activeValue, itemSizeVariant, itemColor, $styles, $colors, rest]);
+        const renderItems = useMemo(() => {
+            return React.Children.map(children, (child: React.ReactNode) => {
+                if (React.isValidElement(child) && child.props.value) {
+                    return React.cloneElement(child, {
+                        onClick: handleClick,
+                        //@ts-ignore
+                        activeItem: Boolean(child.props.value === activeValue),
+                        sizeVariant: itemSizeVariant,
+                        color: itemColor,
+                        $styles,
+                        $colors,
+                        tabIndex: 0,
+                        'aria-pressed': child.props.value === activeValue ? 'true' : 'false',
+                        ...rest,
+                    });
+                }
+                return child;
+            });
+        }, [children, handleClick, activeValue, itemSizeVariant, itemColor, $styles, $colors, rest]);
 
-    return (
-        <SRoot
-            $styles={styles}
-            $colors={colors}
-            $mr={mr}
-            $boxWidthVariant={boxWidthVariant}
-            $boxPaddingVariant={boxPaddingVariant}
-            $boxGapVariant={boxGapVariant}
-            $bg={bg}
-            $boxBorderColor={boxBorderColor}
-            $boxRadiusVariant={boxRadiusVariant}
-            $boxShadowVariant={boxShadowVariant}
-            $boxShadowColor={boxShadowColor}
-            $orientation={orientation}
-            {...rest}
-        >
-            {renderItems}
-        </SRoot>
-    );
-});
+        return (
+            <SRoot
+                $styles={styles}
+                $colors={colors}
+                $mr={mr}
+                $boxWidthVariant={boxWidthVariant}
+                $boxPaddingVariant={boxPaddingVariant}
+                $boxGapVariant={boxGapVariant}
+                $bg={bg}
+                $boxBorderColor={boxBorderColor}
+                $boxRadiusVariant={boxRadiusVariant}
+                $boxShadowVariant={boxShadowVariant}
+                $boxShadowColor={boxShadowColor}
+                $orientation={orientation}
+                {...rest}
+            >
+                {renderItems}
+            </SRoot>
+        );
+    }
+);
 //export component
 export const SBaseMenuGroup = {
     Root: SRoot,

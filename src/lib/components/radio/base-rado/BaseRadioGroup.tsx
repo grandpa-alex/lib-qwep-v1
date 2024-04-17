@@ -80,7 +80,6 @@ const SRoot = styled.div<SRootProps>`
 export const BaseRadioGroup: React.FC<BaseRadioGroupProps> = React.memo(
     ({
         mr,
-        color,
         blocked,
         $colors,
         $styles,

@@ -59,14 +59,12 @@ function Main() {
             case 'icons':
                 setVal(<Icons />);
                 break;
-                case 'ava':
-                    setVal(<Avatar />);
-                    break;
-                    case 'wrapper':
-                        setVal(<WrapperItem />);
-                        break;
-                    
-                
+            case 'ava':
+                setVal(<Avatar />);
+                break;
+            case 'wrapper':
+                setVal(<WrapperItem />);
+                break;
         }
     };
 

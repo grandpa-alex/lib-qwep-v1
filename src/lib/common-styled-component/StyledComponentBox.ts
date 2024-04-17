@@ -12,7 +12,7 @@ import {
 
 export const BOX_WIDTH_VARIANT = {
     ['w-1']: (props: TypeSSBox) => css`
-       max-width: ${props.boxWidth_1};
+        max-width: ${props.boxWidth_1};
     `,
     ['w-2']: (props: TypeSSBox) => css`
         max-width: ${props.boxWidth_2};
@@ -27,7 +27,7 @@ export const BOX_WIDTH_VARIANT = {
         max-width: ${props.boxWidth_5};
     `,
     ['w-6']: (props: TypeSSBox) => css`
-         max-width: ${props.boxWidth_6};
+        max-width: ${props.boxWidth_6};
     `,
     ['w-null']: () => css`
         width: auto;
@@ -122,9 +122,8 @@ export type CSSBaseBoxProps = {
     $boxWidthVariant?: TypeBoxWidthVariant;
     $boxPaddingVariant?: TypeBoxPaddingVariant;
     $boxGapVariant?: TypeBoxGapVariant;
-    $boxDisplay?: TypeBoxDisplay
+    $boxDisplay?: TypeBoxDisplay;
     $styles: TypeSSBox;
-
 };
 
 export const CSSBaseBox = (props: CSSBaseBoxProps) => css`

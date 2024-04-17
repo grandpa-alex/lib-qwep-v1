@@ -79,7 +79,7 @@ function WrapperItem() {
                         text: 'SubmitCheckbox',
                     }}
                 >
-                    <SubmitCheckbox isLoading/>
+                    <SubmitCheckbox isLoading />
                 </WrapperInput>
                 <WrapperInput
                     blocked
@@ -90,9 +90,8 @@ function WrapperItem() {
                         text: 'SubmitCheckbox_dis',
                     }}
                 >
-                    <SubmitCheckbox isLoading disabled/>
+                    <SubmitCheckbox isLoading disabled />
                 </WrapperInput>
-                
             </BaseBox>
             <BaseTitle>Label switch</BaseTitle>
             <BaseBox mr={'my-3'} style={{ display: 'flex' }} boxGapVariant={'g-2'}>
@@ -115,7 +114,7 @@ function WrapperItem() {
                         text: 'SubmitSwitch',
                     }}
                 >
-                    <SubmitSwitch isLoading/>
+                    <SubmitSwitch isLoading />
                 </WrapperInput>
                 <WrapperInput
                     blocked
@@ -126,10 +125,9 @@ function WrapperItem() {
                         text: 'SubmitSwitch_dis',
                     }}
                 >
-                    <SubmitSwitch isLoading disabled/>
+                    <SubmitSwitch isLoading disabled />
                 </WrapperInput>
             </BaseBox>
-
 
             <BaseTitle>Label switch</BaseTitle>
             <BaseBox mr={'my-3'} style={{ display: 'flex' }} boxGapVariant={'g-2'}>
@@ -141,7 +139,7 @@ function WrapperItem() {
                         text: 'BaseSwitch',
                     }}
                 >
-                    <BaseSlider defaultValue={[20, 70]} max={100} step={1}/>
+                    <BaseSlider defaultValue={[20, 70]} max={100} step={1} />
                 </WrapperInput>
                 <WrapperInput
                     blocked
@@ -152,7 +150,7 @@ function WrapperItem() {
                         text: 'SubmitSwitch',
                     }}
                 >
-                    <BaseSlider/>
+                    <BaseSlider />
                 </WrapperInput>
             </BaseBox>
         </BaseBox>

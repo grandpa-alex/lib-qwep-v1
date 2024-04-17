@@ -16,9 +16,9 @@ const Content = ({ StoryFn, context }) => {
 
     return (
         <BaseLayout
-        wrapperStyle={{
-          padding: '15px',
-        }}
+            wrapperStyle={{
+                padding: '15px',
+            }}
         >
             <SimpleBox
                 as={'header'}
@@ -28,7 +28,7 @@ const Content = ({ StoryFn, context }) => {
                 boxShadowVariant={'shd-1'}
                 boxRadiusVariant={'br-1'}
                 style={{
-                  alignItems: 'center'
+                    alignItems: 'center',
                 }}
             >
                 <SimpleButton sizeVariant={'M'} onClick={changeThemeHandler}>

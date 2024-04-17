@@ -86,8 +86,8 @@ export const BaseTextarea: React.FC<BaseTextareaProps> = React.memo(
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['base', 'mr', 'typography', 'inp']);
         const [isFocused, setIsFocused] = useState(false);
-        const handleFocus = useCallback(() => !rest.disabled && setIsFocused(true), []);
-        const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), []);
+        const handleFocus = useCallback(() => !rest.disabled && setIsFocused(true), [rest.disabled]);
+        const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), [rest.disabled]);
 
         return (
             <SRoot

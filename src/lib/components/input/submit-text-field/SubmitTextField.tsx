@@ -89,12 +89,12 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['base', 'inp', 'typography', 'mr']);
         const [isFocused, setIsFocused] = useState(false);
-        const handleFocus = useCallback(() => (!rest.disabled || isLoading) && setIsFocused(true), []);
-        const handleBlur = useCallback(() => (!rest.disabled || isLoading) && setIsFocused(false), []);
+        const handleFocus = useCallback(() => (!rest.disabled || isLoading) && setIsFocused(true), [rest.disabled, isLoading]);
+        const handleBlur = useCallback(() => (!rest.disabled || isLoading) && setIsFocused(false), [rest.disabled, isLoading]);
 
         const renderIcon = useMemo(() => {
             return renderIconTextField({ icon: icon, size: styles.inp, sizeVariant, rest: { $colors: colors } });
-        }, [icon, colors, styles]);
+        }, [icon, colors, styles, sizeVariant]);
 
         return (
             <SSimpleTextField.Root

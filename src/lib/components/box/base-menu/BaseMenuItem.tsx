@@ -33,7 +33,7 @@ type SButtonProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $sizeVariant: TypeVariantSize;
-    $activeItem?: boolean
+    $activeItem?: boolean;
     $_isActiveHover: boolean;
     $blocked?: boolean;
 };
@@ -48,7 +48,6 @@ const BTN_SIZE = {
         padding: ${`${props.$styles.btn.btnPadding_Y_M} ${props.$styles.btn.btnPadding_X_M}`};
     `,
 };
-
 
 export const SButton = styled.button<SButtonProps>`
     display: block;
@@ -70,28 +69,29 @@ export const SButton = styled.button<SButtonProps>`
         css`
             pointer-events: none;
         `}
-    ${props => {
+    ${(props) => {
         if (props.$activeItem) {
             return css`
-                 background-color: ${getColor({
+                background-color: ${getColor({
                     cs: props.$colors,
                     color: props.$color ?? props.$colors.primaryItem,
                 })};
                 color: ${props.$colors.textItem};
-            `
+            `;
         }
     }};
 
     &:not([disabled]):hover {
-        ${props => !props.$activeItem && css`
-        background-color: ${ getColor({
-            cs: props.$colors,
-            color: props.$color ?? props.$colors.primaryItem,
-            opacity: '40'
-        })};
-        ` }
+        ${(props) =>
+            !props.$activeItem &&
+            css`
+                background-color: ${getColor({
+                    cs: props.$colors,
+                    color: props.$color ?? props.$colors.primaryItem,
+                    opacity: '40',
+                })};
+            `}
         transition: all 0.3s ease-in-out;
-       
     }
 `;
 
@@ -134,7 +134,6 @@ export const BaseMenuItem: React.FC<BaseMenuItemProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 onClick={handleClick}
                 {...rest}
-           
             >
                 {children}
             </SButton>

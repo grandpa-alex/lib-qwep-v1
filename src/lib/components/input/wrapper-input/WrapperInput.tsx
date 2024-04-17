@@ -30,7 +30,7 @@ type WrapperInputProps = {
     message?: TMessageBox.Message;
     labelColor?: Hex;
     blocked?: boolean;
-    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+    as?: keyof JSX.IntrinsicElements
 } & React.HTMLAttributes<HTMLElement>;
 
 type SRootProps = {
@@ -41,7 +41,6 @@ type SRootProps = {
     $positionLabel: TypePositionInpLabel;
     $boxGapVariant: TypeBoxGapVariant;
 };
-
 
 const POSITION = {
     [PIL.TOP]: css`
@@ -116,7 +115,7 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
                     {label}
                 </BaseText>
                 {renderItem}
-                <MessageBox $colors={colors} message={message}/>
+                <MessageBox $colors={colors} message={message} />
             </SRoot>
         );
     }
@@ -124,7 +123,7 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
 
 //export component
 export const SWrapperInput = {
-    Root: SRoot
+    Root: SRoot,
 };
 
 //export type

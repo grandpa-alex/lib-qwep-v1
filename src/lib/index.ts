@@ -13,6 +13,8 @@ import {
     VC,
     VS,
     IIP,
+    TypeOrientationContent,
+    OC,
 } from './types/TypeBase';
 import { BP, TypeBtnPosition, TypeVariantBtn, VB } from './types/TypeBtn';
 
@@ -22,6 +24,7 @@ export namespace TypeBase {
     export type VariantSize = TypeVariantSize;
     export type VariantColor = TypeVariantColor;
     export type ItemIconPosition = TypeItemIconPosition;
+    export type OrientationContent = TypeOrientationContent;
 }
 
 export const EnumBase = {
@@ -29,6 +32,7 @@ export const EnumBase = {
     VariantSize: VS,
     VariantColor: VC,
     ItemIconPosition: IIP,
+    OrientationContent: OC,
 };
 
 export namespace TypeBaseButton {
@@ -48,4 +52,3 @@ export namespace TypeBaseAvatar {
 export const EnumBaseAvatar = {
     VariantSizeAvatar: VSA,
 };
-

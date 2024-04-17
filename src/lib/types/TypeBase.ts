@@ -121,4 +121,4 @@ export enum OC {
     HORIZONTAL = 'horizontal',
 }
 
-export type TypeOrientationContent = 'vertical' | 'horizontal'
+export type TypeOrientationContent = 'vertical' | 'horizontal';

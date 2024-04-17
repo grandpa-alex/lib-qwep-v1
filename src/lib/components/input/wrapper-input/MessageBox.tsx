@@ -1,11 +1,10 @@
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { getColor } from '@src/lib/common/getColor';
-import {  TypeColorScheme } from '@src/lib/general/colors';
+import { TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBox, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 import React from 'react';
 import styled from 'styled-components';
 import { TypeVariantColor } from '@src/lib/types/TypeBase';
-
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -40,22 +39,15 @@ const SMessage = styled.span<SMessageProps>`
         })};
 `;
 
-
-
-
-export const MessageBox: React.FC<MessageBoxProps> = React.memo(
-    ({
-        $colors,
-        message,
-    }) => {
-        const colors = $colors ?? useColorScheme();
-        if (!message) return
-        return <SMessage $colors={colors} $colorVariant={message.colorVariant ?? 'error'}>
-                        {message.text}
-            </SMessage>
-        
-    }
-);
+export const MessageBox: React.FC<MessageBoxProps> = React.memo(({ $colors, message }) => {
+    const colors = $colors ?? useColorScheme();
+    if (!message) return;
+    return (
+        <SMessage $colors={colors} $colorVariant={message.colorVariant ?? 'error'}>
+            {message.text}
+        </SMessage>
+    );
+});
 
 //export component
 export const SMessageBox = {

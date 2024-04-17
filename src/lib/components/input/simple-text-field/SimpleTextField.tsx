@@ -118,12 +118,12 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['base', 'inp', 'typography', 'mr']);
         const [isFocused, setIsFocused] = useState(false);
-        const handleFocus = useCallback(() => !rest.disabled && setIsFocused(true), []);
-        const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), []);
+        const handleFocus = useCallback(() => !rest.disabled && setIsFocused(true), [rest.disabled]);
+        const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), [rest.disabled]);
 
         const renderIcon = useMemo(() => {
             return renderIconTextField({ icon: icon, size: styles.inp, sizeVariant, rest: { $colors: colors } });
-        }, [icon, colors, styles]);
+        }, [icon, colors, styles, sizeVariant]);
 
         return (
             <SRoot

@@ -301,7 +301,7 @@ function Buttons() {
                     mr={'m-3'}
                     style={{ width: '200px' }}
                     iconPosition={'right'}
-                    icon={<Icon.Gear style={{width: '10px'}} />}
+                    icon={<Icon.Gear style={{ width: '10px' }} />}
                     sizeVariant={'M'}
                     position={'right'}
                 >
@@ -338,13 +338,7 @@ function Buttons() {
             </div>
             <BaseTitle as={'h4'}>SIMPLE BUTTON ICONS OUTLINE DISABLED</BaseTitle>
             <div style={{ display: 'flex' }}>
-                <SimpleButton
-                    mr={'m-3'}
-                    disabled={true}
-                    variant={'outlined'}
-                    icon={<Icon.Gear />}
-                    position={'center'}
-                >
+                <SimpleButton mr={'m-3'} disabled={true} variant={'outlined'} icon={<Icon.Gear />} position={'center'}>
                     SimpleButton def
                 </SimpleButton>
                 <SimpleButton

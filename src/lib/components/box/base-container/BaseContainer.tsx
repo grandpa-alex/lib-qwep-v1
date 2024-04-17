@@ -3,8 +3,6 @@ import { TypeColorScheme } from '@src/lib/general/colors';
 import React from 'react';
 import { styled } from 'styled-components';
 
-
-
 type BaseContainerProps = {
     children?: React.ReactNode;
     as?: string;
@@ -31,11 +29,7 @@ export const BaseContainer: React.FC<BaseContainerProps> = React.memo(
         const colors = $colors ?? useColorScheme();
 
         return (
-            <SContainer
-                as={Component}
-                $colors={colors}
-                {...rest}
-            >
+            <SContainer as={Component} $colors={colors} {...rest}>
                 {children}
             </SContainer>
         );

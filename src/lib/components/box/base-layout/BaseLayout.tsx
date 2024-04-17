@@ -3,16 +3,12 @@ import { TypeColorScheme } from '@src/lib/general/colors';
 import React from 'react';
 import { styled } from 'styled-components';
 
-
 type BaseLayoutProps = {
     children?: React.ReactNode;
     as?: string;
-    wrapperStyle?: React.CSSProperties
+    wrapperStyle?: React.CSSProperties;
     $colors?: TypeColorScheme;
-
 } & React.HTMLAttributes<HTMLDivElement>;
-
-
 
 const SWrapper = styled.div`
     margin: 0 auto;
@@ -21,14 +17,13 @@ const SWrapper = styled.div`
         max-width: 1800px;
     }
     @media screen and (max-width: 1280px) {
-        max-width: 100%
+        max-width: 100%;
     }
 `;
 
 type SRootProps = {
     $colors: TypeColorScheme;
 } & React.HTMLAttributes<HTMLDivElement>;
-
 
 const SRoot = styled.div<SRootProps>`
     overflow: hidden;
@@ -44,24 +39,14 @@ const SRoot = styled.div<SRootProps>`
     }
 `;
 
-
-
 export const BaseLayout: React.FC<BaseLayoutProps> = React.memo(
     ({ children, as: Component = 'div', wrapperStyle, $colors, ...rest }) => {
         const colors = $colors ?? useColorScheme();
 
         return (
-           <SRoot
-            as={Component}
-            $colors={colors}
-            style={wrapperStyle}
-           >
-            <SWrapper
-             {...rest}
-            >
-                {children}
-            </SWrapper>
-           </SRoot>
+            <SRoot as={Component} $colors={colors} style={wrapperStyle}>
+                <SWrapper {...rest}>{children}</SWrapper>
+            </SRoot>
         );
     }
 );
@@ -69,7 +54,7 @@ export const BaseLayout: React.FC<BaseLayoutProps> = React.memo(
 //export component
 export const SBaseLayout = {
     Root: SRoot,
-    Layout: SWrapper
+    Layout: SWrapper,
 };
 
 //export type

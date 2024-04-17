@@ -1,6 +1,5 @@
-import { BaseAvatar, SBaseAvatar, TBaseAvatar } from "./base-avatar/BaseAvatar";
-export { BaseAvatar }
-
+import { BaseAvatar, SBaseAvatar, TBaseAvatar } from './base-avatar/BaseAvatar';
+export { BaseAvatar };
 
 export const AvatarStyledComponent = {
     BaseAvatar: SBaseAvatar,

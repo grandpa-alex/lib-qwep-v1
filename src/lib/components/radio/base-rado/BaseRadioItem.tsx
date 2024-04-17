@@ -10,7 +10,6 @@ import { getMargin } from '@src/lib/common/getMargin';
 import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
 import { RadioGroupIndicatorProps, RadioGroupItemProps } from '@radix-ui/react-radio-group';
 
-
 type TypeStyles = {
     mr: TypeSSMR;
     radio: TypeSSRadio;
@@ -27,8 +26,6 @@ type BaseRadioItemProps = {
     _isActiveHover?: boolean;
 } & RadioGroupItemProps &
     React.RefAttributes<HTMLButtonElement>;
-
-
 
 type SItemProps = {
     $color?: Hex;
@@ -67,8 +64,8 @@ const SIZE_RADIO_INDICATOR = {
 type SIndicatorProps = {
     $styles: TypeStyles;
     $sizeVariant: TypeVariantSize;
-} & RadioGroupIndicatorProps & React.RefAttributes<HTMLSpanElement>;
-
+} & RadioGroupIndicatorProps &
+    React.RefAttributes<HTMLSpanElement>;
 
 const SIndicator = styled(RadioGroup.Indicator)<SIndicatorProps>`
     &::after {
@@ -157,35 +154,33 @@ export const BaseRadioItem: React.FC<BaseRadioItemProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['mr', 'radio']);
 
         return (
-<SItem
-    $color={color}
-    $mr={mr}
-    $colors={colors}
-    $styles={styles}
-    $colorVariant={colorVariant}
-    $sizeVariant={sizeVariant}
-    $_isActiveHover={_isActiveHover}
-    {...rest}
->
-    <SIndicator
-     $sizeVariant={sizeVariant}
-     $styles={styles}
-    />
-</SItem>
+            <SItem
+                $color={color}
+                $mr={mr}
+                $colors={colors}
+                $blocked={blocked}
+                $styles={styles}
+                $colorVariant={colorVariant}
+                $sizeVariant={sizeVariant}
+                $_isActiveHover={_isActiveHover}
+                {...rest}
+            >
+                <SIndicator $sizeVariant={sizeVariant} $styles={styles} />
+            </SItem>
         );
     }
 );
 
-  //export component
-  export const SBaseRadioItem = {
-        Item: SItem,
-        Indicator: SIndicator,
-  };
+//export component
+export const SBaseRadioItem = {
+    Item: SItem,
+    Indicator: SIndicator,
+};
 
-  //export type
-  export namespace TBaseRadioItem {
-      export type Styles = TypeStyles;
-      export type Main = BaseRadioItemProps;
-      export type SItem = SItemProps;
-      export type SIndicator = SIndicatorProps
-  }
+//export type
+export namespace TBaseRadioItem {
+    export type Styles = TypeStyles;
+    export type Main = BaseRadioItemProps;
+    export type SItem = SItemProps;
+    export type SIndicator = SIndicatorProps;
+}

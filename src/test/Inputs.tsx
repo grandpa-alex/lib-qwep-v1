@@ -1,11 +1,4 @@
-import {
-    BaseBox,
-    BaseTextField,
-    BaseTextarea,
-    Icon,
-    SimpleTextField,
-    SubmitTextField,
-} from '@src/lib';
+import { BaseBox, BaseTextField, BaseTextarea, Icon, SimpleTextField, SubmitTextField } from '@src/lib';
 import { useState } from 'react';
 
 function Inputs() {
@@ -355,7 +348,6 @@ function Inputs() {
                 />
             </div>
 
-        
             <h4>SUBMIT INPUT Base Textarea</h4>
             <BaseBox style={{ display: 'flex' }} mr={'m-3'} boxGapVariant={'g-3'}>
                 <BaseTextarea colorVariant={'success'} placeholder={'Test placeholder'} />

@@ -2,7 +2,8 @@ import { BaseBox, BaseTitle, SimpleBox } from '@src/lib';
 import { colorsDark, colorsLight } from '@src/lib/general/colors';
 import { BaseText } from '../lib/components/typography/base/BaseText';
 
-const Card = ({ title, value }: any) => {
+//@ts-ignore
+const Card = ({ title, value }) => {
     return (
         <SimpleBox boxPaddingVariant={'p-3'} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div

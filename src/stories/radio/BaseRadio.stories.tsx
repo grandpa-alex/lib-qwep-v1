@@ -1,11 +1,20 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { BaseBox, BaseRadioGroup, BaseRadioItem, TypeRadio, WrapperInput } from '@src/lib';
 import { TypePositionInpLabel } from '@src/lib/types/TypeInp';
 import { TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
 
-export default {
+interface RadioGroupArgs extends TypeRadio.BaseRadioGroup.Main {
+    activeValue?: string;
+    disabled?: boolean;
+    positionLabel: TypePositionInpLabel;
+    colorVariant: TypeVariantColor;
+    sizeVariant: TypeVariantSize;
+}
+
+const meta = {
     title: 'Components/radio/BaseRadioGroup',
     component: BaseRadioGroup,
+
     tags: ['autodocs'],
     argTypes: {
         activeValue: {
@@ -22,20 +31,15 @@ export default {
             options: Object.values(VS),
         },
     },
-} as Meta;
+} satisfies Meta<RadioGroupArgs>;
+export default meta;
+type Story = StoryObj<RadioGroupArgs>;
 
-const Template: Story<
-    TypeRadio.BaseRadioGroup.Main & {
-        activeValue: string;
-        disabled: boolean;
-        positionLabel: TypePositionInpLabel;
-        colorVariant: TypeVariantColor;
-        sizeVariant: TypeVariantSize;
-    }
-> = (args) => {
+// Шаблон для Story
+const Template = (args: RadioGroupArgs) => {
     return (
         <BaseBox boxDisplay={'flex'} style={{ justifyContent: 'center', margin: '50px auto' }}>
-            <BaseRadioGroup orientation={args.orientation} {...args}>
+            <BaseRadioGroup {...args}>
                 {[1, 2, 3, 4].map((num) => (
                     <WrapperInput
                         key={num}
@@ -56,9 +60,13 @@ const Template: Story<
     );
 };
 
-export const Main = Template.bind({});
-Main.args = {
-    positionLabel: 'right',
-    colorVariant: 'default',
-    label: 'Default',
+export const Main: Story = {
+    render: Template,
+    args: {
+        positionLabel: 'right',
+        colorVariant: 'default',
+        sizeVariant: 'M',
+        label: 'Default',
+        activeValue: '1',
+    },
 };

@@ -27,7 +27,7 @@ type SBoxProps = {
     $boxWidthVariant?: TypeBoxWidthVariant;
     $boxPaddingVariant?: TypeBoxPaddingVariant;
     $boxGapVariant?: TypeBoxGapVariant;
-    $boxDisplay?: TypeBoxDisplay
+    $boxDisplay?: TypeBoxDisplay;
     $mr?: TypeMargin;
     $styles: TypeStyles;
 } & React.HTMLAttributes<HTMLDivElement>;
@@ -45,7 +45,17 @@ const SBox = styled.div<SBoxProps>`
 `;
 
 export const BaseBox: React.FC<BaseBoxProps> = React.memo(
-    ({ children, mr, boxWidthVariant, boxDisplay, boxPaddingVariant, boxGapVariant, as: Component = 'div', $styles, ...rest }) => {
+    ({
+        children,
+        mr,
+        boxWidthVariant,
+        boxDisplay,
+        boxPaddingVariant,
+        boxGapVariant,
+        as: Component = 'div',
+        $styles,
+        ...rest
+    }) => {
         const styles = $styles ?? useStyleScheme(['box', 'mr']);
 
         return (

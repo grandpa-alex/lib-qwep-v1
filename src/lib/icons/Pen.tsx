@@ -1,4 +1,3 @@
-import React from 'react';
 import { IconSVGContainerProps, IconSVGContainer } from './IconSVGContainer';
 
 export type PenProps = IconSVGContainerProps;

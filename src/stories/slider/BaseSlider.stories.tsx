@@ -1,7 +1,7 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { BaseBox, BaseSlider, BaseText, BaseTitle, TypeSlider } from '@src/lib';
 
-export default {
+const meta = {
     title: 'Components/slider/BaseSlider',
     component: BaseSlider,
     tags: ['autodocs'],
@@ -13,9 +13,11 @@ export default {
             defaultValue: false,
         },
     },
-} as Meta;
+} satisfies Meta<typeof BaseSlider>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const Template: Story<TypeSlider.BaseSlider.Main> = (args) => {
+const Template = (args: TypeSlider.BaseSlider.Main) => {
     return (
         <BaseBox boxDisplay={'flex'} style={{ justifyContent: 'center', margin: '50px auto' }}>
             <BaseSlider {...args} />
@@ -23,10 +25,15 @@ const Template: Story<TypeSlider.BaseSlider.Main> = (args) => {
     );
 };
 
-export const Main = Template.bind({});
-Main.args = {
-    
+export const Main: Story = {
+    render: Template,
+    args: {
+        defaultValue: [50],
+        max: 100,
+        step: 1,
+    },
 };
+
 export const ExampleBaseSlider = () => (
     <BaseBox mr={'mt-3'}>
         <BaseTitle as={'h4'} mr={'mb-3'}>
@@ -42,20 +49,22 @@ export const ExampleBaseSlider = () => (
         <BaseTitle as={'h4'} mr={'my-3'}>
             State
         </BaseTitle>
-        <BaseBox boxDisplay="flex" style={{alignItems: 'center'}} boxGapVariant={'g-3'}>
-            <BaseSlider colorVariant={'default'} blocked defaultValue={[50]} max={100} step={1} /> <BaseText>blocked</BaseText>
-            <BaseSlider colorVariant={'info'} disabled defaultValue={[50]} max={100} step={1} /> <BaseText>disabled</BaseText>
+        <BaseBox boxDisplay="flex" style={{ alignItems: 'center' }} boxGapVariant={'g-3'}>
+            <BaseSlider colorVariant={'default'} blocked defaultValue={[50]} max={100} step={1} />{' '}
+            <BaseText>blocked</BaseText>
+            <BaseSlider colorVariant={'info'} disabled defaultValue={[50]} max={100} step={1} />{' '}
+            <BaseText>disabled</BaseText>
+            <BaseSlider defaultValue={[50]} max={100} step={1} colorVariant={'success'} sizeVariant={'M'} />{' '}
+            <BaseText>sizeVariant M</BaseText>
             <BaseSlider
-            defaultValue={[50]} max={100} step={1}
+                orientation={'vertical'}
+                defaultValue={[50]}
+                max={100}
+                step={1}
                 colorVariant={'success'}
                 sizeVariant={'M'}
-            /> <BaseText>sizeVariant M</BaseText>
-                  <BaseSlider
-                  orientation={'vertical'}
-            defaultValue={[50]} max={100} step={1}
-                colorVariant={'success'}
-                sizeVariant={'M'}
-            /> <BaseText>orientation vertical</BaseText>
+            />{' '}
+            <BaseText>orientation vertical</BaseText>
         </BaseBox>
     </BaseBox>
 );

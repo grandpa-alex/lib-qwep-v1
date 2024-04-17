@@ -1,7 +1,7 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { BaseBox, BaseTextarea, BaseTitle, TypeInput } from '@src/lib';
 
-export default {
+const meta = {
     title: 'Components/input/BaseTextarea',
     component: BaseTextarea,
     tags: ['autodocs'],
@@ -13,9 +13,11 @@ export default {
             defaultValue: false,
         },
     },
-} as Meta;
+} satisfies Meta<typeof BaseTextarea>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const Template: Story<TypeInput.BaseTextarea.Main> = (args) => {
+const Template = (args: TypeInput.BaseTextarea.Main) => {
     return (
         <BaseBox boxDisplay={'flex'} style={{ justifyContent: 'center', margin: '50px auto' }}>
             <BaseTextarea {...args} />
@@ -23,10 +25,11 @@ const Template: Story<TypeInput.BaseTextarea.Main> = (args) => {
     );
 };
 
-export const Main = Template.bind({});
-Main.args = {
-    placeholder: 'Base text field',
+export const Main: Story = {
+    render: Template,
+    args: { placeholder: 'Base textarea' },
 };
+
 export const ExampleBaseTextarea = () => (
     <BaseBox mr={'mt-3'}>
         <BaseTitle as={'h4'} mr={'mb-3'}>

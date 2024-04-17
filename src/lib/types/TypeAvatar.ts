@@ -3,4 +3,4 @@ export enum VSA {
     M = 'medium',
     L = 'large',
 }
-export type TypeVariantSizeAvatar = 'small' | 'medium' | 'large' 
+export type TypeVariantSizeAvatar = 'small' | 'medium' | 'large';

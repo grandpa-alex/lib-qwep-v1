@@ -1,7 +1,7 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { BaseBox, SubmitSwitch, BaseTitle, TypeSwitch } from '@src/lib';
 
-export default {
+const meta = {
     title: 'Components/switch/SubmitSwitch',
     component: SubmitSwitch,
     tags: ['autodocs'],
@@ -13,9 +13,11 @@ export default {
             defaultValue: false,
         },
     },
-} as Meta;
+} satisfies Meta<typeof SubmitSwitch>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const Template: Story<TypeSwitch.SubmitSwitch.Main> = (args) => {
+const Template = (args: TypeSwitch.SubmitSwitch.Main) => {
     return (
         <BaseBox boxDisplay={'flex'} style={{ justifyContent: 'center', margin: '50px auto' }}>
             <SubmitSwitch {...args} />
@@ -23,9 +25,11 @@ const Template: Story<TypeSwitch.SubmitSwitch.Main> = (args) => {
     );
 };
 
-export const Main = Template.bind({});
-Main.args = {
-    isLoading: false
+export const Main: Story = {
+    render: Template,
+    args: {
+        isLoading: false,
+    },
 };
 export const ExampleSubmitSwitch = () => (
     <BaseBox mr={'mt-3'}>
@@ -33,8 +37,8 @@ export const ExampleSubmitSwitch = () => (
             Loading
         </BaseTitle>
         <BaseBox boxDisplay="flex" boxGapVariant={'g-1'}>
-            <SubmitSwitch isLoading={false} colorVariant={'default'}  />
-            <SubmitSwitch isLoading={true} colorVariant={'info'}  />
+            <SubmitSwitch isLoading={false} colorVariant={'default'} />
+            <SubmitSwitch isLoading={true} colorVariant={'info'} />
         </BaseBox>
     </BaseBox>
 );

@@ -3,10 +3,11 @@ import { RootTextField, SRootTextField, TRootTextField } from './base-text-field
 import { BaseTextField, SBaseTextField, TBaseTextField } from './base-text-field/BaseTextField';
 import { SSimpleTextField, SimpleTextField, TSimpleTextField } from './simple-text-field/SimpleTextField';
 import { SubmitTextField, SSubmitTextField, TSubmitTextField } from './submit-text-field/SubmitTextField';
-import { WrapperTextField, TWrapperTextField, SWrapperTextField } from './wrapper-text-field/WrapperTextField';
+import { WrapperInput, TWrapperInput, SWrapperInput } from './wrapper-input/WrapperInput';
 import { BaseTextarea, SBaseTextarea, TBaseTextarea } from './base-textarea/BaseTextarea';
+import { SMessageBox, TMessageBox } from './wrapper-input/MessageBox';
 
-export { BaseInput, RootTextField, BaseTextField, SimpleTextField, SubmitTextField, BaseTextarea, WrapperTextField };
+export { BaseInput, RootTextField, BaseTextField, SimpleTextField, SubmitTextField, BaseTextarea, WrapperInput };
 
 export const InputStyledComponent = {
     BaseInput: SBaseInput,
@@ -15,7 +16,8 @@ export const InputStyledComponent = {
     SimpleTextField: SSimpleTextField,
     SubmitTextField: SSubmitTextField,
     BaseTextarea: SBaseTextarea,
-    WrapperTextField: SWrapperTextField,
+    MessageBox: SMessageBox,
+    WrapperInput: SWrapperInput,
 };
 
 export namespace TypeInput {
@@ -55,11 +57,16 @@ export namespace TypeInput {
         export type SRoot = TBaseTextarea.SRoot;
     }
 
-    export namespace WrapperTextField {
-        export type Styles = TWrapperTextField.Styles;
-        export type Main = TWrapperTextField.Main;
-        export type Message = TWrapperTextField.Message;
-        export type SMessage = TWrapperTextField.SMessage;
-        export type SRoot = TWrapperTextField.SRoot;
+    export namespace WrapperInput {
+        export type Styles = TWrapperInput.Styles;
+        export type Main = TWrapperInput.Main;
+        export type SRoot = TWrapperInput.SRoot;
+    }
+
+    export namespace MessageBox {
+        export type Styles = TMessageBox.Styles;
+        export type Message = TMessageBox.Message;
+        export type Main = TMessageBox.Main;
+        export type SMessage = TMessageBox.SMessage;
     }
 }

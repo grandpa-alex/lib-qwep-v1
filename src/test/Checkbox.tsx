@@ -1,4 +1,4 @@
-import { BaseCheckbox, BaseSwitch, SubmitCheckbox, SubmitSwitch } from '@src/lib';
+import { BaseCheckbox, BaseRadioGroup, BaseRadioItem, BaseSwitch, SubmitCheckbox, SubmitSwitch, WrapperInput } from '@src/lib';
 import { useState } from 'react';
 
 function Checkbox() {
@@ -103,6 +103,71 @@ function Checkbox() {
             </div>
             <div style={{ display: 'flex' }}>
                 <SubmitSwitch mr={'m-3'} onCheckedChange={(check) => testHS(check)} isLoading={lS} />
+            </div>
+            <h4>BASE RADIO L</h4>
+            <div >
+                <BaseRadioGroup >
+                <WrapperInput
+                     positionLabel={'right'}
+                     id={'1'}
+                     label={'BaseRadioItem'}
+                >
+                    <BaseRadioItem id={'1'} colorVariant={'success'} value={'1'} />
+                </WrapperInput>
+                <WrapperInput
+                     positionLabel={'right'}
+                     id={'2'}
+                     label={'BaseRadioItem'}
+                >
+                    <BaseRadioItem  id={'2'} colorVariant={'success'} value={'2'} />
+                </WrapperInput>
+                <WrapperInput
+                     positionLabel={'right'}
+                     id={'3'}
+                     label={'BaseRadioItem'}
+                >
+                    <BaseRadioItem sizeVariant={'M'} id={'3'} colorVariant={'success'} value={'3'} />
+                </WrapperInput>
+                <WrapperInput
+                     positionLabel={'right'}
+                     id={'4'}
+                     label={'BaseRadioItem'}
+                >
+                    <BaseRadioItem sizeVariant={'M'} id={'4'} colorVariant={'success'} value={'4'} />
+                </WrapperInput>
+                </BaseRadioGroup>
+
+                <BaseRadioGroup orientation={'horizontal'} label={'hkjrt khr '} message={{'text': ' greg reg regre ger'}}>
+                <WrapperInput
+                     positionLabel={'right'}
+                     id={'1'}
+                     label={'BaseRadioItem'}
+                >
+                    <BaseRadioItem id={'1'} colorVariant={'success'} value={'1'} />
+                </WrapperInput>
+                <WrapperInput
+                     positionLabel={'right'}
+                     id={'2'}
+                     label={'BaseRadioItem'}
+                >
+                    <BaseRadioItem  id={'2'} colorVariant={'success'} value={'2'} />
+                </WrapperInput>
+                <WrapperInput
+                     positionLabel={'right'}
+                     id={'3'}
+                     label={'BaseRadioItem'}
+                >
+                    <BaseRadioItem sizeVariant={'M'} id={'3'} colorVariant={'success'} value={'3'} />
+                </WrapperInput>
+                <WrapperInput
+                     positionLabel={'right'}
+                     id={'4'}
+                     label={'BaseRadioItem'}
+                >
+                    <BaseRadioItem sizeVariant={'M'} id={'4'} colorVariant={'success'} value={'4'} />
+                </WrapperInput>
+                </BaseRadioGroup>
+               
             </div>
         </div>
     );

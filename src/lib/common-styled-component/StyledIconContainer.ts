@@ -15,7 +15,7 @@ export type StyledIconContainerProps = {
     $color?: Hex;
     $disabled?: boolean;
     $_importantColor?: boolean;
-    $colorVariant: TypeVariantColor;
+    $colorVariant?: TypeVariantColor;
     $sizeVariant: TypeVariantSize;
     $colors: TypeColorScheme;
     $styles: TypeStyleIconContainer;

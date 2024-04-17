@@ -2,7 +2,6 @@ import { BaseButton, BaseTitle, Icon, SimpleButton, SubmitButton } from '@src/li
 import { TypeVariantColor } from '@src/lib/types/TypeBase';
 import { TypeVariantBtn } from '@src/lib/types/TypeBtn';
 import { useState } from 'react';
-import { Warning } from '../lib/icons/Warning';
 
 function Buttons() {
     const [loading, setLoading] = useState(false);
@@ -273,7 +272,7 @@ function Buttons() {
                     mr={'m-3'}
                     style={{ width: '200px' }}
                     iconPosition={'right'}
-                    icon={<Icon.Settings />}
+                    icon={<Icon.Gear />}
                     position={'right'}
                 >
                     SimpleButton right
@@ -302,7 +301,7 @@ function Buttons() {
                     mr={'m-3'}
                     style={{ width: '200px' }}
                     iconPosition={'right'}
-                    icon={<Icon.Settings />}
+                    icon={<Icon.Gear style={{width: '10px'}} />}
                     sizeVariant={'M'}
                     position={'right'}
                 >
@@ -333,7 +332,7 @@ function Buttons() {
                 >
                     SimpleButton left
                 </SimpleButton>
-                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Settings />} sizeVariant={'M'} position={'right'}>
+                <SimpleButton mr={'m-3'} disabled={true} icon={<Icon.Gear />} sizeVariant={'M'} position={'right'}>
                     SimpleButton right
                 </SimpleButton>
             </div>
@@ -343,7 +342,7 @@ function Buttons() {
                     mr={'m-3'}
                     disabled={true}
                     variant={'outlined'}
-                    icon={<Icon.Settings />}
+                    icon={<Icon.Gear />}
                     position={'center'}
                 >
                     SimpleButton def
@@ -392,7 +391,7 @@ function Buttons() {
                     mr={'m-3'}
                     disabled={true}
                     variant={'outlined'}
-                    icon={<Icon.Settings />}
+                    icon={<Icon.Gear />}
                     sizeVariant={'M'}
                     position={'right'}
                 >

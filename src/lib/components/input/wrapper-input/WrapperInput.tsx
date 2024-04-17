@@ -1,15 +1,16 @@
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { getColor } from '@src/lib/common/getColor';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBox, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
-import { TypeVariantColor, TypeMargin } from '@src/lib/types/TypeBase';
+import { TypeMargin } from '@src/lib/types/TypeBase';
 import { BOX_GAP_VARIANT } from '@src/lib/common-styled-component/StyledComponentBox';
 import { TypeBoxGapVariant } from '@src/lib/types/TypeBox';
 import { BaseText } from '../../typography';
+import { PIL, TypePositionInpLabel } from '@src/lib/types/TypeInp';
+import { MessageBox, TMessageBox } from './MessageBox';
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -17,53 +18,49 @@ type TypeStyles = {
     typography: TypeSSTypography;
 };
 
-type TypeMessage = {
-    text?: React.ReactNode;
-    colorVariant?: TypeVariantColor;
-};
-
-type WrapperTextFieldProps = {
+type WrapperInputProps = {
+    label: string;
+    id: string;
+    positionLabel: TypePositionInpLabel;
     mr?: TypeMargin;
     children?: React.ReactNode;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-    label: string;
-    id: string;
     boxGapVariant?: TypeBoxGapVariant;
-    message?: TypeMessage;
+    message?: TMessageBox.Message;
     labelColor?: Hex;
     blocked?: boolean;
     as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
 } & React.HTMLAttributes<HTMLElement>;
-
-type SMessageProps = {
-    $colors: TypeColorScheme;
-    $colorVariant: TypeVariantColor;
-};
 
 type SRootProps = {
     $mr?: TypeMargin;
     $blocked?: boolean;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
+    $positionLabel: TypePositionInpLabel;
     $boxGapVariant: TypeBoxGapVariant;
 };
 
-const SMessage = styled.span<SMessageProps>`
-    position: absolute;
-    font-size: 11px;
-    bottom: -15px;
-    left: 0px;
-    color: ${(props) =>
-        getColor({
-            cs: props.$colors,
-            variant: props.$colorVariant,
-        })};
-`;
+
+const POSITION = {
+    [PIL.TOP]: css`
+        display: grid;
+    `,
+    [PIL.RIGTH]: css`
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+    `,
+    [PIL.LEFT]: css`
+        display: flex;
+        align-items: center;
+    `,
+};
 
 const SRoot = styled.div<SRootProps>`
     position: relative;
-    display: grid;
+
     ${(props) => BOX_GAP_VARIANT[props.$boxGapVariant](props.$styles.box)};
     ${(props) => getMargin(props.$styles.mr, props.$mr)}
     ${(props) =>
@@ -71,15 +68,17 @@ const SRoot = styled.div<SRootProps>`
         css`
             pointer-events: none;
         `}
+    ${(props) => POSITION[props.$positionLabel]}
 `;
 
-export const WrapperTextField: React.FC<WrapperTextFieldProps> = React.memo(
+export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
     ({
         as,
         mr,
         id,
         children,
         blocked,
+        positionLabel,
         $colors,
         $styles,
         label,
@@ -91,7 +90,7 @@ export const WrapperTextField: React.FC<WrapperTextFieldProps> = React.memo(
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['box', 'mr', 'typography']);
 
-        const renderInput = useMemo(() => {
+        const renderItem = useMemo(() => {
             return React.cloneElement(children as React.ReactElement, { id: id });
         }, [children, id]);
 
@@ -102,11 +101,12 @@ export const WrapperTextField: React.FC<WrapperTextFieldProps> = React.memo(
                 $styles={styles}
                 as={as}
                 $mr={mr}
+                $positionLabel={positionLabel}
                 $boxGapVariant={boxGapVariant}
                 {...rest}
             >
                 <BaseText
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: 'pointer', userSelect: 'none' }}
                     $colors={colors}
                     $styles={styles}
                     color={labelColor}
@@ -115,28 +115,21 @@ export const WrapperTextField: React.FC<WrapperTextFieldProps> = React.memo(
                 >
                     {label}
                 </BaseText>
-                {renderInput}
-                {message && (
-                    <SMessage $colors={colors} $colorVariant={message.colorVariant ?? 'error'}>
-                        {message.text}
-                    </SMessage>
-                )}
+                {renderItem}
+                <MessageBox $colors={colors} message={message}/>
             </SRoot>
         );
     }
 );
 
 //export component
-export const SWrapperTextField = {
-    Root: SRoot,
-    Message: SMessage,
+export const SWrapperInput = {
+    Root: SRoot
 };
 
 //export type
-export namespace TWrapperTextField {
+export namespace TWrapperInput {
     export type Styles = TypeStyles;
-    export type Message = TypeMessage;
-    export type Main = WrapperTextFieldProps;
+    export type Main = WrapperInputProps;
     export type SRoot = SRootProps;
-    export type SMessage = SMessageProps;
 }

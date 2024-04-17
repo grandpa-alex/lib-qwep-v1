@@ -71,6 +71,7 @@ export const SimpleBox: React.FC<SimpleBoxProps> = React.memo(
                 $boxRadiusVariant={boxRadiusVariant}
                 $boxShadowVariant={boxShadowVariant}
                 $boxShadowColor={boxShadowColor}
+                $boxDisplay={rest.boxDisplay}
                 {...rest}
             >
                 {children}

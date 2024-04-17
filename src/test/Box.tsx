@@ -1,10 +1,10 @@
-import { BaseBox, BaseTitle, SimpleBox, SimpleTextField } from '@src/lib';
+import { BaseBox, BaseMenuGroup, BaseMenuItem, BaseTitle, SimpleBox, SimpleTextField } from '@src/lib';
 
 function Box() {
     return (
-        <BaseBox style={{ paddingBottom: '300px' }}>
+        <BaseBox>
             <h2>BASE BOX</h2>
-            <BaseBox boxGapVariant={'g-3'} mr={'m-3'} style={{ display: 'flex' }}>
+            {/* <BaseBox boxGapVariant={'g-3'} mr={'m-3'} style={{ display: 'flex' }}>
                 <BaseBox
                     boxPaddingVariant={'p-1'}
                     boxGapVariant={'g-1'}
@@ -46,7 +46,7 @@ function Box() {
                     <SimpleTextField placeholder={'Placeholder'} />
                     <SimpleTextField placeholder={'Placeholder'} />
                 </BaseBox>
-            </BaseBox>
+            </BaseBox> */}
             <BaseTitle as={'h2'}>Simple Box</BaseTitle>
             <SimpleBox
                 mr={'m-3'}
@@ -55,12 +55,45 @@ function Box() {
                 boxWidthVariant={'w-4'}
                 boxRadiusVariant={'br-3'}
                 boxShadowVariant={'shd-3'}
-                // style={{ background: '#f5eee4' }}
             >
                 <SimpleTextField placeholder={'Placeholder'} />
                 <SimpleTextField placeholder={'Placeholder'} />
                 <SimpleTextField placeholder={'Placeholder'} />
             </SimpleBox>
+            <SimpleBox
+                mr={'m-3'}
+                boxPaddingVariant={'p-4'}
+                boxGapVariant={'g-4'}
+                boxWidthVariant={'w-null'}
+                boxRadiusVariant={'br-3'}
+                boxShadowVariant={'shd-3'}
+            >
+                <SimpleTextField placeholder={'Placeholder'} />
+                <SimpleTextField placeholder={'Placeholder'} />
+                <SimpleTextField placeholder={'Placeholder'} />
+            </SimpleBox>
+            <BaseBox
+                boxPaddingVariant={'p-4'}
+                boxGapVariant={'g-4'}
+                boxWidthVariant={'w-6'}
+                style={{ background: '#f5eee4' }}
+            >
+                <SimpleTextField placeholder={'Placeholder'} />
+                <SimpleTextField placeholder={'Placeholder'} />
+                <SimpleTextField placeholder={'Placeholder'} />
+            </BaseBox>
+
+            <BaseMenuGroup mr={'m-5'} onChange={(e) => console.log(e)}>
+                <BaseMenuItem value={'1'} >item 1</BaseMenuItem>
+                <BaseMenuItem value={'2'} >item 2</BaseMenuItem>
+                <BaseMenuItem value={'3'} >item 3</BaseMenuItem>
+            </BaseMenuGroup>
+
+            <BaseMenuGroup orientation={'vertical'} mr={'m-5'}>
+                <BaseMenuItem value={'1'} >item 1</BaseMenuItem>
+                <BaseMenuItem value={'2'} >item 2</BaseMenuItem>
+                <BaseMenuItem value={'3'} >item 3</BaseMenuItem>
+            </BaseMenuGroup>
         </BaseBox>
     );
 }

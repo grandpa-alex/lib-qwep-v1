@@ -6,6 +6,9 @@ export type TypeColorScheme = {
     primary: Hex;
     secondary: Hex;
 
+    //other 
+    lightElem: Hex;
+
     //items
     primaryItem: Hex;
     primaryItemActive: Hex;
@@ -24,6 +27,7 @@ export type TypeColorScheme = {
     backgroundTooltip: Hex;
     disabled: Hex;
     shadowColor: Hex;
+    
 
     //sec base
     backgroundSuccess: Hex;
@@ -39,6 +43,9 @@ export type TypeColorScheme = {
     linkActive: Hex;
     prompt: Hex;
 
+
+
+
     //general
     alpha: Hex;
     omaga: Hex;
@@ -46,9 +53,14 @@ export type TypeColorScheme = {
     [key: string]: Hex;
 };
 
+
 export const colorsLight: TypeColorScheme = {
     primary: '#2563EB',
     secondary: '#E5F1FF',
+
+    //other 
+    lightElem: '#A9C1CF',
+
 
     //items
     primaryItem: '#2563EB',
@@ -89,6 +101,9 @@ export const colorsLight: TypeColorScheme = {
 export const colorsDark: TypeColorScheme = {
     primary: '#3B82F6',
     secondary: '#171821',
+
+    //other 
+    lightElem: '#A9C1CF',
 
     //items
     primaryItem: '#3B82F6',

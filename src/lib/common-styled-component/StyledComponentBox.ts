@@ -2,6 +2,7 @@ import { css } from 'styled-components';
 import { TypeSSBox } from '../general/styleScheme';
 import { Hex, TypeColorScheme } from '../general/colors';
 import {
+    TypeBoxDisplay,
     TypeBoxGapVariant,
     TypeBoxPaddingVariant,
     TypeBoxRadiusVariant,
@@ -11,22 +12,22 @@ import {
 
 export const BOX_WIDTH_VARIANT = {
     ['w-1']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_1};
+       max-width: ${props.boxWidth_1};
     `,
     ['w-2']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_2};
+        max-width: ${props.boxWidth_2};
     `,
     ['w-3']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_3};
+        max-width: ${props.boxWidth_3};
     `,
     ['w-4']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_4};
+        max-width: ${props.boxWidth_4};
     `,
     ['w-5']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_5};
+        max-width: ${props.boxWidth_5};
     `,
     ['w-6']: (props: TypeSSBox) => css`
-        width: ${props.boxWidth_6};
+         max-width: ${props.boxWidth_6};
     `,
     ['w-null']: () => css`
         width: auto;
@@ -121,15 +122,14 @@ export type CSSBaseBoxProps = {
     $boxWidthVariant?: TypeBoxWidthVariant;
     $boxPaddingVariant?: TypeBoxPaddingVariant;
     $boxGapVariant?: TypeBoxGapVariant;
+    $boxDisplay?: TypeBoxDisplay
     $styles: TypeSSBox;
+
 };
 
 export const CSSBaseBox = (props: CSSBaseBoxProps) => css`
-    ${props.$boxGapVariant &&
-    css`
-        display: grid;
-        ${BOX_GAP_VARIANT[props.$boxGapVariant](props.$styles)}
-    `}
+    display: ${props.$boxDisplay ?? 'block'};
+    ${props.$boxGapVariant && BOX_GAP_VARIANT[props.$boxGapVariant](props.$styles)}
     ${props.$boxPaddingVariant && BOX_PADDING_VARIANT[props.$boxPaddingVariant](props.$styles)};
     ${props.$boxWidthVariant && BOX_WIDTH_VARIANT[props.$boxWidthVariant](props.$styles)};
 `;

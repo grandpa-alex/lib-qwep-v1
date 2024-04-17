@@ -9,3 +9,5 @@ export * from './popup';
 export * from './dialog';
 export * from './typography';
 export * from './slider';
+export * from './avatar';
+export * from './radio'

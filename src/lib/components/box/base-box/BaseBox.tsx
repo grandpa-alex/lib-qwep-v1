@@ -3,7 +3,7 @@ import { getMargin } from '@src/lib/common/getMargin';
 import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { TypeMargin } from '@src/lib/types/TypeBase';
-import { TypeBoxGapVariant, TypeBoxPaddingVariant, TypeBoxWidthVariant } from '@src/lib/types/TypeBox';
+import { TypeBoxDisplay, TypeBoxGapVariant, TypeBoxPaddingVariant, TypeBoxWidthVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
 import { styled } from 'styled-components';
 
@@ -18,6 +18,7 @@ type BaseBoxProps = {
     boxWidthVariant?: TypeBoxWidthVariant;
     boxPaddingVariant?: TypeBoxPaddingVariant;
     boxGapVariant?: TypeBoxGapVariant;
+    boxDisplay?: TypeBoxDisplay;
     as?: string;
     $styles?: TypeStyles;
 } & React.HTMLAttributes<HTMLDivElement>;
@@ -26,6 +27,7 @@ type SBoxProps = {
     $boxWidthVariant?: TypeBoxWidthVariant;
     $boxPaddingVariant?: TypeBoxPaddingVariant;
     $boxGapVariant?: TypeBoxGapVariant;
+    $boxDisplay?: TypeBoxDisplay
     $mr?: TypeMargin;
     $styles: TypeStyles;
 } & React.HTMLAttributes<HTMLDivElement>;
@@ -37,12 +39,13 @@ const SBox = styled.div<SBoxProps>`
             $boxPaddingVariant: props.$boxPaddingVariant,
             $boxGapVariant: props.$boxGapVariant,
             $styles: props.$styles.box,
+            $boxDisplay: props.$boxDisplay,
         })};
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
 `;
 
 export const BaseBox: React.FC<BaseBoxProps> = React.memo(
-    ({ children, mr, boxWidthVariant, boxPaddingVariant, boxGapVariant, as: Component = 'div', $styles, ...rest }) => {
+    ({ children, mr, boxWidthVariant, boxDisplay, boxPaddingVariant, boxGapVariant, as: Component = 'div', $styles, ...rest }) => {
         const styles = $styles ?? useStyleScheme(['box', 'mr']);
 
         return (
@@ -53,6 +56,7 @@ export const BaseBox: React.FC<BaseBoxProps> = React.memo(
                 $boxWidthVariant={boxWidthVariant}
                 $boxPaddingVariant={boxPaddingVariant}
                 $boxGapVariant={boxGapVariant}
+                $boxDisplay={boxDisplay}
                 {...rest}
             >
                 {children}

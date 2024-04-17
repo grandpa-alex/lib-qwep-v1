@@ -2,6 +2,7 @@ export * from './components/index';
 export * as General from './general';
 export * as Icon from './icons';
 
+import { TypeVariantSizeAvatar, VSA } from './types/TypeAvatar';
 import {
     MP,
     TypeVariantColor,
@@ -39,3 +40,12 @@ export const EnumBaseButton = {
     VariantBtn: VB,
     BtnPosition: BP,
 };
+
+export namespace TypeBaseAvatar {
+    export type VariantSizeAvatar = TypeVariantSizeAvatar;
+}
+
+export const EnumBaseAvatar = {
+    VariantSizeAvatar: VSA,
+};
+

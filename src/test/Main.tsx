@@ -9,6 +9,9 @@ import DialogTooltip from './DialogTooltip';
 import Box from './Box';
 import Text from './Text';
 import Icons from './Icons';
+import Avatar from './Avatar';
+import { BaseLayout } from '@src/lib';
+import WrapperItem from './WrapperItem';
 
 // const Wrapper = ({children}: any) => {
 //     const colors = useColorScheme();
@@ -21,7 +24,7 @@ import Icons from './Icons';
 // }
 
 function Main() {
-    const [val, setVal] = useState(<Icons />);
+    const [val, setVal] = useState(<Box />);
     // const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
 
     const handler = (val: string) => {
@@ -56,11 +59,19 @@ function Main() {
             case 'icons':
                 setVal(<Icons />);
                 break;
+                case 'ava':
+                    setVal(<Avatar />);
+                    break;
+                    case 'wrapper':
+                        setVal(<WrapperItem />);
+                        break;
+                    
+                
         }
     };
 
     return (
-        <div>
+        <BaseLayout>
             <div style={{ display: 'flex' }}>
                 <button onClick={() => handler('btn')}>buttons</button>
                 <button onClick={() => handler('inp')}>inputs</button>
@@ -72,9 +83,11 @@ function Main() {
                 <button onClick={() => handler('text')}>Text</button>
                 <button onClick={() => handler('colors')}>Colors</button>
                 <button onClick={() => handler('icons')}>Icons</button>
+                <button onClick={() => handler('ava')}>Avatar</button>
+                <button onClick={() => handler('wrapper')}>WrapperItem</button>
             </div>
             <div>{val}</div>
-        </div>
+        </BaseLayout>
 
         // <>
         //     <div>

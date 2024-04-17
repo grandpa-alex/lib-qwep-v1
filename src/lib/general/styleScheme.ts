@@ -78,6 +78,23 @@ export type TypeSSSlider = {
     thumbSize_M: string;
 };
 
+export type TypeSSAvatar = {
+    avatarSize_1: string;
+    avatarSize_2: string;
+    avatarSize_3: string;
+    avatarFontSize_1: string;
+    avatarFontSize_2: string;
+    avatarFontSize_3: string;
+    avatarFontWeight: string;
+};
+
+export type TypeSSRadio = {
+    radioSize_L: string;
+    radioSize_M: string;
+    radioSizeIndicator_L: string
+    radioSizeIndicator_M: string
+};
+
 export type TypeSSTypography = {
     fontSizeItem: string;
     fontSizeGlobal: string;
@@ -134,6 +151,10 @@ export type TypeSS = {
     inp: TypeSSInp;
     //select
     select: TypeSSSelect;
+    //avatar
+    avatar: TypeSSAvatar;
+    //radio
+    radio: TypeSSRadio;
     // icon
     icon: TypeSSIcon;
     //checkbox
@@ -150,10 +171,12 @@ export type TypeSS = {
 };
 
 export const styleScheme: TypeSS = {
+    
     // base
     base: {
         borderRadiusItem: '8px',
     },
+
     //margin
     mr: {
         margin_1: '4px',
@@ -169,6 +192,7 @@ export const styleScheme: TypeSS = {
         margin_11: '80px',
         margin_12: '88px',
     },
+
     //btn
     btn: {
         btnPadding_X_L: '14px',
@@ -180,6 +204,7 @@ export const styleScheme: TypeSS = {
         btnIconSize_L: '20px',
         btnIconSize_M: '18px',
     },
+
     //inp
     inp: {
         inpPadding_X_L: '14px',
@@ -191,7 +216,8 @@ export const styleScheme: TypeSS = {
         inpIconSize_L: '20px',
         inpIconSize_M: '18px',
     },
-    //inp
+
+    //select 
     select: {
         selectPadding_X_L: '14px',
         selectPadding_Y_L: '5px',
@@ -202,11 +228,18 @@ export const styleScheme: TypeSS = {
         selectIconSize_L: '20px',
         selectIconSize_M: '18px',
     },
-    // icon
-    icon: {
-        iconSize_L: '28px',
-        iconSize_M: '20px',
+
+    //avatar
+    avatar: {
+        avatarSize_1: '24px',
+        avatarSize_2: '32px',
+        avatarSize_3: '45px',
+        avatarFontSize_1: '10px',
+        avatarFontSize_2: '14px',
+        avatarFontSize_3: '20px',
+        avatarFontWeight: '600',
     },
+
     //checkbox
     checkbox: {
         checkboxSize_L: '24px',
@@ -214,6 +247,7 @@ export const styleScheme: TypeSS = {
         checkboxLoadingSize_L: '20px',
         checkboxLoadingSize_M: '16px',
     },
+
     // switch
     switch: {
         switchSize_X_L: '36px',
@@ -230,6 +264,20 @@ export const styleScheme: TypeSS = {
     slider: {
         thumbSize_L: '16px',
         thumbSize_M: '14px',
+    },
+
+    // radio
+    radio: {
+        radioSize_L: '24px',
+        radioSize_M: '20px',
+        radioSizeIndicator_L: '10px',
+        radioSizeIndicator_M: '8px',
+    },
+
+    // icon
+    icon: {
+        iconSize_L: '24px',
+        iconSize_M: '20px',
     },
 
     //text

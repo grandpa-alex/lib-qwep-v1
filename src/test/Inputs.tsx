@@ -5,7 +5,6 @@ import {
     Icon,
     SimpleTextField,
     SubmitTextField,
-    WrapperTextField,
 } from '@src/lib';
 import { useState } from 'react';
 
@@ -356,41 +355,7 @@ function Inputs() {
                 />
             </div>
 
-            <h4>SUBMIT INPUT WrapperTextField</h4>
-            <BaseBox style={{ width: '300px' }} mr={'m-3'} boxGapVariant={'g-3'}>
-                <WrapperTextField
-                    label={'This is a label'}
-                    message={{
-                        text: 'Error this is invalid input!',
-                    }}
-                    id={'435235'}
-                >
-                    <SubmitTextField
-                        isLoading={false}
-                        colorVariant={'success'}
-                        iconPosition={'left'}
-                        icon={<Icon.Settings />}
-                        placeholder={'Placeholder'}
-                    />
-                </WrapperTextField>
-                <WrapperTextField
-                    label={'This is a label'}
-                    message={{
-                        text: 'Error this is invalid input!',
-                    }}
-                    id={'435235'}
-                    blocked
-                >
-                    <SubmitTextField
-                        isLoading={false}
-                        sizeVariant={'M'}
-                        colorVariant={'success'}
-                        iconPosition={'left'}
-                        icon={<Icon.Settings />}
-                        placeholder={'Placeholder'}
-                    />
-                </WrapperTextField>
-            </BaseBox>
+        
             <h4>SUBMIT INPUT Base Textarea</h4>
             <BaseBox style={{ display: 'flex' }} mr={'m-3'} boxGapVariant={'g-3'}>
                 <BaseTextarea colorVariant={'success'} placeholder={'Test placeholder'} />

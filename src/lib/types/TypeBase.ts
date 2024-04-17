@@ -115,3 +115,10 @@ export enum IIP {
 }
 
 export type TypeItemIconPosition = 'right' | 'left';
+
+export enum OC {
+    VERTICAL = 'vertical',
+    HORIZONTAL = 'horizontal',
+}
+
+export type TypeOrientationContent = 'vertical' | 'horizontal'

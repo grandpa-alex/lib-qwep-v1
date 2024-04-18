@@ -24,7 +24,7 @@ import WrapperItem from './WrapperItem';
 // }
 
 function Main() {
-    const [val, setVal] = useState(<Box />);
+    const [val, setVal] = useState(<Checkbox />);
     // const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
 
     const handler = (val: string) => {

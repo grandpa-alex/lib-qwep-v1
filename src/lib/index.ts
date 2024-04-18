@@ -17,6 +17,7 @@ import {
     OC,
 } from './types/TypeBase';
 import { BP, TypeBtnPosition, TypeVariantBtn, VB } from './types/TypeBtn';
+import { PIL, TypeInpVariant, TypePositionInpLabel } from './types/TypeInp';
 
 export namespace TypeBase {
     export type Margin = TypeMargin;
@@ -43,6 +44,15 @@ export namespace TypeBaseButton {
 export const EnumBaseButton = {
     VariantBtn: VB,
     BtnPosition: BP,
+};
+
+export namespace TypeBaseInput {
+    export type VariantInp = TypeInpVariant;
+    export type PositionInpLabel = TypePositionInpLabel;
+}
+
+export const EnumBaseInput = {
+    PositionInpLabel: PIL,
 };
 
 export namespace TypeBaseAvatar {

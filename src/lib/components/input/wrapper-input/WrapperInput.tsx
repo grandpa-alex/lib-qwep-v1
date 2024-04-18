@@ -21,7 +21,7 @@ type TypeStyles = {
 type WrapperInputProps = {
     label: string;
     id: string;
-    positionLabel: TypePositionInpLabel;
+    positionLabel?: TypePositionInpLabel;
     mr?: TypeMargin;
     children?: React.ReactNode;
     $colors?: TypeColorScheme;
@@ -59,7 +59,7 @@ const POSITION = {
 
 const SRoot = styled.div<SRootProps>`
     position: relative;
-
+    width: fit-content;
     ${(props) => BOX_GAP_VARIANT[props.$boxGapVariant](props.$styles.box)};
     ${(props) => getMargin(props.$styles.mr, props.$mr)}
     ${(props) =>
@@ -77,7 +77,7 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
         id,
         children,
         blocked,
-        positionLabel,
+        positionLabel = PIL.TOP,
         $colors,
         $styles,
         label,
@@ -103,7 +103,6 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
                 $positionLabel={positionLabel}
                 $boxGapVariant={boxGapVariant}
                 {...rest}
-                data={'uthtihjtirjhitrjhi'}
             >
                 <BaseText
                     style={{ cursor: 'pointer', userSelect: 'none' }}

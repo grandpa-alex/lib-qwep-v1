@@ -1,4 +1,4 @@
-import { BaseSlider } from '@src/lib';
+import { BaseSlider, WrapperInput } from '@src/lib';
 
 function Slider() {
     return (
@@ -129,15 +129,20 @@ function Slider() {
                     step={1}
                     color={'#d80097'}
                 />
-                <BaseSlider
+
+
+<WrapperInput positionLabel={'right'} id={'1'} label={'BaseRadioItem'}>
+<BaseSlider
                     mr={'m-3'}
-                    orientation={'vertical'}
+       
                     disabled
                     defaultValue={[20, 70]}
                     max={100}
                     step={1}
                     color={'#d80097'}
                 />
+                    </WrapperInput>
+              
             </div>
         </div>
     );

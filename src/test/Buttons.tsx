@@ -1,4 +1,4 @@
-import { BaseButton, BaseTitle, Icon, SimpleButton, SubmitButton } from '@src/lib';
+import { BaseButton, BaseTitle, Icon, SimpleButton, SubmitButton, SubmitTextField } from '@src/lib';
 import { TypeVariantColor } from '@src/lib/types/TypeBase';
 import { TypeVariantBtn } from '@src/lib/types/TypeBtn';
 import { useState } from 'react';
@@ -633,6 +633,24 @@ function Buttons() {
                 >
                     SubmitButton
                 </SubmitButton>
+                <Icon.SendArrow position={'top'} />
+                <SubmitButton
+                    isLoading={loading}
+                    iconPosition={'right'}
+                    style={{ width: '300px' }}
+                    icon={<Icon.SendArrow position={'top'}   />}
+                    variant="outlined"
+                    mr={'m-3'}
+                >
+                    SubmitButton
+                </SubmitButton>
+                <SubmitTextField
+                    mr={'m-3'}
+                    isLoading={false}
+                    icon={<Icon.ArrowLine position={'top'}  />}
+                    colorVariant={'error'}
+                    placeholder={'Placeholder'}
+                />
             </div>
         </div>
     );

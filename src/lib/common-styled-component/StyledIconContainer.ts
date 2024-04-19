@@ -25,10 +25,14 @@ const ICON_SIZE = {
     [VS.L]: (props: StyledIconContainerProps) => css`
         width: ${props.$styles.icon.iconSize_L};
         height: ${props.$styles.icon.iconSize_L};
+        min-width: ${props.$styles.icon.iconSize_L};
+        min-height: ${props.$styles.icon.iconSize_L};
     `,
     [VS.M]: (props: StyledIconContainerProps) => css`
         width: ${props.$styles.icon.iconSize_M};
         height: ${props.$styles.icon.iconSize_M};
+        min-width: ${props.$styles.icon.iconSize_M};
+        min-height: ${props.$styles.icon.iconSize_M};
     `,
 };
 

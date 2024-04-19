@@ -32,7 +32,7 @@ type TypeStyles = {
 };
 
 type BaseSelectContentProps = {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     mr?: TypeMargin;
     width?: string;
     sizeVariant?: TypeVariantSize;

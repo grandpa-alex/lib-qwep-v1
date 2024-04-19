@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { SelectGroupProps } from '@radix-ui/react-select';
 
 type BaseSelectGroupProps = {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     title?: string;
 } & SelectGroupProps &
     React.RefAttributes<HTMLDivElement>;

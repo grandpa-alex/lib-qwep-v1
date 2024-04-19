@@ -19,7 +19,7 @@ type TypeStyles = {
 };
 
 type WrapperInputProps = {
-    label: string;
+    label?: string;
     id: string;
     positionLabel?: TypePositionInpLabel;
     mr?: TypeMargin;

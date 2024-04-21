@@ -149,12 +149,11 @@ function Checkbox() {
                 </BaseRadioGroup>
             </div>
 
-<div style={{width: '1000px', paddingTop: '100px', background: '#afafaf6f'}}>
-<WrapperInput positionLabel={'right'} id={'321421421421421'} label={'BaseRadioItem'}>
-<SubmitSwitch  isLoading={false} />
-        </WrapperInput>
-</div>
-       
+            <div style={{ width: '1000px', paddingTop: '100px', background: '#afafaf6f' }}>
+                <WrapperInput positionLabel={'right'} id={'321421421421421'} label={'BaseRadioItem'}>
+                    <SubmitSwitch isLoading={false} />
+                </WrapperInput>
+            </div>
         </div>
     );
 }

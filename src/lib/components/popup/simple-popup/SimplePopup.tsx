@@ -104,7 +104,6 @@ const STitle = styled.div`
 const SHeader = styled.div<SHeaderProps>`
     margin-left: 2px;
     width: 100%;
-    display: inline-flex;
     font-size: ${(props) => props.$styles.typography.h6};
     color: ${(props) => props.$colors.title};
     border-bottom: 1px solid;
@@ -114,6 +113,7 @@ const SHeader = styled.div<SHeaderProps>`
         CSSBaseBox({
             $boxPaddingVariant: props.$boxPaddingVariant,
             $styles: props.$styles.box,
+            $boxDisplay: 'inline-flex',
         })};
     ${SIcon} {
         svg {
@@ -128,7 +128,7 @@ const SCard = styled.div<SCardProps>`
     display: flex;
     align-items: center;
     max-height: calc((${(props) => props.$maxHeight ?? '300px'}) - 50px);
-    margin: 4px 2px 8px 2px;
+    margin: 4px 4px 8px 2px;
     font-size: ${(props) => props.$styles.typography.fontSizeGlobal};
     font-weight: ${(props) => props.$styles.typography.fontWeightGlobal};
     color: ${(props) => props.$colors.text};

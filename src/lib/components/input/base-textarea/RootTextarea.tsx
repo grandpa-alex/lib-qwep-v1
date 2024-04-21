@@ -1,6 +1,7 @@
 import { getColor } from '@src/lib/common/getColor';
 import { getMargin } from '@src/lib/common/getMargin';
-import { Hex, TypeColorScheme, useColorScheme } from '@src/lib/general';
+import { useColorScheme } from '@src/lib/general';
+import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSInp, TypeSSMR } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { TypeMargin, TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
@@ -40,10 +41,10 @@ type SRootProps = {
 
 const SIZE = {
     [VS.L]: (props: TypeSSInp) => css`
-        padding: ${props.inpPadding_Y_L} ${props.inpPadding_X_L};
+        padding: ${props.inpPadding_Y_L} 5px ${props.inpPadding_Y_L} ${props.inpPadding_X_L};
     `,
     [VS.M]: (props: TypeSSInp) => css`
-        padding: ${props.inpPadding_Y_M} ${props.inpPadding_X_M};
+        padding: ${props.inpPadding_Y_M} 3px ${props.inpPadding_Y_M} ${props.inpPadding_X_M};
     `,
 };
 

@@ -16,6 +16,14 @@ import {
     TypeOrientationContent,
     OC,
 } from './types/TypeBase';
+import {
+    TypeBoxDisplay,
+    TypeBoxGapVariant,
+    TypeBoxPaddingVariant,
+    TypeBoxRadiusVariant,
+    TypeBoxShadowVariant,
+    TypeBoxWidthVariant,
+} from './types/TypeBox';
 import { BP, TypeBtnPosition, TypeVariantBtn, VB } from './types/TypeBtn';
 import { PIL, TypeInpVariant, TypePositionInpLabel } from './types/TypeInp';
 
@@ -62,3 +70,12 @@ export namespace TypeBaseAvatar {
 export const EnumBaseAvatar = {
     VariantSizeAvatar: VSA,
 };
+
+export namespace TypeBaseBox {
+    export type BoxWidthVariant = TypeBoxWidthVariant;
+    export type BoxPaddingVariant = TypeBoxPaddingVariant;
+    export type BoxGapVariant = TypeBoxGapVariant;
+    export type BoxShadowVariant = TypeBoxShadowVariant;
+    export type BoxRadiusVariant = TypeBoxRadiusVariant;
+    export type BoxDisplay = TypeBoxDisplay;
+}

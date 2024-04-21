@@ -130,19 +130,9 @@ function Slider() {
                     color={'#d80097'}
                 />
 
-
-<WrapperInput positionLabel={'right'} id={'1'} label={'BaseRadioItem'}>
-<BaseSlider
-                    mr={'m-3'}
-       
-                    disabled
-                    defaultValue={[20, 70]}
-                    max={100}
-                    step={1}
-                    color={'#d80097'}
-                />
-                    </WrapperInput>
-              
+                <WrapperInput positionLabel={'right'} id={'1'} label={'BaseRadioItem'}>
+                    <BaseSlider mr={'m-3'} disabled defaultValue={[20, 70]} max={100} step={1} color={'#d80097'} />
+                </WrapperInput>
             </div>
         </div>
     );

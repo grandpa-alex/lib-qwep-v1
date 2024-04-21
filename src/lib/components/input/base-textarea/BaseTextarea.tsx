@@ -1,5 +1,4 @@
 import { getColor } from '@src/lib/common/getColor';
-import { Hex, TypeColorScheme, useColorScheme } from '@src/lib/general';
 import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { TypeMargin, TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
@@ -8,6 +7,8 @@ import styled, { css } from 'styled-components';
 import { RootTextarea, TRootTextarea } from './RootTextarea';
 import { BaseInputArea, TBaseInputArea } from './BaseInputArea';
 import { StyledScrollbarItem } from '@src/lib/common-styled-component/StyledBase';
+import { Hex, TypeColorScheme } from '@src/lib/general/colors';
+import { useColorScheme } from '@src/lib/general/useColorScheme';
 
 type TypeStyles = {
     typography: TypeSSTypography;
@@ -29,8 +30,7 @@ type BaseTextareaProps = {
 } & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 const STextarea = styled(BaseInputArea)<TBaseInputArea.STextarea>`
-    padding: 0 3px;
-    margin: 0 -6px;
+    padding: 0 3px 0 0;
 `;
 
 type SRootProps = {

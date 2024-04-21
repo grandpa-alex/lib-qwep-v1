@@ -7,9 +7,9 @@ import { TypeInpVariant, VI } from '@src/lib/types/TypeInp';
 import React, { useCallback, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { BaseInput, RootTextField } from '..';
-import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/general';
 import { TBaseInput } from './BaseInput';
 import { TRootTextField } from './RootTextField';
+import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 
 type TypeStyles = {
     base: TypeSSBase;

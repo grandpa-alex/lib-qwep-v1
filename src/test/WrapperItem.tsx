@@ -3,6 +3,7 @@ import {
     BaseCheckbox,
     BaseSlider,
     BaseSwitch,
+    BaseTextarea,
     BaseTextField,
     BaseTitle,
     SimpleTextField,
@@ -152,7 +153,30 @@ function WrapperItem() {
                 >
                     <BaseSlider />
                 </WrapperInput>
+
+                <WrapperInput
+                    positionLabel={'top'}
+                    id={'SubmitSwitch'}
+                    label={'SubmitSwitch'}
+                    message={{
+                        text: 'SubmitSwitch',
+                    }}
+                    style={{ width: '200px' }}
+                >
+                    <BaseTextarea />
+                </WrapperInput>
             </BaseBox>
+            <WrapperInput
+                positionLabel={'top'}
+                id={'SubmitSwitch'}
+                label={'SubmitSwitch'}
+                message={{
+                    text: 'SubmitSwitch',
+                }}
+                style={{ width: '400px' }}
+            >
+                <BaseTextarea />
+            </WrapperInput>
         </BaseBox>
     );
 }

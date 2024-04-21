@@ -6,8 +6,8 @@ import { styled } from 'styled-components';
 export type SendArrowProps = { position?: TypeIconPosition } & IconSVGContainerProps;
 
 const IconSVGContainerSendArrow = styled(IconSVGContainer)<{ $rotate?: string }>`
-    transform: ${props => props.$rotate};
-`
+    transform: ${(props) => props.$rotate};
+`;
 
 export const SendArrow: React.FC<SendArrowProps> = ({ position = IP.LEFT, ...rest }) => {
     const rotate = {
@@ -16,7 +16,7 @@ export const SendArrow: React.FC<SendArrowProps> = ({ position = IP.LEFT, ...res
         [IP.TOP]: 'rotate(-90deg)',
         [IP.RIGTH]: 'rotate(0)',
     };
-    
+
     return (
         <IconSVGContainerSendArrow
             viewBox="0 0 30 30"

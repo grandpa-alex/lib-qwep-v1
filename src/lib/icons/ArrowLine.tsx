@@ -8,9 +8,8 @@ export type ArrowLineProps = {
 } & IconSVGContainerProps;
 
 const IconSVGContainerArrowLine = styled(IconSVGContainer)<{ $rotate?: string }>`
-    transform: ${props => props.$rotate};
-`
-
+    transform: ${(props) => props.$rotate};
+`;
 
 export const ArrowLine: React.FC<ArrowLineProps> = ({ position = IP.TOP, ...rest }) => {
     const rotate = {

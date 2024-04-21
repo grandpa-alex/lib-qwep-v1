@@ -156,6 +156,7 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
                         $disabled={rest.disabled}
                         $iconPosition={iconPosition}
                         $useBtn={Boolean(iconOnClick)}
+                        type={'button'}
                     >
                         {renderIcon}
                     </SIconContainer>

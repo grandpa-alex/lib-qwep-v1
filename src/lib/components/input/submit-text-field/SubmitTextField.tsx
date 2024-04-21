@@ -135,6 +135,7 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                         $iconPosition={iconPosition}
                         $disabled={rest.disabled || isLoading}
                         $useBtn={Boolean(iconOnClick)}
+                        type={'button'}
                     >
                         {renderIcon}
                     </SSimpleTextField.IconContainer>

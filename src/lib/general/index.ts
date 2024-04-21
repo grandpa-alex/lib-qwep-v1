@@ -5,9 +5,10 @@ import {
     TypeColorTheme,
     TypeCustomColorTheme,
 } from './BaseThemeContext';
-import { Hex, TypeColorScheme, TypeDafaultColorSchemes, colorsDark, colorsLight } from './colors';
+import { TypeColorScheme, colorsDark, colorsLight } from './colors';
 import {
     TypeSS,
+    TypeSSAvatar,
     TypeSSBase,
     TypeSSBox,
     TypeSSBtn,
@@ -15,6 +16,7 @@ import {
     TypeSSIcon,
     TypeSSInp,
     TypeSSMR,
+    TypeSSRadio,
     TypeSSSelect,
     TypeSSSlider,
     TypeSSSwitch,
@@ -39,26 +41,25 @@ export {
     //styles
     styleScheme,
 };
-export type {
-    //core
-    TypeColorTheme,
-    TypeCustomColorTheme,
-    TypeBaseThemeContext,
-    //colors
-    Hex,
-    TypeDafaultColorSchemes,
-    TypeColorScheme,
-    //styles
-    TypeSS,
-    TypeSSMR,
-    TypeSSBase,
-    TypeSSBtn,
-    TypeSSInp,
-    TypeSSIcon,
-    TypeSSCheckbox,
-    TypeSSSwitch,
-    TypeSSSelect,
-    TypeSSSlider,
-    TypeSSTypography,
-    TypeSSBox,
-};
+
+export namespace TypeGeneral {
+    export type ColorTheme = TypeColorTheme;
+    export type CustomColorTheme = TypeCustomColorTheme;
+    export type BaseThemeContext = TypeBaseThemeContext;
+    export type Hex = `#${string}`;
+    export type ColorScheme = TypeColorScheme;
+    export type SS = TypeSS;
+    export type SSMR = TypeSSMR;
+    export type SSBase = TypeSSBase;
+    export type SSBtn = TypeSSBtn;
+    export type SSInp = TypeSSInp;
+    export type SSIcon = TypeSSIcon;
+    export type SSCheckbox = TypeSSCheckbox;
+    export type SSAvatar = TypeSSAvatar;
+    export type SSSwitch = TypeSSSwitch;
+    export type SSSlider = TypeSSSlider;
+    export type SSSelect = TypeSSSelect;
+    export type SSRadio = TypeSSRadio;
+    export type SSTypography = TypeSSTypography;
+    export type SSBox = TypeSSBox;
+}

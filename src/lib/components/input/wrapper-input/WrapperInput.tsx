@@ -82,7 +82,7 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
         $styles,
         label,
         message,
-        boxGapVariant = 'g-1',
+        boxGapVariant = 'g-2',
         labelColor,
         ...rest
     }) => {

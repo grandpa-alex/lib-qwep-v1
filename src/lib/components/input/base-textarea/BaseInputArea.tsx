@@ -24,6 +24,7 @@ const STextarea = styled.textarea<STextareaProps>`
     font-size: ${(props) => props.$styles.typography.fontSizeItem};
     border: 0;
     height: 100%;
+    width: 100%;
     resize: ${(props) => (props.$resize ? 'vertical' : 'none')};
 `;
 

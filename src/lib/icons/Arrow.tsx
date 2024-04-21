@@ -8,8 +8,8 @@ export type ArrowProps = {
 } & IconSVGContainerProps;
 
 const IconSVGContainerArrow = styled(IconSVGContainer)<{ $rotate?: string }>`
-    transform: ${props => props.$rotate};
-`
+    transform: ${(props) => props.$rotate};
+`;
 
 export const Arrow: React.FC<ArrowProps> = ({ position = IP.TOP, ...rest }) => {
     const rotate = {

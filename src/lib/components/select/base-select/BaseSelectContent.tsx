@@ -316,7 +316,7 @@ type SViewportProps = {
 const SViewport = styled.div<SViewportProps>`
     max-height: ${(props) => props.$maxHeight ?? '300px'};
     overflow-y: auto;
-    margin: 0 -3px;
+    margin: 0 -4px;
     padding: 0 3px;
     ${(props) =>
         StyledScrollbarItem({

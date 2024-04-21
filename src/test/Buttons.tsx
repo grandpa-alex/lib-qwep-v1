@@ -638,7 +638,7 @@ function Buttons() {
                     isLoading={loading}
                     iconPosition={'right'}
                     style={{ width: '300px' }}
-                    icon={<Icon.SendArrow position={'top'}   />}
+                    icon={<Icon.SendArrow position={'top'} />}
                     variant="outlined"
                     mr={'m-3'}
                 >
@@ -647,7 +647,7 @@ function Buttons() {
                 <SubmitTextField
                     mr={'m-3'}
                     isLoading={false}
-                    icon={<Icon.ArrowLine position={'top'}  />}
+                    icon={<Icon.ArrowLine position={'top'} />}
                     colorVariant={'error'}
                     placeholder={'Placeholder'}
                 />

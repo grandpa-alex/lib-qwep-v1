@@ -13,7 +13,7 @@ import {
     TypeBoxShadowVariant,
     TypeBoxWidthVariant,
 } from '@src/lib/types/TypeBox';
-import { Hex, TypeColorScheme } from '@src/lib/general';
+import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 
 type TypeStyles = {
     box: TypeSSBox;
@@ -149,7 +149,7 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
                 }
                 return child;
             });
-        }, [children, handleClick, activeValue, itemSizeVariant, itemColor, $styles, $colors, rest]);
+        }, [children, handleClick, activeValue, itemSizeVariant, itemColor, $styles, $colors]);
 
         return (
             <SRoot

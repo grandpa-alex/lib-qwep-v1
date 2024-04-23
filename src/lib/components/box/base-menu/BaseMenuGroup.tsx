@@ -35,7 +35,8 @@ type BaseMenuGroupProps = {
     boxShadowColor?: Hex;
     boxShadowVariant?: TypeBoxShadowVariant;
     boxRadiusVariant?: TypeBoxRadiusVariant;
-    onChange?: (value: string | null) => void | Promise<void>;
+    onChangeActiveItem?: (value: string) => void | Promise<void>;
+    activeItem?: string
 
     //items
     itemSizeVariant?: TypeVariantSize;
@@ -74,6 +75,7 @@ const ORIENTATION = {
 };
 
 const SRoot = styled.div<SRootProps>`
+    position: relative;
     background-color: ${(props) => props.$bg ?? props.$colors.secondary};
     ${(props) =>
         CSSSimpleBox({
@@ -108,7 +110,8 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
         boxShadowVariant = 'shd-1',
         boxShadowColor,
         orientation = OC.HORIZONTAL,
-        onChange,
+        onChangeActiveItem,  
+        activeItem,
 
         itemSizeVariant = VS.L,
         itemColor,
@@ -120,15 +123,15 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['box', 'mr', 'btn', 'typography']);
         const colors = $colors ?? useColorScheme();
 
-        const [activeValue, setActiveValue] = useState<string | null>(null);
+        const [activeValue, setActiveValue] = useState<string>(activeItem ?? '');
 
         const handleClick = useCallback(
             (event: React.MouseEvent<HTMLButtonElement>) => {
                 const newValue = event.currentTarget.getAttribute('value');
-                setActiveValue(newValue);
-                onChange && onChange(newValue);
+                setActiveValue(newValue || '');
+                onChangeActiveItem && onChangeActiveItem(newValue || '');  
             },
-            [onChange]
+            [onChangeActiveItem]  
         );
 
         const renderItems = useMemo(() => {
@@ -136,7 +139,6 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
                 if (React.isValidElement(child) && child.props.value) {
                     return React.cloneElement(child, {
                         onClick: handleClick,
-                        //@ts-ignore
                         activeItem: Boolean(child.props.value === activeValue),
                         sizeVariant: itemSizeVariant,
                         color: itemColor,

@@ -298,11 +298,11 @@ export const styleScheme: TypeSS = {
     box: {
         boxBorderRadius_1: '8px',
         boxBorderRadius_2: '12px',
-        boxBorderRadius_3: '22px',
+        boxBorderRadius_3: '20px',
 
-        boxShadow_1: '2px 3px 6px 0px',
-        boxShadow_2: '3px 4px 12px 3px',
-        boxShadow_3: '4px 5px 18px 5px',
+        boxShadow_1: '2px 2px 3px 0px',
+        boxShadow_2: '3px 3px 6px 2px',
+        boxShadow_3: '4px 4px 12px 5px',
 
         boxWidth_1: '120px',
         boxWidth_2: '260px',
@@ -311,18 +311,19 @@ export const styleScheme: TypeSS = {
         boxWidth_5: '680px',
         boxWidth_6: '720px',
 
-        boxPadding_1: '8px',
-        boxPadding_2: '12px',
-        boxPadding_3: '20px',
-        boxPadding_4: '28px',
-        boxPadding_5: '36px',
-        boxPadding_6: '44px',
+        boxPadding_1: '4px',
+        boxPadding_2: '8px',
+        boxPadding_3: '12px',
+        boxPadding_4: '20px',
+        boxPadding_5: '28px',
+        boxPadding_6: '36px',
 
-        boxGap_1: '8px',
-        boxGap_2: '12px',
-        boxGap_3: '20px',
-        boxGap_4: '28px',
-        boxGap_5: '36px',
-        boxGap_6: '44px',
+        boxGap_1: '4px',
+        boxGap_2: '8px',
+        boxGap_3: '12px',
+        boxGap_4: '20px',
+        boxGap_5: '28px',
+        boxGap_6: '36px',
+
     },
 };

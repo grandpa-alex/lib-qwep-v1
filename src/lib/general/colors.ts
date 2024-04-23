@@ -72,7 +72,7 @@ export const colorsLight: TypeColorScheme = {
     backgroundBox: '#ffffff',
     backgroundTooltip: '#1f1f1fc8',
     disabled: '#B9BCBE',
-    shadowColor: '#002B4D',
+    shadowColor: '#002B4D40',
     //sec base
     backgroundSuccess: '#DCFCE7',
     backgroundError: '#FEE2E2',

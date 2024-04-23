@@ -168,12 +168,14 @@ function WrapperItem() {
             </BaseBox>
             <WrapperInput
                 positionLabel={'top'}
+                required
+                mr={'m-11'}
                 id={'SubmitSwitch'}
                 label={'SubmitSwitch'}
                 message={{
-                    text: 'SubmitSwitch',
+                    text: 'SubmitSwitch jfrheui ghreh grhg hrehg kerhk hrjkgh krewhrkhj wkljh klwej hkljw',
                 }}
-                style={{ width: '400px' }}
+                // style={{ width: '400px' }}
             >
                 <BaseTextarea />
             </WrapperInput>

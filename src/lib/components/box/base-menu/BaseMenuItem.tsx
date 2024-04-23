@@ -63,6 +63,7 @@ export const SButton = styled.button<SButtonProps>`
     border-radius: ${({ $styles }) => $styles.base.borderRadiusItem};
     cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
     border: 0;
+    color: ${(props) => props.$colors.text};
     ${(props) => BTN_SIZE[props.$sizeVariant](props)};
     ${(props) =>
         props.$blocked &&

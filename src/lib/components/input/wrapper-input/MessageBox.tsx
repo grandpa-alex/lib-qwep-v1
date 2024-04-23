@@ -29,8 +29,8 @@ type SMessageProps = {
 
 const SMessage = styled.span<SMessageProps>`
     position: absolute;
-    font-size: 11px;
-    bottom: -15px;
+    font-size: 10px;
+    top: calc(100% + 2px);
     left: 0px;
     color: ${(props) =>
         getColor({

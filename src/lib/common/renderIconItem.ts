@@ -15,10 +15,14 @@ export const renderIconTextField = ({ icon, size, sizeVariant, rest }: renderIco
         [VS.L]: {
             width: size.inpIconSize_L,
             height: size.inpIconSize_L,
+            minWidth: size.inpIconSize_L,
+            minheight: size.inpIconSize_L,
         },
         [VS.M]: {
             width: size.inpIconSize_M,
             height: size.inpIconSize_M,
+            minWidth: size.inpIconSize_M,
+            minHeight: size.inpIconSize_M,
         },
     };
     return React.cloneElement(icon as React.ReactElement, {
@@ -46,10 +50,14 @@ export const renderIconButton = ({ icon, size, sizeVariant, rest }: renderIconBi
         [VS.L]: {
             width: size.btnIconSize_L,
             height: size.btnIconSize_L,
+            minWidth: size.btnIconSize_L,
+            minHeight: size.btnIconSize_L,
         },
         [VS.M]: {
             width: size.btnIconSize_M,
             height: size.btnIconSize_M,
+            minWidth: size.btnIconSize_M,
+            minHeight: size.btnIconSize_M,
         },
     };
     return React.cloneElement(icon as React.ReactElement, {

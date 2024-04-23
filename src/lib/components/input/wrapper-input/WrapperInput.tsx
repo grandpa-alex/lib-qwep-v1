@@ -21,6 +21,7 @@ type TypeStyles = {
 type WrapperInputProps = {
     label?: string;
     id: string;
+    required?: boolean
     positionLabel?: TypePositionInpLabel;
     mr?: TypeMargin;
     children?: React.ReactNode;
@@ -76,6 +77,7 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
         mr,
         id,
         children,
+        required,
         blocked,
         positionLabel = PIL.TOP,
         $colors,
@@ -112,7 +114,7 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
                     as={'label'}
                     htmlFor={id}
                 >
-                    {label}
+                    {label}{required && <span style={{color: colors.errorItem}}>*</span>}
                 </BaseText>
                 {renderItem}
                 <MessageBox $colors={colors} message={message} />

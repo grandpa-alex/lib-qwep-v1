@@ -87,7 +87,7 @@ function Box() {
                 mr={'m-5'}
                 itemSizeVariant={'M'}
                 itemTextColorActive={'#ff0000'}
-                itemOpacityActive={''}
+                itemOpacityActive={'40'}
                 itemOpacityHover={'20'}
                 onChangeActiveItem={(value) => console.log(value)}
             >

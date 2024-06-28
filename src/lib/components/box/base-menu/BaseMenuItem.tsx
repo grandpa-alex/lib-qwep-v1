@@ -18,7 +18,7 @@ type TypeStyles = {
 type BaseMenuItemProps = {
     value: string;
     children?: React.ReactNode;
-    activeItem?: boolean;
+    active?: boolean;
     sizeVariant?: TypeVariantSize;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
@@ -41,7 +41,7 @@ type SButtonProps = {
     $opacityActive?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
     $textColor?: Hex;
     $textColorActive?: Hex;
-    $activeItem?: boolean;
+    $active?: boolean;
     $_isActiveHover: boolean;
     $blocked?: boolean;
 };
@@ -79,7 +79,7 @@ export const SButton = styled.button<SButtonProps>`
             pointer-events: none;
         `}
     ${(props) => {
-        if (props.$activeItem) {
+        if (props.$active) {
             return css`
                 background-color: ${getColor({
                     cs: props.$colors,
@@ -93,7 +93,7 @@ export const SButton = styled.button<SButtonProps>`
 
     &:not([disabled]):hover {
         ${(props) =>
-            !props.$activeItem &&
+            !props.$active &&
             css`
                 background-color: ${getColor({
                     cs: props.$colors,
@@ -108,7 +108,7 @@ export const SButton = styled.button<SButtonProps>`
 export const BaseMenuItem: React.FC<BaseMenuItemProps> = React.memo(
     ({
         children,
-        activeItem,
+        active,
         color,
         sizeVariant = VS.L,
         onClick,
@@ -148,7 +148,7 @@ export const BaseMenuItem: React.FC<BaseMenuItemProps> = React.memo(
                 $textColorActive={textColorActive}
                 $color={color}
                 $blocked={blocked}
-                $activeItem={activeItem}
+                $active={active}
                 $_isActiveHover={_isActiveHover}
                 onClick={handleClick}
                 {...rest}

@@ -147,7 +147,7 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
                 if (React.isValidElement(child) && child.props.value) {
                     return React.cloneElement(child, {
                         onClick: handleClick,
-                        activeItem: Boolean(child.props.value === activeValue),
+                        active: Boolean(child.props.value === activeValue),
                         sizeVariant: itemSizeVariant,
                         color: itemColor,
                         opacityHover: itemOpacityHover,

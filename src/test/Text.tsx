@@ -60,16 +60,15 @@ function Text() {
                 Base Title H6
             </BaseTitle>
 
-
-            <div style={{width: '100px', }}>
-            {/* <BaseParagraph mr={'m-3'} isEllipsis>
+            <div style={{ width: '100px' }}>
+                {/* <BaseParagraph mr={'m-3'} isEllipsis>
                 Base Title H2
                 Loremipsumdolorsitmetconsecteturadipisicingelit
             </BaseParagraph> */}
 
-            <BaseTitle mr={'m-3'} as={'h6'} isEllipsis>
-            Loremipsumdolorsitmetconsecteturadipisicingelit
-            </BaseTitle>
+                <BaseTitle mr={'m-3'} as={'h6'} isEllipsis>
+                    Loremipsumdolorsitmetconsecteturadipisicingelit
+                </BaseTitle>
             </div>
         </BaseBox>
     );

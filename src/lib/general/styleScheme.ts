@@ -324,6 +324,5 @@ export const styleScheme: TypeSS = {
         boxGap_4: '20px',
         boxGap_5: '28px',
         boxGap_6: '36px',
-
     },
 };

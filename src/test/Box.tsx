@@ -89,7 +89,7 @@ function Box() {
                 <BaseMenuItem value={'3'}>item 3</BaseMenuItem>
             </BaseMenuGroup>
 
-            <BaseMenuGroup orientation={'vertical'}  mr={'m-5'}>
+            <BaseMenuGroup orientation={'vertical'} mr={'m-5'}>
                 <BaseMenuItem value={'1'}>item 1</BaseMenuItem>
                 <BaseMenuItem value={'2'}>item 2</BaseMenuItem>
                 <BaseMenuItem value={'3'}>item 3</BaseMenuItem>

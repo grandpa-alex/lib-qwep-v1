@@ -36,7 +36,7 @@ type BaseMenuGroupProps = {
     boxShadowVariant?: TypeBoxShadowVariant;
     boxRadiusVariant?: TypeBoxRadiusVariant;
     onChangeActiveItem?: (value: string) => void | Promise<void>;
-    activeItem?: string
+    activeItem?: string;
 
     //items
     itemSizeVariant?: TypeVariantSize;
@@ -110,7 +110,7 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
         boxShadowVariant = 'shd-1',
         boxShadowColor,
         orientation = OC.HORIZONTAL,
-        onChangeActiveItem,  
+        onChangeActiveItem,
         activeItem,
 
         itemSizeVariant = VS.L,
@@ -129,9 +129,9 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
             (event: React.MouseEvent<HTMLButtonElement>) => {
                 const newValue = event.currentTarget.getAttribute('value');
                 setActiveValue(newValue || '');
-                onChangeActiveItem && onChangeActiveItem(newValue || '');  
+                onChangeActiveItem && onChangeActiveItem(newValue || '');
             },
-            [onChangeActiveItem]  
+            [onChangeActiveItem]
         );
 
         const renderItems = useMemo(() => {

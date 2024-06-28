@@ -16,7 +16,7 @@ type TypeStyles = {
 type BaseTitleProps = {
     children?: React.ReactNode;
     color?: Hex;
-    isEllipsis?: boolean
+    isEllipsis?: boolean;
     mr?: TypeMargin;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
@@ -25,7 +25,7 @@ type BaseTitleProps = {
 
 type STitleProps = {
     $mr?: TypeMargin;
-    $isEllipsis?: boolean
+    $isEllipsis?: boolean;
     $as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
     $colors: TypeColorScheme;
     $styles: TypeStyles;
@@ -47,12 +47,14 @@ const STitle = styled.h1<STitleProps>`
     color: ${(props) => props.$color ?? props.$colors.title};
     line-height: normal;
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
-    ${(props) => props.$isEllipsis && css`
-        align-items: center;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    `};
+    ${(props) =>
+        props.$isEllipsis &&
+        css`
+            align-items: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        `};
 `;
 
 export const BaseTitle: React.FC<BaseTitleProps> = React.memo(
@@ -61,7 +63,16 @@ export const BaseTitle: React.FC<BaseTitleProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['typography', 'mr']);
 
         return (
-            <STitle as={as} $as={as} $mr={mr} $isEllipsis={isEllipsis} $colors={colors} $styles={styles} $color={color} {...rest}>
+            <STitle
+                as={as}
+                $as={as}
+                $mr={mr}
+                $isEllipsis={isEllipsis}
+                $colors={colors}
+                $styles={styles}
+                $color={color}
+                {...rest}
+            >
                 {children}
             </STitle>
         );

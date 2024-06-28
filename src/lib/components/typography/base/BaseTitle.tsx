@@ -6,6 +6,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeMargin } from '@src/lib/types/TypeBase';
+import { css } from 'styled-components';
 
 type TypeStyles = {
     typography: TypeSSTypography;
@@ -15,6 +16,7 @@ type TypeStyles = {
 type BaseTitleProps = {
     children?: React.ReactNode;
     color?: Hex;
+    isEllipsis?: boolean
     mr?: TypeMargin;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
@@ -23,6 +25,7 @@ type BaseTitleProps = {
 
 type STitleProps = {
     $mr?: TypeMargin;
+    $isEllipsis?: boolean
     $as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
     $colors: TypeColorScheme;
     $styles: TypeStyles;
@@ -39,21 +42,26 @@ const SIZE_VARIANT = {
 };
 
 const STitle = styled.h1<STitleProps>`
-    display: inline-block;
     font-size: ${(props) => SIZE_VARIANT[props.$as](props.$styles.typography)};
     font-weight: ${(props) => props.$styles.typography.fontWeightTitle};
     color: ${(props) => props.$color ?? props.$colors.title};
     line-height: normal;
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
+    ${(props) => props.$isEllipsis && css`
+        align-items: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    `};
 `;
 
 export const BaseTitle: React.FC<BaseTitleProps> = React.memo(
-    ({ mr, as = 'h3', children, color, $colors, $styles, ...rest }) => {
+    ({ mr, as = 'h3', children, color, isEllipsis, $colors, $styles, ...rest }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['typography', 'mr']);
 
         return (
-            <STitle as={as} $as={as} $mr={mr} $colors={colors} $styles={styles} $color={color} {...rest}>
+            <STitle as={as} $as={as} $mr={mr} $isEllipsis={isEllipsis} $colors={colors} $styles={styles} $color={color} {...rest}>
                 {children}
             </STitle>
         );

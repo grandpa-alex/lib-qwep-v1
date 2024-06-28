@@ -39,16 +39,19 @@ type SRootProps = {
 const SIZE = {
     [VSA.S]: (props: TypeSSAvatar) => css`
         width: ${props.avatarSize_1};
+        min-width: ${props.avatarSize_1};
         height: ${props.avatarSize_1};
         font-size: ${props.avatarFontSize_1};
     `,
     [VSA.M]: (props: TypeSSAvatar) => css`
         width: ${props.avatarSize_2};
+        min-width: ${props.avatarSize_2};
         height: ${props.avatarSize_2};
         font-size: ${props.avatarFontSize_2};
     `,
     [VSA.L]: (props: TypeSSAvatar) => css`
         width: ${props.avatarSize_3};
+        min-width: ${props.avatarSize_3};
         height: ${props.avatarSize_3};
         font-size: ${props.avatarFontSize_3};
     `,

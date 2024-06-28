@@ -29,7 +29,7 @@ interface ThemeProviderProps {
     children: ReactNode;
     colorThemeName?: TypeColorTheme;
     customColorThemes?: TypeCustomColorTheme[];
-    addColorsLigth?: { [key: string]: Hex };
+    addColorsLight?: { [key: string]: Hex };
     addColorsDark?: { [key: string]: Hex };
     currentStyles?: TypeSS;
     // updateStyles?: { [key: string]: {[key: string]: string} };
@@ -54,17 +54,17 @@ export const BaseThemeProvider = ({
     children,
     customColorThemes = [],
     colorThemeName = 'light',
-    addColorsLigth,
+    addColorsLight,
     addColorsDark,
     currentStyles = styleScheme,
 }: ThemeProviderProps) => {
     const [currentColorThemeName, setCurrentColorThemeName] = useState<TypeColorTheme>(colorThemeName);
     const [currentColorScheme, setCurrentColorScheme] = useState<TypeColorScheme>({
         ...colorsLight,
-        ...addColorsLigth,
+        ...addColorsLight,
     });
     const [listThemeColors, setListThemeColors] = useState<TypeCustomColorTheme[]>([
-        { type: 'light', name: 'Light Theme', colors: { ...colorsLight, ...addColorsLigth } },
+        { type: 'light', name: 'Light Theme', colors: { ...colorsLight, ...addColorsLight } },
         { type: 'dark', name: 'Dark Theme', colors: { ...colorsDark, ...addColorsDark } },
         ...customColorThemes,
     ]);
@@ -74,9 +74,9 @@ export const BaseThemeProvider = ({
         if (theme) {
             setCurrentColorScheme(theme.colors);
         } else {
-            setCurrentColorScheme({ ...colorsLight, ...addColorsLigth });
+            setCurrentColorScheme({ ...colorsLight, ...addColorsLight });
         }
-    }, [currentColorThemeName, addColorsLigth, listThemeColors]);
+    }, [currentColorThemeName, addColorsLight, listThemeColors]);
 
     const setColorThemeHandler = (theme: TypeCustomColorTheme) => {
         setListThemeColors([...listThemeColors, theme]);

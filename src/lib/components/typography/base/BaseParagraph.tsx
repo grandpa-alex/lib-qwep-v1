@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeMargin } from '@src/lib/types/TypeBase';
 import { SBaseText, TBaseText } from './BaseText';
+import { css } from 'styled-components';
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -13,25 +14,33 @@ type TypeStyles = {
 
 type BaseParagraphProps = {
     mr?: TypeMargin;
+    isEllipsis?: boolean
     $styles?: TypeStyles;
 } & TBaseText.Main;
 
 type SParagraphProps = {
     $mr?: TypeMargin;
     $styles: TypeStyles;
+    $isEllipsis?: boolean
 } & TBaseText.SText;
 
 const SParagraph = styled(SBaseText.Text)<SParagraphProps>`
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
+    ${(props) => props.$isEllipsis && css`
+        align-items: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    `};
 `;
 
 export const BaseParagraph: React.FC<BaseParagraphProps> = React.memo(
-    ({ as = 'p', children, mr, color, $colors, $styles, ...rest }) => {
+    ({ as = 'p', children, mr, color, isEllipsis, $colors, $styles,  ...rest }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['typography', 'mr']);
 
         return (
-            <SParagraph $mr={mr} as={as} $colors={colors} $styles={styles} $color={color} {...rest}>
+            <SParagraph $mr={mr} as={as} $colors={colors} $styles={styles} $isEllipsis={isEllipsis} $color={color} {...rest}>
                 {children}
             </SParagraph>
         );

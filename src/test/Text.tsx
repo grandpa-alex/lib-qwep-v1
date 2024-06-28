@@ -55,9 +55,22 @@ function Text() {
             <BaseTitle mr={'m-3'} as={'h5'}>
                 Base Title H5
             </BaseTitle>
+
             <BaseTitle mr={'m-3'} as={'h6'}>
                 Base Title H6
             </BaseTitle>
+
+
+            <div style={{width: '100px', }}>
+            {/* <BaseParagraph mr={'m-3'} isEllipsis>
+                Base Title H2
+                Loremipsumdolorsitmetconsecteturadipisicingelit
+            </BaseParagraph> */}
+
+            <BaseTitle mr={'m-3'} as={'h6'} isEllipsis>
+            Loremipsumdolorsitmetconsecteturadipisicingelit
+            </BaseTitle>
+            </div>
         </BaseBox>
     );
 }

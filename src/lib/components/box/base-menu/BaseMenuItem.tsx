@@ -1,6 +1,6 @@
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { getColor } from '@src/lib/common/getColor';
+import { getColor, opacity } from '@src/lib/common/getColor';
 import { itemRippleEffect } from '@src/lib/common/itemRippleEffect';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSBtn, TypeSSTypography } from '@src/lib/general/styleScheme';
@@ -23,8 +23,8 @@ type BaseMenuItemProps = {
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     color?: Hex;
-    opacityHover?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
-    opacityActive?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+    opacityHover?: opacity;
+    opacityActive?: opacity;
     textColor?: Hex;
     textColorActive?: Hex;
     blocked?: boolean;
@@ -37,8 +37,8 @@ type SButtonProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $sizeVariant: TypeVariantSize;
-    $opacityHover?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
-    $opacityActive?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+    $opacityHover?: opacity;
+    $opacityActive?: opacity;
     $textColor?: Hex;
     $textColorActive?: Hex;
     $active?: boolean;

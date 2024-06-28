@@ -14,6 +14,7 @@ import {
     TypeBoxWidthVariant,
 } from '@src/lib/types/TypeBox';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
+import { opacity } from '@src/lib/common/getColor';
 
 type TypeStyles = {
     box: TypeSSBox;
@@ -41,8 +42,8 @@ type BaseMenuGroupProps = {
     //items
     itemSizeVariant?: TypeVariantSize;
     itemColor?: Hex;
-    itemOpacityHover?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
-    itemOpacityActive?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+    itemOpacityHover?: opacity;
+    itemOpacityActive?: opacity;
     itemTextColor?: Hex;
     itemTextColorActive?: Hex;
 

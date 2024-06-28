@@ -1,12 +1,14 @@
 import { TypeColorScheme } from '../general/colors';
 import { TypeVariantColor } from '../types/TypeBase';
 
+export type opacity = '5' | '10' | '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+
 type getColorProps = {
     cs: TypeColorScheme;
     color?: string;
     variant?: TypeVariantColor;
     disabled?: boolean;
-    opacity?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+    opacity?: opacity;
     hover?: boolean;
 };
 

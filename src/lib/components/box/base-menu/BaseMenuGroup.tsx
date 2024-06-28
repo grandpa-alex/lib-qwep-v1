@@ -41,6 +41,10 @@ type BaseMenuGroupProps = {
     //items
     itemSizeVariant?: TypeVariantSize;
     itemColor?: Hex;
+    itemOpacityHover?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+    itemOpacityActive?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+    itemTextColor?: Hex;
+    itemTextColorActive?: Hex;
 
     $styles?: TypeStyles;
     $colors?: TypeColorScheme;
@@ -115,6 +119,10 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
 
         itemSizeVariant = VS.L,
         itemColor,
+        itemOpacityHover,
+        itemOpacityActive,
+        itemTextColor,
+        itemTextColorActive,
 
         $styles,
         $colors,
@@ -142,6 +150,10 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
                         activeItem: Boolean(child.props.value === activeValue),
                         sizeVariant: itemSizeVariant,
                         color: itemColor,
+                        opacityHover: itemOpacityHover,
+                        opacityActive: itemOpacityActive,
+                        textColor: itemTextColor,
+                        textColorActive: itemTextColorActive,
                         $styles,
                         $colors,
                         tabIndex: 0,

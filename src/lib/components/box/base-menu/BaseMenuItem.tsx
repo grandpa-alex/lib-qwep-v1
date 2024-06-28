@@ -23,6 +23,10 @@ type BaseMenuItemProps = {
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     color?: Hex;
+    opacityHover?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+    opacityActive?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+    textColor?: Hex;
+    textColorActive?: Hex;
     blocked?: boolean;
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void | Promise<void>;
     _isActiveHover?: boolean;
@@ -33,6 +37,10 @@ type SButtonProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $sizeVariant: TypeVariantSize;
+    $opacityHover?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+    $opacityActive?: '20' | '40' | '60' | '80' | '90' | 'b3' | 'dd' | '';
+    $textColor?: Hex;
+    $textColorActive?: Hex;
     $activeItem?: boolean;
     $_isActiveHover: boolean;
     $blocked?: boolean;
@@ -63,7 +71,7 @@ export const SButton = styled.button<SButtonProps>`
     border-radius: ${({ $styles }) => $styles.base.borderRadiusItem};
     cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
     border: 0;
-    color: ${(props) => props.$colors.text};
+    color: ${(props) => props.$textColor ?? props.$colors.text};
     ${(props) => BTN_SIZE[props.$sizeVariant](props)};
     ${(props) =>
         props.$blocked &&
@@ -76,8 +84,9 @@ export const SButton = styled.button<SButtonProps>`
                 background-color: ${getColor({
                     cs: props.$colors,
                     color: props.$color ?? props.$colors.primaryItem,
+                    opacity: props.$opacityActive ?? '40',
                 })};
-                color: ${props.$colors.textItem};
+                color: ${props.$textColorActive ?? props.$colors.textItem};
             `;
         }
     }};
@@ -89,7 +98,7 @@ export const SButton = styled.button<SButtonProps>`
                 background-color: ${getColor({
                     cs: props.$colors,
                     color: props.$color ?? props.$colors.primaryItem,
-                    opacity: '40',
+                    opacity: props.$opacityHover ?? '60',
                 })};
             `}
         transition: all 0.3s ease-in-out;
@@ -103,6 +112,10 @@ export const BaseMenuItem: React.FC<BaseMenuItemProps> = React.memo(
         color,
         sizeVariant = VS.L,
         onClick,
+        opacityHover,
+        opacityActive,
+        textColor,
+        textColorActive,
         $colors,
         $styles,
         blocked,
@@ -129,6 +142,10 @@ export const BaseMenuItem: React.FC<BaseMenuItemProps> = React.memo(
                 $colors={colors}
                 $styles={styles}
                 $sizeVariant={sizeVariant}
+                $opacityHover={opacityHover}
+                $opacityActive={opacityActive}
+                $textColor={textColor}
+                $textColorActive={textColorActive}
                 $color={color}
                 $blocked={blocked}
                 $activeItem={activeItem}

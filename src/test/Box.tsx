@@ -83,7 +83,7 @@ function Box() {
                 <SimpleTextField placeholder={'Placeholder'} />
             </BaseBox>
 
-            <BaseMenuGroup mr={'m-5'} itemSizeVariant={'M'} onChangeActiveItem={(value) => console.log(value)}>
+            <BaseMenuGroup mr={'m-5'} itemSizeVariant={'M'} itemTextColorActive={'#ff0000'} itemOpacityActive={''} itemOpacityHover={'20'} onChangeActiveItem={(value) => console.log(value)}>
                 <BaseMenuItem value={'1'}>item 1</BaseMenuItem>
                 <BaseMenuItem value={'2'}>item 2</BaseMenuItem>
                 <BaseMenuItem value={'3'}>item 3</BaseMenuItem>

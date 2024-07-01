@@ -94,7 +94,7 @@ export const colorsLight: TypeColorScheme = {
 
 export const colorsDark: TypeColorScheme = {
     primary: '#3B82F6',
-    secondary: '#171821',
+    secondary: '#21222D',
 
     //other
     lightElem: '#A9C1CF',

@@ -1,13 +1,15 @@
 import { BaseButton, SBaseButton, TBaseButton } from './base-button/BaseButton';
+import { IconButton, SIconButton, TIconButton } from './icon-button/IconButton';
 import { SSimpleButton, SimpleButton, TSimpleButton } from './simple-button/SimpleButton';
 import { SSubmitButton, SubmitButton, TSubmitButton } from './submit-button/SubmitButton';
 
-export { BaseButton, SimpleButton, SubmitButton };
+export { BaseButton, SimpleButton, SubmitButton, IconButton };
 
 export const ButtonStyledComponent = {
     BaseButton: SBaseButton,
     SimpleButton: SSimpleButton,
     SubmitButton: SSubmitButton,
+    IconButton: SIconButton
 };
 
 export namespace TypeButton {
@@ -27,5 +29,9 @@ export namespace TypeButton {
         export type Main = TSubmitButton.Main;
         export type SButton = TSubmitButton.SButton;
         export type SLoading = TSubmitButton.SLoading;
+    }
+
+    export namespace IconButton {
+        export type Main = TIconButton.Main;
     }
 }

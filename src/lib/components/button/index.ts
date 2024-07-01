@@ -9,7 +9,7 @@ export const ButtonStyledComponent = {
     BaseButton: SBaseButton,
     SimpleButton: SSimpleButton,
     SubmitButton: SSubmitButton,
-    IconButton: SIconButton
+    IconButton: SIconButton,
 };
 
 export namespace TypeButton {

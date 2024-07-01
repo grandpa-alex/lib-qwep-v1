@@ -655,53 +655,52 @@ function Buttons() {
 
             <div style={{ display: 'flex' }}>
                 <IconButton mr={'m-3'}>
-                    <Icon.ArangeGroup/>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
-                <IconButton mr={'m-3'}  variant={'outlined'}>
-                    <Icon.ArangeGroup/>
+                <IconButton mr={'m-3'} variant={'outlined'}>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
-                <IconButton mr={'m-3'} variant={'text'} >
-                    <Icon.ArangeGroup/>
+                <IconButton mr={'m-3'} variant={'text'}>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} borderRadius={'round'}>
-                    <Icon.ArangeGroup/>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
-                <IconButton mr={'m-3'} borderRadius={'round'}  variant={'outlined'}>
-                    <Icon.ArangeGroup/>
+                <IconButton mr={'m-3'} borderRadius={'round'} variant={'outlined'}>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
-                <IconButton mr={'m-3'} borderRadius={'round'} variant={'text'} >
-                    <Icon.ArangeGroup/>
+                <IconButton mr={'m-3'} borderRadius={'round'} variant={'text'}>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} sizeVariant={'M'}>
-                    <Icon.ArangeGroup/>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
-                <IconButton mr={'m-3'} sizeVariant={'M'}  variant={'outlined'}>
-                    <Icon.ArangeGroup/>
+                <IconButton mr={'m-3'} sizeVariant={'M'} variant={'outlined'}>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
-                <IconButton mr={'m-3'} sizeVariant={'M'} variant={'text'} >
-                    <Icon.ArangeGroup/>
+                <IconButton mr={'m-3'} sizeVariant={'M'} variant={'text'}>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} borderRadius={'round'} sizeVariant={'M'}>
-                    <Icon.ArangeGroup/>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
-                <IconButton mr={'m-3'} borderRadius={'round'} sizeVariant={'M'}  variant={'outlined'}>
-                    <Icon.ArangeGroup/>
+                <IconButton mr={'m-3'} borderRadius={'round'} sizeVariant={'M'} variant={'outlined'}>
+                    <Icon.ArangeGroup />
                 </IconButton>
 
-                <IconButton mr={'m-3'} borderRadius={'round'} sizeVariant={'M'} variant={'text'} >
-                    <Icon.ArangeGroup/>
+                <IconButton mr={'m-3'} borderRadius={'round'} sizeVariant={'M'} variant={'text'}>
+                    <Icon.ArangeGroup />
                 </IconButton>
-                
             </div>
         </div>
     );

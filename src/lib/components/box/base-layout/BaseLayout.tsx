@@ -26,7 +26,6 @@ type SRootProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const SRoot = styled.div<SRootProps>`
-    overflow: hidden;
     position: relative;
     width: 100%;
     min-width: 100%;

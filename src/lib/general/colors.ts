@@ -32,7 +32,7 @@ export type TypeColorScheme = {
     backgroundSuccess: Hex;
     backgroundError: Hex;
     backgroundInfo: Hex;
-    backgroundwarning: Hex;
+    backgroundWarning: Hex;
 
     //text
     title: Hex;
@@ -74,10 +74,10 @@ export const colorsLight: TypeColorScheme = {
     disabled: '#B9BCBE',
     shadowColor: '#002B4D40',
     //sec base
-    backgroundSuccess: '#DCFCE7',
-    backgroundError: '#FEE2E2',
-    backgroundInfo: '#DBEAFE',
-    backgroundwarning: '#FFEDD5',
+    backgroundSuccess: '#DCFCE740',
+    backgroundError: '#FEE2E240',
+    backgroundInfo: '#DBEAFE40',
+    backgroundWarning: '#FFEDD540',
 
     //text
     title: '#1A242A',
@@ -119,10 +119,10 @@ export const colorsDark: TypeColorScheme = {
     shadowColor: '#00000000',
 
     //sec base
-    backgroundSuccess: '#4ADE80',
-    backgroundError: '#F87171',
-    backgroundInfo: '#60A5FA',
-    backgroundwarning: '#FB923C',
+    backgroundSuccess: '#4ADE8040',
+    backgroundError: '#F8717140',
+    backgroundInfo: '#60A5FA40',
+    backgroundWarning: '#FB923C40',
 
     //text
     title: '#F0F4FE',

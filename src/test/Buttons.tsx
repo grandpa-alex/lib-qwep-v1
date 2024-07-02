@@ -655,7 +655,7 @@ function Buttons() {
 
             <div style={{ display: 'flex' }}>
                 <IconButton mr={'m-3'}>
-                    <Icon.ArangeGroup />
+                    <Icon.CloseCircle />
                 </IconButton>
 
                 <IconButton mr={'m-3'} variant={'outlined'}>

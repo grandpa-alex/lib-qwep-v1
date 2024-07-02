@@ -7,7 +7,7 @@ function Avatar() {
         <BaseBox style={{ paddingBottom: '300px' }}>
             <BaseTitle>BASE AVATAR</BaseTitle>
             <BaseBox style={{ display: 'flex' }}>
-                <BaseAvatar src={url} alt={'Afrf As'} mr={'m-3'} />
+                <BaseAvatar src={url} alt={'Afrf As'} mr={'m-3'} style={{width: '200px', height: '200px'}}/>
                 <BaseAvatar alt={'lex v b'} sizeVariant={'large'} src={urlB} mr={'m-3'} />
                 <BaseAvatar alt={'Hex V B'} sizeVariant={'medium'} src={urlB} mr={'m-3'} />
                 <BaseAvatar alt={'Wex V B'} src={urlB} sizeVariant={'small'} mr={'m-3'} />

@@ -20,6 +20,8 @@ const SIndicator = styled(Select.ItemIndicator)<SelectItemIndicatorProps & React
     left: 2px;
     transform: translateY(-50%);
     svg {
+        min-width: 14px;
+        max-width: 14px;
         width: 14px;
         height: 14px;
     }

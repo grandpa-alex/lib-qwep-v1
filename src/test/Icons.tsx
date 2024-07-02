@@ -55,6 +55,7 @@ function Icons() {
                 <Item icon={<Icon.Info colorVariant={colorVariant} sizeVariant={size} />} text={'Info'} />
                 <Item icon={<Icon.Success colorVariant={colorVariant} sizeVariant={size} />} text={'Success'} />
                 <Item icon={<Icon.Warning colorVariant={colorVariant} sizeVariant={size} />} text={'Warning'} />
+                <Item icon={<Icon.CloseCircle colorVariant={colorVariant} sizeVariant={size} />} text={'CloseCircle'} />
                 <Item icon={<Icon.BaseCheck colorVariant={colorVariant} sizeVariant={size} />} text={'BaseCheck'} />
                 <Item icon={<Icon.AddCircle colorVariant={colorVariant} sizeVariant={size} />} text={'AddCircle'} />
                 <Item icon={<Icon.Add colorVariant={colorVariant} sizeVariant={size} />} text={'Add'} />

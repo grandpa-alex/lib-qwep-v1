@@ -79,6 +79,7 @@ import { UserReceived } from './UserReceived';
 import { UserSettings } from './UserSettings';
 import { UserStar } from './UserStar';
 import { UserDelete } from './UserDelete';
+import { CloseCircle } from './CloseCircle'
 
 export {
     IconSVGContainer,
@@ -162,4 +163,5 @@ export {
     UserSettings,
     UserStar,
     UserDelete,
+    CloseCircle,
 };

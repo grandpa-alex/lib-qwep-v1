@@ -20,9 +20,10 @@ type TypeStyles = {
 
 type WrapperInputProps = {
     label?: string;
-    id: string;
+    id?: string;
     required?: boolean;
     positionLabel?: TypePositionInpLabel;
+    customLabel?: React.ReactNode;
     mr?: TypeMargin;
     children?: React.ReactNode;
     $colors?: TypeColorScheme;
@@ -79,6 +80,7 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
         children,
         required,
         blocked,
+        customLabel,
         positionLabel = PIL.TOP,
         $colors,
         $styles,
@@ -106,17 +108,21 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
                 $boxGapVariant={boxGapVariant}
                 {...rest}
             >
-                <BaseText
-                    style={{ cursor: 'pointer', userSelect: 'none' }}
-                    $colors={colors}
-                    $styles={styles}
-                    color={labelColor}
-                    as={'label'}
-                    htmlFor={id}
-                >
-                    {label}
-                    {required && <span style={{ color: colors.errorItem }}>*</span>}
-                </BaseText>
+                {customLabel ? (
+                    customLabel
+                ) : (
+                    <BaseText
+                        style={{ cursor: 'pointer', userSelect: 'none' }}
+                        $colors={colors}
+                        $styles={styles}
+                        color={labelColor}
+                        as={'label'}
+                        htmlFor={id}
+                    >
+                        {label}
+                        {required && <span style={{ color: colors.errorItem }}>*</span>}
+                    </BaseText>
+                )}
                 {renderItem}
                 <MessageBox $colors={colors} message={message} />
             </SRoot>

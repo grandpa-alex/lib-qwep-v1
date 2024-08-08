@@ -11,3 +11,4 @@ export * from './typography';
 export * from './slider';
 export * from './avatar';
 export * from './radio';
+export * from './scrollarea';

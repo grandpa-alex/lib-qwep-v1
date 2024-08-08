@@ -102,7 +102,15 @@ export const BaseAvatar: React.FC<BaseAvatarProps> = React.memo(
         }, []);
 
         return (
-            <SRoot $colors={colors} $styles={styles} $color={color} style={rest.style} $mr={mr} $bg={bg} $sizeVariant={sizeVariant}>
+            <SRoot
+                $colors={colors}
+                $styles={styles}
+                $color={color}
+                style={rest.style}
+                $mr={mr}
+                $bg={bg}
+                $sizeVariant={sizeVariant}
+            >
                 <SImg src={src} alt={alt} {...rest} />
                 <SFallback delayMs={600}>{getFallbackText(alt)}</SFallback>
             </SRoot>

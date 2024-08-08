@@ -179,6 +179,34 @@ function WrapperItem() {
             >
                 <BaseTextarea />
             </WrapperInput>
+            <div style={{ width: '300px', background: '#eeeeee7d', padding: '5px' }}>
+                <WrapperInput
+                    positionLabel={'right'}
+                    // required
+                    // mr={'m-11'}
+                    id={'33333'}
+                    // label={'ferfreferfrefr'}
+                    customLabel={
+                        <label
+                            htmlFor={'33333'}
+                            style={{ display: 'flex', width: '100%', color: 'red', justifyContent: 'space-between' }}
+                        >
+                            <span>freklgkergjkre</span>
+                            <span>rgergreg</span>
+                        </label>
+                    }
+                    // customLabel={'gergergregre'}
+
+                    message={{
+                        text: 'SubmitSwitch jfrheui ghreh grhg hrehg kerhk hrjkgh krewhrkhj wkljh klwej hkljw',
+                    }}
+                    style={{ width: '100%' }}
+                >
+                    <BaseCheckbox />
+
+                    {/*  */}
+                </WrapperInput>
+            </div>
         </BaseBox>
     );
 }

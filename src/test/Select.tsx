@@ -1,5 +1,6 @@
 import {
     BasePopup,
+    BaseScrollArea,
     BaseSelectContent,
     BaseSelectGroup,
     BaseSelectItem,
@@ -379,6 +380,164 @@ function Select() {
                     <SimpleTextField placeholder={'test input'} />
                     <SimpleButton type={'submit'}>Submit</SimpleButton>
                 </SimplePopup>
+            </div>
+
+            <div>
+                <BaseScrollArea width={'200px'} height={'200px'}>
+                    {/* <div style={{textWrap: 'nowrap'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laboriosam molestiae eaque aut tempore aliquam libero id esse quia non, suscipit repellat repellendus sit nam praesentium porro ducimus rem. Repudiandae.</div> */}
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
+                    Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
+                    facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
+                    Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
+                    quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam
+                    laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit
+                    amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum
+                    atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa,
+                    natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam
+                    earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae
+                    molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum
+                    repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque
+                    vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
+                    Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
+                    facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
+                    Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
+                    quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam
+                    laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit
+                    amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum
+                    atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa,
+                    natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam
+                    earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae
+                    molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum
+                    repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque
+                    vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
+                    Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
+                    facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
+                    Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
+                    quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam
+                    laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit
+                    amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum
+                    atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa,
+                    natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam
+                    earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae
+                    molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum
+                    repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque
+                    vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
+                    Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
+                    facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
+                    Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
+                    quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam
+                    laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit
+                    amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum
+                    atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa,
+                    natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam
+                    earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae
+                    molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum
+                    repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque
+                    vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
+                    Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
+                    facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
+                    Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
+                    quaerat, vitae molestiae facilis. Culpa, natus.
+                </BaseScrollArea>
+
+                <BaseScrollArea
+                    orientation={'horizontal'}
+                    width={'200px'}
+                    height={'200px'}
+                    type={'always'}
+                    scrollHideDelay={20000}
+                >
+                    <div style={{ textWrap: 'nowrap' }}>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laboriosam molestiae eaque aut
+                        tempore aliquam libero id esse quia non, suscipit repellat repellendus sit nam praesentium porro
+                        ducimus rem. Repudiandae.
+                    </div>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
+                    Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
+                    facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
+                    Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
+                    quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam
+                    laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit
+                    amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum
+                    atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa,
+                    natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam
+                    earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae
+                    molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum
+                    repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque
+                    vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
+                    Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
+                    facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
+                    Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
+                    quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam
+                    laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit
+                    amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum
+                    atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa,
+                    natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam
+                    earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae
+                    molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum
+                    repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque
+                    vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
+                    Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
+                    facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
+                    Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
+                    quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam
+                    laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit
+                    amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum
+                    atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa,
+                    natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam
+                    earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae
+                    molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum
+                    repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque
+                    vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
+                    Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
+                    facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
+                    Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
+                    quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam
+                    laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit
+                    amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum
+                    atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa,
+                    natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam
+                    earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae
+                    molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum
+                    repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus. Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum? Dolore corrupti illum atque
+                    vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae facilis. Culpa, natus.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
+                    Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
+                    facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
+                    Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
+                    quaerat, vitae molestiae facilis. Culpa, natus.
+                </BaseScrollArea>
             </div>
         </div>
     );

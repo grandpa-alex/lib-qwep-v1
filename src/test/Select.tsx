@@ -1,4 +1,5 @@
 import {
+    AdaptiveScrollArea,
     BasePopup,
     BaseScrollArea,
     BaseSelectContent,
@@ -383,7 +384,12 @@ function Select() {
             </div>
 
             <div>
-                <BaseScrollArea width={'200px'} height={'200px'}>
+                <AdaptiveScrollArea
+                    size={{
+                        width: '200px',
+                        height: '200px',
+                    }}
+                >
                     {/* <div style={{textWrap: 'nowrap'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laboriosam molestiae eaque aut tempore aliquam libero id esse quia non, suscipit repellat repellendus sit nam praesentium porro ducimus rem. Repudiandae.</div> */}
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?
                     Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem quaerat, vitae molestiae
@@ -454,7 +460,7 @@ function Select() {
                     facilis. Culpa, natus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed?
                     Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
                     quaerat, vitae molestiae facilis. Culpa, natus.
-                </BaseScrollArea>
+                </AdaptiveScrollArea>
 
                 <BaseScrollArea
                     orientation={'horizontal'}
@@ -462,6 +468,8 @@ function Select() {
                     height={'200px'}
                     type={'always'}
                     scrollHideDelay={20000}
+                    mr={'mt-10'}
+                    dir={'rtl'}
                 >
                     <div style={{ textWrap: 'nowrap' }}>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laboriosam molestiae eaque aut

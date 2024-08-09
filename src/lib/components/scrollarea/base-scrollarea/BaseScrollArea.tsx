@@ -103,6 +103,7 @@ export const SBaseScrollArea = {
 export namespace TBaseScrollArea {
     export type Styles = TypeStyles;
     export type Main = BaseScrollAreaProps;
+    export type SRoot = SRootProps;
     export type SScrollbar = SScrollbarProps;
     export type SThumb = SThumbProps;
 }

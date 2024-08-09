@@ -76,7 +76,7 @@ const SELECT_SIZE = {
 const POSITION_TRIGGER = {
     [BP.CENTER]: 'center',
     [BP.LEFT]: 'space-between',
-    [BP.RIGTH]: 'right',
+    [BP.RIGHT]: 'right',
 };
 
 const STrigger = styled(Select.Trigger)<STriggerProps>`

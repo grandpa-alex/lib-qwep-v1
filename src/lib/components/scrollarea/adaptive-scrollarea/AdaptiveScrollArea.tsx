@@ -51,7 +51,7 @@ type SRootProps = {
 } & React.RefAttributes<HTMLDivElement>
 
 const SRoot = styled.div<SRootProps>`
-    overflow: auto;
+    overflow-y: auto;
     ${(props) => props.$size}
     ${(props) =>
         CSSBaseBox({

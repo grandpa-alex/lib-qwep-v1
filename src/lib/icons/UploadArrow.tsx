@@ -9,7 +9,7 @@ export const UploadArrow: React.FC<UploadArrowProps> = ({ position = IP.BOTTOM, 
         [IP.LEFT]: 'rotate(-90deg)',
         [IP.BOTTOM]: 'rotate(180deg)',
         [IP.TOP]: 'rotate(0deg)',
-        [IP.RIGTH]: 'rotate(90deg)',
+        [IP.RIGHT]: 'rotate(90deg)',
     };
     return (
         <IconSVGContainer

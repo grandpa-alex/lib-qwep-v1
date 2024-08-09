@@ -16,8 +16,8 @@ type TypeStyles = {
 
 type BaseScrollAreaProps = {
     mr?: TypeMargin;
-    width: string;
-    height: string;
+    width?: string;
+    height?: string;
     bgScrolbar?: Hex;
     trumbColor?: Hex;
     orientation?: TypeOrientationContent;

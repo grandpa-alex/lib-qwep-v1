@@ -8,6 +8,6 @@ export type TypeVariantBtn = 'text' | 'contained' | 'outlined';
 export enum BP {
     LEFT = 'left',
     CENTER = 'center',
-    RIGTH = 'right',
+    RIGHT = 'right',
 }
 export type TypeBtnPosition = 'left' | 'center' | 'right';

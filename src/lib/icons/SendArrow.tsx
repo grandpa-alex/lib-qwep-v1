@@ -14,7 +14,7 @@ export const SendArrow: React.FC<SendArrowProps> = ({ position = IP.LEFT, ...res
         [IP.LEFT]: 'rotate(-180deg)',
         [IP.BOTTOM]: 'rotate(90deg)',
         [IP.TOP]: 'rotate(-90deg)',
-        [IP.RIGTH]: 'rotate(0)',
+        [IP.RIGHT]: 'rotate(0)',
     };
 
     return (

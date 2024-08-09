@@ -14,7 +14,7 @@ export const DownloadArrow: React.FC<DownloadArrowProps> = ({ position = IP.BOTT
         [IP.LEFT]: 'rotate(90deg)',
         [IP.BOTTOM]: 'rotate(0deg)',
         [IP.TOP]: 'rotate(180deg)',
-        [IP.RIGTH]: 'rotate(-90deg)',
+        [IP.RIGHT]: 'rotate(-90deg)',
     };
     return (
         <IconSVGContainerDownloadArrow

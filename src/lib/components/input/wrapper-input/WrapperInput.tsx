@@ -48,10 +48,15 @@ const POSITION = {
     [PIL.TOP]: css`
         display: grid;
     `,
-    [PIL.RIGTH]: css`
+    [PIL.RIGHT]: css`
         display: flex;
         align-items: center;
-        flex-direction: row-reverse;
+        > * {
+            order: 1;
+        }
+        > :first-child {
+            order: 2;
+        }
     `,
     [PIL.LEFT]: css`
         display: flex;
@@ -112,7 +117,7 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
                     customLabel
                 ) : (
                     <BaseText
-                        style={{ cursor: 'pointer', userSelect: 'none' }}
+                        style={{ cursor: 'pointer', userSelect: 'none', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }}
                         $colors={colors}
                         $styles={styles}
                         color={labelColor}

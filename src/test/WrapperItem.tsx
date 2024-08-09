@@ -1,6 +1,8 @@
 import {
+    AdaptiveScrollArea,
     BaseBox,
     BaseCheckbox,
+    BaseScrollArea,
     BaseSlider,
     BaseSwitch,
     BaseTextarea,
@@ -206,6 +208,59 @@ function WrapperItem() {
 
                     {/*  */}
                 </WrapperInput>
+            </div>
+
+            <div style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px' }}>
+                <div>
+                    <BaseScrollArea >
+                    <WrapperInput
+                    positionLabel={'right'}
+                    // required
+                    // mr={'m-11'}
+                    id={'33333'}
+                    label={'ferfreferfrefrjkreh gjherhgjrehgjhrejghjerhgjkhrjgherjkhghregrejhgjrhejgkhrejkghrjehgjrehjgh'}
+                   
+                    // customLabel={'gergergregre'}
+
+                 
+                    // style={{ width: '100%' }}
+                >
+                    <BaseCheckbox />
+
+                    {/*  */}
+                </WrapperInput>
+                    
+                    </BaseScrollArea>
+        
+
+                </div>
+
+                <div style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px' }}>
+           
+                    <AdaptiveScrollArea>
+                    <WrapperInput
+                    positionLabel={'right'}
+                    // required
+                    // mr={'m-11'}
+                    id={'33333'}
+                    label={'ferfreferfrefrjkreh gjherhgjrehgjhrejghjerhgjkhrjgherjkhghregrejhgjrhejgkhrejkghrjehgjrehjgh'}
+                   
+                    // customLabel={'gergergregre'}
+
+                 
+                    // style={{ width: '100%' }}
+                >
+                    <BaseCheckbox />
+
+                    {/*  */}
+                </WrapperInput>
+                    
+                    </AdaptiveScrollArea>
+                    </div>
+        
+
+          
+          
             </div>
         </BaseBox>
     );

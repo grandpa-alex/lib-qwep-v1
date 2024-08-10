@@ -3,7 +3,7 @@ import '../src/styles/index.css';
 import React from 'react';
 import { BaseBox, SimpleBox, SimpleButton, General, BaseLayout, BaseText } from '../src/lib';
 
-const Content = ({ StoryFn, context }) => {
+const Content = ({ StoryFn, context }: any) => {
     const { currentColorThemeName, changeColorThemeHandler } = General.useTheme();
 
     const changeThemeHandler = () => {

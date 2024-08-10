@@ -164,7 +164,7 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
                 }
                 return child;
             });
-        }, [children, handleClick, activeValue, itemSizeVariant, itemColor, $styles, $colors]);
+        }, [children, handleClick, activeValue, itemSizeVariant, itemColor, $styles, $colors, itemOpacityActive, itemOpacityHover, itemTextColor, itemTextColorActive]);
 
         return (
             <SRoot

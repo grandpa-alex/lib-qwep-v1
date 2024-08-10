@@ -8,9 +8,9 @@ import { getMargin } from '@src/lib/common/getMargin';
 import { TypeMargin } from '@src/lib/types/TypeBase';
 import { BOX_GAP_VARIANT } from '@src/lib/common-styled-component/StyledComponentBox';
 import { TypeBoxGapVariant } from '@src/lib/types/TypeBox';
-import { BaseText } from '../../typography';
 import { PIL, TypePositionInpLabel } from '@src/lib/types/TypeInp';
 import { MessageBox, TMessageBox } from './MessageBox';
+import { BaseText } from '@src/lib';
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -66,6 +66,7 @@ const POSITION = {
 
 const SRoot = styled.div<SRootProps>`
     position: relative;
+    max-width: 100%;
     width: fit-content;
     ${(props) => BOX_GAP_VARIANT[props.$boxGapVariant](props.$styles.box)};
     ${(props) => getMargin(props.$styles.mr, props.$mr)}
@@ -117,7 +118,15 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
                     customLabel
                 ) : (
                     <BaseText
-                        style={{ cursor: 'pointer', userSelect: 'none', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }}
+                        style={{
+                            cursor: 'pointer',
+                            userSelect: 'none',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            flexShrink: 1,
+                            maxWidth: '100%',
+                        }}
                         $colors={colors}
                         $styles={styles}
                         color={labelColor}

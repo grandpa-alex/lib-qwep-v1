@@ -211,56 +211,51 @@ function WrapperItem() {
             </div>
 
             <div style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px' }}>
-                <div>
-                    <BaseScrollArea >
+                <BaseScrollArea>
                     <WrapperInput
-                    positionLabel={'right'}
-                    // required
-                    // mr={'m-11'}
-                    id={'33333'}
-                    label={'ferfreferfrefrjkreh gjherhgjrehgjhrejghjerhgjkhrjgherjkhghregrejhgjrhejgkhrejkghrjehgjrehjgh'}
-                   
-                    // customLabel={'gergergregre'}
+                        positionLabel={'right'}
+                        id={'33333'}
+                        label={
+                            'ferfreferfrefrjkreh gjherhgjrehgjhrejghjerhgjkhrjgherjkhghregrejhgjrhejgkhrejkghrjehgjrehjgh'
+                        }
+                    >
+                        <BaseCheckbox />
+                    </WrapperInput>
+                </BaseScrollArea>
+            </div>
 
-                 
-                    // style={{ width: '100%' }}
+            <div style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px' }}>
+                <WrapperInput
+                    positionLabel={'right'}
+                    id={'33333'}
+                    label={
+                        'ferfreferfrefrjkreh gjherhgjrehgjhrejghjerhgjkhrjgherjkhghregrejhgjrhejgkhrejkghrjehgjrehjgh'
+                    }
                 >
                     <BaseCheckbox />
-
-                    {/*  */}
                 </WrapperInput>
-                    
-                    </BaseScrollArea>
-        
+            </div>
 
-                </div>
-
-                <div style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px' }}>
-           
-                    <AdaptiveScrollArea>
+            <div style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px' }}>
+                <AdaptiveScrollArea>
                     <WrapperInput
-                    positionLabel={'right'}
-                    // required
-                    // mr={'m-11'}
-                    id={'33333'}
-                    label={'ferfreferfrefrjkreh gjherhgjrehgjhrejghjerhgjkhrjgherjkhghregrejhgjrhejgkhrejkghrjehgjrehjgh'}
-                   
-                    // customLabel={'gergergregre'}
+                        positionLabel={'right'}
+                        // required
+                        // mr={'m-11'}
+                        id={'33333'}
+                        label={
+                            'ferfreferfrefrjkreh gjherhgjrehgjhrejghjerhgjkhrjgherjkhghregrejhgjrhejgkhrejkghrjehgjrehjgh'
+                        }
 
-                 
-                    // style={{ width: '100%' }}
-                >
-                    <BaseCheckbox />
+                        // customLabel={'gergergregre'}
 
-                    {/*  */}
-                </WrapperInput>
-                    
-                    </AdaptiveScrollArea>
-                    </div>
-        
+                        // style={{ width: '100%' }}
+                    >
+                        <BaseCheckbox />
 
-          
-          
+                        {/*  */}
+                    </WrapperInput>
+                </AdaptiveScrollArea>
             </div>
         </BaseBox>
     );

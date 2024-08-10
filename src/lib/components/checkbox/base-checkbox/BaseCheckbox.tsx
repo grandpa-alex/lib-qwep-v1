@@ -69,10 +69,14 @@ const SIZE_CHECKBOX = {
     [VS.L]: (props: TypeSSCheckbox) => css`
         width: ${props.checkboxSize_L};
         height: ${props.checkboxSize_L};
+        min-width: ${props.checkboxSize_L};
+        min-height: ${props.checkboxSize_L};
     `,
     [VS.M]: (props: TypeSSCheckbox) => css`
         width: ${props.checkboxSize_M};
         height: ${props.checkboxSize_M};
+        min-width: ${props.checkboxSize_M};
+        min-height: ${props.checkboxSize_M};
     `,
 };
 

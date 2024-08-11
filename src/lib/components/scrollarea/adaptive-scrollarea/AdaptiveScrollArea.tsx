@@ -36,7 +36,7 @@ type AdaptiveScrollAreaProps = {
     size?: TypeSize;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-} & React.RefAttributes<HTMLDivElement>;
+} & React.HTMLAttributes<HTMLDivElement>;
 
 type SRootProps = {
     $mr?: TypeMargin;
@@ -48,7 +48,7 @@ type SRootProps = {
     $boxPaddingVariant?: TypeBoxPaddingVariant;
     $boxGapVariant?: TypeBoxGapVariant;
     $boxDisplay?: TypeBoxDisplay;
-} & React.RefAttributes<HTMLDivElement>;
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const SRoot = styled.div<SRootProps>`
     overflow-y: auto;

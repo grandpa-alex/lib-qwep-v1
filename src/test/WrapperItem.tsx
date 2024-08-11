@@ -16,9 +16,27 @@ import {
 } from '@src/lib';
 
 function WrapperItem() {
+
+
+
+
     return (
         <BaseBox>
             <BaseTitle>Wrapper text field</BaseTitle>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <BaseBox mr={'my-3'} style={{ display: 'flex' }} boxGapVariant={'g-2'}>
                 <WrapperInput
                     positionLabel={'top'}
@@ -211,6 +229,7 @@ function WrapperItem() {
             </div>
 
             <div style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px' }}>
+                freghrejgh
                 <BaseScrollArea>
                     <WrapperInput
                         positionLabel={'right'}
@@ -236,27 +255,28 @@ function WrapperItem() {
                 </WrapperInput>
             </div>
 
-            <div style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px' }}>
-                <AdaptiveScrollArea>
-                    <WrapperInput
-                        positionLabel={'right'}
-                        // required
-                        // mr={'m-11'}
-                        id={'33333'}
-                        label={
-                            'ferfreferfrefrjkreh gjherhgjrehgjhrejghjerhgjkhrjgherjkhghregrejhgjrhejgkhrejkghrjehgjrehjgh'
-                        }
+            <BaseBox style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px', height: '150px'}}>
+                <BaseBox>
 
-                        // customLabel={'gergergregre'}
 
-                        // style={{ width: '100%' }}
-                    >
-                        <BaseCheckbox />
+                <AdaptiveScrollArea size={{height: '150px'}}>
 
-                        {/*  */}
-                    </WrapperInput>
+
+
+
                 </AdaptiveScrollArea>
-            </div>
+                </BaseBox>
+            </BaseBox>
+
+
+
+
+
+
+
+
+
+
         </BaseBox>
     );
 }

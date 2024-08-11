@@ -101,10 +101,11 @@ function DialogTooltip() {
                         </>
                     }
                     bg={'#f1c69e'}
-                    style={{ color: '#000000' }}
+                    style={{ color: '#000000', overflow: 'hidden' }}
                     boxPaddingVariant={'p-4'}
                     boxShadowColor={'#ff00007d'}
                     boxRadiusVariant={'br-3'}
+                    side={'right'}
                 >
                     <SimpleButton>Custom Tooltip</SimpleButton>
                 </SimpleTooltip>

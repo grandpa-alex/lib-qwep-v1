@@ -389,7 +389,7 @@ function Select() {
                         width: '200px',
                         height: '200px',
                     }}
-                    style={{marginRight: '10px'}}
+                    style={{ marginRight: '10px' }}
                 >
                     {/* <div style={{textWrap: 'nowrap'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laboriosam molestiae eaque aut tempore aliquam libero id esse quia non, suscipit repellat repellendus sit nam praesentium porro ducimus rem. Repudiandae.</div> */}
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, in sed? Minima, aperiam earum?

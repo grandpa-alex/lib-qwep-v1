@@ -361,6 +361,27 @@ function Inputs() {
                 />
                 <BaseTextarea color={'#e600c7'} disabled sizeVariant={'M'} placeholder={'Test placeholder'} />
             </BaseBox>
+
+            <BaseBox style={{ width: '400px', background: 'red' }}>
+                <BaseTextField style={{ width: '100%' }} />
+                <SubmitTextField
+                    // mr={'m-3'}
+                    style={{ width: '100%' }}
+                    isLoading={false}
+                    iconPosition={'left'}
+                    icon={<Icon.Settings />}
+                    placeholder={'Placeholder'}
+                />
+                <SimpleTextField
+                    style={{ width: '100%' }}
+                    iconPosition={'right'}
+                    icon={<Icon.Settings />}
+                    sizeVariant={'M'}
+                    color={'#d80097'}
+                    colorVariant={'error'}
+                    placeholder={'Placeholder custom'}
+                />
+            </BaseBox>
         </div>
     );
 }

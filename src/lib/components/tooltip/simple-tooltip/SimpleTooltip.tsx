@@ -76,7 +76,6 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
         boxShadowColor,
         boxShadowVariant = 'shd-1',
         boxRadiusVariant = 'br-1',
-        triggerStyle,
         arrow = true,
         $colors,
         $styles,
@@ -86,14 +85,14 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
         const styles = $styles ?? useStyleScheme(['box', 'mr']);
 
         return (
-            <Tooltip.Provider>
-                <Tooltip.Root>
+            <Tooltip.Provider {...rest.providerProps}>
+                <Tooltip.Root {...rest.rootProps}>
                     <Tooltip.Trigger asChild>
-                        <SBaseTooltip.Trigger style={triggerStyle} $mr={mr} $styles={styles}>
+                        <SBaseTooltip.Trigger $mr={mr} $styles={styles} {...rest.triggerProps}>
                             {children}
                         </SBaseTooltip.Trigger>
                     </Tooltip.Trigger>
-                    <Tooltip.Portal>
+                    <Tooltip.Portal {...rest.portalProps}>
                         <SContent
                             $bg={bg}
                             $colors={colors}

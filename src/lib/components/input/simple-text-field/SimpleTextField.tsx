@@ -102,7 +102,7 @@ export const SInput = styled(SBaseTextField.Input)<TBaseTextField.SInput>`
 
 export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
     ({
-        mr,
+        // mr,
         icon,
         color,
         iconOnClick,
@@ -127,7 +127,7 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
 
         return (
             <SRoot
-                $mr={mr}
+                $mr={rest.mr}
                 $colors={colors}
                 $styles={styles}
                 $color={color}
@@ -136,7 +136,8 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
                 $variant={variant}
                 $disabled={rest.disabled}
                 disabled={rest.disabled}
-                mr={mr}
+                style={rest.style}
+                mr={rest.mr}
                 color={color}
                 variant={variant}
                 sizeVariant={sizeVariant}
@@ -148,6 +149,7 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 $_isFocused={isFocused}
                 $blocked={rest.blocked}
+                {...rest.wrapperProps}
             >
                 {icon && (
                     <SIconContainer

@@ -126,6 +126,7 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                 $_isFocused={isFocused}
                 _isActiveHover={!isLoading && _isActiveHover}
                 $_isActiveHover={!isLoading && _isActiveHover}
+                {...rest.wrapperProps}
             >
                 {icon && (
                     <SSimpleTextField.IconContainer
@@ -149,7 +150,6 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                     $isLoading={isLoading}
                     disabled={rest.disabled}
                     {...rest}
-                    style={{}}
                 />
 
                 <SLoading

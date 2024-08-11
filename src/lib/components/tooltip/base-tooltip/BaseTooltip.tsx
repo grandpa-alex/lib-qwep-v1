@@ -7,7 +7,7 @@ import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
 import { TypeMargin } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled from 'styled-components';
-import { TooltipProps, TooltipTriggerProps } from '@radix-ui/react-tooltip';
+import { TooltipPortalProps, TooltipProps, TooltipProviderProps, TooltipTriggerProps } from '@radix-ui/react-tooltip';
 import { SBaseTooltipComponent, TBaseTooltipComponent } from './BaseTooltipComponent';
 
 type TypeStyles = {
@@ -21,14 +21,17 @@ type BaseTooltipProps = {
     mr?: TypeMargin;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-    triggerStyle?: React.CSSProperties;
-} & TooltipProps &
-    TBaseTooltipComponent.SContent;
+    providerProps?: TooltipProviderProps;
+    rootProps?: TooltipProps;
+    triggerProps?: TooltipTriggerProps & React.RefAttributes<HTMLButtonElement>;
+    portalProps?: TooltipPortalProps;
+} & TBaseTooltipComponent.SContent;
 
 type STriggerProps = {
     $mr?: TypeMargin;
     $styles: TypeStyles;
-} & TooltipTriggerProps;
+} & TooltipTriggerProps &
+    React.RefAttributes<HTMLButtonElement>;
 
 const STrigger = styled.div<STriggerProps>`
     display: inline-block;
@@ -52,19 +55,30 @@ const SContent = styled(SBaseTooltipComponent.Content)<SContentProps>`
 `;
 
 export const BaseTooltip: React.FC<BaseTooltipProps> = React.memo(
-    ({ children, mr, tooltip, triggerStyle, $colors, $styles, ...rest }) => {
+    ({
+         children,
+         mr,
+         tooltip,
+         providerProps,
+         rootProps,
+         triggerProps,
+         portalProps,
+         $colors,
+         $styles,
+         ...rest
+    }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['mr', 'box']);
 
         return (
-            <Tooltip.Provider>
-                <Tooltip.Root>
+            <Tooltip.Provider {...providerProps}>
+                <Tooltip.Root {...rootProps}>
                     <Tooltip.Trigger asChild>
-                        <STrigger style={triggerStyle} $mr={mr} $styles={styles}>
+                        <STrigger $mr={mr} $styles={styles} {...triggerProps}>
                             {children}
                         </STrigger>
                     </Tooltip.Trigger>
-                    <Tooltip.Portal>
+                    <Tooltip.Portal {...portalProps}>
                         <SContent $colors={colors} $styles={styles} side={rest.side ?? 'bottom'} {...rest}>
                             {tooltip}
                         </SContent>
@@ -72,7 +86,7 @@ export const BaseTooltip: React.FC<BaseTooltipProps> = React.memo(
                 </Tooltip.Root>
             </Tooltip.Provider>
         );
-    }
+    },
 );
 
 //export component

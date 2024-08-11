@@ -27,6 +27,7 @@ type BaseTextFieldProps = {
     $styles?: TypeStyles;
     color?: Hex;
     blocked?: boolean;
+    wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
     _isActiveHover?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
@@ -36,7 +37,7 @@ type SInpProps = {
     $colorVariant: TypeVariantColor;
 } & TBaseInput.SInput;
 
-type SRProps = {
+type SRootProps = {
     $_isActiveHover?: boolean;
     $blocked?: boolean;
 } & TRootTextField.SRoot;
@@ -60,7 +61,7 @@ const SInput = styled(BaseInput)<SInpProps>`
     }
 `;
 
-const SRoot = styled(RootTextField)<SRProps>`
+const SRoot = styled(RootTextField)<SRootProps>`
     display: inline-flex;
     align-items: center;
     ${(props) =>
@@ -79,6 +80,7 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
         sizeVariant = VS.L,
         colorVariant = VC.DEFAULT,
         blocked,
+        wrapperProps,
         $colors,
         $styles,
         ...rest
@@ -100,6 +102,7 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
                 $sizeVariant={sizeVariant}
                 $disabled={rest.disabled}
                 disabled={rest.disabled}
+                style={rest.style}
                 mr={mr}
                 variant={variant}
                 color={color}
@@ -110,6 +113,7 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
                 _isFocused={isFocused}
                 _isActiveHover={_isActiveHover}
                 $blocked={blocked}
+                {...wrapperProps}
             >
                 <SInput
                     $styles={{ typography: styles.typography }}
@@ -134,5 +138,5 @@ export namespace TBaseTextField {
     export type Styles = TypeStyles;
     export type Main = BaseTextFieldProps;
     export type SInput = SInpProps;
-    export type SRoot = SRProps;
+    export type SRoot = SRootProps;
 }

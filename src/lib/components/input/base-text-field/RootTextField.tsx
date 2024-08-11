@@ -41,7 +41,7 @@ type SRootTextFieldProps = {
     $variant: TypeInpVariant;
     $_isFocused?: boolean;
     $_isActiveHover?: boolean;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const INPUT_SIZE = {
     [VS.L]: (props: SRootTextFieldProps) => css`

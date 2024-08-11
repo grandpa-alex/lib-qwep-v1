@@ -1,6 +1,7 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
 import styled from 'styled-components';
 import { TooltipContentProps } from '@radix-ui/react-tooltip';
+import React from 'react';
 
 type SContentProps = TooltipContentProps & React.RefAttributes<HTMLDivElement>;
 

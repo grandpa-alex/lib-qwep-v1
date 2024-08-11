@@ -16,26 +16,9 @@ import {
 } from '@src/lib';
 
 function WrapperItem() {
-
-
-
-
     return (
         <BaseBox>
             <BaseTitle>Wrapper text field</BaseTitle>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <BaseBox mr={'my-3'} style={{ display: 'flex' }} boxGapVariant={'g-2'}>
                 <WrapperInput
@@ -255,28 +238,13 @@ function WrapperItem() {
                 </WrapperInput>
             </div>
 
-            <BaseBox style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px', height: '150px'}}>
+            <BaseBox
+                style={{ width: '300px', background: '#eeeeee7d', padding: '5px', marginTop: '50px', height: '150px' }}
+            >
                 <BaseBox>
-
-
-                <AdaptiveScrollArea size={{height: '150px'}}>
-
-
-
-
-                </AdaptiveScrollArea>
+                    <AdaptiveScrollArea size={{ height: '150px' }}></AdaptiveScrollArea>
                 </BaseBox>
             </BaseBox>
-
-
-
-
-
-
-
-
-
-
         </BaseBox>
     );
 }

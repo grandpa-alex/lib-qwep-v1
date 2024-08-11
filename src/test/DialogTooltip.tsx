@@ -5,9 +5,55 @@ function DialogTooltip() {
     const [openD1, setOpenD1] = useState(false);
     const [openD2, setOpenD2] = useState(false);
 
+    const [openT, setOpenT] = useState(false);
+    const [openT2, setOpenT2] = useState(false);
+
+    const handleFirstTooltipOpenChange = (isOpen: boolean) => {
+        if (!isOpen && openD2) {
+            return; // Не закрываем первую подсказку, если вторая открыта
+        }
+        setOpenT(isOpen);
+    };
+
+    const handleSecondTooltipOpenChange = (isOpen: boolean) => {
+        setOpenT2(isOpen);
+        if (isOpen) {
+            setOpenT(true); // Держим первую подсказку открытой, пока вторая открыта
+        }
+    };
+
     return (
         <div style={{ paddingBottom: '300px' }}>
             <h2>BASE DIALOG</h2>
+
+            <div>
+                {/* Первая подсказка */}
+                <BaseTooltip
+                    key="first-tooltip"
+                    rootProps={{
+                        open: openT,
+                        onOpenChange: handleFirstTooltipOpenChange,
+                    }}
+                    tooltip={
+                        <div>
+                            {/* Вторая вложенная подсказка */}
+                            <BaseTooltip
+                                key="second-tooltip"
+                                rootProps={{
+                                    open: openT2,
+                                    onOpenChange: handleSecondTooltipOpenChange,
+                                }}
+                                tooltip={'Вложенная подсказка'}
+                            >
+                                <SimpleButton colorVariant={'error'}>Наведи на меня</SimpleButton>
+                            </BaseTooltip>
+                        </div>
+                    }
+                >
+                    <SimpleButton colorVariant={'error'}>Наведи на меня</SimpleButton>
+                </BaseTooltip>
+            </div>
+
             <div style={{ display: 'flex' }}>
                 <SimpleButton mr={'m-3'} onClick={() => setOpenD1(true)}>
                     Default Dialog
@@ -79,7 +125,12 @@ function DialogTooltip() {
                     mr={'m-3'}
                     tooltip={'Custom Tooltip'}
                     bg={'#f1c69e'}
-                    style={{ color: '#000000' }}
+                    triggerProps={{
+                        style: {
+                            overflow: 'hidden',
+                            background: 'red'
+                        }
+                    }}
                     boxPaddingVariant={'p-2'}
                     boxShadowColor={'#ff00007d'}
                     boxRadiusVariant={'br-3'}
@@ -91,17 +142,29 @@ function DialogTooltip() {
                 <SimpleTooltip
                     mr={'m-3'}
                     boxGapVariant={'g-2'}
+                    // onPointerDownOutside={(e) => tooltip(e)}
+                    aria-label={'FWEFWEFEFEF'}
+                    sticky={'always'}
+                    forceMount={true}
+                    // open={false}
                     tooltip={
-                        <>
-                            <SimpleTextField placeholder={'Placeholder 1'} />
-                            <SimpleTextField placeholder={'Placeholder 2'} />
-                            <SimpleButton colorVariant={'error'} onClick={() => setOpenD2(false)}>
-                                Close
-                            </SimpleButton>
-                        </>
+                        <div>
+                            <BaseTooltip
+                                tooltip={'Custom Tooltip'}
+                                aria-label={'FWEFWEFEFEF'}
+                                sticky={'always'}
+                                // onPointerDownOutside={(e) => tooltip(e)}
+                            >
+                                <SimpleTextField placeholder={'Placeholder 1'} />
+                                <SimpleTextField placeholder={'Placeholder 2'} />
+                                <SimpleButton colorVariant={'error'} onClick={() => setOpenD2(false)}>
+                                    Close
+                                </SimpleButton>
+                            </BaseTooltip>
+                        </div>
                     }
                     bg={'#f1c69e'}
-                    style={{ color: '#000000', overflow: 'hidden' }}
+                    // style={{ color: '#000000', overflow: 'hidden' }}
                     boxPaddingVariant={'p-4'}
                     boxShadowColor={'#ff00007d'}
                     boxRadiusVariant={'br-3'}

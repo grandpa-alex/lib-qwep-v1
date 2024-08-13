@@ -25,7 +25,7 @@ import Tab from '@src/test/Tab.tsx';
 // }
 
 function Main() {
-    const [val, setVal] = useState(<Tab />);
+    const [val, setVal] = useState(<Buttons />);
     // const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
 
     const handler = (val: string) => {

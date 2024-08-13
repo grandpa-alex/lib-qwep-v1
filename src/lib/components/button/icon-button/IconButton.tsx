@@ -3,22 +3,26 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { VC, VS } from '@src/lib/types/TypeBase';
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
-import { BaseButton } from '..';
 import { getColor } from '@src/lib/common/getColor';
 import { VB } from '@src/lib/types/TypeBtn';
 import { renderIconButton } from '@src/lib/common/renderIconItem';
-import { TBaseButton } from '../base-button/BaseButton';
+import { SBaseButton, TBaseButton } from '../base-button/BaseButton';
 import { TypeSSBtn } from '@src/lib/general/styleScheme';
+import { itemRippleEffect } from '@src/lib/common/itemRippleEffect.ts';
 
 type IconButtonProps = { borderRadius?: 'default' | 'round' } & TBaseButton.Main;
 
-const BTN_VARIANT = {
+type VariantProps = {
+    hover: boolean
+} & TBaseButton.SButton
+
+const BTN_ICON_VARIANT = {
     [VB.CONTAINED]: (
-        props: TBaseButton.SButton & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>
+        props: VariantProps
     ) => css`
         color: ${props.$colors.textItem};
     `,
-    [VB.TEXT]: (props: TBaseButton.SButton & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.TEXT]: (props: VariantProps) => css`
         color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
@@ -28,7 +32,7 @@ const BTN_VARIANT = {
         })};
     `,
     [VB.OUTLINED]: (
-        props: TBaseButton.SButton & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>
+        props: VariantProps
     ) => css`
         color: ${getColor({
             cs: props.$colors,
@@ -55,73 +59,77 @@ type SButtonProps = {
     $borderRadius: 'default' | 'round';
 } & TBaseButton.SButton;
 
-const SButton = styled(BaseButton)<SButtonProps>`
+const SButton = styled(SBaseButton.Button)<SButtonProps>`
     display: flex;
     align-items: center;
     justify-content: center;
+
     ${(props) =>
-        props.$borderRadius === 'round' &&
-        css`
-            border-radius: 50%;
-            ${SIZE_VARIANT_ROUND[props.$sizeVariant](props.$styles.btn)}
-        `}
+            props.$borderRadius === 'round' &&
+            css`
+                border-radius: 50%;
+                ${SIZE_VARIANT_ROUND[props.$sizeVariant](props.$styles.btn)}
+            `}
     svg {
-        ${(props) => BTN_VARIANT[props.$variant]({ ...props, hover: false })};
+        ${(props) => BTN_ICON_VARIANT[props.$variant]({ ...props, hover: false })};
     }
 
     &:not([disabled]):hover {
         svg {
-            ${(props) => BTN_VARIANT[props.$variant]({ ...props, hover: props.$_isActiveHover })};
+            ${(props) => BTN_ICON_VARIANT[props.$variant]({ ...props, hover: props.$_isActiveHover })};
         }
     }
 `;
 
 export const IconButton: React.FC<IconButtonProps> = React.memo(
     ({
-        children,
-        mr,
-        color,
-        borderRadius = 'default',
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
-        variant = VB.CONTAINED,
-        $colors,
-        $styles,
-        _isActiveHover = true,
-
-        ...rest
-    }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
+         borderRadius = 'default',
+         sizeVariant = VS.L,
+         colorVariant = VC.DEFAULT,
+         variant = VB.CONTAINED,
+         _isActiveHover = true,
+         ...rest
+     }) => {
+        const colors = rest.$colors ?? useColorScheme();
+        const styles = rest.$styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
 
         const renderIcon = useMemo(() => {
-            return renderIconButton({ icon: children, size: styles.btn, sizeVariant, rest: { $colors: colors } });
-        }, [children, colors, styles, sizeVariant]);
+            return renderIconButton({ icon: rest.children, size: styles.btn, sizeVariant, rest: { $colors: colors } });
+        }, [rest.children, colors, styles, sizeVariant]);
+
+        const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+            itemRippleEffect(
+                event,
+                getColor({
+                    cs: colors,
+                    color: variant === VB.CONTAINED ? colors.alpha : rest.color,
+                    variant: colorVariant,
+                    opacity: '40',
+                }),
+            );
+            rest.onClick && (await rest.onClick(event));
+        };
 
         return (
             <SButton
                 $colors={colors}
                 $styles={styles}
+                onClick={handleClick}
+                $color={rest.color}
+                color={rest.color}
+                $blocked={rest.blocked}
+                $mr={rest.mr}
                 $sizeVariant={sizeVariant}
                 $colorVariant={colorVariant}
                 $variant={variant}
-                $color={color}
                 $borderRadius={borderRadius}
-                color={color}
-                $mr={mr}
-                $blocked={rest.blocked}
-                sizeVariant={sizeVariant}
-                colorVariant={colorVariant}
-                variant={variant}
-                mr={mr}
-                _isActiveHover={_isActiveHover}
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
                 {renderIcon && renderIcon}
             </SButton>
         );
-    }
+    },
 );
 
 //export component

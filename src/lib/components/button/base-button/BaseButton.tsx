@@ -18,7 +18,6 @@ type TypeStyles = {
 };
 
 type BaseButtonProps = {
-    children: React.ReactNode;
     mr?: TypeMargin;
     sizeVariant?: TypeVariantSize;
     colorVariant?: TypeVariantColor;
@@ -41,21 +40,21 @@ type SButtonProps = {
     $variant: TypeVariantBtn;
     $_isActiveHover: boolean;
     $blocked?: boolean;
-};
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const BTN_SIZE = {
-    [VS.L]: (props: SButtonProps) => css`
-        height: ${props.$styles.btn.btnHeight_L};
-        padding: ${`${props.$styles.btn.btnPadding_Y_L} ${props.$styles.btn.btnPadding_X_L}`};
+    [VS.L]: (btn: TypeSSBtn) => css`
+        height: ${btn.btnHeight_L};
+        padding: ${`${btn.btnPadding_Y_L} ${btn.btnPadding_X_L}`};
     `,
-    [VS.M]: (props: SButtonProps) => css`
-        height: ${props.$styles.btn.btnHeight_M};
-        padding: ${`${props.$styles.btn.btnPadding_Y_M} ${props.$styles.btn.btnPadding_X_M}`};
+    [VS.M]: (btn: TypeSSBtn) => css`
+        height: ${btn.btnHeight_M};
+        padding: ${`${btn.btnPadding_Y_M} ${btn.btnPadding_X_M}`};
     `,
 };
 
 const BTN_VARIANT = {
-    [VB.CONTAINED]: (props: SButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.CONTAINED]: (props: SButtonProps) => css`
         color: ${props.$colors.textItem};
         background-color: ${getColor({
             cs: props.$colors,
@@ -64,6 +63,7 @@ const BTN_VARIANT = {
             variant: props.$colorVariant,
         })};
         border: 0;
+
         &:not([disabled]):hover {
             transition: all 0.3s ease-in-out;
             background-color: ${getColor({
@@ -74,15 +74,16 @@ const BTN_VARIANT = {
             })};
         }
     `,
-    [VB.TEXT]: (props: SButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.TEXT]: (props: SButtonProps) => css`
         color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
             color: props.$color,
             variant: props.$colorVariant,
         })};
-        background-color: #00000000;
+        background-color: transparent;
         border: 0;
+
         &:not([disabled]):hover {
             transition: all 0.3s ease-in-out;
             color: ${getColor({
@@ -93,14 +94,14 @@ const BTN_VARIANT = {
             })};
         }
     `,
-    [VB.OUTLINED]: (props: SButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.OUTLINED]: (props: SButtonProps) => css`
         color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
             color: props.$color,
             variant: props.$colorVariant,
         })};
-        background-color: #00000000;
+        background-color: transparent;
         border-color: ${getColor({
             cs: props.$colors,
             color: props.$color,
@@ -110,6 +111,7 @@ const BTN_VARIANT = {
         border-right: 1px solid;
         border-top: 1px solid;
         border-bottom: 1px solid;
+
         &:not([disabled]):hover {
             transition: all 0.3s ease-in-out;
             color: ${getColor({
@@ -128,7 +130,7 @@ const BTN_VARIANT = {
     `,
 };
 
-export const SBButton = styled.button<SButtonProps>`
+export const SButton = styled.button<SButtonProps>`
     display: block;
     user-select: none;
     position: relative;
@@ -141,30 +143,29 @@ export const SBButton = styled.button<SButtonProps>`
     border-radius: ${({ $styles }) => $styles.base.borderRadiusItem};
     cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
     ${(props) => getMargin(props.$styles?.mr, props.$mr)};
-    ${(props) => BTN_SIZE[props.$sizeVariant](props)};
+    ${(props) => BTN_SIZE[props.$sizeVariant](props.$styles.btn)};
     ${(props) => BTN_VARIANT[props.$variant](props)};
     ${(props) =>
-        props.$blocked &&
-        css`
-            pointer-events: none;
-        `}
+            props.$blocked &&
+            css`
+                pointer-events: none;
+            `}
 `;
 
 export const BaseButton: React.FC<BaseButtonProps> = React.memo(
     ({
-        children,
-        mr,
-        color,
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
-        variant = VB.CONTAINED,
-        onClick,
-        $colors,
-        $styles,
-        blocked,
-        _isActiveHover = true,
-        ...rest
-    }) => {
+         mr,
+         color,
+         sizeVariant = VS.L,
+         colorVariant = VC.DEFAULT,
+         variant = VB.CONTAINED,
+         onClick,
+         $colors,
+         $styles,
+         blocked,
+         _isActiveHover = true,
+         ...rest
+     }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
 
@@ -176,13 +177,13 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
                     color: variant === VB.CONTAINED ? colors.alpha : color,
                     variant: colorVariant,
                     opacity: '40',
-                })
+                }),
             );
             onClick && (await onClick(event));
         };
 
         return (
-            <SBButton
+            <SButton
                 $colors={colors}
                 $styles={styles}
                 $sizeVariant={sizeVariant}
@@ -195,15 +196,15 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
-                {children}
-            </SBButton>
+                {rest.children}
+            </SButton>
         );
-    }
+    },
 );
 
 //export component
 export const SBaseButton = {
-    Button: SBButton,
+    Button: SButton,
 };
 
 //export type

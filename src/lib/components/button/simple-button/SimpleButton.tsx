@@ -3,25 +3,31 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { IIP, TypeItemIconPosition, VC, VS } from '@src/lib/types/TypeBase';
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
-import { BaseButton } from '..';
 import { getColor } from '@src/lib/common/getColor';
 import { TypeBtnPosition, VB, BP } from '@src/lib/types/TypeBtn';
 import { renderIconButton } from '@src/lib/common/renderIconItem';
-import { TBaseButton } from '../base-button/BaseButton';
+import { SBaseButton, TBaseButton } from '../base-button/BaseButton';
+import { itemRippleEffect } from '@src/lib/common/itemRippleEffect.ts';
 
 type SimpleButtonProps = {
     position?: TypeBtnPosition;
     icon?: React.ReactNode;
     iconPosition?: TypeItemIconPosition;
+    iconContainerProps?: React.HTMLAttributes<HTMLDivElement>
+    contentProps?: React.HTMLAttributes<HTMLDivElement>
 } & TBaseButton.Main;
+
+type VariantProps = {
+    hover: boolean
+} & TBaseButton.SButton
 
 type SIconContainerProps = {
     $iconPosition: TypeItemIconPosition;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 type SContentContainerProps = {
     $position: TypeBtnPosition;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const SIconContainer = styled.div<SIconContainerProps>`
     ${(props) => {
@@ -41,11 +47,11 @@ const SIconContainer = styled.div<SIconContainerProps>`
 
 const BTN_VARIANT = {
     [VB.CONTAINED]: (
-        props: TBaseButton.SButton & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>
+        props: VariantProps
     ) => css`
         color: ${props.$colors.textItem};
     `,
-    [VB.TEXT]: (props: TBaseButton.SButton & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => css`
+    [VB.TEXT]: (props: VariantProps) => css`
         color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
@@ -55,7 +61,7 @@ const BTN_VARIANT = {
         })};
     `,
     [VB.OUTLINED]: (
-        props: TBaseButton.SButton & { hover: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>
+        props:VariantProps
     ) => css`
         color: ${getColor({
             cs: props.$colors,
@@ -67,7 +73,7 @@ const BTN_VARIANT = {
     `,
 };
 
-const SButton = styled(BaseButton)<TBaseButton.SButton>`
+const SButton = styled(SBaseButton.Button)<TBaseButton.SButton>`
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
@@ -98,49 +104,54 @@ const SContentContainer = styled.div<SContentContainerProps>`
 
 export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
     ({
-        children,
-        mr,
         icon,
-        color,
         sizeVariant = VS.L,
         colorVariant = VC.DEFAULT,
         variant = VB.CONTAINED,
         position = BP.CENTER,
         iconPosition = IIP.LEFT,
-        $colors,
-        $styles,
         _isActiveHover = true,
-
+         iconContainerProps,
+         contentProps,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
+        const colors = rest.$colors ?? useColorScheme();
+        const styles = rest.$styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
 
         const renderIcon = useMemo(() => {
             return renderIconButton({ icon: icon, size: styles.btn, sizeVariant, rest: { $colors: colors } });
         }, [icon, colors, styles, sizeVariant]);
 
+        const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+            itemRippleEffect(
+                event,
+                getColor({
+                    cs: colors,
+                    color: variant === VB.CONTAINED ? colors.alpha : rest.color,
+                    variant: colorVariant,
+                    opacity: '40',
+                }),
+            );
+            rest.onClick && (await rest.onClick(event));
+        };
+
         return (
             <SButton
                 $colors={colors}
                 $styles={styles}
+                onClick={handleClick}
                 $sizeVariant={sizeVariant}
                 $colorVariant={colorVariant}
                 $variant={variant}
-                $color={color}
-                color={color}
-                $mr={mr}
+                $color={rest.color}
+                color={rest.color}
+                $mr={rest.mr}
                 $blocked={rest.blocked}
-                sizeVariant={sizeVariant}
-                colorVariant={colorVariant}
-                variant={variant}
-                mr={mr}
-                _isActiveHover={_isActiveHover}
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
-                {renderIcon && <SIconContainer $iconPosition={iconPosition}>{renderIcon}</SIconContainer>}
-                <SContentContainer $position={position}>{children}</SContentContainer>
+                {renderIcon && <SIconContainer $iconPosition={iconPosition} {...iconContainerProps}>{renderIcon}</SIconContainer>}
+                <SContentContainer $position={position} {...contentProps}>{rest.children}</SContentContainer>
             </SButton>
         );
     }

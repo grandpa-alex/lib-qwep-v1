@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import path from 'path';
 import react from '@vitejs/plugin-react';
-import ignore from 'rollup-plugin-ignore';
 
 export default defineConfig({
     plugins: [
@@ -10,7 +9,6 @@ export default defineConfig({
         dts({
             insertTypesEntry: true,
         }),
-        ignore(['**/src/test/**']),
     ],
     resolve: {
         alias: {

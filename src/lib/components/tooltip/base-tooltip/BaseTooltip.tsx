@@ -55,18 +55,7 @@ const SContent = styled(SBaseTooltipComponent.Content)<SContentProps>`
 `;
 
 export const BaseTooltip: React.FC<BaseTooltipProps> = React.memo(
-    ({
-         children,
-         mr,
-         tooltip,
-         providerProps,
-         rootProps,
-         triggerProps,
-         portalProps,
-         $colors,
-         $styles,
-         ...rest
-    }) => {
+    ({ children, mr, tooltip, providerProps, rootProps, triggerProps, portalProps, $colors, $styles, ...rest }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['mr', 'box']);
 
@@ -86,7 +75,7 @@ export const BaseTooltip: React.FC<BaseTooltipProps> = React.memo(
                 </Tooltip.Root>
             </Tooltip.Provider>
         );
-    },
+    }
 );
 
 //export component

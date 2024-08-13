@@ -12,6 +12,7 @@ import Icons from './Icons';
 import Avatar from './Avatar';
 import { BaseLayout } from '@src/lib';
 import WrapperItem from './WrapperItem';
+import Tab from '@src/test/Tab.tsx';
 
 // const Wrapper = ({children}: any) => {
 //     const colors = useColorScheme();
@@ -24,7 +25,7 @@ import WrapperItem from './WrapperItem';
 // }
 
 function Main() {
-    const [val, setVal] = useState(<DialogTooltip />);
+    const [val, setVal] = useState(<Tab />);
     // const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
 
     const handler = (val: string) => {
@@ -65,6 +66,9 @@ function Main() {
             case 'wrapper':
                 setVal(<WrapperItem />);
                 break;
+            case 'tab':
+                setVal(<Tab />);
+                break;
         }
     };
 
@@ -83,6 +87,7 @@ function Main() {
                 <button onClick={() => handler('icons')}>Icons</button>
                 <button onClick={() => handler('ava')}>Avatar</button>
                 <button onClick={() => handler('wrapper')}>WrapperItem</button>
+                <button onClick={() => handler('tab')}>Tab</button>
             </div>
             <div>{val}</div>
         </BaseLayout>

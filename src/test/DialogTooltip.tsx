@@ -128,8 +128,8 @@ function DialogTooltip() {
                     triggerProps={{
                         style: {
                             overflow: 'hidden',
-                            background: 'red'
-                        }
+                            background: 'red',
+                        },
                     }}
                     boxPaddingVariant={'p-2'}
                     boxShadowColor={'#ff00007d'}

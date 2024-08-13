@@ -17,14 +17,14 @@ type TypeStyles = {
 
 type BaseAvatarProps = {
     mr?: TypeMargin;
-    src?: string;
-    alt: string;
     sizeVariant?: TypeVariantSizeAvatar;
     color?: Hex;
     bg?: Hex;
+    rootProps?: AvatarProps & React.RefAttributes<HTMLSpanElement>
+    fallbackProps?: AvatarFallbackProps & React.RefAttributes<HTMLSpanElement>
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-} & AvatarProps;
+} & AvatarImageProps & React.RefAttributes<HTMLImageElement>
 
 type SRootProps = {
     $color?: Hex;
@@ -57,7 +57,7 @@ const SIZE = {
     `,
 };
 
-const SFallback = styled(Avatar.Fallback)`
+const SFallback = styled(Avatar.Fallback)<AvatarFallbackProps & React.RefAttributes<HTMLSpanElement>>`
     width: 100%;
     height: 100%;
     display: flex;
@@ -67,7 +67,7 @@ const SFallback = styled(Avatar.Fallback)`
     text-transform: uppercase;
 `;
 
-const SImg = styled(Avatar.Image)`
+const SImg = styled(Avatar.Image)<AvatarImageProps & React.RefAttributes<HTMLImageElement>>`
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -92,13 +92,13 @@ const SRoot = styled(Avatar.Root)<SRootProps>`
 `;
 
 export const BaseAvatar: React.FC<BaseAvatarProps> = React.memo(
-    ({ mr, color, bg, src, alt, sizeVariant = VSA.L, $colors, $styles, ...rest }) => {
+    ({ mr, color, bg, sizeVariant = VSA.L, rootProps, fallbackProps, $colors, $styles, ...rest }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['avatar', 'mr']);
 
-        const getFallbackText = useCallback((altText: string) => {
-            const words = altText.split(' ').slice(0, 2);
-            return words.map((word) => word.slice(0, Math.min(1, word.length))).join('');
+        const getFallbackText = useCallback((altText?: string) => {
+            const words = altText?.split(' ').slice(0, 2);
+            return words?.map((word) => word.slice(0, Math.min(1, word.length))).join('');
         }, []);
 
         return (
@@ -110,12 +110,13 @@ export const BaseAvatar: React.FC<BaseAvatarProps> = React.memo(
                 $mr={mr}
                 $bg={bg}
                 $sizeVariant={sizeVariant}
+                {...rootProps}
             >
-                <SImg src={src} alt={alt} {...rest} />
-                <SFallback delayMs={600}>{getFallbackText(alt)}</SFallback>
+                <SImg {...rest} />
+                <SFallback delayMs={600} {...fallbackProps}>{getFallbackText(rest.alt)}</SFallback>
             </SRoot>
         );
-    }
+    },
 );
 
 //export component

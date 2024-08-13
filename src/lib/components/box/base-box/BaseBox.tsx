@@ -13,7 +13,6 @@ type TypeStyles = {
 };
 
 type BaseBoxProps = {
-    children?: React.ReactNode;
     mr?: TypeMargin;
     boxWidthVariant?: TypeBoxWidthVariant;
     boxPaddingVariant?: TypeBoxPaddingVariant;
@@ -33,29 +32,29 @@ type SBoxProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const SBox = styled.div<SBoxProps>`
+    
     ${(props) =>
-        CSSBaseBox({
-            $boxWidthVariant: props.$boxWidthVariant,
-            $boxPaddingVariant: props.$boxPaddingVariant,
-            $boxGapVariant: props.$boxGapVariant,
-            $styles: props.$styles.box,
-            $boxDisplay: props.$boxDisplay,
-        })};
+            CSSBaseBox({
+                $boxWidthVariant: props.$boxWidthVariant,
+                $boxPaddingVariant: props.$boxPaddingVariant,
+                $boxGapVariant: props.$boxGapVariant,
+                $styles: props.$styles.box,
+                $boxDisplay: props.$boxDisplay,
+            })};
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
 `;
 
 export const BaseBox: React.FC<BaseBoxProps> = React.memo(
     ({
-        children,
-        mr,
-        boxWidthVariant,
-        boxDisplay,
-        boxPaddingVariant,
-        boxGapVariant,
-        as: Component = 'div',
-        $styles,
-        ...rest
-    }) => {
+         mr,
+         boxWidthVariant,
+         boxDisplay,
+         boxPaddingVariant,
+         boxGapVariant,
+         as: Component = 'div',
+         $styles,
+         ...rest
+     }) => {
         const styles = $styles ?? useStyleScheme(['box', 'mr']);
 
         return (
@@ -69,10 +68,10 @@ export const BaseBox: React.FC<BaseBoxProps> = React.memo(
                 $boxDisplay={boxDisplay}
                 {...rest}
             >
-                {children}
+                {rest.children}
             </SBox>
         );
-    }
+    },
 );
 
 //export component

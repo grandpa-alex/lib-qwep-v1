@@ -5,4 +5,4 @@ export type TypeBoxGapVariant = 'g-1' | 'g-2' | 'g-3' | 'g-4' | 'g-5' | 'g-6' | 
 export type TypeBoxShadowVariant = 'shd-1' | 'shd-2' | 'shd-3' | 'shd-null';
 export type TypeBoxRadiusVariant = 'br-1' | 'br-2' | 'br-3' | 'br-null';
 
-export type TypeBoxDisplay = 'flex' | 'inline-flex' | 'grid' | 'inline-grid';
+export type TypeBoxDisplay = 'flex' | 'inline-flex' | 'grid' | 'inline-grid' | 'block' | 'inline-block'

@@ -5,7 +5,6 @@ import { itemRippleEffect } from '@src/lib/common/itemRippleEffect';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSBtn, TypeSSTypography } from '@src/lib/general/styleScheme';
 import { TypeVariantSize, VS } from '@src/lib/types/TypeBase';
-
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -17,7 +16,6 @@ type TypeStyles = {
 
 type BaseMenuItemProps = {
     value: string;
-    children?: React.ReactNode;
     active?: boolean;
     sizeVariant?: TypeVariantSize;
     $colors?: TypeColorScheme;
@@ -107,7 +105,6 @@ export const SButton = styled.button<SButtonProps>`
 
 export const BaseMenuItem: React.FC<BaseMenuItemProps> = React.memo(
     ({
-        children,
         active,
         color,
         sizeVariant = VS.L,
@@ -153,7 +150,7 @@ export const BaseMenuItem: React.FC<BaseMenuItemProps> = React.memo(
                 onClick={handleClick}
                 {...rest}
             >
-                {children}
+                {rest.children}
             </SButton>
         );
     }

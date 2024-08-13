@@ -15,6 +15,7 @@ import {
 } from '@src/lib/types/TypeBox';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { opacity } from '@src/lib/common/getColor';
+import { TBaseMenuItem } from '@src/lib/components/box/base-menu/BaseMenuItem.tsx';
 
 type TypeStyles = {
     box: TypeSSBox;
@@ -24,8 +25,6 @@ type TypeStyles = {
 };
 
 type BaseMenuGroupProps = {
-    //group
-    children?: React.ReactNode;
     mr?: TypeMargin;
     orientation?: TypeOrientationContent;
     boxWidthVariant?: TypeBoxWidthVariant;
@@ -46,6 +45,7 @@ type BaseMenuGroupProps = {
     itemOpacityActive?: opacity;
     itemTextColor?: Hex;
     itemTextColorActive?: Hex;
+    menuItemProps?: TBaseMenuItem.Main
 
     $styles?: TypeStyles;
     $colors?: TypeColorScheme;
@@ -81,6 +81,7 @@ const ORIENTATION = {
 
 const SRoot = styled.div<SRootProps>`
     position: relative;
+    width: fit-content;
     background-color: ${(props) => props.$bg ?? props.$colors.secondary};
     ${(props) =>
         CSSSimpleBox({
@@ -104,7 +105,6 @@ const SRoot = styled.div<SRootProps>`
 
 export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
     ({
-        children,
         mr,
         boxWidthVariant,
         boxPaddingVariant = 'p-1',
@@ -144,7 +144,7 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
         );
 
         const renderItems = useMemo(() => {
-            return React.Children.map(children, (child: React.ReactNode) => {
+            return React.Children.map(rest.children, (child: React.ReactNode) => {
                 if (React.isValidElement(child) && child.props.value) {
                     return React.cloneElement(child, {
                         onClick: handleClick,
@@ -165,7 +165,7 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
                 return child;
             });
         }, [
-            children,
+            rest.children,
             handleClick,
             activeValue,
             itemSizeVariant,

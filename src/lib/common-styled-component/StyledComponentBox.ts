@@ -127,7 +127,7 @@ export type CSSBaseBoxProps = {
 };
 
 export const CSSBaseBox = (props: CSSBaseBoxProps) => css`
-    display: ${props.$boxDisplay ?? 'block'};
+    display: ${props.$boxDisplay ?? 'grid'};
     ${props.$boxGapVariant && BOX_GAP_VARIANT[props.$boxGapVariant](props.$styles)}
     ${props.$boxPaddingVariant && BOX_PADDING_VARIANT[props.$boxPaddingVariant](props.$styles)};
     ${props.$boxWidthVariant && BOX_WIDTH_VARIANT[props.$boxWidthVariant](props.$styles)};
@@ -152,7 +152,6 @@ export const CSSSimpleBox = (props: CSSSimplePropsBox) => css`
     })}
     ${props.$boxBorderColor &&
     css`
-        border: 1px solid;
-        border-color: ${props.$boxBorderColor};
+        border: 1px solid ${props.$boxBorderColor};
     `}
 `;

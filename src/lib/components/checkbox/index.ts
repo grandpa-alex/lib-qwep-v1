@@ -12,7 +12,9 @@ export namespace TypeCheckbox {
     export namespace BaseCheckbox {
         export type Main = TBaseCheckbox.Main;
         export type Styles = TBaseCheckbox.Styles;
+        export type SIndicator = TBaseCheckbox.SIndicator;
         export type SRoot = TBaseCheckbox.SRoot;
+        export type SIcon = TBaseCheckbox.SIcon;
     }
 
     export namespace SubmitCheckbox {

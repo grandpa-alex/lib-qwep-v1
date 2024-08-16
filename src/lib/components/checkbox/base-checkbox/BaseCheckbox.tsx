@@ -1,5 +1,5 @@
 import * as Checkbox from '@radix-ui/react-checkbox';
-import { CheckboxProps } from '@radix-ui/react-checkbox';
+import { CheckboxIndicatorProps, CheckboxProps } from '@radix-ui/react-checkbox';
 import { getColor } from '@src/lib/common/getColor';
 import { getMargin } from '@src/lib/common/getMargin';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
@@ -25,7 +25,11 @@ type BaseCheckboxProps = {
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     _isActiveHover?: boolean;
-} & CheckboxProps;
+    iconProps?: React.SVGProps<SVGSVGElement>;
+    polylineProps?: React.SVGProps<SVGPolylineElement>;
+    indicatorProps?: CheckboxIndicatorProps & React.RefAttributes<HTMLSpanElement>;
+} & CheckboxProps &
+    React.RefAttributes<HTMLButtonElement>;
 
 type SRootProps = {
     $color?: Hex;
@@ -36,14 +40,15 @@ type SRootProps = {
     $sizeVariant: TypeVariantSize;
     $blocked?: boolean;
     $_isActiveHover?: boolean;
-} & CheckboxProps;
+} & CheckboxProps &
+    React.RefAttributes<HTMLButtonElement>;
 
 type SIconProps = {
     $colorVariant: TypeVariantColor;
     $colors: TypeColorScheme;
     $color?: Hex;
     $disabled?: boolean;
-};
+} & React.SVGProps<SVGSVGElement>;
 
 const SIcon = styled.svg<SIconProps>`
     position: absolute;
@@ -86,14 +91,14 @@ const SRoot = styled(Checkbox.Root)<SRootProps>`
     cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
     border-radius: 4px;
     transition: all 0.3s ease-in-out;
-    border: 1px solid;
-    border-color: ${(props) =>
-        getColor({
-            cs: props.$colors,
-            disabled: props.disabled,
-            color: props.$color,
-            variant: props.$colorVariant,
-        })};
+    border: 1px solid
+        ${(props) =>
+            getColor({
+                cs: props.$colors,
+                disabled: props.disabled,
+                color: props.$color,
+                variant: props.$colorVariant,
+            })};
     &:not([disabled]):hover {
         border-color: ${(props) =>
             getColor({
@@ -143,6 +148,9 @@ export const BaseCheckbox: React.FC<BaseCheckboxProps> = React.memo(
         $colors,
         $styles,
         _isActiveHover = true,
+        indicatorProps,
+        iconProps,
+        polylineProps,
         ...rest
     }) => {
         const colors = $colors ?? useColorScheme();
@@ -160,15 +168,16 @@ export const BaseCheckbox: React.FC<BaseCheckboxProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
-                <Checkbox.Indicator>
+                <Checkbox.Indicator {...indicatorProps}>
                     <SIcon
                         $colors={colors}
                         $colorVariant={colorVariant}
                         $disabled={rest.disabled}
                         $color={color}
                         viewBox="0 0 24 24"
+                        {...iconProps}
                     >
-                        <polyline points="20 6 9 17 4 12" />
+                        <polyline points="20 6 9 17 4 12" {...polylineProps} />
                     </SIcon>
                 </Checkbox.Indicator>
             </SRoot>
@@ -180,6 +189,7 @@ export const BaseCheckbox: React.FC<BaseCheckboxProps> = React.memo(
 export const SBaseCheckbox = {
     Root: SRoot,
     Icon: SIcon,
+    Indicator: Checkbox.Indicator,
 };
 
 //export type
@@ -187,5 +197,6 @@ export namespace TBaseCheckbox {
     export type Styles = TypeStyles;
     export type Main = BaseCheckboxProps;
     export type SRoot = SRootProps;
+    export type SIndicator = CheckboxIndicatorProps & React.RefAttributes<HTMLSpanElement>;
     export type SIcon = SIconProps;
 }

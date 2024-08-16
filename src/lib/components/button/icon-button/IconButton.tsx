@@ -13,13 +13,11 @@ import { itemRippleEffect } from '@src/lib/common/itemRippleEffect.ts';
 type IconButtonProps = { borderRadius?: 'default' | 'round' } & TBaseButton.Main;
 
 type VariantProps = {
-    hover: boolean
-} & TBaseButton.SButton
+    hover: boolean;
+} & TBaseButton.SButton;
 
 const BTN_ICON_VARIANT = {
-    [VB.CONTAINED]: (
-        props: VariantProps
-    ) => css`
+    [VB.CONTAINED]: (props: VariantProps) => css`
         color: ${props.$colors.textItem};
     `,
     [VB.TEXT]: (props: VariantProps) => css`
@@ -31,9 +29,7 @@ const BTN_ICON_VARIANT = {
             hover: props.hover,
         })};
     `,
-    [VB.OUTLINED]: (
-        props: VariantProps
-    ) => css`
+    [VB.OUTLINED]: (props: VariantProps) => css`
         color: ${getColor({
             cs: props.$colors,
             color: props.$color,
@@ -65,11 +61,11 @@ const SButton = styled(SBaseButton.Button)<SButtonProps>`
     justify-content: center;
 
     ${(props) =>
-            props.$borderRadius === 'round' &&
-            css`
-                border-radius: 50%;
-                ${SIZE_VARIANT_ROUND[props.$sizeVariant](props.$styles.btn)}
-            `}
+        props.$borderRadius === 'round' &&
+        css`
+            border-radius: 50%;
+            ${SIZE_VARIANT_ROUND[props.$sizeVariant](props.$styles.btn)}
+        `}
     svg {
         ${(props) => BTN_ICON_VARIANT[props.$variant]({ ...props, hover: false })};
     }
@@ -83,13 +79,13 @@ const SButton = styled(SBaseButton.Button)<SButtonProps>`
 
 export const IconButton: React.FC<IconButtonProps> = React.memo(
     ({
-         borderRadius = 'default',
-         sizeVariant = VS.L,
-         colorVariant = VC.DEFAULT,
-         variant = VB.CONTAINED,
-         _isActiveHover = true,
-         ...rest
-     }) => {
+        borderRadius = 'default',
+        sizeVariant = VS.L,
+        colorVariant = VC.DEFAULT,
+        variant = VB.CONTAINED,
+        _isActiveHover = true,
+        ...rest
+    }) => {
         const colors = rest.$colors ?? useColorScheme();
         const styles = rest.$styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
 
@@ -105,7 +101,7 @@ export const IconButton: React.FC<IconButtonProps> = React.memo(
                     color: variant === VB.CONTAINED ? colors.alpha : rest.color,
                     variant: colorVariant,
                     opacity: '40',
-                }),
+                })
             );
             rest.onClick && (await rest.onClick(event));
         };
@@ -129,7 +125,7 @@ export const IconButton: React.FC<IconButtonProps> = React.memo(
                 {renderIcon && renderIcon}
             </SButton>
         );
-    },
+    }
 );
 
 //export component

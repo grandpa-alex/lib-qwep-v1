@@ -20,11 +20,12 @@ type BaseAvatarProps = {
     sizeVariant?: TypeVariantSizeAvatar;
     color?: Hex;
     bg?: Hex;
-    rootProps?: AvatarProps & React.RefAttributes<HTMLSpanElement>
-    fallbackProps?: AvatarFallbackProps & React.RefAttributes<HTMLSpanElement>
+    rootProps?: AvatarProps & React.RefAttributes<HTMLSpanElement>;
+    fallbackProps?: AvatarFallbackProps & React.RefAttributes<HTMLSpanElement>;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-} & AvatarImageProps & React.RefAttributes<HTMLImageElement>
+} & AvatarImageProps &
+    React.RefAttributes<HTMLImageElement>;
 
 type SRootProps = {
     $color?: Hex;
@@ -113,10 +114,12 @@ export const BaseAvatar: React.FC<BaseAvatarProps> = React.memo(
                 {...rootProps}
             >
                 <SImg {...rest} />
-                <SFallback delayMs={600} {...fallbackProps}>{getFallbackText(rest.alt)}</SFallback>
+                <SFallback delayMs={600} {...fallbackProps}>
+                    {getFallbackText(rest.alt)}
+                </SFallback>
             </SRoot>
         );
-    },
+    }
 );
 
 //export component

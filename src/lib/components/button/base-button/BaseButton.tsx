@@ -146,26 +146,26 @@ export const SButton = styled.button<SButtonProps>`
     ${(props) => BTN_SIZE[props.$sizeVariant](props.$styles.btn)};
     ${(props) => BTN_VARIANT[props.$variant](props)};
     ${(props) =>
-            props.$blocked &&
-            css`
-                pointer-events: none;
-            `}
+        props.$blocked &&
+        css`
+            pointer-events: none;
+        `}
 `;
 
 export const BaseButton: React.FC<BaseButtonProps> = React.memo(
     ({
-         mr,
-         color,
-         sizeVariant = VS.L,
-         colorVariant = VC.DEFAULT,
-         variant = VB.CONTAINED,
-         onClick,
-         $colors,
-         $styles,
-         blocked,
-         _isActiveHover = true,
-         ...rest
-     }) => {
+        mr,
+        color,
+        sizeVariant = VS.L,
+        colorVariant = VC.DEFAULT,
+        variant = VB.CONTAINED,
+        onClick,
+        $colors,
+        $styles,
+        blocked,
+        _isActiveHover = true,
+        ...rest
+    }) => {
         const colors = $colors ?? useColorScheme();
         const styles = $styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
 
@@ -177,7 +177,7 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
                     color: variant === VB.CONTAINED ? colors.alpha : color,
                     variant: colorVariant,
                     opacity: '40',
-                }),
+                })
             );
             onClick && (await onClick(event));
         };
@@ -199,7 +199,7 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
                 {rest.children}
             </SButton>
         );
-    },
+    }
 );
 
 //export component

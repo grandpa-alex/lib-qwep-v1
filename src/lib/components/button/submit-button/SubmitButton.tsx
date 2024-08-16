@@ -15,7 +15,7 @@ import { itemRippleEffect } from '@src/lib/common/itemRippleEffect.ts';
 
 type SubmitButtonProps = {
     isLoading: boolean;
-    loadingProps?: React.HTMLAttributes<HTMLSpanElement>
+    loadingProps?: React.HTMLAttributes<HTMLSpanElement>;
 } & TSimpleButton.Main;
 
 type SButtonProps = {
@@ -31,7 +31,7 @@ type SLoadingProps = {
     $colorVariant: TypeVariantColor;
     $sizeVariant: TypeVariantSize;
     $variant: TypeVariantBtn;
-} & React.HTMLAttributes<HTMLSpanElement>
+} & React.HTMLAttributes<HTMLSpanElement>;
 
 const LOADING_SIZE = {
     [VS.L]: (props: TypeSSBtn) => css`
@@ -66,10 +66,10 @@ const LOADING_BTN_VARIANT = {
 
 const SButton = styled(SSimpleButton.Button)<SButtonProps>`
     ${(props) =>
-            props.$isLoading &&
-            css`
-                pointer-events: none;
-            `}
+        props.$isLoading &&
+        css`
+            pointer-events: none;
+        `}
 `;
 
 const SLoading = styled.span<SLoadingProps>`
@@ -94,16 +94,16 @@ const SLoading = styled.span<SLoadingProps>`
 
 export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
     ({
-         isLoading,
-         sizeVariant = VS.L,
-         colorVariant = VC.DEFAULT,
-         variant = VB.CONTAINED,
-         position = BP.CENTER,
-         iconPosition = IIP.LEFT,
-         _isActiveHover = true,
-         loadingProps,
-         ...rest
-     }) => {
+        isLoading,
+        sizeVariant = VS.L,
+        colorVariant = VC.DEFAULT,
+        variant = VB.CONTAINED,
+        position = BP.CENTER,
+        iconPosition = IIP.LEFT,
+        _isActiveHover = true,
+        loadingProps,
+        ...rest
+    }) => {
         const colors = rest.$colors ?? useColorScheme();
         const styles = rest.$styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
 
@@ -119,7 +119,7 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
                     color: variant === VB.CONTAINED ? colors.alpha : rest.color,
                     variant: colorVariant,
                     opacity: '40',
-                }),
+                })
             );
             rest.onClick && (await rest.onClick(event));
         };
@@ -140,11 +140,13 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
                 {...rest}
             >
                 {renderIcon && (
-                    <SSimpleButton.IconContainer
-                        $iconPosition={iconPosition} {...rest.iconContainerProps}>{renderIcon}</SSimpleButton.IconContainer>
+                    <SSimpleButton.IconContainer $iconPosition={iconPosition} {...rest.iconContainerProps}>
+                        {renderIcon}
+                    </SSimpleButton.IconContainer>
                 )}
-                <SSimpleButton.ContentContainer
-                    $position={position} {...rest.contentProps}>{rest.children}</SSimpleButton.ContentContainer>
+                <SSimpleButton.ContentContainer $position={position} {...rest.contentProps}>
+                    {rest.children}
+                </SSimpleButton.ContentContainer>
                 <SLoading
                     $isLoading={isLoading}
                     $disabled={rest.disabled}
@@ -158,7 +160,7 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
                 />
             </SButton>
         );
-    },
+    }
 );
 
 //export component

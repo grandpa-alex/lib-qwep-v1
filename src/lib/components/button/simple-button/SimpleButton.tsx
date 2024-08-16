@@ -13,13 +13,13 @@ type SimpleButtonProps = {
     position?: TypeBtnPosition;
     icon?: React.ReactNode;
     iconPosition?: TypeItemIconPosition;
-    iconContainerProps?: React.HTMLAttributes<HTMLDivElement>
-    contentProps?: React.HTMLAttributes<HTMLDivElement>
+    iconContainerProps?: React.HTMLAttributes<HTMLDivElement>;
+    contentProps?: React.HTMLAttributes<HTMLDivElement>;
 } & TBaseButton.Main;
 
 type VariantProps = {
-    hover: boolean
-} & TBaseButton.SButton
+    hover: boolean;
+} & TBaseButton.SButton;
 
 type SIconContainerProps = {
     $iconPosition: TypeItemIconPosition;
@@ -46,9 +46,7 @@ const SIconContainer = styled.div<SIconContainerProps>`
 `;
 
 const BTN_VARIANT = {
-    [VB.CONTAINED]: (
-        props: VariantProps
-    ) => css`
+    [VB.CONTAINED]: (props: VariantProps) => css`
         color: ${props.$colors.textItem};
     `,
     [VB.TEXT]: (props: VariantProps) => css`
@@ -60,9 +58,7 @@ const BTN_VARIANT = {
             hover: props.hover,
         })};
     `,
-    [VB.OUTLINED]: (
-        props:VariantProps
-    ) => css`
+    [VB.OUTLINED]: (props: VariantProps) => css`
         color: ${getColor({
             cs: props.$colors,
             color: props.$color,
@@ -111,8 +107,8 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
         position = BP.CENTER,
         iconPosition = IIP.LEFT,
         _isActiveHover = true,
-         iconContainerProps,
-         contentProps,
+        iconContainerProps,
+        contentProps,
         ...rest
     }) => {
         const colors = rest.$colors ?? useColorScheme();
@@ -130,7 +126,7 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
                     color: variant === VB.CONTAINED ? colors.alpha : rest.color,
                     variant: colorVariant,
                     opacity: '40',
-                }),
+                })
             );
             rest.onClick && (await rest.onClick(event));
         };
@@ -150,8 +146,14 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
-                {renderIcon && <SIconContainer $iconPosition={iconPosition} {...iconContainerProps}>{renderIcon}</SIconContainer>}
-                <SContentContainer $position={position} {...contentProps}>{rest.children}</SContentContainer>
+                {renderIcon && (
+                    <SIconContainer $iconPosition={iconPosition} {...iconContainerProps}>
+                        {renderIcon}
+                    </SIconContainer>
+                )}
+                <SContentContainer $position={position} {...contentProps}>
+                    {rest.children}
+                </SContentContainer>
             </SButton>
         );
     }

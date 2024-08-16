@@ -18,7 +18,6 @@ const SWrapper = styled.div<React.HTMLAttributes<HTMLDivElement>>`
     }
 `;
 
-
 const SRoot = styled.div<React.HTMLAttributes<HTMLDivElement>>`
     position: relative;
     width: 100%;
@@ -31,16 +30,13 @@ const SRoot = styled.div<React.HTMLAttributes<HTMLDivElement>>`
     }
 `;
 
-export const BaseLayout: React.FC<BaseLayoutProps> = React.memo(
-    ({ as: Component = 'div', rootProps, ...rest }) => {
-
-        return (
-            <SRoot as={Component} {...rootProps}>
-                <SWrapper {...rest}>{rest.children}</SWrapper>
-            </SRoot>
-        );
-    },
-);
+export const BaseLayout: React.FC<BaseLayoutProps> = React.memo(({ as: Component = 'div', rootProps, ...rest }) => {
+    return (
+        <SRoot as={Component} {...rootProps}>
+            <SWrapper {...rest}>{rest.children}</SWrapper>
+        </SRoot>
+    );
+});
 
 //export component
 export const SBaseLayout = {

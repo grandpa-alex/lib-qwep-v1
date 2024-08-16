@@ -45,7 +45,7 @@ type BaseMenuGroupProps = {
     itemOpacityActive?: opacity;
     itemTextColor?: Hex;
     itemTextColorActive?: Hex;
-    menuItemProps?: TBaseMenuItem.Main
+    menuItemProps?: TBaseMenuItem.Main;
 
     $styles?: TypeStyles;
     $colors?: TypeColorScheme;

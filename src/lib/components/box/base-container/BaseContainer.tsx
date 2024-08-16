@@ -3,7 +3,6 @@ import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import React from 'react';
 import { styled } from 'styled-components';
 
-
 type BaseContainerProps = {
     as?: string;
     bg?: Hex;
@@ -11,7 +10,7 @@ type BaseContainerProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type SContainerProps = {
-    $bg?: Hex
+    $bg?: Hex;
     $colors: TypeColorScheme;
 } & React.HTMLAttributes<HTMLDivElement>;
 
@@ -33,7 +32,7 @@ export const BaseContainer: React.FC<BaseContainerProps> = React.memo(
                 {rest.children}
             </SContainer>
         );
-    },
+    }
 );
 
 //export component

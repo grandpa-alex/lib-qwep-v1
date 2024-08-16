@@ -60,6 +60,7 @@ function Checkbox() {
             <h4>SUBMIT CECKBOX COLORS</h4>
             <div style={{ display: 'flex' }}>
                 <SubmitCheckbox mr={'m-3'} blocked isLoading={false} />
+                <SubmitCheckbox mr={'m-3'} isLoading={false} colorVariant={'info'} />
                 <SubmitCheckbox mr={'m-3'} isLoading={true} colorVariant={'info'} />
                 <SubmitCheckbox mr={'m-3'} isLoading={true} checked colorVariant={'success'} />
                 <SubmitCheckbox mr={'m-3'} isLoading={true} colorVariant={'warning'} />

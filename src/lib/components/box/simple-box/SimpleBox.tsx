@@ -29,26 +29,18 @@ const SBox = styled(SBaseBox.Box)<SBoxProps>`
     background-color: ${(props) => props.$bg ?? props.$colors.backgroundBox};
 
     ${(props) =>
-            CSSSimpleBox({
-                $colors: props.$colors,
-                $boxBorderColor: props.$boxBorderColor,
-                $boxShadowColor: props.$boxShadowColor,
-                $boxShadowVariant: props.$boxShadowVariant,
-                $boxRadiusVariant: props.$boxRadiusVariant,
-                $styles: props.$styles.box,
-            })};
+        CSSSimpleBox({
+            $colors: props.$colors,
+            $boxBorderColor: props.$boxBorderColor,
+            $boxShadowColor: props.$boxShadowColor,
+            $boxShadowVariant: props.$boxShadowVariant,
+            $boxRadiusVariant: props.$boxRadiusVariant,
+            $styles: props.$styles.box,
+        })};
 `;
 
 export const SimpleBox: React.FC<SimpleBoxProps> = React.memo(
-    ({
-         bg,
-         boxBorderColor,
-         boxRadiusVariant,
-         boxShadowVariant,
-         boxShadowColor,
-         $colors,
-         ...rest
-     }) => {
+    ({ bg, boxBorderColor, boxRadiusVariant, boxShadowVariant, boxShadowColor, $colors, ...rest }) => {
         const colors = $colors ?? useColorScheme();
         const styles = rest.$styles ?? useStyleScheme(['box', 'mr']);
 
@@ -71,7 +63,7 @@ export const SimpleBox: React.FC<SimpleBoxProps> = React.memo(
                 {rest.children}
             </SBox>
         );
-    },
+    }
 );
 
 //export component

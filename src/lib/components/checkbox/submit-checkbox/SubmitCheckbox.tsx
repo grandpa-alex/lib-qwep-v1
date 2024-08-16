@@ -3,12 +3,10 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { VC, VS } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { BaseCheckbox } from '..';
-// import { BaseCheckboxProps, SBRootCheckboxProps } from '../base-checkbox/BaseCheckbox';
 import { getColor } from '@src/lib/common/getColor';
 import { TypeSSCheckbox } from '@src/lib/general/styleScheme';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
-import { TBaseCheckbox } from '../base-checkbox/BaseCheckbox';
+import { SBaseCheckbox, TBaseCheckbox } from '../base-checkbox/BaseCheckbox';
 
 type SubmitCheckboxProps = {
     isLoading: boolean;
@@ -29,7 +27,7 @@ const LOADING_SIZE = {
     `,
 };
 
-const SCheckbox = styled(BaseCheckbox)<SCheckboxProps>`
+const SRoot = styled(SBaseCheckbox.Root)<SCheckboxProps>`
     ${(props) => {
         if (props.$isLoading && !props.disabled) {
             return css`
@@ -43,8 +41,8 @@ const SCheckbox = styled(BaseCheckbox)<SCheckboxProps>`
                     })};
                 }
                 &::after {
-                    top: 0%;
-                    left: 0%;
+                    top: 0;
+                    left: 0;
                     ${LOADING_SIZE[props.$sizeVariant](props.$styles.checkbox)}
                     border: 1px solid ${getColor({
                         cs: props.$colors,
@@ -59,46 +57,42 @@ const SCheckbox = styled(BaseCheckbox)<SCheckboxProps>`
 `;
 
 export const SubmitCheckbox: React.FC<SubmitCheckboxProps> = React.memo(
-    ({
-        mr,
-        color,
-        isLoading = false,
-        colorVariant = VC.DEFAULT,
-        sizeVariant = VS.L,
-
-        $colors,
-        $styles,
-        _isActiveHover = true,
-        ...rest
-    }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'checkbox', 'mr']);
+    ({ isLoading, colorVariant = VC.DEFAULT, sizeVariant = VS.L, _isActiveHover = true, ...rest }) => {
+        const colors = rest.$colors ?? useColorScheme();
+        const styles = rest.$styles ?? useStyleScheme(['base', 'checkbox', 'mr']);
 
         return (
-            <SCheckbox
-                $color={color}
-                $mr={mr}
+            <SRoot
+                $isLoading={isLoading}
+                $color={rest.color}
+                $mr={rest.mr}
                 $colors={colors}
+                $blocked={rest.blocked}
                 $styles={styles}
                 $colorVariant={colorVariant}
                 $sizeVariant={sizeVariant}
-                $isLoading={isLoading}
-                $blocked={rest.blocked}
-                mr={mr}
-                color={color}
-                colorVariant={colorVariant}
-                sizeVariant={sizeVariant}
-                _isActiveHover={_isActiveHover}
                 $_isActiveHover={_isActiveHover}
                 {...rest}
-            />
+            >
+                <SBaseCheckbox.Indicator {...rest.indicatorProps}>
+                    <SBaseCheckbox.Icon
+                        $colors={colors}
+                        $disabled={rest.disabled}
+                        $colorVariant={colorVariant}
+                        viewBox="0 0 24 24"
+                        {...rest.iconProps}
+                    >
+                        <polyline points="20 6 9 17 4 12" {...rest.polylineProps} />
+                    </SBaseCheckbox.Icon>
+                </SBaseCheckbox.Indicator>
+            </SRoot>
         );
     }
 );
 
 //export component
 export const SSubmitCheckbox = {
-    Checkbox: SCheckbox,
+    Root: SRoot,
 };
 
 //export type

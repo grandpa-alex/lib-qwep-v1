@@ -12,7 +12,7 @@ type SubmitCheckboxProps = {
     isLoading: boolean;
 } & TBaseCheckbox.Main;
 
-type SCheckboxProps = {
+type SRootProps = {
     $isLoading: boolean;
 } & TBaseCheckbox.SRoot;
 
@@ -27,7 +27,7 @@ const LOADING_SIZE = {
     `,
 };
 
-const SRoot = styled(SBaseCheckbox.Root)<SCheckboxProps>`
+const SRoot = styled(SBaseCheckbox.Root)<SRootProps>`
     ${(props) => {
         if (props.$isLoading && !props.disabled) {
             return css`
@@ -98,5 +98,5 @@ export const SSubmitCheckbox = {
 //export type
 export namespace TSubmitCheckbox {
     export type Main = SubmitCheckboxProps;
-    export type SCheckbox = SCheckboxProps;
+    export type SRoot = SRootProps;
 }

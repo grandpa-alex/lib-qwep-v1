@@ -6,7 +6,6 @@ import { TypeSSBox } from '@src/lib/general/styleScheme';
 import React from 'react';
 import styled from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
-import { DialogProps } from '@radix-ui/react-dialog';
 import {
     TypeBoxGapVariant,
     TypeBoxPaddingVariant,
@@ -22,7 +21,6 @@ type TypeStyles = {
 };
 
 type BaseDialogProps = {
-    children: React.ReactNode;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     bg?: Hex;
@@ -35,7 +33,10 @@ type BaseDialogProps = {
     boxGapVariant?: TypeBoxGapVariant;
     overlayBlur?: string;
     overlayColor?: Hex;
-} & (DialogProps & TBaseDialogComponent.SContent);
+    portalProps?: React.ComponentPropsWithoutRef<typeof Dialog.Portal>;
+    overlayProps?: TBaseDialogComponent.SOverlay;
+    contentProps?: TBaseDialogComponent.SContent;
+} & React.ComponentPropsWithoutRef<typeof Dialog.Root>;
 
 type SOverlayProps = {
     $colors: TypeColorScheme;
@@ -85,7 +86,6 @@ const SContent = styled(SBaseDialogComponent.Content)<SContentProps>`
 
 export const BaseDialog: React.FC<BaseDialogProps> = React.memo(
     ({
-        children,
         bg,
         boxBorderColor,
         boxShadowColor,
@@ -98,6 +98,9 @@ export const BaseDialog: React.FC<BaseDialogProps> = React.memo(
         overlayColor,
         $colors,
         $styles,
+        overlayProps,
+        portalProps,
+        contentProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
@@ -105,8 +108,14 @@ export const BaseDialog: React.FC<BaseDialogProps> = React.memo(
 
         return (
             <Dialog.Root {...rest}>
-                <Dialog.Portal>
-                    <SOverlay $colors={colors} $styles={styles} $overlayColor={overlayColor} $overlayBlur={overlayBlur}>
+                <Dialog.Portal {...portalProps}>
+                    <SOverlay
+                        $colors={colors}
+                        $styles={styles}
+                        $overlayColor={overlayColor}
+                        $overlayBlur={overlayBlur}
+                        {...overlayProps}
+                    >
                         <SContent
                             $colors={colors}
                             $styles={styles}
@@ -118,9 +127,9 @@ export const BaseDialog: React.FC<BaseDialogProps> = React.memo(
                             $boxRadiusVariant={boxRadiusVariant}
                             $boxWidthVariant={boxWidthVariant}
                             $boxGapVariant={boxGapVariant}
-                            style={rest.style}
+                            {...contentProps}
                         >
-                            {children}
+                            {rest.children}
                         </SContent>
                     </SOverlay>
                 </Dialog.Portal>

@@ -33,8 +33,8 @@ const SText = styled.p<STextProps>`
 
 export const BaseText: React.FC<BaseTextProps> = React.memo(
     ({ as = 'p', children, color, $colors, $styles, ...rest }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['typography']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['typography'], $styles);
 
         return (
             <SText as={as} $colors={colors} $styles={styles} $color={color} {...rest}>

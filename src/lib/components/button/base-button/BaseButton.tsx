@@ -166,8 +166,8 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
         _isActiveHover = true,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], $styles);
 
         const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
             itemRippleEffect(
@@ -179,7 +179,9 @@ export const BaseButton: React.FC<BaseButtonProps> = React.memo(
                     opacity: '40',
                 })
             );
-            onClick && (await onClick(event));
+            if (onClick) {
+                await onClick(event);
+            }
         };
 
         return (

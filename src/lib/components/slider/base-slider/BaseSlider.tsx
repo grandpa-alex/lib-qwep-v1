@@ -126,8 +126,8 @@ const SRoot = styled(Slider.Root)<SRootProps>`
 
 export const BaseSlider: React.FC<BaseSliderProps> = React.memo(
     ({ mr, color, length, blocked, colorVariant = VC.DEFAULT, sizeVariant = VS.L, $colors, $styles, ...rest }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['slider', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['slider', 'mr'], $styles);
 
         return (
             <SRoot

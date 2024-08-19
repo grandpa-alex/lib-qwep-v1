@@ -94,8 +94,8 @@ const SRoot = styled(Avatar.Root)<SRootProps>`
 
 export const BaseAvatar: React.FC<BaseAvatarProps> = React.memo(
     ({ mr, color, bg, sizeVariant = VSA.L, rootProps, fallbackProps, $colors, $styles, ...rest }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['avatar', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['avatar', 'mr'], $styles);
 
         const getFallbackText = useCallback((altText?: string) => {
             const words = altText?.split(' ').slice(0, 2);

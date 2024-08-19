@@ -26,7 +26,7 @@ const SContainer = styled.div<SContainerProps>`
 
 export const BaseContainer: React.FC<BaseContainerProps> = React.memo(
     ({ as: Component = 'div', bg, $colors, ...rest }) => {
-        const colors = $colors ?? useColorScheme();
+        const colors = useColorScheme($colors);
         return (
             <SContainer as={Component} $bg={bg} $colors={colors} {...rest}>
                 {rest.children}

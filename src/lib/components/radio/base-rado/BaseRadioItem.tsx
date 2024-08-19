@@ -150,8 +150,8 @@ export const BaseRadioItem: React.FC<BaseRadioItemProps> = React.memo(
         _isActiveHover = true,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['mr', 'radio']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['mr', 'radio'], $styles);
 
         return (
             <SItem

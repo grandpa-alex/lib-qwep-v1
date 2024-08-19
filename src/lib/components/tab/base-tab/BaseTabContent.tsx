@@ -47,7 +47,7 @@ const SRoot = styled(Tabs.Content)<SRootProps>`
 
 export const BaseTabContent: React.FC<BaseTabContentProps> = React.memo(
     ({ mr, boxWidthVariant, boxPaddingVariant, boxDisplay, $styles, ...rest }) => {
-        const styles = $styles ?? useStyleScheme(['mr', 'box']);
+        const styles = useStyleScheme(['mr', 'box'], $styles);
 
         return (
             <SRoot

@@ -89,8 +89,8 @@ const STab = styled(Tabs.Trigger)<STabProps>`
 
 export const BaseTab: React.FC<BaseTabProps> = React.memo(
     ({ mr, sizeVariant = VS.L, blocked, $colors, $styles, ...rest }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['mr', 'btn', 'typography']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['mr', 'btn', 'typography'], $styles);
 
         return (
             <STab

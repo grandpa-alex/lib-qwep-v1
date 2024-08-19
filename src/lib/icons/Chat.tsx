@@ -8,7 +8,7 @@ export type ChatProps = {
 } & IconSVGContainerProps;
 
 export const Chat: React.FC<ChatProps> = ({ secondColor, ...rest }) => {
-    const colors = rest.$colors ?? useColorScheme();
+    const colors = useColorScheme(rest.$colors);
     return (
         <IconSVGContainer viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" $colors={colors} {...rest}>
             <rect width="60" height="60" rx="30" fill="currentColor" />

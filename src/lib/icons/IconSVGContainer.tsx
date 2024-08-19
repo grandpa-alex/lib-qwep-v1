@@ -35,8 +35,8 @@ export const IconSVGContainer: React.FC<IconSVGContainerProps> = ({
     $styles,
     ...rest
 }) => {
-    const colors = $colors ?? useColorScheme();
-    const styles = $styles ?? useStyleScheme(['mr', 'icon']);
+    const colors = useColorScheme($colors);
+    const styles = useStyleScheme(['mr', 'icon'], $styles);
 
     return (
         <StyledIconContainer

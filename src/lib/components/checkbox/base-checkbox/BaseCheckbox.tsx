@@ -153,8 +153,8 @@ export const BaseCheckbox: React.FC<BaseCheckboxProps> = React.memo(
         polylineProps,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'checkbox', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['base', 'checkbox', 'mr'], $styles);
 
         return (
             <SRoot

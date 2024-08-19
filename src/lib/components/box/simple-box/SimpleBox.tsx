@@ -41,8 +41,8 @@ const SBox = styled(SBaseBox.Box)<SBoxProps>`
 
 export const SimpleBox: React.FC<SimpleBoxProps> = React.memo(
     ({ bg, boxBorderColor, boxRadiusVariant, boxShadowVariant, boxShadowColor, $colors, ...rest }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = rest.$styles ?? useStyleScheme(['box', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['box', 'mr'], rest.$styles);
 
         return (
             <SBox

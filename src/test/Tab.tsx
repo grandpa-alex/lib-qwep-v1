@@ -17,9 +17,13 @@ function Tab() {
                     }
                 }
                 tabs={[
-                    <BaseTab value={'t-1'}>BaseTab_1</BaseTab>,
-                    <BaseTab value={'t-2'}>BaseTab_2</BaseTab>,
-                    <BaseTab value={'t-3'} disabled>
+                    <BaseTab key={1} value={'t-1'}>
+                        BaseTab_1
+                    </BaseTab>,
+                    <BaseTab key={2} value={'t-2'}>
+                        BaseTab_2
+                    </BaseTab>,
+                    <BaseTab key={3} value={'t-3'} disabled>
                         BaseTab_3
                     </BaseTab>,
                 ]}

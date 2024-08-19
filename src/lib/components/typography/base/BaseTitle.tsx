@@ -59,8 +59,8 @@ const STitle = styled.h1<STitleProps>`
 
 export const BaseTitle: React.FC<BaseTitleProps> = React.memo(
     ({ mr, as = 'h3', children, color, isEllipsis, $colors, $styles, ...rest }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['typography', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['typography', 'mr'], $styles);
 
         return (
             <STitle

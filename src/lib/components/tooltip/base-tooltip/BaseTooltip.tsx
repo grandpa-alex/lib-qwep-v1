@@ -56,8 +56,8 @@ const SContent = styled(SBaseTooltipComponent.Content)<SContentProps>`
 
 export const BaseTooltip: React.FC<BaseTooltipProps> = React.memo(
     ({ children, mr, tooltip, providerProps, rootProps, triggerProps, portalProps, $colors, $styles, ...rest }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['mr', 'box']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['mr', 'box'], $styles);
 
         return (
             <Tooltip.Provider {...providerProps}>

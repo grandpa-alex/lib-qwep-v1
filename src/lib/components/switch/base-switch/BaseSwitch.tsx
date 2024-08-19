@@ -129,8 +129,8 @@ export const BaseSwitch: React.FC<BaseSwitchProps> = React.memo(
         _isActiveHover = true,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['switch', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['switch', 'mr'], $styles);
 
         return (
             <SRoot

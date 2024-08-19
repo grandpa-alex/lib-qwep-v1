@@ -25,7 +25,7 @@ const SInput = styled.input<SInputProps>`
 `;
 
 export const BaseInput: React.FC<BaseInputProps> = React.memo(({ $styles, ...rest }) => {
-    const styles = $styles ?? useStyleScheme(['typography']);
+    const styles = useStyleScheme(['typography'], $styles);
     return <SInput $styles={styles} {...rest} style={{}} />;
 });
 

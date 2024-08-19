@@ -91,8 +91,8 @@ export const BaseRadioGroup: React.FC<BaseRadioGroupProps> = React.memo(
         message,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['mr', 'box', 'typography']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['mr', 'box', 'typography'], $styles);
 
         return (
             <SRoot $mr={mr} $styles={styles} $blocked={blocked} $boxGapVariantLabel={boxGapVariantLabel}>

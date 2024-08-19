@@ -81,8 +81,8 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
         $styles,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['box', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['box', 'mr'], $styles);
 
         return (
             <Tooltip.Provider {...rest.providerProps}>

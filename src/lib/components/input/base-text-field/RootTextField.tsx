@@ -121,8 +121,8 @@ export const RootTextField: React.FC<RootTextFieldProps> = React.memo(
         _isFocused,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'inp', 'typography', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['base', 'inp', 'typography', 'mr'], $styles);
 
         return (
             <SRoot

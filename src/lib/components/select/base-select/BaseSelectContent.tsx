@@ -345,8 +345,8 @@ export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
         _isActiveHover = true,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'box', 'select', 'typography', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['base', 'box', 'select', 'typography', 'mr'], $styles);
 
         return (
             <Select.Root {...rest}>

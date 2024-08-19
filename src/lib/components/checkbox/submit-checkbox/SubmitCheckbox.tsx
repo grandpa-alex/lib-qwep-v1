@@ -1,4 +1,3 @@
-import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { VC, VS } from '@src/lib/types/TypeBase';
 import React from 'react';
@@ -7,6 +6,7 @@ import { getColor } from '@src/lib/common/getColor';
 import { TypeSSCheckbox } from '@src/lib/general/styleScheme';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
 import { SBaseCheckbox, TBaseCheckbox } from '../base-checkbox/BaseCheckbox';
+import { useColorScheme } from '@src/lib/general';
 
 type SubmitCheckboxProps = {
     isLoading: boolean;
@@ -58,8 +58,8 @@ const SRoot = styled(SBaseCheckbox.Root)<SRootProps>`
 
 export const SubmitCheckbox: React.FC<SubmitCheckboxProps> = React.memo(
     ({ isLoading, colorVariant = VC.DEFAULT, sizeVariant = VS.L, _isActiveHover = true, ...rest }) => {
-        const colors = rest.$colors ?? useColorScheme();
-        const styles = rest.$styles ?? useStyleScheme(['base', 'checkbox', 'mr']);
+        const colors = useColorScheme(rest.$colors);
+        const styles = useStyleScheme(['base', 'checkbox', 'mr'], rest.$styles);
 
         return (
             <SRoot

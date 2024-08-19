@@ -107,8 +107,8 @@ export const RootTextarea: React.FC<RootTextareaProps> = React.memo(
         _isFocused,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'mr', 'inp']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['base', 'mr', 'inp'], $styles);
         return (
             <SRoot
                 $mr={mr}

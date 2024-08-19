@@ -96,8 +96,8 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
         labelColor,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['box', 'mr', 'typography']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['box', 'mr', 'typography'], $styles);
 
         const renderItem = useMemo(() => {
             return React.cloneElement(children as React.ReactElement, { id: id });

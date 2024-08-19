@@ -54,7 +54,7 @@ export const BaseBox: React.FC<BaseBoxProps> = React.memo(
         $styles,
         ...rest
     }) => {
-        const styles = $styles ?? useStyleScheme(['box', 'mr']);
+        const styles = useStyleScheme(['box', 'mr'], $styles);
 
         return (
             <SBox

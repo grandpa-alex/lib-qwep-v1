@@ -83,8 +83,8 @@ export const AdaptiveScrollArea: React.FC<AdaptiveScrollAreaProps> = React.memo(
         $styles,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['mr', 'box']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['mr', 'box'], $styles);
 
         return (
             <SRoot

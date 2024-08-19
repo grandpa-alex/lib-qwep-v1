@@ -111,8 +111,8 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
         contentProps,
         ...rest
     }) => {
-        const colors = rest.$colors ?? useColorScheme();
-        const styles = rest.$styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
+        const colors = useColorScheme(rest.$colors);
+        const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], rest.$styles);
 
         const renderIcon = useMemo(() => {
             return renderIconButton({ icon: icon, size: styles.btn, sizeVariant, rest: { $colors: colors } });
@@ -128,7 +128,9 @@ export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
                     opacity: '40',
                 })
             );
-            rest.onClick && (await rest.onClick(event));
+            if (rest.onClick) {
+                await rest.onClick(event);
+            }
         };
 
         return (

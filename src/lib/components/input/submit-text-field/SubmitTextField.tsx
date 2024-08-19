@@ -86,8 +86,8 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
         $styles,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'inp', 'typography', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['base', 'inp', 'typography', 'mr'], $styles);
         const [isFocused, setIsFocused] = useState(false);
         const handleFocus = useCallback(
             () => (!rest.disabled || isLoading) && setIsFocused(true),

@@ -77,7 +77,7 @@ const SList = styled(Tabs.List)<SListProps>`
 
 export const BaseTabWrapper: React.FC<BaseTabWrapperProps> = React.memo(
     ({ mr, tabs, boxWidthVariant, boxPaddingVariant, tabsListProps, $styles, ...rest }) => {
-        const styles = $styles ?? useStyleScheme(['mr', 'box']);
+        const styles = useStyleScheme(['mr', 'box'], $styles);
 
         return (
             <SRoot

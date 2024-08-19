@@ -40,7 +40,7 @@ const SMessage = styled.span<SMessageProps>`
 `;
 
 export const MessageBox: React.FC<MessageBoxProps> = React.memo(({ $colors, message }) => {
-    const colors = $colors ?? useColorScheme();
+    const colors = useColorScheme($colors);
     if (!message) return;
     return (
         <SMessage $colors={colors} $colorVariant={message.colorVariant ?? 'error'}>

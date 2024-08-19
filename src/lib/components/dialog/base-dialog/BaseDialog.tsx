@@ -100,8 +100,8 @@ export const BaseDialog: React.FC<BaseDialogProps> = React.memo(
         $styles,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['box']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['box'], $styles);
 
         return (
             <Dialog.Root {...rest}>

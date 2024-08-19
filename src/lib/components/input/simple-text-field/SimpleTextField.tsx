@@ -115,8 +115,8 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
         $styles,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'inp', 'typography', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['base', 'inp', 'typography', 'mr'], $styles);
         const [isFocused, setIsFocused] = useState(false);
         const handleFocus = useCallback(() => !rest.disabled && setIsFocused(true), [rest.disabled]);
         const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), [rest.disabled]);

@@ -104,8 +104,8 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
         loadingProps,
         ...rest
     }) => {
-        const colors = rest.$colors ?? useColorScheme();
-        const styles = rest.$styles ?? useStyleScheme(['base', 'btn', 'typography', 'mr']);
+        const colors = useColorScheme(rest.$colors);
+        const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], rest.$styles);
 
         const renderIcon = useMemo(() => {
             return renderIconButton({ icon: rest.icon, size: styles.btn, sizeVariant, rest: { $colors: colors } });
@@ -121,7 +121,9 @@ export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
                     opacity: '40',
                 })
             );
-            rest.onClick && (await rest.onClick(event));
+            if (rest.onClick) {
+                await rest.onClick(event);
+            }
         };
 
         return (

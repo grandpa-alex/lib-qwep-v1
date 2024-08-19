@@ -51,8 +51,8 @@ const SContent = styled(Popover.Content)<SContentProps>`
 
 export const BasePopup: React.FC<BasePopupProps> = React.memo(
     ({ mr, children, triggerStyle, trigger, bg, $colors, $styles, ...rest }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['mr'], $styles);
 
         return (
             <Popover.Root {...rest}>

@@ -77,8 +77,8 @@ const SThumb = styled(SBaseScrollAreaComponent.Thumb)<SThumbProps>`
 
 export const BaseScrollArea: React.FC<BaseScrollAreaProps> = React.memo(
     ({ mr, children, orientation = OC.VERTICAL, width, height, bgScrolbar, trumbColor, $colors, $styles, ...rest }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['mr'], $styles);
 
         return (
             <SRoot $mr={mr} $width={width} $height={height} $styles={styles} {...rest}>

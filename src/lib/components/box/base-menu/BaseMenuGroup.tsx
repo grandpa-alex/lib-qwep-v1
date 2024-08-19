@@ -129,16 +129,17 @@ export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
         $colors,
         ...rest
     }) => {
-        const styles = $styles ?? useStyleScheme(['box', 'mr', 'btn', 'typography']);
-        const colors = $colors ?? useColorScheme();
-
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['box', 'mr', 'btn', 'typography'], $styles);
         const [activeValue, setActiveValue] = useState<string>(activeItem ?? '');
 
         const handleClick = useCallback(
             (event: React.MouseEvent<HTMLButtonElement>) => {
                 const newValue = event.currentTarget.getAttribute('value');
                 setActiveValue(newValue || '');
-                onChangeActiveItem && onChangeActiveItem(newValue || '');
+                if (onChangeActiveItem) {
+                    onChangeActiveItem(newValue || '');
+                }
             },
             [onChangeActiveItem]
         );

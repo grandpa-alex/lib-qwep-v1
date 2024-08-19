@@ -71,8 +71,8 @@ export const SubmitSwitch: React.FC<SubmitSwitchProps> = React.memo(
         _isActiveHover = true,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['switch', 'mr']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['switch', 'mr'], $styles);
 
         return (
             <SSwitch

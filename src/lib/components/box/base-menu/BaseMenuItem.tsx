@@ -119,8 +119,8 @@ export const BaseMenuItem: React.FC<BaseMenuItemProps> = React.memo(
         _isActiveHover = true,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['base', 'btn', 'typography']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['base', 'btn', 'typography'], $styles);
 
         const handleClick = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
             itemRippleEffect(
@@ -131,7 +131,9 @@ export const BaseMenuItem: React.FC<BaseMenuItemProps> = React.memo(
                     opacity: '40',
                 })
             );
-            onClick && (await onClick(event));
+            if (onClick) {
+                await onClick(event);
+            }
         };
 
         return (

@@ -29,7 +29,7 @@ const STextarea = styled.textarea<STextareaProps>`
 `;
 
 export const BaseInputArea: React.FC<BaseInputAreaProps> = React.memo(({ $styles, resize, ...rest }) => {
-    const styles = $styles ?? useStyleScheme(['typography']);
+    const styles = useStyleScheme(['typography'], $styles);
     return <STextarea $styles={styles} $resize={resize} {...rest} />;
 });
 

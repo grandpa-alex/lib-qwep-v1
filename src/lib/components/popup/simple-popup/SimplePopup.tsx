@@ -170,8 +170,8 @@ export const SimplePopup: React.FC<SimplePopupProps> = React.memo(
         $styles,
         ...rest
     }) => {
-        const colors = $colors ?? useColorScheme();
-        const styles = $styles ?? useStyleScheme(['mr', 'box', 'typography']);
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['mr', 'box', 'typography'], $styles);
 
         return (
             <Popover.Root {...rest}>

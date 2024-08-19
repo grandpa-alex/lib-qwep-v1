@@ -42,7 +42,7 @@ type SButtonProps = {
     $active?: boolean;
     $_isActiveHover: boolean;
     $blocked?: boolean;
-};
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const BTN_SIZE = {
     [VS.L]: (props: SButtonProps) => css`

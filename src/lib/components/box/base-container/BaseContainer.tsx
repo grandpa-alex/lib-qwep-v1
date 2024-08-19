@@ -4,7 +4,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 type BaseContainerProps = {
-    as?: string;
+    as?: keyof JSX.IntrinsicElements;
     bg?: Hex;
     $colors?: TypeColorScheme;
 } & React.HTMLAttributes<HTMLDivElement>;

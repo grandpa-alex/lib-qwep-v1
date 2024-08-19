@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 
 type BaseLayoutProps = {
     children?: React.ReactNode;
-    as?: string;
+    as?: keyof JSX.IntrinsicElements;
     rootProps?: React.HTMLAttributes<HTMLDivElement>;
 } & React.HTMLAttributes<HTMLDivElement>;
 

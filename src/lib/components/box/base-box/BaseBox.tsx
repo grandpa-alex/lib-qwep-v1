@@ -18,7 +18,7 @@ type BaseBoxProps = {
     boxPaddingVariant?: TypeBoxPaddingVariant;
     boxGapVariant?: TypeBoxGapVariant;
     boxDisplay?: TypeBoxDisplay;
-    as?: string;
+    as?: keyof JSX.IntrinsicElements;
     $styles?: TypeStyles;
 } & React.HTMLAttributes<HTMLDivElement>;
 

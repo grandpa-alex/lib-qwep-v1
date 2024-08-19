@@ -1,5 +1,4 @@
 import * as Avatar from '@radix-ui/react-avatar';
-import { AvatarFallbackProps, AvatarImageProps } from '@radix-ui/react-avatar';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSAvatar, TypeSSMR } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
@@ -132,6 +131,6 @@ export namespace TBaseAvatar {
     export type Styles = TypeStyles;
     export type Main = BaseAvatarProps;
     export type SRoot = SRootProps;
-    export type SImg = AvatarImageProps & React.RefAttributes<HTMLImageElement>;
-    export type SFallback = AvatarFallbackProps & React.RefAttributes<HTMLSpanElement>;
+    export type SImg = React.ComponentPropsWithRef<typeof Avatar.Image>;
+    export type SFallback = React.ComponentPropsWithRef<typeof Avatar.Fallback>;
 }

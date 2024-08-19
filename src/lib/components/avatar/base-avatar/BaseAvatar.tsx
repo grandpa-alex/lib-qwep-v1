@@ -1,5 +1,5 @@
 import * as Avatar from '@radix-ui/react-avatar';
-import { AvatarFallbackProps, AvatarImageProps, AvatarProps } from '@radix-ui/react-avatar';
+import { AvatarFallbackProps, AvatarImageProps } from '@radix-ui/react-avatar';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSAvatar, TypeSSMR } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
@@ -20,12 +20,11 @@ type BaseAvatarProps = {
     sizeVariant?: TypeVariantSizeAvatar;
     color?: Hex;
     bg?: Hex;
-    rootProps?: AvatarProps & React.RefAttributes<HTMLSpanElement>;
-    fallbackProps?: AvatarFallbackProps & React.RefAttributes<HTMLSpanElement>;
+    rootProps?: React.ComponentPropsWithRef<typeof Avatar.Root>;
+    fallbackProps?: React.ComponentPropsWithRef<typeof Avatar.Fallback>;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-} & AvatarImageProps &
-    React.RefAttributes<HTMLImageElement>;
+} & React.ComponentPropsWithRef<typeof Avatar.Image>;
 
 type SRootProps = {
     $color?: Hex;
@@ -34,8 +33,7 @@ type SRootProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $sizeVariant: TypeVariantSizeAvatar;
-} & AvatarProps &
-    React.RefAttributes<HTMLSpanElement>;
+} & React.ComponentPropsWithRef<typeof Avatar.Root>;
 
 const SIZE = {
     [VSA.S]: (props: TypeSSAvatar) => css`
@@ -58,7 +56,7 @@ const SIZE = {
     `,
 };
 
-const SFallback = styled(Avatar.Fallback)<AvatarFallbackProps & React.RefAttributes<HTMLSpanElement>>`
+const SFallback = styled(Avatar.Fallback)<React.ComponentPropsWithRef<typeof Avatar.Fallback>>`
     width: 100%;
     height: 100%;
     display: flex;
@@ -68,7 +66,7 @@ const SFallback = styled(Avatar.Fallback)<AvatarFallbackProps & React.RefAttribu
     text-transform: uppercase;
 `;
 
-const SImg = styled(Avatar.Image)<AvatarImageProps & React.RefAttributes<HTMLImageElement>>`
+const SImg = styled(Avatar.Image)<React.ComponentPropsWithRef<typeof Avatar.Image>>`
     width: 100%;
     height: 100%;
     object-fit: cover;

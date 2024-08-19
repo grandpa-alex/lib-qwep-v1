@@ -1,5 +1,4 @@
 import * as Checkbox from '@radix-ui/react-checkbox';
-import { CheckboxIndicatorProps, CheckboxProps } from '@radix-ui/react-checkbox';
 import { getColor } from '@src/lib/common/getColor';
 import { getMargin } from '@src/lib/common/getMargin';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
@@ -27,9 +26,8 @@ type BaseCheckboxProps = {
     _isActiveHover?: boolean;
     iconProps?: React.SVGProps<SVGSVGElement>;
     polylineProps?: React.SVGProps<SVGPolylineElement>;
-    indicatorProps?: CheckboxIndicatorProps & React.RefAttributes<HTMLSpanElement>;
-} & CheckboxProps &
-    React.RefAttributes<HTMLButtonElement>;
+    indicatorProps?: React.ComponentPropsWithRef<typeof Checkbox.Indicator>;
+} & React.ComponentPropsWithRef<typeof Checkbox.Root>;
 
 type SRootProps = {
     $color?: Hex;
@@ -40,8 +38,7 @@ type SRootProps = {
     $sizeVariant: TypeVariantSize;
     $blocked?: boolean;
     $_isActiveHover?: boolean;
-} & CheckboxProps &
-    React.RefAttributes<HTMLButtonElement>;
+} & React.ComponentPropsWithRef<typeof Checkbox.Root>;
 
 type SIconProps = {
     $colorVariant: TypeVariantColor;
@@ -197,6 +194,6 @@ export namespace TBaseCheckbox {
     export type Styles = TypeStyles;
     export type Main = BaseCheckboxProps;
     export type SRoot = SRootProps;
-    export type SIndicator = CheckboxIndicatorProps & React.RefAttributes<HTMLSpanElement>;
+    export type SIndicator = React.ComponentPropsWithRef<typeof Checkbox.Indicator>;
     export type SIcon = SIconProps;
 }

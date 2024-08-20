@@ -30,7 +30,7 @@ type STitleProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $color?: Hex;
-};
+} & React.HTMLAttributes<HTMLElement>;
 
 const SIZE_VARIANT = {
     ['h1']: (props: TypeSSTypography) => props.h1,
@@ -58,7 +58,7 @@ const STitle = styled.h1<STitleProps>`
 `;
 
 export const BaseTitle: React.FC<BaseTitleProps> = React.memo(
-    ({ mr, as = 'h3', children, color, isEllipsis, $colors, $styles, ...rest }) => {
+    ({ mr, as = 'h3', color, isEllipsis, $colors, $styles, ...rest }) => {
         const colors = useColorScheme($colors);
         const styles = useStyleScheme(['typography', 'mr'], $styles);
 
@@ -73,7 +73,7 @@ export const BaseTitle: React.FC<BaseTitleProps> = React.memo(
                 $color={color}
                 {...rest}
             >
-                {children}
+                {rest.children}
             </STitle>
         );
     }

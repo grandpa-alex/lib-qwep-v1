@@ -14,16 +14,14 @@ type BaseTextProps = {
     color?: Hex;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-    as?: React.ElementType;
-} & React.HTMLAttributes<HTMLElement> &
-    React.LabelHTMLAttributes<HTMLLabelElement>;
+    as?: keyof JSX.IntrinsicElements;
+} & React.HTMLAttributes<HTMLParagraphElement>;
 
 type STextProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $color?: Hex;
-} & React.HTMLAttributes<HTMLParagraphElement> &
-    React.LabelHTMLAttributes<HTMLLabelElement>;
+} & React.HTMLAttributes<HTMLParagraphElement>;
 
 const SText = styled.p<STextProps>`
     font-size: ${(props) => props.$styles.typography.fontSizeGlobal};
@@ -33,13 +31,13 @@ const SText = styled.p<STextProps>`
 `;
 
 export const BaseText: React.FC<BaseTextProps> = React.memo(
-    ({ as = 'p', children, color, $colors, $styles, ...rest }) => {
+    ({ as: Component = 'p', color, $colors, $styles, ...rest }) => {
         const colors = useColorScheme($colors);
         const styles = useStyleScheme(['typography'], $styles);
 
         return (
-            <SText as={as} $colors={colors} $styles={styles} $color={color} {...rest}>
-                {children}
+            <SText as={Component} $colors={colors} $styles={styles} $color={color} {...rest}>
+                {rest.children}
             </SText>
         );
     }

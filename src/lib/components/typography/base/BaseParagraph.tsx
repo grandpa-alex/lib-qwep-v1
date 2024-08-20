@@ -37,14 +37,14 @@ const SParagraph = styled(SBaseText.Text)<SParagraphProps>`
 `;
 
 export const BaseParagraph: React.FC<BaseParagraphProps> = React.memo(
-    ({ as = 'p', children, mr, color, isEllipsis, $colors, $styles, ...rest }) => {
+    ({ as: Component = 'p', children, mr, color, isEllipsis, $colors, $styles, ...rest }) => {
         const colors = useColorScheme($colors);
         const styles = useStyleScheme(['typography', 'mr'], $styles);
 
         return (
             <SParagraph
                 $mr={mr}
-                as={as}
+                as={Component}
                 $colors={colors}
                 $styles={styles}
                 $isEllipsis={isEllipsis}

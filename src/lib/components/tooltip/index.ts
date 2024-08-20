@@ -20,11 +20,17 @@ export namespace TypeTooltip {
         export type Styles = TBaseTooltip.Styles;
         export type SContent = TBaseTooltip.SContent;
         export type STrigger = TBaseTooltip.STrigger;
+        export type SRoot = TBaseTooltip.SRoot;
+        export type SPortal = TBaseTooltip.SPortal;
+        export type SProvider = TBaseTooltip.SProvider;
     }
 
     export namespace SimpleTooltip {
         export type Main = TSimpleTooltip.Main;
-        export type SArrow = TSimpleTooltip.SArrow;
         export type SContent = TSimpleTooltip.SContent;
+        export type SProvider = TSimpleTooltip.SProvider;
+        export type STrigger = TSimpleTooltip.STrigger;
+        export type SRoot = TSimpleTooltip.SRoot;
+        export type SPortal = TSimpleTooltip.SPortal;
     }
 }

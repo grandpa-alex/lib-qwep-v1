@@ -1,5 +1,4 @@
 import { useColorScheme } from '@src/lib/general/useColorScheme';
-import * as Tooltip from '@radix-ui/react-tooltip';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { Hex } from '@src/lib/general/colors';
 import React from 'react';
@@ -12,7 +11,6 @@ import {
 } from '@src/lib/types/TypeBox';
 import { CSSBaseBox, CSSSimpleBox } from '@src/lib/common-styled-component/StyledComponentBox';
 import { TBaseTooltip, SBaseTooltip } from '../base-tooltip/BaseTooltip';
-import { TooltipArrowProps } from '@radix-ui/react-tooltip';
 import { SBaseTooltipComponent } from '../base-tooltip/BaseTooltipComponent';
 
 type SimpleTooltipProps = {
@@ -23,7 +21,6 @@ type SimpleTooltipProps = {
     boxShadowVariant?: TypeBoxShadowVariant;
     boxRadiusVariant?: TypeBoxRadiusVariant;
     bg?: Hex;
-    arrow?: boolean;
 } & TBaseTooltip.Main;
 
 type SContentProps = {
@@ -35,8 +32,6 @@ type SContentProps = {
     $boxRadiusVariant: TypeBoxRadiusVariant;
     $boxPaddingVariant: TypeBoxPaddingVariant;
 } & TBaseTooltip.SContent;
-
-const SArrow = styled(Tooltip.Arrow)``;
 
 const SContent = styled(SBaseTooltipComponent.Content)<SContentProps>`
     ${(props) =>
@@ -59,15 +54,10 @@ const SContent = styled(SBaseTooltipComponent.Content)<SContentProps>`
     margin: 6px;
     line-height: normal;
     color: ${(props) => props.$colors.textItem};
-    ${SArrow} {
-        fill: ${(props) => props.$bg ?? props.$colors.backgroundTooltip};
-    }
 `;
 
 export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
     ({
-        children,
-        mr,
         bg,
         tooltip,
         boxPaddingVariant = 'p-1',
@@ -76,23 +66,23 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
         boxShadowColor,
         boxShadowVariant = 'shd-1',
         boxRadiusVariant = 'br-1',
-        arrow = true,
         $colors,
         $styles,
+        providerProps,
+        rootProps,
+        triggerProps,
+        portalProps,
+
         ...rest
     }) => {
         const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['box', 'mr'], $styles);
+        const styles = useStyleScheme(['box'], $styles);
 
         return (
-            <Tooltip.Provider {...rest.providerProps}>
-                <Tooltip.Root {...rest.rootProps}>
-                    <Tooltip.Trigger asChild>
-                        <SBaseTooltip.Trigger $mr={mr} $styles={styles} {...rest.triggerProps}>
-                            {children}
-                        </SBaseTooltip.Trigger>
-                    </Tooltip.Trigger>
-                    <Tooltip.Portal {...rest.portalProps}>
+            <SBaseTooltip.Provider {...providerProps}>
+                <SBaseTooltip.Root {...rootProps}>
+                    <SBaseTooltip.Trigger {...triggerProps}>{rest.children}</SBaseTooltip.Trigger>
+                    <SBaseTooltip.Portal {...portalProps}>
                         <SContent
                             $bg={bg}
                             $colors={colors}
@@ -103,15 +93,14 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
                             $boxShadowColor={boxShadowColor}
                             $boxShadowVariant={boxShadowVariant}
                             $boxRadiusVariant={boxRadiusVariant}
-                            side={rest.side ?? 'bottom'}
+                            side={'bottom'}
                             {...rest}
                         >
                             {tooltip}
-                            {arrow && <SArrow />}
                         </SContent>
-                    </Tooltip.Portal>
-                </Tooltip.Root>
-            </Tooltip.Provider>
+                    </SBaseTooltip.Portal>
+                </SBaseTooltip.Root>
+            </SBaseTooltip.Provider>
         );
     }
 );
@@ -119,12 +108,18 @@ export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
 //export component
 export const SSimpleTooltip = {
     Content: SContent,
-    Arrow: SArrow,
+    Provider: SBaseTooltip.Provider,
+    Root: SBaseTooltip.Root,
+    Portal: SBaseTooltip.Portal,
+    Trigger: SBaseTooltip.Trigger,
 };
 
 //export type
 export namespace TSimpleTooltip {
     export type Main = SimpleTooltipProps;
     export type SContent = SContentProps;
-    export type SArrow = TooltipArrowProps & React.RefAttributes<SVGSVGElement>;
+    export type SProvider = TBaseTooltip.SProvider;
+    export type STrigger = TBaseTooltip.STrigger;
+    export type SRoot = TBaseTooltip.SRoot;
+    export type SPortal = TBaseTooltip.SPortal;
 }

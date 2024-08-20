@@ -12,19 +12,22 @@ type SimpleTextFieldProps = {
     icon?: React.ReactNode;
     iconPosition?: TypeItemIconPosition;
     iconOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
+    rootProps?: React.HTMLAttributes<HTMLDivElement>;
+    iconContainerProps?: React.HTMLAttributes<HTMLDivElement> & React.ButtonHTMLAttributes<HTMLButtonElement>;
 } & TBaseTextField.Main;
 
 type SIconContProps = {
     $iconPosition: TypeItemIconPosition;
     $useBtn: boolean;
     $disabled?: boolean;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export const SIconContainer = styled.div<SIconContProps>`
     background-color: transparent;
     border: none;
     padding: 0;
     margin: 0;
+    outline: none;
     ${(props) =>
         props.$disabled &&
         css`
@@ -60,7 +63,7 @@ export const SRoot = styled(SBaseTextField.Root)<TBaseTextField.SRoot>`
                 getColor({
                     cs: props.$colors,
                     color: props.$color,
-                    disabled: props.disabled,
+                    disabled: props.$disabled,
                     variant: props.$colorVariant,
                     hover: props.$_isFocused,
                 })};
@@ -73,7 +76,7 @@ export const SRoot = styled(SBaseTextField.Root)<TBaseTextField.SRoot>`
                     getColor({
                         cs: props.$colors,
                         color: props.$color,
-                        disabled: props.disabled,
+                        disabled: props.$disabled,
                         variant: props.$colorVariant,
                         hover: props.$_isActiveHover,
                     })};
@@ -102,7 +105,7 @@ export const SInput = styled(SBaseTextField.Input)<TBaseTextField.SInput>`
 
 export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
     ({
-        // mr,
+        mr,
         icon,
         color,
         iconOnClick,
@@ -113,6 +116,8 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
         colorVariant = VC.DEFAULT,
         $colors,
         $styles,
+        rootProps,
+        iconContainerProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
@@ -127,7 +132,7 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
 
         return (
             <SRoot
-                $mr={rest.mr}
+                $mr={mr}
                 $colors={colors}
                 $styles={styles}
                 $color={color}
@@ -135,21 +140,12 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
                 $sizeVariant={sizeVariant}
                 $variant={variant}
                 $disabled={rest.disabled}
-                disabled={rest.disabled}
-                style={rest.style}
-                mr={rest.mr}
-                color={color}
-                variant={variant}
-                sizeVariant={sizeVariant}
-                colorVariant={colorVariant}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                _isFocused={isFocused}
-                _isActiveHover={_isActiveHover}
+                $blocked={rest.blocked}
                 $_isActiveHover={_isActiveHover}
                 $_isFocused={isFocused}
-                $blocked={rest.blocked}
-                {...rest.wrapperProps}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                {...rootProps}
             >
                 {icon && (
                     <SIconContainer
@@ -159,11 +155,11 @@ export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
                         $iconPosition={iconPosition}
                         $useBtn={Boolean(iconOnClick)}
                         type={'button'}
+                        {...iconContainerProps}
                     >
                         {renderIcon}
                     </SIconContainer>
                 )}
-
                 <SInput
                     $styles={{ typography: styles.typography }}
                     $colors={colors}
@@ -187,4 +183,6 @@ export const SSimpleTextField = {
 export namespace TSimpleTextField {
     export type Main = SimpleTextFieldProps;
     export type SIconContainer = SIconContProps;
+    export type SInput = TBaseTextField.SInput;
+    export type SRoot = TBaseTextField.SRoot;
 }

@@ -15,7 +15,6 @@ type TypeStyles = {
 };
 
 type RootTextareaProps = {
-    children: React.ReactNode;
     mr?: TypeMargin;
     sizeVariant?: TypeVariantSize;
     colorVariant?: TypeVariantColor;
@@ -23,6 +22,7 @@ type RootTextareaProps = {
     $styles?: TypeStyles;
     color?: Hex;
     disabled?: boolean;
+    blocked?: boolean;
     _isActiveHover?: boolean;
     _isFocused?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
@@ -35,9 +35,10 @@ type SRootProps = {
     $colorVariant: TypeVariantColor;
     $disabled?: boolean;
     $color?: Hex;
+    $blocked?: boolean;
     $_isActiveHover?: boolean;
     $_isFocused?: boolean;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const SIZE = {
     [VS.L]: (props: TypeSSInp) => css`
@@ -57,14 +58,15 @@ const SRoot = styled.div<SRootProps>`
     ${(props) => SIZE[props.$sizeVariant](props.$styles.inp)};
     border-radius: ${(props) => props.$styles.base.borderRadiusItem};
     color: ${(props) => props.$colors.prompt};
-    border: 1px solid;
-    border-color: ${(props) =>
-        getColor({
-            cs: props.$colors,
-            color: props.$color,
-            disabled: props.$disabled,
-            variant: props.$colorVariant,
-        })};
+    border: 1px solid
+        ${(props) =>
+            getColor({
+                cs: props.$colors,
+                color: props.$color,
+                disabled: props.$disabled,
+                variant: props.$colorVariant,
+            })};
+
     ${(props) => getMargin(props.$styles?.mr, props.$mr)};
     ${(props) => {
         if (!props.$disabled) {
@@ -81,6 +83,14 @@ const SRoot = styled.div<SRootProps>`
                 ${props.$_isFocused &&
                 css`
                     transition: all 0.3s ease-in-out;
+                    box-shadow: 0 0 3px 0
+                        ${getColor({
+                            cs: props.$colors,
+                            color: props.$color,
+                            variant: props.$colorVariant,
+                            hover: props.$_isActiveHover,
+                        })}
+                        inset;
                     border-color: ${getColor({
                         cs: props.$colors,
                         color: props.$color,
@@ -91,14 +101,19 @@ const SRoot = styled.div<SRootProps>`
             `;
         }
     }};
+    ${(props) =>
+        props.$blocked &&
+        css`
+            pointer-events: none;
+        `}
 `;
 
 export const RootTextarea: React.FC<RootTextareaProps> = React.memo(
     ({
-        children,
         mr,
         color,
         disabled,
+        blocked,
         sizeVariant = VS.L,
         colorVariant = VC.DEFAULT,
         $colors,
@@ -115,6 +130,7 @@ export const RootTextarea: React.FC<RootTextareaProps> = React.memo(
                 $styles={styles}
                 $colors={colors}
                 $color={color}
+                $blocked={blocked}
                 $colorVariant={colorVariant}
                 $sizeVariant={sizeVariant}
                 $disabled={disabled}
@@ -122,7 +138,7 @@ export const RootTextarea: React.FC<RootTextareaProps> = React.memo(
                 $_isFocused={_isFocused}
                 {...rest}
             >
-                {children}
+                {rest.children}
             </SRoot>
         );
     }

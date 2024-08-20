@@ -17,20 +17,20 @@ type TypeStyles = {
 };
 
 type RootTextFieldProps = {
-    children: React.ReactNode;
     mr?: TypeMargin;
     variant?: TypeInpVariant;
     colorVariant?: TypeVariantColor;
     sizeVariant?: TypeVariantSize;
     color?: Hex;
     disabled?: boolean;
+    blocked?: boolean;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     _isFocused?: boolean;
     _isActiveHover?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-type SRootTextFieldProps = {
+type SRootProps = {
     $color?: Hex;
     $mr?: TypeMargin;
     $disabled?: boolean;
@@ -39,61 +39,67 @@ type SRootTextFieldProps = {
     $colorVariant: TypeVariantColor;
     $sizeVariant: TypeVariantSize;
     $variant: TypeInpVariant;
+    $blocked?: boolean;
     $_isFocused?: boolean;
     $_isActiveHover?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const INPUT_SIZE = {
-    [VS.L]: (props: SRootTextFieldProps) => css`
+    [VS.L]: (props: SRootProps) => css`
         height: ${props.$styles.inp.inpHeight_L};
         padding: ${`${props.$styles.inp.inpPadding_Y_L} ${props.$styles.inp.inpPadding_X_L}`};
     `,
-    [VS.M]: (props: SRootTextFieldProps) => css`
+    [VS.M]: (props: SRootProps) => css`
         height: ${props.$styles.inp.inpHeight_M};
         padding: ${`${props.$styles.inp.inpPadding_Y_M} ${props.$styles.inp.inpPadding_X_M}`};
     `,
 };
 
 const INP_VARIANT = {
-    [VI.OUTLINED]: (props: SRootTextFieldProps) => css`
+    [VI.OUTLINED]: (props: SRootProps) => css`
         color: ${props.$colors.prompt};
         background-color: transparent;
-        border: 1px solid;
-        border-color: ${getColor({
-            cs: props.$colors,
-            color: props.$color,
-            disabled: props.$disabled,
-            variant: props.$colorVariant,
-        })};
-        ${() => {
-            if (!props.$disabled) {
-                return css`
-                    &:hover {
-                        transition: all 0.3s ease-in-out;
-                        border-color: ${getColor({
-                            cs: props.$colors,
-                            color: props.$color,
-                            variant: props.$colorVariant,
-                            hover: props.$_isActiveHover,
-                        })};
-                    }
-                    ${props.$_isFocused &&
-                    css`
-                        transition: all 0.3s ease-in-out;
-                        border-color: ${getColor({
-                            cs: props.$colors,
-                            color: props.$color,
-                            variant: props.$colorVariant,
-                            hover: props.$_isActiveHover,
-                        })};
-                    `}
-                `;
+        border: 1px solid
+            ${getColor({
+                cs: props.$colors,
+                color: props.$color,
+                disabled: props.$disabled,
+                variant: props.$colorVariant,
+            })};
+        ${!props.$disabled &&
+        css`
+            &:hover {
+                transition: all 0.3s ease-in-out;
+                border-color: ${getColor({
+                    cs: props.$colors,
+                    color: props.$color,
+                    variant: props.$colorVariant,
+                    hover: props.$_isActiveHover,
+                })};
             }
-        }};
+            ${props.$_isFocused &&
+            css`
+                transition: all 0.3s ease-in-out;
+                box-shadow: 0 0 3px 0
+                    ${getColor({
+                        cs: props.$colors,
+                        color: props.$color,
+                        variant: props.$colorVariant,
+                        hover: props.$_isActiveHover,
+                    })}
+                    inset;
+                border-color: ${getColor({
+                    cs: props.$colors,
+                    color: props.$color,
+                    variant: props.$colorVariant,
+                    hover: props.$_isActiveHover,
+                })};
+            `}
+        `}
     `,
 };
 
-const SRoot = styled.div<SRootTextFieldProps>`
+const SRoot = styled.div<SRootProps>`
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -104,21 +110,27 @@ const SRoot = styled.div<SRootTextFieldProps>`
     ${(props) => INP_VARIANT[props.$variant](props)}
     ${(props) => getMargin(props.$styles?.mr, props.$mr)};
     ${(props) => INPUT_SIZE[props.$sizeVariant](props)};
+
+    ${(props) =>
+        props.$blocked &&
+        css`
+            pointer-events: none;
+        `}
 `;
 
 export const RootTextField: React.FC<RootTextFieldProps> = React.memo(
     ({
-        children,
         mr,
         color,
+        disabled,
+        blocked,
         variant = VI.OUTLINED,
         colorVariant = VC.DEFAULT,
         sizeVariant = VS.L,
+        _isFocused,
         _isActiveHover = true,
-        disabled,
         $colors,
         $styles,
-        _isFocused,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
@@ -134,11 +146,12 @@ export const RootTextField: React.FC<RootTextFieldProps> = React.memo(
                 $colorVariant={colorVariant}
                 $sizeVariant={sizeVariant}
                 $variant={variant}
+                $blocked={blocked}
                 $_isFocused={_isFocused}
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
-                {children}
+                {rest.children}
             </SRoot>
         );
     }
@@ -153,5 +166,5 @@ export const SRootTextField = {
 export namespace TRootTextField {
     export type Main = RootTextFieldProps;
     export type Styles = TypeStyles;
-    export type SRoot = SRootTextFieldProps;
+    export type SRoot = SRootProps;
 }

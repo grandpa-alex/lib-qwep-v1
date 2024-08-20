@@ -22,7 +22,8 @@ type STextProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $color?: Hex;
-};
+} & React.HTMLAttributes<HTMLParagraphElement> &
+    React.LabelHTMLAttributes<HTMLLabelElement>;
 
 const SText = styled.p<STextProps>`
     font-size: ${(props) => props.$styles.typography.fontSizeGlobal};

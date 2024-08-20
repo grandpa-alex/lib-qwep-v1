@@ -6,20 +6,19 @@ import { IIP, TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/T
 import { VI } from '@src/lib/types/TypeInp';
 import React, { useCallback, useMemo, useState } from 'react';
 import styled, { css } from 'styled-components';
-
 import { SSimpleTextField, TSimpleTextField } from '../simple-text-field/SimpleTextField';
 import { renderIconTextField } from '@src/lib/common/renderIconItem';
 import { StyledLoadingItemEffect } from '@src/lib/common-styled-component/StyledLoadingItem';
 import { TBaseTextField } from '../base-text-field/BaseTextField';
 
 type SubmitTextFieldProps = {
-    iconOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
     isLoading: boolean;
+    loadingProps?: React.HTMLAttributes<HTMLSpanElement>;
 } & TSimpleTextField.Main;
 
 type SInpProps = {
     $isLoading?: boolean;
-} & TBaseTextField.SInput;
+} & TSimpleTextField.SInput;
 
 type SLoaderProps = {
     $color?: Hex;
@@ -29,7 +28,7 @@ type SLoaderProps = {
     $styles: TBaseTextField.Styles;
     $colorVariant: TypeVariantColor;
     $sizeVariant: TypeVariantSize;
-};
+} & React.HTMLAttributes<HTMLSpanElement>;
 
 const SInput = styled(SSimpleTextField.Input)<SInpProps>`
     ${(props) =>
@@ -84,6 +83,9 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
         colorVariant = VC.DEFAULT,
         $colors,
         $styles,
+        rootProps,
+        iconContainerProps,
+        loadingProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
@@ -112,31 +114,22 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                 $sizeVariant={sizeVariant}
                 $variant={variant}
                 $disabled={rest.disabled}
-                disabled={rest.disabled}
-                mr={mr}
-                color={color}
-                variant={variant}
-                sizeVariant={sizeVariant}
-                colorVariant={colorVariant}
+                $blocked={rest.blocked}
+                $_isFocused={isFocused}
+                $_isActiveHover={!isLoading && _isActiveHover}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                style={rest.style}
-                $blocked={rest.blocked}
-                _isFocused={isFocused}
-                $_isFocused={isFocused}
-                _isActiveHover={!isLoading && _isActiveHover}
-                $_isActiveHover={!isLoading && _isActiveHover}
-                {...rest.wrapperProps}
+                {...rootProps}
             >
                 {icon && (
                     <SSimpleTextField.IconContainer
                         as={iconOnClick ? 'button' : 'div'}
-                        disabled={rest.disabled || isLoading}
                         onClick={iconOnClick}
                         $iconPosition={iconPosition}
                         $disabled={rest.disabled || isLoading}
                         $useBtn={Boolean(iconOnClick)}
                         type={'button'}
+                        {...iconContainerProps}
                     >
                         {renderIcon}
                     </SSimpleTextField.IconContainer>
@@ -160,6 +153,7 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
                     $isLoading={isLoading}
                     $sizeVariant={sizeVariant}
                     $disabled={rest.disabled}
+                    {...loadingProps}
                 />
             </SSimpleTextField.Root>
         );
@@ -168,8 +162,10 @@ export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
 
 //export component
 export const SSubmitTextField = {
+    Root: SSimpleTextField.Root,
     Input: SInput,
     Loading: SLoading,
+    IconContainer: SSimpleTextField.IconContainer,
 };
 
 //export type
@@ -177,4 +173,6 @@ export namespace TSubmitTextField {
     export type Main = SubmitTextFieldProps;
     export type SInput = SInpProps;
     export type SLoading = SLoaderProps;
+    // export type SRoot = TSimpleTextField.;
+    // export type SRoot = TSimpleTextField.;
 }

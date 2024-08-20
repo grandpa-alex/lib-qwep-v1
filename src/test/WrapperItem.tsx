@@ -22,6 +22,7 @@ function WrapperItem() {
 
             <BaseBox mr={'my-3'} style={{ display: 'flex' }} boxGapVariant={'g-2'}>
                 <WrapperInput
+                    required
                     positionLabel={'top'}
                     id={'BaseTextField'}
                     label={'BaseTextField'}
@@ -32,6 +33,7 @@ function WrapperItem() {
                     <BaseTextField placeholder={'Placeholder'} />
                 </WrapperInput>
                 <WrapperInput
+                    required
                     positionLabel={'top'}
                     id={'SimpleTextField'}
                     label={'SimpleTextField'}

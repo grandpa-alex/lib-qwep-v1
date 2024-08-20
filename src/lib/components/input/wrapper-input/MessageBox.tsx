@@ -1,16 +1,9 @@
+import React from 'react';
+import styled from 'styled-components';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { getColor } from '@src/lib/common/getColor';
 import { TypeColorScheme } from '@src/lib/general/colors';
-import { TypeSSBox, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
-import React from 'react';
-import styled from 'styled-components';
 import { TypeVariantColor } from '@src/lib/types/TypeBase';
-
-type TypeStyles = {
-    mr: TypeSSMR;
-    box: TypeSSBox;
-    typography: TypeSSTypography;
-};
 
 type TypeMessage = {
     text?: React.ReactNode;
@@ -20,18 +13,18 @@ type TypeMessage = {
 type MessageBoxProps = {
     $colors?: TypeColorScheme;
     message?: TypeMessage;
-} & React.HTMLAttributes<HTMLElement>;
+} & React.HTMLAttributes<HTMLSpanElement>;
 
 type SMessageProps = {
     $colors: TypeColorScheme;
     $colorVariant: TypeVariantColor;
-};
+} & React.HTMLAttributes<HTMLSpanElement>;
 
 const SMessage = styled.span<SMessageProps>`
     position: absolute;
     font-size: 10px;
     top: calc(100% + 2px);
-    left: 0px;
+    left: 0;
     color: ${(props) =>
         getColor({
             cs: props.$colors,
@@ -39,11 +32,11 @@ const SMessage = styled.span<SMessageProps>`
         })};
 `;
 
-export const MessageBox: React.FC<MessageBoxProps> = React.memo(({ $colors, message }) => {
+export const MessageBox: React.FC<MessageBoxProps> = React.memo(({ $colors, message, ...rest }) => {
     const colors = useColorScheme($colors);
     if (!message) return;
     return (
-        <SMessage $colors={colors} $colorVariant={message.colorVariant ?? 'error'}>
+        <SMessage $colors={colors} $colorVariant={message.colorVariant ?? 'error'} {...rest}>
             {message.text}
         </SMessage>
     );
@@ -56,7 +49,6 @@ export const SMessageBox = {
 
 //export type
 export namespace TMessageBox {
-    export type Styles = TypeStyles;
     export type Message = TypeMessage;
     export type Main = MessageBoxProps;
     export type SMessage = SMessageProps;

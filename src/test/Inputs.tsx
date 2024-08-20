@@ -352,13 +352,7 @@ function Inputs() {
             <BaseBox style={{ display: 'flex' }} mr={'m-3'} boxGapVariant={'g-3'}>
                 <BaseTextarea colorVariant={'success'} placeholder={'Test placeholder'} />
                 <BaseTextarea colorVariant={'error'} placeholder={'Test placeholder'} />
-                <BaseTextarea
-                    color={'#e600c7'}
-                    blocked
-                    resize={true}
-                    sizeVariant={'M'}
-                    placeholder={'Test placeholder'}
-                />
+                <BaseTextarea color={'#e600c7'} resize={true} sizeVariant={'M'} placeholder={'Test placeholder'} />
                 <BaseTextarea color={'#e600c7'} disabled sizeVariant={'M'} placeholder={'Test placeholder'} />
             </BaseBox>
 

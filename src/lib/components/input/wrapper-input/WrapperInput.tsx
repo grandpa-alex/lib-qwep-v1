@@ -10,7 +10,7 @@ import { BOX_GAP_VARIANT } from '@src/lib/common-styled-component/StyledComponen
 import { TypeBoxGapVariant } from '@src/lib/types/TypeBox';
 import { PIL, TypePositionInpLabel } from '@src/lib/types/TypeInp';
 import { MessageBox, TMessageBox } from './MessageBox';
-import { BaseText } from '@src/lib';
+import { SBaseText, TBaseText } from '@src/lib/components/typography/base/BaseText.tsx';
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -19,21 +19,21 @@ type TypeStyles = {
 };
 
 type WrapperInputProps = {
-    label?: string;
     id?: string;
+    label?: string;
+    customLabel?: React.ReactNode;
     required?: boolean;
     positionLabel?: TypePositionInpLabel;
-    customLabel?: React.ReactNode;
     mr?: TypeMargin;
-    children?: React.ReactNode;
-    $colors?: TypeColorScheme;
-    $styles?: TypeStyles;
     boxGapVariant?: TypeBoxGapVariant;
     message?: TMessageBox.Message;
     labelColor?: Hex;
     blocked?: boolean;
-    as?: keyof JSX.IntrinsicElements;
-} & React.HTMLAttributes<HTMLElement>;
+    $colors?: TypeColorScheme;
+    $styles?: TypeStyles;
+    messageProps?: React.HTMLAttributes<HTMLSpanElement>;
+    labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
+} & React.HTMLAttributes<HTMLDivElement>;
 
 type SRootProps = {
     $mr?: TypeMargin;
@@ -42,7 +42,7 @@ type SRootProps = {
     $styles: TypeStyles;
     $positionLabel: TypePositionInpLabel;
     $boxGapVariant: TypeBoxGapVariant;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const POSITION = {
     [PIL.TOP]: css`
@@ -78,9 +78,35 @@ const SRoot = styled.div<SRootProps>`
     ${(props) => POSITION[props.$positionLabel]}
 `;
 
+type SLabelProps = {
+    $required?: boolean;
+} & TBaseText.SText;
+
+const SLabel = styled(SBaseText.Text)<SLabelProps>`
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    flex-shrink: 1;
+    width: fit-content;
+    ${(props) =>
+        props.$required &&
+        css`
+            padding-right: 8px;
+            &:before {
+                content: '*';
+                position: absolute;
+                top: 0;
+                right: 0;
+                color: ${props.$colors.errorItem};
+            }
+        `};
+`;
+
 export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
     ({
-        as,
         mr,
         id,
         children,
@@ -94,13 +120,15 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
         message,
         boxGapVariant = 'g-2',
         labelColor,
+        messageProps,
+        labelProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
         const styles = useStyleScheme(['box', 'mr', 'typography'], $styles);
 
         const renderItem = useMemo(() => {
-            return React.cloneElement(children as React.ReactElement, { id: id });
+            return React.cloneElement(children as React.ReactElement, { id });
         }, [children, id]);
 
         return (
@@ -108,7 +136,6 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
                 $colors={colors}
                 $blocked={blocked}
                 $styles={styles}
-                as={as}
                 $mr={mr}
                 $positionLabel={positionLabel}
                 $boxGapVariant={boxGapVariant}
@@ -117,28 +144,20 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
                 {customLabel ? (
                     customLabel
                 ) : (
-                    <BaseText
-                        style={{
-                            cursor: 'pointer',
-                            userSelect: 'none',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            flexShrink: 1,
-                            maxWidth: '100%',
-                        }}
-                        $colors={colors}
-                        $styles={styles}
-                        color={labelColor}
+                    <SLabel
                         as={'label'}
                         htmlFor={id}
+                        $required={required}
+                        $colors={colors}
+                        $styles={{ typography: styles.typography }}
+                        $color={labelColor}
+                        {...labelProps}
                     >
                         {label}
-                        {required && <span style={{ color: colors.errorItem }}>*</span>}
-                    </BaseText>
+                    </SLabel>
                 )}
                 {renderItem}
-                <MessageBox $colors={colors} message={message} />
+                <MessageBox $colors={colors} message={message} {...messageProps} />
             </SRoot>
         );
     }
@@ -147,6 +166,7 @@ export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
 //export component
 export const SWrapperInput = {
     Root: SRoot,
+    Label: SLabel,
 };
 
 //export type
@@ -154,4 +174,5 @@ export namespace TWrapperInput {
     export type Styles = TypeStyles;
     export type Main = WrapperInputProps;
     export type SRoot = SRootProps;
+    export type SLabel = SLabelProps;
 }

@@ -5,10 +5,9 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
 import { TypeInpVariant, VI } from '@src/lib/types/TypeInp';
 import React, { useCallback, useState } from 'react';
-import styled, { css } from 'styled-components';
-import { BaseInput, RootTextField } from '..';
-import { TBaseInput } from './BaseInput';
-import { TRootTextField } from './RootTextField';
+import styled from 'styled-components';
+import { SBaseInput, TBaseInput } from './BaseInput';
+import { SRootTextField, TRootTextField } from './RootTextField';
 import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 
 type TypeStyles = {
@@ -23,26 +22,22 @@ type BaseTextFieldProps = {
     sizeVariant?: TypeVariantSize;
     variant?: TypeInpVariant;
     colorVariant?: TypeVariantColor;
-    $colors?: TypeColorScheme;
-    $styles?: TypeStyles;
     color?: Hex;
     blocked?: boolean;
-    wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
+    inputAutofill?: Hex;
+    $colors?: TypeColorScheme;
+    $styles?: TypeStyles;
     _isActiveHover?: boolean;
+    rootProps?: React.HTMLAttributes<HTMLDivElement>;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-type SInpProps = {
+type SInputProps = {
     $color?: Hex;
     $colors: TypeColorScheme;
     $colorVariant: TypeVariantColor;
 } & TBaseInput.SInput;
 
-type SRootProps = {
-    $_isActiveHover?: boolean;
-    $blocked?: boolean;
-} & TRootTextField.SRoot;
-
-const SInput = styled(BaseInput)<SInpProps>`
+const SInput = styled(SBaseInput.Input)<SInputProps>`
     &:disabled {
         color: ${(props) => props.$colors.disabled};
     }
@@ -61,28 +56,24 @@ const SInput = styled(BaseInput)<SInpProps>`
     }
 `;
 
-const SRoot = styled(RootTextField)<SRootProps>`
+const SRoot = styled(SRootTextField.Root)<TRootTextField.SRoot>`
     display: inline-flex;
     align-items: center;
-    ${(props) =>
-        props.$blocked &&
-        css`
-            pointer-events: none;
-        `}
 `;
 
 export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
     ({
         mr,
+        blocked,
         color,
-        _isActiveHover = true,
+        inputAutofill,
         variant = VI.OUTLINED,
         sizeVariant = VS.L,
         colorVariant = VC.DEFAULT,
-        blocked,
-        wrapperProps,
+        _isActiveHover = true,
         $colors,
         $styles,
+        rootProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
@@ -101,24 +92,18 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = React.memo(
                 $variant={variant}
                 $sizeVariant={sizeVariant}
                 $disabled={rest.disabled}
-                disabled={rest.disabled}
-                style={rest.style}
-                mr={mr}
-                variant={variant}
-                color={color}
-                sizeVariant={sizeVariant}
-                colorVariant={colorVariant}
+                $_isFocused={isFocused}
+                $_isActiveHover={_isActiveHover}
+                $blocked={blocked}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                _isFocused={isFocused}
-                _isActiveHover={_isActiveHover}
-                $blocked={blocked}
-                {...wrapperProps}
+                {...rootProps}
             >
                 <SInput
                     $styles={{ typography: styles.typography }}
                     $colors={colors}
                     $color={color}
+                    $inputAutofill={inputAutofill}
                     $colorVariant={colorVariant}
                     {...rest}
                 />
@@ -137,6 +122,6 @@ export const SBaseTextField = {
 export namespace TBaseTextField {
     export type Styles = TypeStyles;
     export type Main = BaseTextFieldProps;
-    export type SInput = SInpProps;
-    export type SRoot = SRootProps;
+    export type SInput = SInputProps;
+    export type SRoot = TRootTextField.SRoot;
 }

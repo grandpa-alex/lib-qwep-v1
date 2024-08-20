@@ -3,9 +3,9 @@ import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/gene
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { TypeMargin, TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
 import React, { useCallback, useState } from 'react';
-import styled, { css } from 'styled-components';
-import { RootTextarea, TRootTextarea } from './RootTextarea';
-import { BaseInputArea, TBaseInputArea } from './BaseInputArea';
+import styled from 'styled-components';
+import { SRootTextarea, TRootTextarea } from './RootTextarea';
+import { SBaseInputArea, TBaseInputArea } from './BaseInputArea';
 import { StyledScrollbarItem } from '@src/lib/common-styled-component/StyledBase';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
@@ -27,17 +27,14 @@ type BaseTextareaProps = {
     color?: Hex;
     _isActiveHover?: boolean;
     blocked?: boolean;
+    propsRoot?: React.HTMLAttributes<HTMLDivElement>;
 } & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-const STextarea = styled(BaseInputArea)<TBaseInputArea.STextarea>`
+const STextarea = styled(SBaseInputArea.Textarea)<TBaseInputArea.STextarea>`
     padding: 0 3px 0 0;
 `;
 
-type SRootProps = {
-    $blocked?: boolean;
-} & TRootTextarea.SRoot;
-
-const SRoot = styled(RootTextarea)<SRootProps>`
+const SRoot = styled(SRootTextarea.Root)<TRootTextarea.SRoot>`
     ${STextarea} {
         ${(props) =>
             StyledScrollbarItem({
@@ -55,7 +52,7 @@ const SRoot = styled(RootTextarea)<SRootProps>`
                 getColor({
                     cs: props.$colors,
                     color: props.$color,
-                    disabled: props.disabled,
+                    disabled: props.$disabled,
                     variant: props.$colorVariant,
                 })};
         }
@@ -63,11 +60,6 @@ const SRoot = styled(RootTextarea)<SRootProps>`
             color: ${(props) => props.$colors.prompt};
         }
     }
-    ${(props) =>
-        props.$blocked &&
-        css`
-            pointer-events: none;
-        `}
 `;
 
 export const BaseTextarea: React.FC<BaseTextareaProps> = React.memo(
@@ -81,6 +73,7 @@ export const BaseTextarea: React.FC<BaseTextareaProps> = React.memo(
         _isActiveHover = true,
         resize,
         blocked,
+        propsRoot,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
@@ -97,19 +90,15 @@ export const BaseTextarea: React.FC<BaseTextareaProps> = React.memo(
                 $color={color}
                 $colorVariant={colorVariant}
                 $sizeVariant={sizeVariant}
-                $disabled={rest.disabled}
                 $_isActiveHover={_isActiveHover}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                _isFocused={isFocused}
-                disabled={rest.disabled}
-                mr={mr}
-                color={color}
-                sizeVariant={sizeVariant}
-                colorVariant={colorVariant}
+                $_isFocused={isFocused}
+                $disabled={rest.disabled}
                 $blocked={blocked}
+                {...propsRoot}
             >
-                <STextarea $resize={resize} resize={resize} $styles={styles} {...rest} />
+                <STextarea $resize={resize} $styles={styles} {...rest} />
             </SRoot>
         );
     }
@@ -125,5 +114,5 @@ export const SBaseTextarea = {
 export namespace TBaseTextarea {
     export type Main = BaseTextareaProps;
     export type Styles = TypeStyles;
-    export type SRoot = SRootProps;
+    export type SRoot = TRootTextarea.SRoot;
 }

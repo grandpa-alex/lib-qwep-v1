@@ -9,9 +9,8 @@ import { getMargin } from '@src/lib/common/getMargin';
 import { TypeMargin, TypeOrientationContent, OC } from '@src/lib/types/TypeBase';
 import { BOX_GAP_VARIANT } from '@src/lib/common-styled-component/StyledComponentBox';
 import { TypeBoxGapVariant } from '@src/lib/types/TypeBox';
-import { BaseText } from '../../typography';
-import { RadioGroupProps } from '@radix-ui/react-radio-group';
 import { MessageBox, TMessageBox } from '../../input/wrapper-input/MessageBox';
+import { SBaseText, TBaseText } from '../../typography/base/BaseText';
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -30,8 +29,10 @@ type BaseRadioGroupProps = {
     blocked?: boolean;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-} & RadioGroupProps &
-    React.RefAttributes<HTMLDivElement>;
+    rootProps?: React.RefAttributes<HTMLDivElement>;
+    labelProps?: React.HTMLAttributes<HTMLElement>;
+    messageProps?: React.HTMLAttributes<HTMLSpanElement>;
+} & React.ComponentPropsWithRef<typeof RadioGroup.Root>;
 
 type SRootProps = {
     $mr?: TypeMargin;
@@ -44,8 +45,7 @@ type SGroupProps = {
     $styles: TypeStyles;
     $orientation: TypeOrientationContent;
     $boxGapVariant: TypeBoxGapVariant;
-} & RadioGroupProps &
-    React.RefAttributes<HTMLDivElement>;
+} & React.ComponentPropsWithRef<typeof RadioGroup.Root>;
 
 const ORIENTATION = {
     [OC.HORIZONTAL]: css`
@@ -89,20 +89,23 @@ export const BaseRadioGroup: React.FC<BaseRadioGroupProps> = React.memo(
         boxGapVariant = 'g-1',
         orientation = OC.VERTICAL,
         message,
+        rootProps,
+        labelProps,
+        messageProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
         const styles = useStyleScheme(['mr', 'box', 'typography'], $styles);
 
         return (
-            <SRoot $mr={mr} $styles={styles} $blocked={blocked} $boxGapVariantLabel={boxGapVariantLabel}>
-                <BaseText $colors={colors} $styles={styles} color={labelColor}>
+            <SRoot $mr={mr} $styles={styles} $blocked={blocked} $boxGapVariantLabel={boxGapVariantLabel} {...rootProps}>
+                <SBaseText.Text $colors={colors} $styles={styles} $color={labelColor} {...labelProps}>
                     {label}
-                </BaseText>
+                </SBaseText.Text>
                 <SGroup $styles={styles} $boxGapVariant={boxGapVariant} $orientation={orientation} {...rest}>
                     {rest.children}
                 </SGroup>
-                <MessageBox $colors={colors} message={message} />
+                <MessageBox $colors={colors} message={message} {...messageProps} />
             </SRoot>
         );
     }
@@ -112,6 +115,7 @@ export const BaseRadioGroup: React.FC<BaseRadioGroupProps> = React.memo(
 export const SBaseRadioGroup = {
     Root: SRoot,
     Group: SGroup,
+    Label: SBaseText.Text,
 };
 
 //export type
@@ -119,5 +123,6 @@ export namespace TBaseRadioGroup {
     export type Styles = TypeStyles;
     export type Main = BaseRadioGroupProps;
     export type SRoot = SRootProps;
+    export type SLabel = TBaseText.SText;
     export type SGroup = SGroupProps;
 }

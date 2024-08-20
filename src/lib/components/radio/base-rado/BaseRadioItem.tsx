@@ -8,7 +8,6 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
-import { RadioGroupIndicatorProps, RadioGroupItemProps } from '@radix-ui/react-radio-group';
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -24,8 +23,8 @@ type BaseRadioItemProps = {
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     _isActiveHover?: boolean;
-} & RadioGroupItemProps &
-    React.RefAttributes<HTMLButtonElement>;
+    indicatorProps?: React.ComponentPropsWithRef<typeof RadioGroup.Indicator>;
+} & React.ComponentPropsWithRef<typeof RadioGroup.Item>;
 
 type SItemProps = {
     $color?: Hex;
@@ -36,8 +35,7 @@ type SItemProps = {
     $sizeVariant: TypeVariantSize;
     $blocked?: boolean;
     $_isActiveHover?: boolean;
-} & RadioGroupItemProps &
-    React.RefAttributes<HTMLButtonElement>;
+} & React.ComponentPropsWithRef<typeof RadioGroup.Item>;
 
 const SIZE_RADIO = {
     [VS.L]: (props: TypeSSRadio) => css`
@@ -64,8 +62,7 @@ const SIZE_RADIO_INDICATOR = {
 type SIndicatorProps = {
     $styles: TypeStyles;
     $sizeVariant: TypeVariantSize;
-} & RadioGroupIndicatorProps &
-    React.RefAttributes<HTMLSpanElement>;
+} & React.ComponentPropsWithRef<typeof RadioGroup.Indicator>;
 
 const SIndicator = styled(RadioGroup.Indicator)<SIndicatorProps>`
     &::after {
@@ -85,15 +82,15 @@ const SItem = styled(RadioGroup.Item)<SItemProps>`
     background-color: transparent;
     outline: none;
     border-radius: 100%;
-    border: 1px solid;
+    border: 1px solid
+        ${(props) =>
+            getColor({
+                cs: props.$colors,
+                disabled: props.disabled,
+                color: props.$color,
+                variant: props.$colorVariant,
+            })};
     transition: all 0.3s ease-in-out;
-    border-color: ${(props) =>
-        getColor({
-            cs: props.$colors,
-            disabled: props.disabled,
-            color: props.$color,
-            variant: props.$colorVariant,
-        })};
     ${SIndicator} {
         &::after {
             background-color: ${(props) =>
@@ -148,6 +145,7 @@ export const BaseRadioItem: React.FC<BaseRadioItemProps> = React.memo(
         $colors,
         $styles,
         _isActiveHover = true,
+        indicatorProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
@@ -165,7 +163,7 @@ export const BaseRadioItem: React.FC<BaseRadioItemProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
-                <SIndicator $sizeVariant={sizeVariant} $styles={styles} />
+                <SIndicator $sizeVariant={sizeVariant} $styles={styles} {...indicatorProps} />
             </SItem>
         );
     }

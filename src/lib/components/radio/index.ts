@@ -20,5 +20,6 @@ export namespace TypeRadio {
         export type SRoot = TBaseRadioGroup.SRoot;
         export type Styles = TBaseRadioGroup.Styles;
         export type SGroup = TBaseRadioGroup.SGroup;
+        export type SLabel = TBaseRadioGroup.SLabel;
     }
 }

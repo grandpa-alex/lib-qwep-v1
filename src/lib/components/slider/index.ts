@@ -10,5 +10,8 @@ export namespace TypeSlider {
         export type Main = TBaseSlider.Main;
         export type Styles = TBaseSlider.Styles;
         export type SRoot = TBaseSlider.SRoot;
+        export type STrack = TBaseSlider.STrack;
+        export type SRange = TBaseSlider.SRange;
+        export type SThumb = TBaseSlider.SThumb;
     }
 }

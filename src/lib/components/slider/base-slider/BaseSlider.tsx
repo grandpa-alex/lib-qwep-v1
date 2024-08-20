@@ -1,5 +1,4 @@
 import * as Slider from '@radix-ui/react-slider';
-import { SliderProps } from '@radix-ui/react-slider';
 import { getColor } from '@src/lib/common/getColor';
 import { getMargin } from '@src/lib/common/getMargin';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
@@ -24,7 +23,10 @@ type BaseSliderProps = {
     blocked?: boolean;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-} & SliderProps;
+    trackProps: React.ComponentPropsWithRef<typeof Slider.Track>;
+    rangeProps: React.ComponentPropsWithRef<typeof Slider.Range>;
+    thumbProps: React.ComponentPropsWithRef<typeof Slider.Thumb>;
+} & React.ComponentPropsWithRef<typeof Slider.Root>;
 
 type SRootProps = {
     $mr?: TypeMargin;
@@ -35,9 +37,9 @@ type SRootProps = {
     $styles: TypeStyles;
     $colorVariant: TypeVariantColor;
     $sizeVariant: TypeVariantSize;
-} & SliderProps;
+} & React.ComponentPropsWithRef<typeof Slider.Root>;
 
-const STrack = styled(Slider.Track)`
+const STrack = styled(Slider.Track)<React.ComponentPropsWithRef<typeof Slider.Track>>`
     position: relative;
     flex-grow: 1;
     border-radius: 9999px;
@@ -49,7 +51,7 @@ const STrack = styled(Slider.Track)`
     }
 `;
 
-const SRange = styled(Slider.Range)`
+const SRange = styled(Slider.Range)<React.ComponentPropsWithRef<typeof Slider.Range>>`
     position: absolute;
     border-radius: 9999px;
     &[data-orientation='vertical'] {
@@ -60,7 +62,7 @@ const SRange = styled(Slider.Range)`
     }
 `;
 
-const SThumb = styled(Slider.Thumb)`
+const SThumb = styled(Slider.Thumb)<React.ComponentPropsWithRef<typeof Slider.Thumb>>`
     display: block;
     border-radius: 50%;
 `;
@@ -106,15 +108,15 @@ const SRoot = styled(Slider.Root)<SRootProps>`
         border: 1px solid ${(props) => props.$colors.disabled};
         &:not([disabled]):focus {
             outline: none;
-            border: 2px solid;
-            border-color: ${(props) =>
-                getColor({
-                    cs: props.$colors,
-                    disabled: props.disabled,
-                    color: props.$color,
-                    variant: props.$colorVariant,
-                    hover: true,
-                })};
+            border: 2px solid
+                ${(props) =>
+                    getColor({
+                        cs: props.$colors,
+                        disabled: props.disabled,
+                        color: props.$color,
+                        variant: props.$colorVariant,
+                        hover: true,
+                    })};
         }
     }
     ${(props) =>
@@ -125,7 +127,20 @@ const SRoot = styled(Slider.Root)<SRootProps>`
 `;
 
 export const BaseSlider: React.FC<BaseSliderProps> = React.memo(
-    ({ mr, color, length, blocked, colorVariant = VC.DEFAULT, sizeVariant = VS.L, $colors, $styles, ...rest }) => {
+    ({
+        mr,
+        color,
+        length,
+        blocked,
+        colorVariant = VC.DEFAULT,
+        sizeVariant = VS.L,
+        $colors,
+        $styles,
+        trackProps,
+        rangeProps,
+        thumbProps,
+        ...rest
+    }) => {
         const colors = useColorScheme($colors);
         const styles = useStyleScheme(['slider', 'mr'], $styles);
 
@@ -141,12 +156,12 @@ export const BaseSlider: React.FC<BaseSliderProps> = React.memo(
                 $sizeVariant={sizeVariant}
                 {...rest}
             >
-                <STrack>
-                    <SRange />
+                <STrack {...trackProps}>
+                    <SRange {...rangeProps} />
                 </STrack>
                 {rest.defaultValue &&
                     rest.defaultValue.map((_, idx) => {
-                        return <SThumb key={idx} />;
+                        return <SThumb key={idx} {...thumbProps} />;
                     })}
             </SRoot>
         );
@@ -166,4 +181,7 @@ export namespace TBaseSlider {
     export type Main = BaseSliderProps;
     export type Styles = TypeStyles;
     export type SRoot = SRootProps;
+    export type STrack = React.ComponentPropsWithRef<typeof Slider.Track>;
+    export type SRange = React.ComponentPropsWithRef<typeof Slider.Range>;
+    export type SThumb = React.ComponentPropsWithRef<typeof Slider.Thumb>;
 }

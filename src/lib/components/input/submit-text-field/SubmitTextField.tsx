@@ -173,6 +173,6 @@ export namespace TSubmitTextField {
     export type Main = SubmitTextFieldProps;
     export type SInput = SInpProps;
     export type SLoading = SLoaderProps;
-    // export type SRoot = TSimpleTextField.;
-    // export type SRoot = TSimpleTextField.;
+    export type SRoot = TSimpleTextField.SRoot;
+    export type SIconContainer = TSimpleTextField.SIconContainer;
 }

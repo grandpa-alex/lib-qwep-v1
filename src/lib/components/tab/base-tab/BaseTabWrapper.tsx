@@ -5,7 +5,6 @@ import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
 import { TypeMargin, TypeOrientationContent } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled from 'styled-components';
-import { TabsListProps, TabsProps } from '@radix-ui/react-tabs';
 import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox.ts';
 import { TypeBoxPaddingVariant, TypeBoxWidthVariant } from '@src/lib/types/TypeBox.ts';
 
@@ -21,14 +20,16 @@ type Box = {
     $styles?: TypeStyles;
 };
 
+type TypeTabsListProps = {
+    orientation?: TypeOrientationContent;
+} & Box &
+    React.ComponentPropsWithRef<typeof Tabs.List>;
+
 type BaseTabWrapperProps = {
     tabs: React.ReactNode[];
-    tabsListProps?: Box &
-        TabsListProps &
-        React.RefAttributes<HTMLDivElement> & { orientation?: TypeOrientationContent };
+    tabsListProps?: TypeTabsListProps;
 } & Box &
-    TabsProps &
-    React.RefAttributes<HTMLDivElement>;
+    React.ComponentPropsWithRef<typeof Tabs.Root>;
 
 type SBox = {
     $mr?: TypeMargin;
@@ -37,7 +38,7 @@ type SBox = {
     $styles: TypeStyles;
 };
 
-type SRootProps = SBox & TabsProps & React.RefAttributes<HTMLDivElement>;
+type SRootProps = SBox & React.ComponentPropsWithRef<typeof Tabs.Root>;
 const SRoot = styled(Tabs.Root)<SRootProps>`
     &[data-orientation='vertical'] {
         display: block;
@@ -59,8 +60,8 @@ const SRoot = styled(Tabs.Root)<SRootProps>`
 type SListProps = {
     $orientation: TypeOrientationContent;
 } & SBox &
-    TabsListProps &
-    React.RefAttributes<HTMLDivElement>;
+    React.ComponentPropsWithRef<typeof Tabs.List>;
+
 const SList = styled(Tabs.List)<SListProps>`
     &[data-orientation] {
         display: ${(props) => (props.$orientation === 'vertical' ? 'block' : 'inline-flex')};

@@ -6,7 +6,6 @@ import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
 import { TypeMargin } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled from 'styled-components';
-import { TabsContentProps } from '@radix-ui/react-tabs';
 import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox.ts';
 import { TypeBoxDisplay, TypeBoxPaddingVariant, TypeBoxWidthVariant } from '@src/lib/types/TypeBox.ts';
 
@@ -22,8 +21,7 @@ type BaseTabContentProps = {
     mr?: TypeMargin;
     $styles?: TypeStyles;
     $colors?: TypeColorScheme;
-} & TabsContentProps &
-    React.RefAttributes<HTMLDivElement>;
+} & React.ComponentPropsWithRef<typeof Tabs.Content>;
 
 type SRootProps = {
     $mr?: TypeMargin;
@@ -31,8 +29,7 @@ type SRootProps = {
     $boxPaddingVariant?: TypeBoxPaddingVariant;
     $boxDisplay?: TypeBoxDisplay;
     $styles: TypeStyles;
-} & TabsContentProps &
-    React.RefAttributes<HTMLDivElement>;
+} & React.ComponentPropsWithRef<typeof Tabs.Content>;
 
 const SRoot = styled(Tabs.Content)<SRootProps>`
     ${(props) =>

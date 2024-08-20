@@ -6,7 +6,6 @@ import { TypeSSBtn, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleSch
 import { TypeMargin, TypeVariantSize, VS } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { TabsTriggerProps } from '@radix-ui/react-tabs';
 import { useColorScheme } from '@src/lib/general';
 
 type TypeStyles = {
@@ -22,8 +21,7 @@ type BaseTabProps = {
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     blocked?: boolean;
-} & TabsTriggerProps &
-    React.RefAttributes<HTMLButtonElement>;
+} & React.ComponentPropsWithRef<typeof Tabs.Trigger>;
 
 type STabProps = {
     $mr?: TypeMargin;
@@ -31,8 +29,7 @@ type STabProps = {
     $sizeVariant: TypeVariantSize;
     $styles: TypeStyles;
     $colors: TypeColorScheme;
-} & TabsTriggerProps &
-    React.RefAttributes<HTMLButtonElement>;
+} & React.ComponentPropsWithRef<typeof Tabs.Trigger>;
 
 const TAB_SIZE = {
     [VS.L]: (btn: TypeSSBtn) => css`

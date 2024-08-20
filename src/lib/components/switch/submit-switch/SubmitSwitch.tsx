@@ -5,13 +5,13 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { VC, VS } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { BaseSwitch, TBaseSwitch } from '../base-switch/BaseSwitch';
+import { SBaseSwitch, TBaseSwitch } from '../base-switch/BaseSwitch';
 
 type SubmitSwitchProps = {
     isLoading: boolean;
 } & TBaseSwitch.Main;
 
-type SSwitchProps = {
+type SRootProps = {
     $isLoading: boolean;
 } & TBaseSwitch.SRoot;
 
@@ -26,7 +26,7 @@ const LOADING_SIZE = {
     `,
 };
 
-const SSwitch = styled(BaseSwitch)<SSwitchProps>`
+const SRoot = styled(SBaseSwitch.Root)<SRootProps>`
     ${(props) => {
         if (props.$isLoading && !props.disabled) {
             return css`
@@ -35,8 +35,8 @@ const SSwitch = styled(BaseSwitch)<SSwitchProps>`
                     content: '';
                     position: absolute;
                     border-radius: 50%;
-                    top: 0%;
-                    ${props.checked || props.defaultChecked ? 'right: 0%' : 'left: 0%'};
+                    top: 0;
+                    ${props.checked || props.defaultChecked ? 'right: 0' : 'left: 0'};
                     ${LOADING_SIZE[props.$sizeVariant](props.$styles.switch)}
                     border: 1px solid ${getColor({
                         cs: props.$colors,
@@ -63,19 +63,20 @@ export const SubmitSwitch: React.FC<SubmitSwitchProps> = React.memo(
         mr,
         color,
         isLoading,
+        blocked,
         colorVariant = VC.DEFAULT,
         sizeVariant = VS.L,
-
         $colors,
         $styles,
         _isActiveHover = true,
+        thumbProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
         const styles = useStyleScheme(['switch', 'mr'], $styles);
 
         return (
-            <SSwitch
+            <SRoot
                 $color={color}
                 $mr={mr}
                 $colors={colors}
@@ -84,25 +85,24 @@ export const SubmitSwitch: React.FC<SubmitSwitchProps> = React.memo(
                 $sizeVariant={sizeVariant}
                 $_isActiveHover={_isActiveHover}
                 $isLoading={isLoading}
-                mr={mr}
-                $blocked={rest.blocked}
-                color={color}
-                colorVariant={colorVariant}
-                sizeVariant={sizeVariant}
-                _isActiveHover={_isActiveHover}
+                $blocked={blocked}
                 {...rest}
-            />
+            >
+                <SBaseSwitch.Thumb $colors={colors} $styles={styles} $sizeVariant={sizeVariant} {...thumbProps} />
+            </SRoot>
         );
     }
 );
 
 //export component
 export const SSubmitSwitch = {
-    Switch: SSwitch,
+    Root: SRoot,
+    Thumb: SBaseSwitch.Thumb,
 };
 
 //export type
 export namespace TSubmitSwitch {
     export type Main = SubmitSwitchProps;
-    export type SSwitch = SSwitchProps;
+    export type SRoot = SRootProps;
+    export type SThumb = TBaseSwitch.SThumb;
 }

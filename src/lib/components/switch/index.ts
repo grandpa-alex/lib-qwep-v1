@@ -17,6 +17,7 @@ export namespace TypeSwitch {
 
     export namespace SubmitSwitch {
         export type Main = TSubmitSwitch.Main;
-        export type SSwitch = TSubmitSwitch.SSwitch;
+        export type SRoot = TSubmitSwitch.SRoot;
+        export type SThumb = TSubmitSwitch.SThumb;
     }
 }

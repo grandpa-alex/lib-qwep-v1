@@ -1,5 +1,4 @@
 import * as Switch from '@radix-ui/react-switch';
-import { SwitchProps } from '@radix-ui/react-switch';
 import { getColor } from '@src/lib/common/getColor';
 import { getMargin } from '@src/lib/common/getMargin';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
@@ -24,7 +23,8 @@ type BaseSwitchProps = {
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     _isActiveHover?: boolean;
-} & SwitchProps;
+    thumbProps?: React.ComponentPropsWithRef<typeof Switch.Thumb>;
+} & React.ComponentPropsWithRef<typeof Switch.Root>;
 
 export type SRootProps = {
     $color?: Hex;
@@ -35,13 +35,13 @@ export type SRootProps = {
     $sizeVariant: TypeVariantSize;
     $blocked?: boolean;
     $_isActiveHover?: boolean;
-} & SwitchProps;
+} & React.ComponentPropsWithRef<typeof Switch.Root>;
 
 export type SThumbProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $sizeVariant: TypeVariantSize;
-};
+} & React.ComponentPropsWithoutRef<typeof Switch.Thumb>;
 
 const SWITCH_THUMB_SIZE = {
     [VS.L]: (props: TypeSSSwitch) => css`
@@ -127,6 +127,7 @@ export const BaseSwitch: React.FC<BaseSwitchProps> = React.memo(
         $colors,
         $styles,
         _isActiveHover = true,
+        thumbProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
@@ -144,7 +145,7 @@ export const BaseSwitch: React.FC<BaseSwitchProps> = React.memo(
                 $_isActiveHover={_isActiveHover}
                 {...rest}
             >
-                <SThumb $colors={colors} $styles={styles} $sizeVariant={sizeVariant} />
+                <SThumb $colors={colors} $styles={styles} $sizeVariant={sizeVariant} {...thumbProps} />
             </SRoot>
         );
     }

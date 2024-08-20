@@ -4,19 +4,18 @@ import styled from 'styled-components';
 import { SelectGroupProps } from '@radix-ui/react-select';
 
 type BaseSelectGroupProps = {
-    children?: React.ReactNode;
-    title?: string;
-} & SelectGroupProps &
-    React.RefAttributes<HTMLDivElement>;
+    label?: string;
+    labelProps?: React.HTMLAttributes<HTMLDivElement>;
+} & React.ComponentPropsWithRef<typeof Select.Group>;
 
-const SGroup = styled(Select.Group)<SelectGroupProps & React.RefAttributes<HTMLDivElement>>`
-    padding: 10px 0px;
+const SGroup = styled(Select.Group)<React.ComponentPropsWithRef<typeof Select.Group>>`
+    padding: 10px 0;
     &:not(:last-child) {
         border-bottom: 1px solid;
     }
 `;
 
-const SLabel = styled.div`
+const SLabel = styled.div<React.HTMLAttributes<HTMLDivElement>>`
     font-size: 13px;
     padding: 2px 20px 6px 20px;
     text-overflow: ellipsis;
@@ -25,13 +24,13 @@ const SLabel = styled.div`
 `;
 
 const BaseSelectGroupRef: React.ForwardRefRenderFunction<HTMLDivElement, BaseSelectGroupProps> = (
-    { children, title, ...rest },
+    { label, labelProps, ...rest },
     ref
 ) => {
     return (
         <SGroup ref={ref} {...rest}>
-            {title && <SLabel>{title}</SLabel>}
-            {children}
+            {label && <SLabel {...labelProps}>{label}</SLabel>}
+            {rest.children}
         </SGroup>
     );
 };
@@ -47,5 +46,6 @@ export const SBaseSelectGroup = {
 //export type
 export namespace TBaseSelectGroup {
     export type Main = BaseSelectGroupProps;
-    export type SGroup = SelectGroupProps & React.RefAttributes<HTMLDivElement>;
+    export type SGroup = SelectGroupProps;
+    export type SLabel = React.HTMLAttributes<HTMLDivElement>;
 }

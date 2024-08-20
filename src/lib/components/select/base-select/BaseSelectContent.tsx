@@ -11,17 +11,12 @@ import styled, { css } from 'styled-components';
 import * as Select from '@radix-ui/react-select';
 import { TypeBoxPaddingVariant, TypeBoxShadowVariant } from '@src/lib/types/TypeBox';
 import { BOX_PADDING_VARIANT, BOX_SHADOW_VARIANT } from '@src/lib/common-styled-component/StyledComponentBox';
-import {
-    SelectProps,
-    SelectTriggerProps,
-    SelectContentProps,
-    SelectViewportProps,
-    SelectValueProps,
-} from '@radix-ui/react-select';
 import { Arrow } from '@src/lib/icons';
-import { SBaseSelectComponent } from './BaseSelectComponent';
+import { SBaseSelectComponent, TBaseSelectComponent } from './BaseSelectComponent';
 import { SBaseSelectGroup } from './BaseSelectGroup';
 import { StyledScrollbarItem } from '@src/lib/common-styled-component/StyledBase';
+import { ArrowProps } from '@src/lib/icons/Arrow.tsx';
+import { SRoot } from '@src/lib/components/input/simple-text-field/SimpleTextField.tsx';
 
 type TypeStyles = {
     base: TypeSSBase;
@@ -45,8 +40,16 @@ type BaseSelectContentProps = {
     blocked?: boolean;
     positionTrigger?: TypeBtnPosition;
     maxHeight?: string;
+    placeholder?: React.ReactNode;
     _isActiveHover?: boolean;
-} & (SelectProps & SelectValueProps & SelectContentProps & React.RefAttributes<HTMLDivElement>);
+    triggerProps?: React.ComponentPropsWithRef<typeof Select.Trigger>;
+    valueProps?: React.ComponentPropsWithRef<typeof Select.Value>;
+    iconProps?: TBaseSelectComponent.SIcon;
+    iconArrowProps?: ArrowProps;
+    portalProps?: React.ComponentPropsWithRef<typeof Select.Portal>;
+    contentProps?: React.ComponentPropsWithRef<typeof Select.Content>;
+    viewportProps?: React.ComponentPropsWithRef<typeof Select.Viewport>;
+} & React.ComponentPropsWithRef<typeof Select.Root>;
 
 type STriggerProps = {
     $mr?: TypeMargin;
@@ -59,8 +62,7 @@ type STriggerProps = {
     $sizeVariant: TypeVariantSize;
     $colorVariant: TypeVariantColor;
     $_isActiveHover?: boolean;
-} & SelectTriggerProps &
-    React.RefAttributes<HTMLButtonElement>;
+} & React.ComponentPropsWithRef<typeof Select.Trigger>;
 
 const SELECT_SIZE = {
     [VS.L]: (props: TypeSSSelect) => css`
@@ -86,15 +88,15 @@ const STrigger = styled(Select.Trigger)<STriggerProps>`
     justify-content: ${(props) => POSITION_TRIGGER[props.$positionTrigger]};
     border-radius: ${(props) => props.$styles.base.borderRadiusItem};
     font-weight: ${(props) => props.$styles.typography.fontWeightItem};
-    border: 1px solid;
+    border: 1px solid
+        ${(props) =>
+            getColor({
+                cs: props.$colors,
+                color: props.$color,
+                disabled: props.disabled,
+                variant: props.$colorVariant,
+            })};
     color: ${(props) =>
-        getColor({
-            cs: props.$colors,
-            color: props.$color,
-            disabled: props.disabled,
-            variant: props.$colorVariant,
-        })};
-    border-color: ${(props) =>
         getColor({
             cs: props.$colors,
             color: props.$color,
@@ -239,8 +241,7 @@ type SContentProps = {
     $boxShadowVariant: TypeBoxShadowVariant;
     $boxPaddingVariant: TypeBoxPaddingVariant;
     $_isActiveHover?: boolean;
-} & SelectContentProps &
-    React.RefAttributes<HTMLDivElement>;
+} & React.ComponentPropsWithRef<typeof Select.Content>;
 
 const SContent = styled(Select.Content)<SContentProps>`
     overflow: hidden;
@@ -248,7 +249,6 @@ const SContent = styled(Select.Content)<SContentProps>`
     font-size: ${(props) => props.$styles.typography.fontSizeItem};
     border-radius: ${(props) => props.$styles.base.borderRadiusItem};
     width: ${(props) => props.$width};
-
     ${SBaseSelectComponent.Item} {
         &[data-disabled] {
             color: ${(props) => props.$colors.disabled};
@@ -310,8 +310,7 @@ type SViewportProps = {
     $colors: TypeColorScheme;
     $colorVariant: TypeVariantColor;
     $_isActiveHover?: boolean;
-} & SelectViewportProps &
-    React.RefAttributes<HTMLDivElement>;
+} & React.ComponentPropsWithRef<typeof Select.Viewport>;
 
 const SViewport = styled.div<SViewportProps>`
     max-height: ${(props) => props.$maxHeight ?? '300px'};
@@ -329,11 +328,11 @@ const SViewport = styled.div<SViewportProps>`
 
 export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
     ({
-        children,
         mr,
         color,
         width,
         maxHeight,
+        placeholder,
         positionTrigger = BP.CENTER,
         sizeVariant = VS.L,
         colorVariant = VC.DEFAULT,
@@ -343,6 +342,13 @@ export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
         $colors,
         $styles,
         _isActiveHover = true,
+        triggerProps,
+        valueProps,
+        iconProps,
+        iconArrowProps,
+        portalProps,
+        contentProps,
+        viewportProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
@@ -362,25 +368,27 @@ export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
                     $_isActiveHover={_isActiveHover}
                     $blocked={blocked}
                     disabled={rest.disabled}
+                    {...triggerProps}
                 >
-                    <Select.Value placeholder={rest.placeholder} />
-                    <SBaseSelectComponent.Icon>
-                        <Arrow />
+                    <Select.Value placeholder={placeholder} {...valueProps} />
+                    <SBaseSelectComponent.Icon {...iconProps}>
+                        <Arrow {...iconArrowProps} />
                     </SBaseSelectComponent.Icon>
                 </STrigger>
-                <Select.Portal>
+                <Select.Portal {...portalProps}>
                     <SContent
-                        side={rest.side ?? 'bottom'}
+                        side={'bottom'}
                         position="popper"
                         $colorVariant={colorVariant}
                         $colors={colors}
                         $styles={styles}
                         $color={color}
                         $width={width}
-                        sideOffset={rest.sideOffset ?? 5}
+                        sideOffset={5}
                         $boxPaddingVariant={boxPaddingVariant}
                         $boxShadowVariant={boxShadowVariant}
                         $_isActiveHover={_isActiveHover}
+                        {...contentProps}
                     >
                         <SViewport
                             $colors={colors}
@@ -388,8 +396,9 @@ export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
                             $colorVariant={colorVariant}
                             $maxHeight={maxHeight}
                             $_isActiveHover={_isActiveHover}
+                            {...viewportProps}
                         >
-                            {children}
+                            {rest.children}
                         </SViewport>
                     </SContent>
                 </Select.Portal>
@@ -400,6 +409,10 @@ export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
 
 // //export component
 export const SBaseSelectContent = {
+    Root: SRoot,
+    Value: Select.Value,
+    Icon: SBaseSelectComponent.Icon,
+    Portal: Select.Portal,
     Trigger: STrigger,
     Viewport: SViewport,
     Content: SContent,
@@ -409,6 +422,10 @@ export const SBaseSelectContent = {
 export namespace TBaseSelectContent {
     export type Styles = TypeStyles;
     export type Main = BaseSelectContentProps;
+    export type SRoot = React.ComponentPropsWithRef<typeof Select.Root>;
+    export type SValue = React.ComponentPropsWithRef<typeof Select.Value>;
+    export type SIcon = TBaseSelectComponent.SIcon;
+    export type SPortal = React.ComponentPropsWithRef<typeof Select.Portal>;
     export type SViewport = SViewportProps;
     export type STrigger = STriggerProps;
     export type SContent = SContentProps;

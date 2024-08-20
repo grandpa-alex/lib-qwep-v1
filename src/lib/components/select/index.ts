@@ -21,16 +21,22 @@ export namespace TypeSelect {
     export namespace BaseSelectGroup {
         export type Main = TBaseSelectGroup.Main;
         export type SGroup = TBaseSelectGroup.SGroup;
+        export type SLabel = TBaseSelectGroup.SLabel;
     }
 
     export namespace BaseSelectItem {
         export type Main = TBaseSelectItem.Main;
         export type SIndicator = TBaseSelectItem.SIndicator;
+        export type SItemText = TBaseSelectItem.SItemText;
     }
 
     export namespace BaseSelectContent {
         export type Main = TBaseSelectContent.Main;
         export type Styles = TBaseSelectContent.Styles;
+        export type SRoot = TBaseSelectContent.SRoot;
+        export type SValue = TBaseSelectContent.SValue;
+        export type SIcon = TBaseSelectContent.SIcon;
+        export type SPortal = TBaseSelectContent.SPortal;
         export type SContent = TBaseSelectContent.SContent;
         export type STrigger = TBaseSelectContent.STrigger;
         export type SViewport = TBaseSelectContent.SViewport;

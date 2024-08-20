@@ -1,9 +1,9 @@
 import * as Select from '@radix-ui/react-select';
 import { styled } from 'styled-components';
-import { SelectIconProps, SelectItemProps } from '@radix-ui/react-select';
+import React from 'react';
 
 // content
-type SIconProps = SelectIconProps & React.RefAttributes<HTMLSpanElement>;
+type SIconProps = React.ComponentPropsWithRef<typeof Select.Icon>;
 const SIcon = styled(Select.Icon)`
     margin-left: 8px;
     svg {
@@ -13,7 +13,7 @@ const SIcon = styled(Select.Icon)`
 `;
 
 // item
-type SItemProps = SelectItemProps & React.RefAttributes<HTMLDivElement>;
+type SItemProps = React.ComponentPropsWithRef<typeof Select.Item>;
 const SItem = styled(Select.Item)`
     position: relative;
     text-overflow: ellipsis;

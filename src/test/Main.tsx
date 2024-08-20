@@ -25,7 +25,7 @@ import Tab from '@src/test/Tab.tsx';
 // }
 
 function Main() {
-    const [val, setVal] = useState(<Checkbox />);
+    const [val, setVal] = useState(<Select />);
     // const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
 
     const handler = (val: string) => {

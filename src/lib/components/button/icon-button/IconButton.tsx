@@ -138,4 +138,5 @@ export const SIconButton = {
 //export type
 export namespace TIconButton {
     export type Main = IconButtonProps;
+    export type SButton = SButtonProps;
 }

@@ -19,6 +19,9 @@ export namespace TypeCheckbox {
 
     export namespace SubmitCheckbox {
         export type Main = TSubmitCheckbox.Main;
-        export type SCheckbox = TSubmitCheckbox.SCheckbox;
+        export type SRoot = TSubmitCheckbox.SRoot;
+        export type SIcon = TSubmitCheckbox.SIcon;
+        export type SIndicator = TSubmitCheckbox.SIndicator;
+        export type Styles = TSubmitCheckbox.Styles;
     }
 }

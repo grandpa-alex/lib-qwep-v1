@@ -1,4 +1,3 @@
-import * as Popover from '@radix-ui/react-popover';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
@@ -24,7 +23,6 @@ type TypeStyles = {
 type SimplePopupProps = {
     icon: React.ReactNode;
     title: React.ReactNode;
-    as?: keyof JSX.IntrinsicElements;
     boxPaddingVariant?: TypeBoxPaddingVariant;
     boxGapVariant?: TypeBoxGapVariant;
     boxBorderColor?: Hex;
@@ -36,6 +34,10 @@ type SimplePopupProps = {
     maxHeight?: string;
     color?: Hex;
     $styles?: TypeStyles;
+    headerProps?: React.HTMLAttributes<HTMLDivElement>;
+    cardProps?: React.HTMLAttributes<HTMLDivElement>;
+    iconProps?: React.HTMLAttributes<HTMLDivElement>;
+    titleProps?: React.HTMLAttributes<HTMLParagraphElement>;
 } & TBasePopup.Main;
 
 type SContentProps = {
@@ -49,14 +51,14 @@ type SContentProps = {
     $boxShadowColor?: Hex;
     $boxShadowVariant?: TypeBoxShadowVariant;
     $boxRadiusVariant?: TypeBoxRadiusVariant;
-};
+} & TBasePopup.SContent;
 
 type SHeaderProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $color?: Hex;
     $boxPaddingVariant: TypeBoxPaddingVariant;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 type SCardProps = {
     $colors: TypeColorScheme;
@@ -66,11 +68,10 @@ type SCardProps = {
     $maxHeight?: string;
     $boxPaddingVariant: TypeBoxPaddingVariant;
     $boxGapVariant?: TypeBoxGapVariant;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-const SContent = styled(Popover.Content)<SContentProps>`
+const SContent = styled(SBasePopup.Content)<SContentProps>`
     overflow: hidden;
-    position: relative;
     width: ${(props) => props.$width ?? '260px'};
     height: ${(props) => props.$height ?? '100%'};
     max-height: ${(props) => props.$maxHeight ?? '300px'};
@@ -85,7 +86,7 @@ const SContent = styled(Popover.Content)<SContentProps>`
         })};
 `;
 
-const SIcon = styled.div`
+const SIcon = styled.div<React.HTMLAttributes<HTMLDivElement>>`
     position: relative;
     padding-right: 8px;
     svg {
@@ -94,7 +95,7 @@ const SIcon = styled.div`
     }
 `;
 
-const STitle = styled.div`
+const STitle = styled.p<React.HTMLAttributes<HTMLParagraphElement>>`
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -106,9 +107,7 @@ const SHeader = styled.div<SHeaderProps>`
     width: 100%;
     font-size: ${(props) => props.$styles.typography.h6};
     color: ${(props) => props.$colors.title};
-    border-bottom: 1px solid;
-    border-color: ${(props) => props.$colors.disabled};
-
+    border-bottom: 1px solid ${(props) => props.$colors.disabled};
     ${(props) =>
         CSSBaseBox({
             $boxPaddingVariant: props.$boxPaddingVariant,
@@ -128,7 +127,7 @@ const SCard = styled.div<SCardProps>`
     display: flex;
     align-items: center;
     max-height: calc((${(props) => props.$maxHeight ?? '300px'}) - 50px);
-    margin: 4px 4px 8px 2px;
+    margin: 4px 0 8px 2px;
     font-size: ${(props) => props.$styles.typography.fontSizeGlobal};
     font-weight: ${(props) => props.$styles.typography.fontWeightGlobal};
     color: ${(props) => props.$colors.text};
@@ -148,12 +147,8 @@ const SCard = styled.div<SCardProps>`
 
 export const SimplePopup: React.FC<SimplePopupProps> = React.memo(
     ({
-        mr,
         icon,
         title,
-        as = 'div',
-        children,
-        triggerStyle,
         trigger,
         bg,
         color,
@@ -168,19 +163,22 @@ export const SimplePopup: React.FC<SimplePopupProps> = React.memo(
         boxRadiusVariant = 'br-1',
         $colors,
         $styles,
+        triggerProps,
+        portalProps,
+        contentProps,
+        headerProps,
+        cardProps,
+        iconProps,
+        titleProps,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
         const styles = useStyleScheme(['mr', 'box', 'typography'], $styles);
 
         return (
-            <Popover.Root {...rest}>
-                <Popover.Trigger asChild>
-                    <SBasePopup.Trigger style={triggerStyle} $mr={mr} $styles={styles}>
-                        {trigger}
-                    </SBasePopup.Trigger>
-                </Popover.Trigger>
-                <Popover.Portal>
+            <SBasePopup.Root {...rest}>
+                <SBasePopup.Trigger {...triggerProps}>{trigger}</SBasePopup.Trigger>
+                <SBasePopup.Portal {...portalProps}>
                     <SContent
                         $colors={colors}
                         $styles={styles}
@@ -193,20 +191,19 @@ export const SimplePopup: React.FC<SimplePopupProps> = React.memo(
                         $height={height}
                         $maxHeight={maxHeight}
                         sideOffset={8}
-                        {...rest}
-                        style={{}}
+                        {...contentProps}
                     >
                         <SHeader
                             $colors={colors}
                             $styles={styles}
                             $color={color}
                             $boxPaddingVariant={boxPaddingVariant}
+                            {...headerProps}
                         >
-                            <SIcon>{icon}</SIcon>
-                            <STitle>{title}</STitle>
+                            <SIcon {...iconProps}>{icon}</SIcon>
+                            <STitle {...titleProps}>{title}</STitle>
                         </SHeader>
                         <SCard
-                            as={as}
                             $colors={colors}
                             $styles={styles}
                             $color={color}
@@ -214,19 +211,22 @@ export const SimplePopup: React.FC<SimplePopupProps> = React.memo(
                             $boxGapVariant={boxGapVariant}
                             $height={height}
                             $maxHeight={maxHeight}
-                            style={rest.style}
+                            {...cardProps}
                         >
-                            {children}
+                            {rest.children}
                         </SCard>
                     </SContent>
-                </Popover.Portal>
-            </Popover.Root>
+                </SBasePopup.Portal>
+            </SBasePopup.Root>
         );
     }
 );
 
 //export component
 export const SSimplePopup = {
+    Root: SBasePopup.Root,
+    Trigger: SBasePopup.Trigger,
+    Portal: SBasePopup.Portal,
     Content: SContent,
     Card: SCard,
     Header: SHeader,
@@ -236,9 +236,14 @@ export const SSimplePopup = {
 
 //export type
 export namespace TSimplePopup {
-    export type Main = SimplePopupProps;
     export type Styles = TypeStyles;
+    export type Main = SimplePopupProps;
+    export type SRoot = TBasePopup.SRoot;
+    export type SPortal = TBasePopup.SPortal;
+    export type STrigger = TBasePopup.STrigger;
     export type SContent = SContentProps;
     export type SCard = SCardProps;
-    export type SHeader = SHeaderProps;
+    export type SHeader = React.HTMLAttributes<HTMLDivElement>;
+    export type STitle = React.HTMLAttributes<HTMLParagraphElement>;
+    export type SIcon = React.HTMLAttributes<HTMLDivElement>;
 }

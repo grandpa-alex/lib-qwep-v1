@@ -140,15 +140,18 @@ export const BaseDialog: React.FC<BaseDialogProps> = React.memo(
 
 //export component
 export const SBaseDialog = {
+    Root: Dialog.Root,
     Overlay: SOverlay,
     Content: SContent,
+    Portal: Dialog.Portal,
 };
 
 //export type
 export namespace TBaseDialog {
     export type Main = BaseDialogProps;
     export type Styles = TypeStyles;
-
+    export type SRoot = React.ComponentPropsWithoutRef<typeof Dialog.Root>;
+    export type SPortal = React.ComponentPropsWithoutRef<typeof Dialog.Portal>;
     export type SOverlay = SOverlayProps;
     export type SContent = SContentProps;
 }

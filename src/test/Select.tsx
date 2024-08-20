@@ -255,7 +255,7 @@ function Select() {
 
             <h2>BASE POPUP L COLORS</h2>
             <div style={{ display: 'flex' }}>
-                <BasePopup mr={'m-3'} trigger={<SimpleButton>Popup</SimpleButton>}>
+                <BasePopup trigger={<SimpleButton>Popup</SimpleButton>}>
                     <SimpleBox
                         boxGapVariant={'g-2'}
                         boxPaddingVariant={'p-2'}
@@ -271,11 +271,10 @@ function Select() {
                 </BasePopup>
 
                 <SimplePopup
-                    sideOffset={8}
                     // color={'#830088'}
                     icon={<Icon.Settings />}
                     title={'Title Simple Popup '}
-                    mr={'m-3'}
+                    boxShadowVariant={'shd-3'}
                     trigger={<SimpleButton>Simple Popup</SimpleButton>}
                 >
                     bgbgfbfgb bgbgfbgfbg jtrjkhrtjhkrtj hrth rthrth Lorem ipsum dolor sit amet consectetur adipisicing
@@ -292,7 +291,6 @@ function Select() {
                     unde?
                 </SimplePopup>
                 <SimplePopup
-                    sideOffset={8}
                     // color={'#830088'}
                     width={'150px'}
                     height={'500px'}
@@ -315,11 +313,11 @@ function Select() {
                 </SimplePopup>
 
                 <SimplePopup
-                    sideOffset={8}
                     // color={'#830088'}
                     // width={'150px'}
                     // height={'500px'}
                     maxHeight={'400px'}
+                    boxShadowVariant={'shd-3'}
                     icon={<Icon.Settings />}
                     title={'Title Simple Popup Test longtitle'}
                     mr={'m-3'}
@@ -329,11 +327,9 @@ function Select() {
                 </SimplePopup>
 
                 <SimplePopup
-                    sideOffset={8}
                     // color={'#830088'}
                     // width={'150px'}
                     // height={'500px'}
-                    as={'form'}
                     onSubmit={(e) => {
                         e.preventDefault();
                         console.log(e);
@@ -347,6 +343,7 @@ function Select() {
                 >
                     <input type="text" name="name" placeholder="Name" />
                     <BaseSelectContent
+                        boxShadowVariant={'shd-3'}
                         name={'BaseSelectContent'}
                         positionTrigger={'left'}
                         onValueChange={(e) => console.log(e)}
@@ -547,6 +544,28 @@ function Select() {
                     Minima, aperiam earum? Dolore corrupti illum atque vero sapiente, ipsam laborum repellendus quidem
                     quaerat, vitae molestiae facilis. Culpa, natus.
                 </BaseScrollArea>
+            </div>
+            <div>
+                <BasePopup
+                    // mr={'m-3'}
+                    trigger={<SimpleButton mr={'m-6'}>Popup</SimpleButton>}
+                    // triggerProps={{
+                    //     asChild: true,
+                    // }}
+                >
+                    <SimpleBox
+                        boxGapVariant={'g-2'}
+                        boxPaddingVariant={'p-2'}
+                        boxShadowVariant={'shd-3'}
+                        boxRadiusVariant={'br-1'}
+                    >
+                        <SimpleTextField placeholder={'Placeholder'} />
+                        <SimpleTextField placeholder={'Placeholder'} />
+                        <SubmitButton icon={<Icon.Settings />} isLoading={false}>
+                            Submit
+                        </SubmitButton>
+                    </SimpleBox>
+                </BasePopup>
             </div>
         </div>
     );

@@ -93,10 +93,15 @@ export const SubmitCheckbox: React.FC<SubmitCheckboxProps> = React.memo(
 //export component
 export const SSubmitCheckbox = {
     Root: SRoot,
+    Icon: SBaseCheckbox.Icon,
+    Indicator: SBaseCheckbox.Indicator,
 };
 
 //export type
 export namespace TSubmitCheckbox {
     export type Main = SubmitCheckboxProps;
     export type SRoot = SRootProps;
+    export type SIcon = TBaseCheckbox.SIcon;
+    export type Styles = TBaseCheckbox.Styles;
+    export type SIndicator = TBaseCheckbox.SIndicator;
 }

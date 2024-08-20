@@ -19,5 +19,7 @@ export namespace TypeDialog {
         export type Styles = TBaseDialog.Styles;
         export type SContent = TBaseDialog.SContent;
         export type SOverlay = TBaseDialog.SOverlay;
+        export type SPortal = TBaseDialog.SPortal;
+        export type SRoot = TBaseDialog.SRoot;
     }
 }

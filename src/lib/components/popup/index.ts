@@ -14,14 +14,20 @@ export namespace TypePopup {
         export type SArrow = TBasePopup.SArrow;
         export type SContent = TBasePopup.SContent;
         export type STrigger = TBasePopup.STrigger;
-        export type Styles = TBasePopup.Styles;
+        export type SRoot = TBasePopup.SRoot;
+        export type SPortal = TBasePopup.SPortal;
     }
 
     export namespace SimplePopup {
-        export type Main = TSimplePopup.Main;
-        export type SCard = TSimplePopup.SCard;
-        export type SContent = TSimplePopup.SContent;
-        export type SHeader = TSimplePopup.SHeader;
         export type Styles = TSimplePopup.Styles;
+        export type Main = TSimplePopup.Main;
+        export type SContent = TSimplePopup.SContent;
+        export type STrigger = TSimplePopup.STrigger;
+        export type SRoot = TSimplePopup.SRoot;
+        export type SPortal = TSimplePopup.SPortal;
+        export type SCard = TSimplePopup.SCard;
+        export type SHeader = TSimplePopup.SHeader;
+        export type STitle = TSimplePopup.STitle;
+        export type SIcon = TSimplePopup.SIcon;
     }
 }

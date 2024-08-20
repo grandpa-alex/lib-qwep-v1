@@ -176,4 +176,6 @@ export namespace TSubmitButton {
     export type Main = SubmitButtonProps;
     export type SButton = SButtonProps;
     export type SLoading = SLoadingProps;
+    export type SIconContainer = TSimpleButton.SIconContainer;
+    export type SContentContainer = TSimpleButton.SContentContainer;
 }

@@ -21,6 +21,7 @@ export namespace TypeButton {
 
     export namespace SimpleButton {
         export type Main = TSimpleButton.Main;
+        export type SButton = TSimpleButton.SButton;
         export type SContentContainer = TSimpleButton.SContentContainer;
         export type SIconContainer = TSimpleButton.SIconContainer;
     }
@@ -29,9 +30,12 @@ export namespace TypeButton {
         export type Main = TSubmitButton.Main;
         export type SButton = TSubmitButton.SButton;
         export type SLoading = TSubmitButton.SLoading;
+        export type SContentContainer = TSubmitButton.SContentContainer;
+        export type SIconContainer = TSubmitButton.SIconContainer;
     }
 
     export namespace IconButton {
         export type Main = TIconButton.Main;
+        export type SButton = TIconButton.SButton;
     }
 }

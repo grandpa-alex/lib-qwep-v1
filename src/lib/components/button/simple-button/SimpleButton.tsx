@@ -171,6 +171,7 @@ export const SSimpleButton = {
 //export type
 export namespace TSimpleButton {
     export type Main = SimpleButtonProps;
+    export type SButton = TBaseButton.SButton;
     export type SIconContainer = SIconContainerProps;
     export type SContentContainer = SContentContainerProps;
 }

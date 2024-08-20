@@ -1,25 +1,20 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import {
-    ScrollAreaProps,
-    ScrollAreaScrollbarProps,
-    ScrollAreaThumbProps,
-    ScrollAreaViewportProps,
-} from '@radix-ui/react-scroll-area';
+import React from 'react';
 import { styled } from 'styled-components';
 
-type SRootProps = ScrollAreaProps & React.RefAttributes<HTMLDivElement>;
+type SRootProps = React.ComponentPropsWithRef<typeof ScrollArea.Root>;
 const SRoot = styled(ScrollArea.Root)<SRootProps>`
     overflow: hidden;
 `;
 
-type SViewportProps = ScrollAreaViewportProps & React.RefAttributes<HTMLDivElement>;
+type SViewportProps = React.ComponentPropsWithRef<typeof ScrollArea.Viewport>;
 const SViewport = styled(ScrollArea.Viewport)<SViewportProps>`
     width: 100%;
     height: 100%;
     border-radius: inherit;
 `;
 
-type SScrollbarProps = ScrollAreaScrollbarProps & React.RefAttributes<HTMLDivElement>;
+type SScrollbarProps = React.ComponentPropsWithRef<typeof ScrollArea.Scrollbar>;
 const SScrollbar = styled(ScrollArea.Scrollbar)<SScrollbarProps>`
     cursor: pointer;
     display: flex;
@@ -27,7 +22,7 @@ const SScrollbar = styled(ScrollArea.Scrollbar)<SScrollbarProps>`
     touch-action: none;
 `;
 
-type SThumbProps = ScrollAreaThumbProps & React.RefAttributes<HTMLDivElement>;
+type SThumbProps = React.ComponentPropsWithRef<typeof ScrollArea.Thumb>;
 const SThumb = styled(ScrollArea.Thumb)<SThumbProps>`
     flex: 1;
     position: relative;
@@ -36,7 +31,7 @@ const SThumb = styled(ScrollArea.Thumb)<SThumbProps>`
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50% -50%);
+        transform: translate(-50%, -50%);
         width: 100%;
         height: 100%;
         min-width: 30px;

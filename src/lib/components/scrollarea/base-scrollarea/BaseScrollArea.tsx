@@ -18,12 +18,16 @@ type BaseScrollAreaProps = {
     mr?: TypeMargin;
     width?: string;
     height?: string;
-    bgScrolbar?: Hex;
-    trumbColor?: Hex;
+    bgScrollbar?: Hex;
+    thumbColor?: Hex;
     orientation?: TypeOrientationContent;
     children?: React.ReactNode;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
+    viewportProps?: TBaseScrollAreaComponent.SViewport;
+    scrollbarProps?: TBaseScrollAreaComponent.SScrollbar;
+    thumbProps?: TBaseScrollAreaComponent.SThumb;
+    cornerProps?: React.ComponentPropsWithoutRef<typeof ScrollArea.Corner>;
 } & TBaseScrollAreaComponent.SRoot;
 
 type SRootProps = {
@@ -34,13 +38,13 @@ type SRootProps = {
 } & TBaseScrollAreaComponent.SRoot;
 
 type SScrollbarProps = {
-    $bgScrolbar?: Hex;
+    $bgScrollbar?: Hex;
     $colors: TypeColorScheme;
 } & TBaseScrollAreaComponent.SScrollbar;
 
 type SThumbProps = {
     $colors: TypeColorScheme;
-    $trumbColor?: Hex;
+    $thumbColor?: Hex;
 } & TBaseScrollAreaComponent.SThumb;
 
 const SRoot = styled(SBaseScrollAreaComponent.Root)<SRootProps>`
@@ -53,7 +57,7 @@ const SScrollbar = styled(SBaseScrollAreaComponent.Scrollbar)<SScrollbarProps>`
     transition: background 160ms ease-out;
     &:hover {
         background-color: ${(props) =>
-            props.$bgScrolbar ??
+            props.$bgScrollbar ??
             getColor({
                 cs: props.$colors,
                 color: props.$colors.primaryItem,
@@ -71,22 +75,38 @@ const SScrollbar = styled(SBaseScrollAreaComponent.Scrollbar)<SScrollbarProps>`
 `;
 
 const SThumb = styled(SBaseScrollAreaComponent.Thumb)<SThumbProps>`
-    background-color: ${(props) => props.$trumbColor ?? props.$colors.primaryItemActive};
+    background-color: ${(props) => props.$thumbColor ?? props.$colors.primaryItemActive};
     border-radius: 2px;
 `;
 
 export const BaseScrollArea: React.FC<BaseScrollAreaProps> = React.memo(
-    ({ mr, children, orientation = OC.VERTICAL, width, height, bgScrolbar, trumbColor, $colors, $styles, ...rest }) => {
+    ({
+        mr,
+        orientation = OC.VERTICAL,
+        width,
+        height,
+        bgScrollbar,
+        thumbColor,
+        $colors,
+        $styles,
+        viewportProps,
+        scrollbarProps,
+        thumbProps,
+        cornerProps,
+        ...rest
+    }) => {
         const colors = useColorScheme($colors);
         const styles = useStyleScheme(['mr'], $styles);
 
         return (
             <SRoot $mr={mr} $width={width} $height={height} $styles={styles} {...rest}>
-                <SBaseScrollAreaComponent.Viewport>{children}</SBaseScrollAreaComponent.Viewport>
-                <SScrollbar $colors={colors} $bgScrolbar={bgScrolbar} orientation={orientation}>
-                    <SThumb $colors={colors} $trumbColor={trumbColor} />
+                <SBaseScrollAreaComponent.Viewport {...viewportProps}>
+                    {rest.children}
+                </SBaseScrollAreaComponent.Viewport>
+                <SScrollbar $colors={colors} $bgScrollbar={bgScrollbar} orientation={orientation} {...scrollbarProps}>
+                    <SThumb $colors={colors} $thumbColor={thumbColor} {...thumbProps} />
                 </SScrollbar>
-                <ScrollArea.Corner />
+                <ScrollArea.Corner {...cornerProps} />
             </SRoot>
         );
     }
@@ -95,8 +115,10 @@ export const BaseScrollArea: React.FC<BaseScrollAreaProps> = React.memo(
 //export component
 export const SBaseScrollArea = {
     Root: SRoot,
+    Viewport: SBaseScrollAreaComponent.Viewport,
     Scrollbar: SScrollbar,
     Thumb: SThumb,
+    Corner: ScrollArea.Corner,
 };
 
 //export type
@@ -104,6 +126,8 @@ export namespace TBaseScrollArea {
     export type Styles = TypeStyles;
     export type Main = BaseScrollAreaProps;
     export type SRoot = SRootProps;
+    export type SViewport = TBaseScrollAreaComponent.SViewport;
+    export type SCorner = React.ComponentPropsWithoutRef<typeof ScrollArea.Corner>;
     export type SScrollbar = SScrollbarProps;
     export type SThumb = SThumbProps;
 }

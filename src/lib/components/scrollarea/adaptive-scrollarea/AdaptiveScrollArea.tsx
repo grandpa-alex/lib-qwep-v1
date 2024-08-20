@@ -30,7 +30,7 @@ type AdaptiveScrollAreaProps = {
     boxPaddingVariant?: TypeBoxPaddingVariant;
     boxGapVariant?: TypeBoxGapVariant;
     boxDisplay?: TypeBoxDisplay;
-    trumbColor?: Hex;
+    thumbColor?: Hex;
     orientation?: TypeOrientationContent;
     children?: React.ReactNode;
     size?: TypeSize;
@@ -43,7 +43,7 @@ type SRootProps = {
     $styles: TypeStyles;
     $colors: TypeColorScheme;
     $size?: TypeSize;
-    $trumbColor?: Hex;
+    $thumbColor?: Hex;
     $boxWidthVariant?: TypeBoxWidthVariant;
     $boxPaddingVariant?: TypeBoxPaddingVariant;
     $boxGapVariant?: TypeBoxGapVariant;
@@ -65,7 +65,7 @@ const SRoot = styled.div<SRootProps>`
     ${(props) =>
         StyledScrollbarItem({
             $colors: props.$colors,
-            $color: props.$trumbColor ?? props.$colors.primaryItem,
+            $color: props.$thumbColor ?? props.$colors.primaryItem,
         })}
 `;
 
@@ -77,7 +77,7 @@ export const AdaptiveScrollArea: React.FC<AdaptiveScrollAreaProps> = React.memo(
         boxDisplay,
         boxPaddingVariant,
         boxGapVariant,
-        trumbColor,
+        thumbColor,
         size,
         $colors,
         $styles,
@@ -90,7 +90,7 @@ export const AdaptiveScrollArea: React.FC<AdaptiveScrollAreaProps> = React.memo(
             <SRoot
                 $mr={mr}
                 $colors={colors}
-                $trumbColor={trumbColor}
+                $thumbColor={thumbColor}
                 $styles={styles}
                 $size={size}
                 $boxWidthVariant={boxWidthVariant}

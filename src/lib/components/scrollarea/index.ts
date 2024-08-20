@@ -21,6 +21,8 @@ export namespace TypeScrollArea {
         export type Styles = TBaseScrollArea.Styles;
         export type Main = TBaseScrollArea.Main;
         export type SRoot = TBaseScrollArea.SRoot;
+        export type SViewport = TBaseScrollArea.SViewport;
+        export type SCorner = TBaseScrollArea.SCorner;
         export type SScrollbar = TBaseScrollArea.SScrollbar;
         export type SThumb = TBaseScrollArea.SThumb;
     }

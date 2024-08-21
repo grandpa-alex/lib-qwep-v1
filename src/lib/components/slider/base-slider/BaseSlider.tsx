@@ -23,9 +23,9 @@ type BaseSliderProps = {
     blocked?: boolean;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-    trackProps: React.ComponentPropsWithRef<typeof Slider.Track>;
-    rangeProps: React.ComponentPropsWithRef<typeof Slider.Range>;
-    thumbProps: React.ComponentPropsWithRef<typeof Slider.Thumb>;
+    trackProps?: React.ComponentPropsWithRef<typeof Slider.Track>;
+    rangeProps?: React.ComponentPropsWithRef<typeof Slider.Range>;
+    thumbProps?: React.ComponentPropsWithRef<typeof Slider.Thumb>;
 } & React.ComponentPropsWithRef<typeof Slider.Root>;
 
 type SRootProps = {

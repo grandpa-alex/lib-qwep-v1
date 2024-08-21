@@ -22,7 +22,7 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["src/**/*"],
+    "include": ["src/lib"],
     "exclude": ["node_modules", "dist", "build", "some_other_dir"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

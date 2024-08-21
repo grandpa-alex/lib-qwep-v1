@@ -1,11 +1,10 @@
-import { useContext } from 'react';
-import { BaseThemeContext, TypeBaseThemeContext } from './BaseThemeContext';
+import { useBaseThemeContext } from './BaseThemeContext';
 import { TypeSS, styleScheme } from './styleScheme';
 
 type KeyOfSS = keyof TypeSS;
 
 export const useStyleScheme = <K extends KeyOfSS>(keys: K[], $styles?: Partial<TypeSS>): Pick<TypeSS, K> => {
-    const context = useContext<TypeBaseThemeContext>(BaseThemeContext);
+    const context = useBaseThemeContext();
     const baseStyleScheme = $styles || (context?.currentStyles ? context.currentStyles : styleScheme);
     return keys.reduce(
         (acc, key) => {

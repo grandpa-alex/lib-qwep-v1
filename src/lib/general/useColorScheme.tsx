@@ -1,9 +1,8 @@
-import { useContext } from 'react';
-import { BaseThemeContext, TypeBaseThemeContext } from './BaseThemeContext';
+import { useBaseThemeContext } from './BaseThemeContext';
 import { TypeColorScheme, colorsLight } from './colors';
 
 export const useColorScheme = ($colors?: TypeColorScheme) => {
-    const context = useContext<TypeBaseThemeContext>(BaseThemeContext);
+    const context = useBaseThemeContext();
     if ($colors) {
         return $colors;
     }

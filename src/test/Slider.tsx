@@ -6,7 +6,7 @@ function Slider() {
             <h2>BASE SLIDER</h2>
             <h4>BASE SLIDER COLORS</h4>
             <div style={{ display: 'flex' }}>
-                <BaseSlider mr={'m-3'} defaultValue={[50]} max={100} step={1} />
+                <BaseSlider mr={'m-3'} />
                 <BaseSlider mr={'m-3'} defaultValue={[50]} max={100} step={1} colorVariant={'info'} />
                 <BaseSlider mr={'m-3'} defaultValue={[50]} max={100} step={1} colorVariant={'success'} />
                 <BaseSlider mr={'m-3'} defaultValue={[50]} max={100} step={1} colorVariant={'warning'} />

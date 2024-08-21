@@ -1,9 +1,9 @@
 import {
-    BaseThemeContext,
     BaseThemeProvider,
     TypeBaseThemeContext,
     TypeColorTheme,
     TypeCustomColorTheme,
+    useBaseThemeContext,
 } from './BaseThemeContext';
 import { TypeColorScheme, colorsDark, colorsLight } from './colors';
 import {
@@ -25,14 +25,12 @@ import {
 } from './styleScheme';
 import { useColorScheme } from './useColorScheme';
 import { useStyleScheme } from './useStyleScheme';
-import { useTheme } from './useTheme';
 
 export {
     //core
     BaseThemeProvider,
-    BaseThemeContext,
+    useBaseThemeContext,
     //hooks
-    useTheme,
     useColorScheme,
     useStyleScheme,
     //colors

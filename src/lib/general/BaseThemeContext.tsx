@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState, useEffect } from 'react';
+import { createContext, ReactNode, useState, useEffect, useContext } from 'react';
 import { Hex, TypeColorScheme, colorsDark, colorsLight } from './colors';
 import { TypeSS, styleScheme } from './styleScheme';
 
@@ -12,19 +12,16 @@ export type TypeCustomColorTheme = {
 
 export type TypeBaseThemeContext = {
     //COLORS
-    //values
     currentColorThemeName: string;
     currentColorScheme: TypeColorScheme;
     listThemeColors: TypeCustomColorTheme[];
-    // methods
     changeColorThemeHandler: (themeName: TypeColorTheme) => void;
     setColorThemeHandler: (theme: TypeCustomColorTheme) => void;
     //STYLES
-    //values
     currentStyles: TypeSS;
-
-    // methods
+    updateStylesHandler: (newStyles: TypeSS) => void;
 };
+
 interface ThemeProviderProps {
     children: ReactNode;
     colorThemeName?: TypeColorTheme;
@@ -32,23 +29,17 @@ interface ThemeProviderProps {
     addColorsLight?: { [key: string]: Hex };
     addColorsDark?: { [key: string]: Hex };
     currentStyles?: TypeSS;
-    // updateStyles?: { [key: string]: {[key: string]: string} };
 }
-export const BaseThemeContext = createContext<TypeBaseThemeContext>({
-    //COLORS
-    //values
+const BaseThemeContext = createContext<TypeBaseThemeContext>({
+    // COLORS
     currentColorThemeName: 'light',
     currentColorScheme: colorsLight,
     listThemeColors: [],
-    // methods
     changeColorThemeHandler: () => {},
     setColorThemeHandler: () => {},
-    //STYLES
-    //values
+    // STYLES
     currentStyles: styleScheme,
-    // updateStyles,
-
-    // methods
+    updateStylesHandler: () => {},
 });
 export const BaseThemeProvider = ({
     children,
@@ -68,6 +59,7 @@ export const BaseThemeProvider = ({
         { type: 'dark', name: 'Dark Theme', colors: { ...colorsDark, ...addColorsDark } },
         ...customColorThemes,
     ]);
+    const [styles, setStyles] = useState<TypeSS>(currentStyles);
 
     useEffect(() => {
         const theme = listThemeColors.find((theme) => theme.type === currentColorThemeName);
@@ -76,10 +68,15 @@ export const BaseThemeProvider = ({
         } else {
             setCurrentColorScheme({ ...colorsLight, ...addColorsLight });
         }
-    }, [currentColorThemeName, addColorsLight, listThemeColors]);
+    }, [currentColorThemeName, listThemeColors, addColorsLight]);
 
     const setColorThemeHandler = (theme: TypeCustomColorTheme) => {
-        setListThemeColors([...listThemeColors, theme]);
+        const themeExists = listThemeColors.some((t) => t.name === theme.name);
+        if (!themeExists) {
+            setListThemeColors([...listThemeColors, theme]);
+        } else {
+            console.warn(`Theme with name ${theme.name} already exists`);
+        }
     };
 
     const changeColorThemeHandler = (themeName: TypeColorTheme) => {
@@ -88,6 +85,13 @@ export const BaseThemeProvider = ({
             setCurrentColorThemeName(themeName);
             setCurrentColorScheme(theme.colors);
         }
+    };
+
+    const updateStylesHandler = (newStyles: TypeSS) => {
+        setStyles((prevStyles) => ({
+            ...prevStyles,
+            ...newStyles,
+        }));
     };
 
     const contextValue: TypeBaseThemeContext = {
@@ -102,8 +106,18 @@ export const BaseThemeProvider = ({
 
         //STYLES
         //values
-        currentStyles,
+        currentStyles: styles,
+        //methods
+        updateStylesHandler,
     };
 
     return <BaseThemeContext.Provider value={contextValue}>{children}</BaseThemeContext.Provider>;
+};
+
+export const useBaseThemeContext = (): TypeBaseThemeContext => {
+    const context = useContext(BaseThemeContext);
+    if (!context) {
+        throw new Error('useThemeContext must be used within a BaseThemeProvider');
+    }
+    return context;
 };

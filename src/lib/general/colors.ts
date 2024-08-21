@@ -1,6 +1,6 @@
 export type Hex = `#${string}`;
 
-export const TypeDafaultColorSchemes = ['light', 'dark'];
+export const TypeDefaultColorSchemes = ['light', 'dark'];
 
 export type TypeColorScheme = {
     primary: Hex;
@@ -44,7 +44,7 @@ export type TypeColorScheme = {
 
     //general
     alpha: Hex;
-    omaga: Hex;
+    omega: Hex;
 } & {
     [key: string]: Hex;
 };
@@ -89,7 +89,7 @@ export const colorsLight: TypeColorScheme = {
 
     //general
     alpha: '#ffffff',
-    omaga: '#000000',
+    omega: '#000000',
 };
 
 export const colorsDark: TypeColorScheme = {
@@ -134,7 +134,7 @@ export const colorsDark: TypeColorScheme = {
 
     //general
     alpha: '#ffffff',
-    omaga: '#000000',
+    omega: '#000000',
 };
 
 // D
@@ -186,7 +186,7 @@ export const colorsDark: TypeColorScheme = {
 
 //     //general
 //     alpha: '#ffffff',
-//     omaga: '#000000',
+//     omega: '#000000',
 
 //L
 
@@ -238,4 +238,4 @@ export const colorsDark: TypeColorScheme = {
 
 //     //general
 //     alpha: '#ffffff',
-//     omaga: '#000000',
+//     omega: '#000000',

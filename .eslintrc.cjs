@@ -23,18 +23,18 @@ module.exports = {
     },
     settings: {
         react: {
-            version: 'detect', // Автоматически определяет версию React
+            version: 'detect',
         },
     },
     plugins: ['react', '@typescript-eslint', 'react-refresh', 'storybook'],
     rules: {
         'react/react-in-jsx-scope': 'off',
-        'react-hooks/rules-of-hooks': 'error', // Включение проверки хуков
-        'react-hooks/exhaustive-deps': 'warn', // Проверка зависимости в хуках
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
         '@typescript-eslint/ban-ts-comment': 'off',
         '@typescript-eslint/no-namespace': 'off',
         'react-refresh/only-export-components': 'off',
-        'prettier/prettier': 'error', // Обеспечение согласованности с Prettier
+        'prettier/prettier': 'error',
         'react/display-name': 'off',
         'react/prop-types': 'off',
     },

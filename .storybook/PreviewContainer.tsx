@@ -1,5 +1,5 @@
+import React from 'react';
 import '../src/styles/index.css';
-
 import { BaseBox, SimpleBox, SimpleButton, General, BaseLayout, BaseText, BaseContainer } from '../src/lib';
 import { Decorator } from '@storybook/react';
 

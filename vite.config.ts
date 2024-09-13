@@ -18,9 +18,9 @@ export default defineConfig({
     build: {
         lib: {
             entry: path.resolve('', 'src/lib/index.ts'),
-            name: 'ReactLibAlexQwep',
+            name: 'OrcDesignUI',
             formats: ['es', 'umd'],
-            fileName: (format) => `alex-qwep-ui-kit.${format}.js`,
+            fileName: (format) => `orc-design-ui.${format}.js`,
         },
         rollupOptions: {
             external: ['react', 'react-dom'],

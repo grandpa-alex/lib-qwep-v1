@@ -7,6 +7,19 @@ const meta = {
     title: 'Components/dialog/BaseDialog',
     component: BaseDialog,
     tags: ['autodocs'],
+    argTypes: {
+        open: {
+            control: 'boolean',
+            description: 'State that open dialog',
+        },
+        defaultOpen: {
+            control: 'boolean',
+            description: 'Value that open dialog as default',
+        },
+        onOpenChange: {
+            description: 'Setter state that make dialog close',
+        },
+    },
 } satisfies Meta<typeof BaseDialog>;
 
 export default meta;

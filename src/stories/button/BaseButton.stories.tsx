@@ -32,7 +32,7 @@ export const Main: Story = {
     },
 };
 
-export const ExampleBaseButtons = () => (
+export const ExampleBaseButton = () => (
     <BaseBox mr={'mt-3'}>
         <BaseTitle as={'h4'} mr={'mb-3'}>
             Color

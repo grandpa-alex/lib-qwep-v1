@@ -330,10 +330,6 @@ function Select() {
                     // color={'#830088'}
                     // width={'150px'}
                     // height={'500px'}
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        console.log(e);
-                    }}
                     maxHeight={'200px'}
                     boxGapVariant={'g-2'}
                     icon={<Icon.Settings />}

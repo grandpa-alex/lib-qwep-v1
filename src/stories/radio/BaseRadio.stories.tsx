@@ -70,3 +70,17 @@ export const Main: Story = {
         activeValue: '1',
     },
 };
+
+export const ExampleBaseRadioGroup = () => {
+    return (
+        <BaseBox boxDisplay={'flex'} style={{ justifyContent: 'center', margin: '50px auto' }}>
+            <BaseRadioGroup>
+                {[1, 2, 3, 4].map((num) => (
+                    <WrapperInput key={num} label={`BaseRadioItem ${num}`} positionLabel={'right'}>
+                        <BaseRadioItem value={`${num}`} />
+                    </WrapperInput>
+                ))}
+            </BaseRadioGroup>
+        </BaseBox>
+    );
+};

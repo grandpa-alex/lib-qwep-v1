@@ -659,47 +659,47 @@ function Buttons() {
                 </IconButton>
 
                 <IconButton mr={'m-3'} variant={'outlined'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} variant={'text'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} borderRadius={'round'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} borderRadius={'round'} variant={'outlined'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} borderRadius={'round'} variant={'text'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} sizeVariant={'M'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} sizeVariant={'M'} variant={'outlined'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} sizeVariant={'M'} variant={'text'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} borderRadius={'round'} sizeVariant={'M'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} borderRadius={'round'} sizeVariant={'M'} variant={'outlined'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
 
                 <IconButton mr={'m-3'} borderRadius={'round'} sizeVariant={'M'} variant={'text'}>
-                    <Icon.ArangeGroup />
+                    <Icon.RangeGroup />
                 </IconButton>
             </div>
         </div>

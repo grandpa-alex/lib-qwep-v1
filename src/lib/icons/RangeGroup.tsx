@@ -1,9 +1,9 @@
 import React from 'react';
 import { IconSVGContainerProps, IconSVGContainer } from './IconSVGContainer';
 
-export type ArangeGroupProps = IconSVGContainerProps;
+export type RangeGroupProps = IconSVGContainerProps;
 
-export const ArangeGroup: React.FC<ArangeGroupProps> = ({ ...rest }) => {
+export const RangeGroup: React.FC<RangeGroupProps> = ({ ...rest }) => {
     return (
         <IconSVGContainer viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" {...rest}>
             <path

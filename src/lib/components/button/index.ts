@@ -1,3 +1,4 @@
+import { Copy } from '@src/lib/types/CopyType';
 import { BaseButton, SBaseButton, TBaseButton } from './base-button/BaseButton';
 import { IconButton, SIconButton, TIconButton } from './icon-button/IconButton';
 import { SSimpleButton, SimpleButton, TSimpleButton } from './simple-button/SimpleButton';
@@ -14,28 +15,28 @@ export const ButtonStyledComponent = {
 
 export namespace TypeButton {
     export namespace BaseButton {
-        export type Main = TBaseButton.Main;
-        export type Styles = TBaseButton.Styles;
-        export type SButton = TBaseButton.SButton;
+        export type Main = Copy<TBaseButton.Main>;
+        export type Styles = Copy<TBaseButton.Styles>;
+        export type SButton = Copy<TBaseButton.SButton>;
     }
 
     export namespace SimpleButton {
-        export type Main = TSimpleButton.Main;
-        export type SButton = TSimpleButton.SButton;
-        export type SContentContainer = TSimpleButton.SContentContainer;
-        export type SIconContainer = TSimpleButton.SIconContainer;
+        export type Main = Copy<TSimpleButton.Main>;
+        export type SButton = Copy<TSimpleButton.SButton>;
+        export type SContentContainer = Copy<TSimpleButton.SContentContainer>;
+        export type SIconContainer = Copy<TSimpleButton.SIconContainer>;
     }
 
     export namespace SubmitButton {
-        export type Main = TSubmitButton.Main;
-        export type SButton = TSubmitButton.SButton;
-        export type SLoading = TSubmitButton.SLoading;
-        export type SContentContainer = TSubmitButton.SContentContainer;
-        export type SIconContainer = TSubmitButton.SIconContainer;
+        export type Main = Copy<TSubmitButton.Main>;
+        export type SButton = Copy<TSubmitButton.SButton>;
+        export type SLoading = Copy<TSubmitButton.SLoading>;
+        export type SContentContainer = Copy<TSubmitButton.SContentContainer>;
+        export type SIconContainer = Copy<TSubmitButton.SIconContainer>;
     }
 
     export namespace IconButton {
-        export type Main = TIconButton.Main;
-        export type SButton = TIconButton.SButton;
+        export type Main = Copy<TIconButton.Main>;
+        export type SButton = Copy<TIconButton.SButton>;
     }
 }

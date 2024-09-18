@@ -1,6 +1,7 @@
 import { BaseText, SBaseText, TBaseText } from './base/BaseText';
 import { BaseParagraph, SBaseParagraph, TBaseParagraph } from './base/BaseParagraph';
 import { BaseTitle, SBaseTitle, TBaseTitle } from './base/BaseTitle';
+import { Copy } from '@src/lib/types/CopyType';
 export { BaseText, BaseParagraph, BaseTitle };
 
 export const TypographyStyledComponent = {
@@ -11,20 +12,20 @@ export const TypographyStyledComponent = {
 
 export namespace TypeTypography {
     export namespace BaseText {
-        export type Main = TBaseText.Main;
-        export type Styles = TBaseText.Styles;
-        export type SText = TBaseText.SText;
+        export type Main = Copy<TBaseText.Main>;
+        export type Styles = Copy<TBaseText.Styles>;
+        export type SText = Copy<TBaseText.SText>;
     }
 
     export namespace BaseParagraph {
-        export type Main = TBaseParagraph.Main;
-        export type Styles = TBaseParagraph.Styles;
-        export type SParagraph = TBaseParagraph.SParagraph;
+        export type Main = Copy<TBaseParagraph.Main>;
+        export type Styles = Copy<TBaseParagraph.Styles>;
+        export type SParagraph = Copy<TBaseParagraph.SParagraph>;
     }
 
     export namespace BaseTitle {
-        export type Main = TBaseTitle.Main;
-        export type STitle = TBaseTitle.STitle;
-        export type Styles = TBaseTitle.Styles;
+        export type Main = Copy<TBaseTitle.Main>;
+        export type STitle = Copy<TBaseTitle.STitle>;
+        export type Styles = Copy<TBaseTitle.Styles>;
     }
 }

@@ -121,7 +121,7 @@ function Icons() {
                 <Item icon={<Icon.ChatSmall colorVariant={colorVariant} sizeVariant={size} />} text={'ChatSmall'} />
                 <Item icon={<Icon.Global colorVariant={colorVariant} sizeVariant={size} />} text={'Global'} />
                 <Item icon={<Icon.Group colorVariant={colorVariant} sizeVariant={size} />} text={'Group'} />
-                <Item icon={<Icon.ArangeGroup colorVariant={colorVariant} sizeVariant={size} />} text={'ArangeGroup'} />
+                <Item icon={<Icon.RangeGroup colorVariant={colorVariant} sizeVariant={size} />} text={'RangeGroup'} />
                 <Item icon={<Icon.Image colorVariant={colorVariant} sizeVariant={size} />} text={'Image'} />
                 <Item icon={<Icon.Chat colorVariant={colorVariant} sizeVariant={size} />} text={'Chat'} />
             </BaseBox>
@@ -137,7 +137,7 @@ function Icons() {
                 />
                 <Item icon={<Icon.Global colorVariant={colorVariant} sizeVariant={size} />} text={'Global'} />
                 <Item icon={<Icon.Group colorVariant={colorVariant} sizeVariant={size} />} text={'Group'} />
-                <Item icon={<Icon.ArangeGroup colorVariant={colorVariant} sizeVariant={size} />} text={'ArangeGroup'} />
+                <Item icon={<Icon.RangeGroup colorVariant={colorVariant} sizeVariant={size} />} text={'RangeGroup'} />
                 <Item icon={<Icon.Image colorVariant={colorVariant} sizeVariant={size} />} text={'Image'} />
 
                 <Item icon={<Icon.Links colorVariant={colorVariant} sizeVariant={size} />} text={'Links'} />
@@ -164,7 +164,7 @@ function Icons() {
                 <Item icon={<Icon.Refresh colorVariant={colorVariant} sizeVariant={size} />} text={'Refresh'} />
                 <Item icon={<Icon.Rocket colorVariant={colorVariant} sizeVariant={size} />} text={'Rocket'} />
 
-                <Item icon={<Icon.StopCercle colorVariant={colorVariant} sizeVariant={size} />} text={'StopCercle'} />
+                <Item icon={<Icon.StopCircle colorVariant={colorVariant} sizeVariant={size} />} text={'StopCircle'} />
                 <Item icon={<Icon.Team colorVariant={colorVariant} sizeVariant={size} />} text={'Team'} />
                 <Item icon={<Icon.Tools colorVariant={colorVariant} sizeVariant={size} />} text={'Tools'} />
                 <Item icon={<Icon.UserAdd colorVariant={colorVariant} sizeVariant={size} />} text={'UserAdd'} />

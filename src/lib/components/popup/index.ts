@@ -1,3 +1,4 @@
+import { Copy } from '@src/lib/types/CopyType';
 import { BasePopup, SBasePopup, TBasePopup } from './base-popup/BasePopup';
 import { SimplePopup, SSimplePopup, TSimplePopup } from './simple-popup/SimplePopup';
 
@@ -10,24 +11,24 @@ export const PopupStyledComponent = {
 
 export namespace TypePopup {
     export namespace BasePopup {
-        export type Main = TBasePopup.Main;
-        export type SArrow = TBasePopup.SArrow;
-        export type SContent = TBasePopup.SContent;
-        export type STrigger = TBasePopup.STrigger;
-        export type SRoot = TBasePopup.SRoot;
-        export type SPortal = TBasePopup.SPortal;
+        export type Main = Copy<TBasePopup.Main>;
+        export type SArrow = Copy<TBasePopup.SArrow>;
+        export type SContent = Copy<TBasePopup.SContent>;
+        export type STrigger = Copy<TBasePopup.STrigger>;
+        export type SRoot = Copy<TBasePopup.SRoot>;
+        export type SPortal = Copy<TBasePopup.SPortal>;
     }
 
     export namespace SimplePopup {
-        export type Styles = TSimplePopup.Styles;
-        export type Main = TSimplePopup.Main;
-        export type SContent = TSimplePopup.SContent;
-        export type STrigger = TSimplePopup.STrigger;
-        export type SRoot = TSimplePopup.SRoot;
-        export type SPortal = TSimplePopup.SPortal;
-        export type SCard = TSimplePopup.SCard;
-        export type SHeader = TSimplePopup.SHeader;
-        export type STitle = TSimplePopup.STitle;
-        export type SIcon = TSimplePopup.SIcon;
+        export type Styles = Copy<TSimplePopup.Styles>;
+        export type Main = Copy<TSimplePopup.Main>;
+        export type SContent = Copy<TSimplePopup.SContent>;
+        export type STrigger = Copy<TSimplePopup.STrigger>;
+        export type SRoot = Copy<TSimplePopup.SRoot>;
+        export type SPortal = Copy<TSimplePopup.SPortal>;
+        export type SCard = Copy<TSimplePopup.SCard>;
+        export type SHeader = Copy<TSimplePopup.SHeader>;
+        export type STitle = Copy<TSimplePopup.STitle>;
+        export type SIcon = Copy<TSimplePopup.SIcon>;
     }
 }

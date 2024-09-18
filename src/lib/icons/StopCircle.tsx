@@ -1,9 +1,9 @@
 import React from 'react';
 import { IconSVGContainerProps, IconSVGContainer } from './IconSVGContainer';
 
-export type StopCercleProps = IconSVGContainerProps;
+export type StopCircleProps = IconSVGContainerProps;
 
-export const StopCercle: React.FC<StopCercleProps> = ({ ...rest }) => {
+export const StopCircle: React.FC<StopCircleProps> = ({ ...rest }) => {
     return (
         <IconSVGContainer viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" {...rest}>
             <path

@@ -2,6 +2,7 @@ import { BaseSelectContent, SBaseSelectContent, TBaseSelectContent } from './bas
 import { BaseSelectItem, SBaseSelectItem, TBaseSelectItem } from './base-select/BaseSelectItem';
 import { BaseSelectGroup, SBaseSelectGroup, TBaseSelectGroup } from './base-select/BaseSelectGroup';
 import { SBaseSelectComponent, TBaseSelectComponent } from './base-select/BaseSelectComponent';
+import { Copy } from '@src/lib/types/CopyType';
 
 export { BaseSelectItem, BaseSelectGroup, BaseSelectContent };
 
@@ -14,31 +15,31 @@ export const SelectStyledComponent = {
 
 export namespace TypeSelect {
     export namespace BaseSelectComponent {
-        export type SIcon = TBaseSelectComponent.SIcon;
-        export type SItem = TBaseSelectComponent.SItem;
+        export type SIcon = Copy<TBaseSelectComponent.SIcon>;
+        export type SItem = Copy<TBaseSelectComponent.SItem>;
     }
 
     export namespace BaseSelectGroup {
-        export type Main = TBaseSelectGroup.Main;
-        export type SGroup = TBaseSelectGroup.SGroup;
-        export type SLabel = TBaseSelectGroup.SLabel;
+        export type Main = Copy<TBaseSelectGroup.Main>;
+        export type SGroup = Copy<TBaseSelectGroup.SGroup>;
+        export type SLabel = Copy<TBaseSelectGroup.SLabel>;
     }
 
     export namespace BaseSelectItem {
-        export type Main = TBaseSelectItem.Main;
-        export type SIndicator = TBaseSelectItem.SIndicator;
-        export type SItemText = TBaseSelectItem.SItemText;
+        export type Main = Copy<TBaseSelectItem.Main>;
+        export type SIndicator = Copy<TBaseSelectItem.SIndicator>;
+        export type SItemText = Copy<TBaseSelectItem.SItemText>;
     }
 
     export namespace BaseSelectContent {
-        export type Main = TBaseSelectContent.Main;
-        export type Styles = TBaseSelectContent.Styles;
-        export type SRoot = TBaseSelectContent.SRoot;
-        export type SValue = TBaseSelectContent.SValue;
-        export type SIcon = TBaseSelectContent.SIcon;
-        export type SPortal = TBaseSelectContent.SPortal;
-        export type SContent = TBaseSelectContent.SContent;
-        export type STrigger = TBaseSelectContent.STrigger;
-        export type SViewport = TBaseSelectContent.SViewport;
+        export type Main = Copy<TBaseSelectContent.Main>;
+        export type Styles = Copy<TBaseSelectContent.Styles>;
+        export type SRoot = Copy<TBaseSelectContent.SRoot>;
+        export type SValue = Copy<TBaseSelectContent.SValue>;
+        export type SIcon = Copy<TBaseSelectContent.SIcon>;
+        export type SPortal = Copy<TBaseSelectContent.SPortal>;
+        export type SContent = Copy<TBaseSelectContent.SContent>;
+        export type STrigger = Copy<TBaseSelectContent.STrigger>;
+        export type SViewport = Copy<TBaseSelectContent.SViewport>;
     }
 }

@@ -40,7 +40,7 @@ import { FolderAdd } from './FolderAdd';
 import { FolderDelete } from './FolderDelete';
 import { Global } from './Global';
 import { Group } from './Group';
-import { ArangeGroup } from './ArangeGroup';
+import { RangeGroup } from './RangeGroup';
 import { Inbox } from './Inbox';
 import { Info } from './Info';
 import { Image } from './Image';
@@ -68,7 +68,7 @@ import { Search } from './Search';
 import { SendArrow } from './SendArrow';
 import { Settings } from './Settings';
 import { Spam } from './Spam';
-import { StopCercle } from './StopCercle';
+import { StopCircle } from './StopCircle';
 import { Team } from './Team';
 import { Tools } from './Tools';
 import { UploadArrow } from './UploadArrow';
@@ -124,7 +124,7 @@ export {
     FolderDelete,
     Global,
     Group,
-    ArangeGroup,
+    RangeGroup,
     Image,
     Inbox,
     Info,
@@ -152,7 +152,7 @@ export {
     SendArrow,
     Settings,
     Spam,
-    StopCercle,
+    StopCircle,
     Team,
     Tools,
     UploadArrow,

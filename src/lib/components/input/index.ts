@@ -8,6 +8,7 @@ import { BaseTextarea, SBaseTextarea, TBaseTextarea } from './base-textarea/Base
 import { SMessageBox, TMessageBox } from './wrapper-input/MessageBox';
 import { SBaseInputArea, TBaseInputArea } from '@src/lib/components/input/base-textarea/BaseInputArea.tsx';
 import { SRootTextarea, TRootTextarea } from '@src/lib/components/input/base-textarea/RootTextarea.tsx';
+import { Copy } from '@src/lib/types/CopyType';
 
 export { BaseInput, RootTextField, BaseTextField, SimpleTextField, SubmitTextField, BaseTextarea, WrapperInput };
 
@@ -26,67 +27,67 @@ export const InputStyledComponent = {
 
 export namespace TypeInput {
     export namespace BaseInput {
-        export type Main = TBaseInput.Main;
-        export type Styles = TBaseInput.Styles;
-        export type SInput = TBaseInput.SInput;
+        export type Main = Copy<TBaseInput.Main>;
+        export type Styles = Copy<TBaseInput.Styles>;
+        export type SInput = Copy<TBaseInput.SInput>;
     }
 
     export namespace RootTextField {
-        export type Main = TRootTextField.Main;
-        export type Styles = TRootTextField.Styles;
-        export type SRoot = TRootTextField.SRoot;
+        export type Main = Copy<TRootTextField.Main>;
+        export type Styles = Copy<TRootTextField.Styles>;
+        export type SRoot = Copy<TRootTextField.SRoot>;
     }
 
     export namespace BaseTextField {
-        export type Styles = TBaseTextField.Styles;
-        export type Main = TBaseTextField.Main;
-        export type SInput = TBaseTextField.SInput;
-        export type SRoot = TBaseTextField.SRoot;
+        export type Styles = Copy<TBaseTextField.Styles>;
+        export type Main = Copy<TBaseTextField.Main>;
+        export type SInput = Copy<TBaseTextField.SInput>;
+        export type SRoot = Copy<TBaseTextField.SRoot>;
     }
 
     export namespace SimpleTextField {
-        export type Main = TSimpleTextField.Main;
-        export type SIconContainer = TSimpleTextField.SIconContainer;
-        export type SRoot = TSimpleTextField.SRoot;
-        export type SInput = TSimpleTextField.SInput;
+        export type Main = Copy<TSimpleTextField.Main>;
+        export type SIconContainer = Copy<TSimpleTextField.SIconContainer>;
+        export type SRoot = Copy<TSimpleTextField.SRoot>;
+        export type SInput = Copy<TSimpleTextField.SInput>;
     }
 
     export namespace SubmitTextField {
-        export type Main = TSubmitTextField.Main;
-        export type SInput = TSubmitTextField.SInput;
-        export type SLoading = TSubmitTextField.SLoading;
-        export type SRoot = TSubmitTextField.SRoot;
-        export type SIconContainer = TSubmitTextField.SIconContainer;
+        export type Main = Copy<TSubmitTextField.Main>;
+        export type SInput = Copy<TSubmitTextField.SInput>;
+        export type SLoading = Copy<TSubmitTextField.SLoading>;
+        export type SRoot = Copy<TSubmitTextField.SRoot>;
+        export type SIconContainer = Copy<TSubmitTextField.SIconContainer>;
     }
 
     export namespace BaseInputTextarea {
-        export type Main = TBaseInputArea.Main;
-        export type Styles = TBaseInputArea.Styles;
-        export type STextarea = TBaseInputArea.STextarea;
+        export type Main = Copy<TBaseInputArea.Main>;
+        export type Styles = Copy<TBaseInputArea.Styles>;
+        export type STextarea = Copy<TBaseInputArea.STextarea>;
     }
 
     export namespace BaseRootTextarea {
-        export type Main = TRootTextarea.Main;
-        export type Styles = TRootTextarea.Styles;
-        export type SRoot = TRootTextarea.SRoot;
+        export type Main = Copy<TRootTextarea.Main>;
+        export type Styles = Copy<TRootTextarea.Styles>;
+        export type SRoot = Copy<TRootTextarea.SRoot>;
     }
 
     export namespace BaseTextarea {
-        export type Main = TBaseTextarea.Main;
-        export type Styles = TBaseTextarea.Styles;
-        export type SRoot = TBaseTextarea.SRoot;
+        export type Main = Copy<TBaseTextarea.Main>;
+        export type Styles = Copy<TBaseTextarea.Styles>;
+        export type SRoot = Copy<TBaseTextarea.SRoot>;
     }
 
     export namespace WrapperInput {
-        export type Styles = TWrapperInput.Styles;
-        export type Main = TWrapperInput.Main;
-        export type SRoot = TWrapperInput.SRoot;
-        export type SLabel = TWrapperInput.SLabel;
+        export type Styles = Copy<TWrapperInput.Styles>;
+        export type Main = Copy<TWrapperInput.Main>;
+        export type SRoot = Copy<TWrapperInput.SRoot>;
+        export type SLabel = Copy<TWrapperInput.SLabel>;
     }
 
     export namespace MessageBox {
-        export type Message = TMessageBox.Message;
-        export type Main = TMessageBox.Main;
-        export type SMessage = TMessageBox.SMessage;
+        export type Message = Copy<TMessageBox.Message>;
+        export type Main = Copy<TMessageBox.Main>;
+        export type SMessage = Copy<TMessageBox.SMessage>;
     }
 }

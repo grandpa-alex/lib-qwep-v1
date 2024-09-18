@@ -4,6 +4,7 @@ import { BaseContainer, SBaseContainer, TBaseContainer } from './base-container/
 import { BaseLayout, SBaseLayout, TBaseLayout } from './base-layout/BaseLayout';
 import { BaseMenuGroup, SBaseMenuGroup, TBaseMenuGroup } from './base-menu/BaseMenuGroup';
 import { BaseMenuItem, SBaseMenuItem, TBaseMenuItem } from './base-menu/BaseMenuItem';
+import { Copy } from '@src/lib/types/CopyType';
 export { BaseBox, SimpleBox, BaseContainer, BaseLayout, BaseMenuGroup, BaseMenuItem };
 
 export const BoxStyledComponent = {
@@ -17,31 +18,36 @@ export const BoxStyledComponent = {
 
 export namespace TypeBox {
     export namespace BaseBox {
-        export type Main = TBaseBox.Main;
-        export type SBox = TBaseBox.SBox;
-        export type Styles = TBaseBox.Styles;
+        export type Main = Copy<TBaseBox.Main>;
+        export type SBox = Copy<TBaseBox.SBox>;
+        export type Styles = Copy<TBaseBox.Styles>;
     }
+
     export namespace SimpleBox {
-        export type Main = TSimpleBox.Main;
-        export type SBox = TSimpleBox.SBox;
+        export type Main = Copy<TSimpleBox.Main>;
+        export type SBox = Copy<TSimpleBox.SBox>;
     }
+
     export namespace BaseContainer {
-        export type Main = TBaseContainer.Main;
-        export type SContainer = TBaseContainer.SContainer;
+        export type Main = Copy<TBaseContainer.Main>;
+        export type SContainer = Copy<TBaseContainer.SContainer>;
     }
+
     export namespace BaseLayout {
-        export type Main = TBaseLayout.Main;
-        export type SWrapper = TBaseLayout.SWrapper;
-        export type SRoot = TBaseLayout.SRoot;
+        export type Main = Copy<TBaseLayout.Main>;
+        export type SWrapper = Copy<TBaseLayout.SWrapper>;
+        export type SRoot = Copy<TBaseLayout.SRoot>;
     }
+
     export namespace BaseMenuGroup {
-        export type Main = TBaseMenuGroup.Main;
-        export type Styles = TBaseMenuGroup.Styles;
-        export type SRoot = TBaseMenuGroup.SRoot;
+        export type Main = Copy<TBaseMenuGroup.Main>;
+        export type Styles = Copy<TBaseMenuGroup.Styles>;
+        export type SRoot = Copy<TBaseMenuGroup.SRoot>;
     }
+
     export namespace BaseMenuItem {
-        export type Main = TBaseMenuItem.Main;
-        export type Styles = TBaseMenuItem.Styles;
-        export type SButton = TBaseMenuItem.SButton;
+        export type Main = Copy<TBaseMenuItem.Main>;
+        export type Styles = Copy<TBaseMenuItem.Styles>;
+        export type SButton = Copy<TBaseMenuItem.SButton>;
     }
 }

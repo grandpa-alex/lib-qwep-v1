@@ -1,4 +1,5 @@
 import '../src/styles/index.css';
+import React from 'react';
 import { BaseBox, SimpleBox, SimpleButton, General, BaseLayout, BaseText, BaseContainer } from '../src/lib';
 import { Decorator } from '@storybook/react';
 

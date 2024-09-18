@@ -1,3 +1,4 @@
+import { Copy } from '@src/lib/types/CopyType';
 import { BaseRadioGroup, SBaseRadioGroup, TBaseRadioGroup } from './base-rado/BaseRadioGroup';
 import { BaseRadioItem, SBaseRadioItem, TBaseRadioItem } from './base-rado/BaseRadioItem';
 export { BaseRadioItem, BaseRadioGroup };
@@ -9,17 +10,17 @@ export const RadioStyledComponent = {
 
 export namespace TypeRadio {
     export namespace BaseRadioItem {
-        export type Main = TBaseRadioItem.Main;
-        export type Styles = TBaseRadioItem.Styles;
-        export type SItem = TBaseRadioItem.SItem;
-        export type SIndicator = TBaseRadioItem.SIndicator;
+        export type Main = Copy<TBaseRadioItem.Main>;
+        export type Styles = Copy<TBaseRadioItem.Styles>;
+        export type SItem = Copy<TBaseRadioItem.SItem>;
+        export type SIndicator = Copy<TBaseRadioItem.SIndicator>;
     }
 
     export namespace BaseRadioGroup {
-        export type Main = TBaseRadioGroup.Main;
-        export type SRoot = TBaseRadioGroup.SRoot;
-        export type Styles = TBaseRadioGroup.Styles;
-        export type SGroup = TBaseRadioGroup.SGroup;
-        export type SLabel = TBaseRadioGroup.SLabel;
+        export type Main = Copy<TBaseRadioGroup.Main>;
+        export type SRoot = Copy<TBaseRadioGroup.SRoot>;
+        export type Styles = Copy<TBaseRadioGroup.Styles>;
+        export type SGroup = Copy<TBaseRadioGroup.SGroup>;
+        export type SLabel = Copy<TBaseRadioGroup.SLabel>;
     }
 }

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeMargin } from '@src/lib/types/TypeBase';
 import { css } from 'styled-components';
+import { TypeTitleVariant } from '@src/lib/types/TypeText';
 
 type TypeStyles = {
     typography: TypeSSTypography;
@@ -20,13 +21,13 @@ type BaseTitleProps = {
     mr?: TypeMargin;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+    as?: TypeTitleVariant;
 } & React.HTMLAttributes<HTMLElement>;
 
 type STitleProps = {
     $mr?: TypeMargin;
     $isEllipsis?: boolean;
-    $as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+    $as: TypeTitleVariant;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $color?: Hex;

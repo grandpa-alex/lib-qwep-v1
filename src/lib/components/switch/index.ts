@@ -1,3 +1,4 @@
+import { Copy } from '@src/lib/types/CopyType';
 import { BaseSwitch, SBaseSwitch, TBaseSwitch } from './base-switch/BaseSwitch';
 import { SSubmitSwitch, SubmitSwitch, TSubmitSwitch } from './submit-switch/SubmitSwitch';
 export { BaseSwitch, SubmitSwitch };
@@ -9,15 +10,15 @@ export const SwitchStyledComponent = {
 
 export namespace TypeSwitch {
     export namespace BaseSwitch {
-        export type Main = TBaseSwitch.Main;
-        export type Styles = TBaseSwitch.Styles;
-        export type SRoot = TBaseSwitch.SRoot;
-        export type SThumb = TBaseSwitch.SThumb;
+        export type Main = Copy<TBaseSwitch.Main>;
+        export type Styles = Copy<TBaseSwitch.Styles>;
+        export type SRoot = Copy<TBaseSwitch.SRoot>;
+        export type SThumb = Copy<TBaseSwitch.SThumb>;
     }
 
     export namespace SubmitSwitch {
-        export type Main = TSubmitSwitch.Main;
-        export type SRoot = TSubmitSwitch.SRoot;
-        export type SThumb = TSubmitSwitch.SThumb;
+        export type Main = Copy<TSubmitSwitch.Main>;
+        export type SRoot = Copy<TSubmitSwitch.SRoot>;
+        export type SThumb = Copy<TSubmitSwitch.SThumb>;
     }
 }

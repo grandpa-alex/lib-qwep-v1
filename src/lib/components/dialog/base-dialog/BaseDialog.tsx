@@ -48,7 +48,7 @@ type SOverlayProps = {
 const SOverlay = styled(SBaseDialogComponent.Overlay)<SOverlayProps>`
     backdrop-filter: blur(${(props) => props.$overlayBlur ?? '0px'});
     background-color: ${(props) =>
-        getColor({ cs: props.$colors, color: props.$overlayColor ?? props.$colors.omaga, opacity: '90' })};
+        getColor({ cs: props.$colors, color: props.$overlayColor ?? props.$colors.omega, opacity: '90' })};
 `;
 
 type SContentProps = {

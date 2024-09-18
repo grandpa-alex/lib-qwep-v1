@@ -1,3 +1,4 @@
+import { Copy } from '@src/lib/types/CopyType';
 import { AdaptiveScrollArea, SAdaptiveScrollArea, TAdaptiveScrollArea } from './adaptive-scrollarea/AdaptiveScrollArea';
 import { BaseScrollArea, SBaseScrollArea, TBaseScrollArea } from './base-scrollarea/BaseScrollArea';
 import { SBaseScrollAreaComponent, TBaseScrollAreaComponent } from './base-scrollarea/BaseScrollAreaComponent';
@@ -11,25 +12,25 @@ export const ScrollAreaStyledComponent = {
 
 export namespace TypeScrollArea {
     export namespace BaseScrollAreaComponent {
-        export type SRoot = TBaseScrollAreaComponent.SRoot;
-        export type SScrollbar = TBaseScrollAreaComponent.SScrollbar;
-        export type SThumb = TBaseScrollAreaComponent.SThumb;
-        export type SViewport = TBaseScrollAreaComponent.SViewport;
+        export type SRoot = Copy<TBaseScrollAreaComponent.SRoot>;
+        export type SScrollbar = Copy<TBaseScrollAreaComponent.SScrollbar>;
+        export type SThumb = Copy<TBaseScrollAreaComponent.SThumb>;
+        export type SViewport = Copy<TBaseScrollAreaComponent.SViewport>;
     }
 
     export namespace BaseScrollArea {
-        export type Styles = TBaseScrollArea.Styles;
-        export type Main = TBaseScrollArea.Main;
-        export type SRoot = TBaseScrollArea.SRoot;
-        export type SViewport = TBaseScrollArea.SViewport;
-        export type SCorner = TBaseScrollArea.SCorner;
-        export type SScrollbar = TBaseScrollArea.SScrollbar;
-        export type SThumb = TBaseScrollArea.SThumb;
+        export type Styles = Copy<TBaseScrollArea.Styles>;
+        export type Main = Copy<TBaseScrollArea.Main>;
+        export type SRoot = Copy<TBaseScrollArea.SRoot>;
+        export type SViewport = Copy<TBaseScrollArea.SViewport>;
+        export type SCorner = Copy<TBaseScrollArea.SCorner>;
+        export type SScrollbar = Copy<TBaseScrollArea.SScrollbar>;
+        export type SThumb = Copy<TBaseScrollArea.SThumb>;
     }
 
     export namespace AdaptiveScrollArea {
-        export type Styles = TAdaptiveScrollArea.Styles;
-        export type Main = TAdaptiveScrollArea.Main;
-        export type SRoot = TAdaptiveScrollArea.SRoot;
+        export type Styles = Copy<TAdaptiveScrollArea.Styles>;
+        export type Main = Copy<TAdaptiveScrollArea.Main>;
+        export type SRoot = Copy<TAdaptiveScrollArea.SRoot>;
     }
 }

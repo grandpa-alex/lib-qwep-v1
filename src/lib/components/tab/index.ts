@@ -1,3 +1,4 @@
+import { Copy } from '@src/lib/types/CopyType';
 import { BaseTab, SBaseTab, TBaseTab } from './base-tab/BaseTab';
 import { BaseTabContent, SBaseTabContent, TBaseTabContent } from './base-tab/BaseTabContent';
 import { BaseTabWrapper, SBaseTabWrapper, TBaseTabWrapper } from './base-tab/BaseTabWrapper';
@@ -12,21 +13,21 @@ export const TabStyledComponent = {
 
 export namespace TypeTab {
     export namespace BaseTab {
-        export type Main = TBaseTab.Main;
-        export type Styles = TBaseTab.Styles;
-        export type STab = TBaseTab.STab;
+        export type Main = Copy<TBaseTab.Main>;
+        export type Styles = Copy<TBaseTab.Styles>;
+        export type STab = Copy<TBaseTab.STab>;
     }
 
     export namespace BaseTabWrapper {
-        export type Main = TBaseTabWrapper.Main;
-        export type Styles = TBaseTabWrapper.Styles;
-        export type SRoot = TBaseTabWrapper.SRoot;
-        export type SList = TBaseTabWrapper.SList;
+        export type Main = Copy<TBaseTabWrapper.Main>;
+        export type Styles = Copy<TBaseTabWrapper.Styles>;
+        export type SRoot = Copy<TBaseTabWrapper.SRoot>;
+        export type SList = Copy<TBaseTabWrapper.SList>;
     }
 
     export namespace BaseTabContent {
-        export type Main = TBaseTabContent.Main;
-        export type Styles = TBaseTabContent.Styles;
-        export type SRoot = TBaseTabContent.SRoot;
+        export type Main = Copy<TBaseTabContent.Main>;
+        export type Styles = Copy<TBaseTabContent.Styles>;
+        export type SRoot = Copy<TBaseTabContent.SRoot>;
     }
 }

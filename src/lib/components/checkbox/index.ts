@@ -1,3 +1,4 @@
+import { Copy } from '@src/lib/types/CopyType';
 import { BaseCheckbox, SBaseCheckbox, TBaseCheckbox } from './base-checkbox/BaseCheckbox';
 import { SSubmitCheckbox, SubmitCheckbox, TSubmitCheckbox } from './submit-checkbox/SubmitCheckbox';
 
@@ -10,18 +11,18 @@ export const CheckboxStyledComponent = {
 
 export namespace TypeCheckbox {
     export namespace BaseCheckbox {
-        export type Main = TBaseCheckbox.Main;
-        export type Styles = TBaseCheckbox.Styles;
-        export type SIndicator = TBaseCheckbox.SIndicator;
-        export type SRoot = TBaseCheckbox.SRoot;
-        export type SIcon = TBaseCheckbox.SIcon;
+        export type Main = Copy<TBaseCheckbox.Main>;
+        export type Styles = Copy<TBaseCheckbox.Styles>;
+        export type SIndicator = Copy<TBaseCheckbox.SIndicator>;
+        export type SRoot = Copy<TBaseCheckbox.SRoot>;
+        export type SIcon = Copy<TBaseCheckbox.SIcon>;
     }
 
     export namespace SubmitCheckbox {
-        export type Main = TSubmitCheckbox.Main;
-        export type SRoot = TSubmitCheckbox.SRoot;
-        export type SIcon = TSubmitCheckbox.SIcon;
-        export type SIndicator = TSubmitCheckbox.SIndicator;
-        export type Styles = TSubmitCheckbox.Styles;
+        export type Main = Copy<TSubmitCheckbox.Main>;
+        export type SRoot = Copy<TSubmitCheckbox.SRoot>;
+        export type SIcon = Copy<TSubmitCheckbox.SIcon>;
+        export type SIndicator = Copy<TSubmitCheckbox.SIndicator>;
+        export type Styles = Copy<TSubmitCheckbox.Styles>;
     }
 }

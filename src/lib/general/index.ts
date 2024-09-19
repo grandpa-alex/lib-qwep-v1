@@ -44,7 +44,7 @@ export namespace TypeGeneral {
     export type ColorTheme = Copy<TypeColorTheme>;
     export type CustomColorTheme = Copy<TypeCustomColorTheme>;
     export type BaseThemeContext = Copy<TypeBaseThemeContext>;
-    export type Hex = Copy<`#${string}`>; // Уточнение для строки с шаблонной строкой
+    export type Hex = `#${string}`;
     export type ColorScheme = Copy<TypeColorScheme>;
     export type SS = Copy<TypeSS>;
     export type SSMR = Copy<TypeSSMR>;

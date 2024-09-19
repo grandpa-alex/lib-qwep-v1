@@ -1,1 +1,1 @@
-export type Copy<T> = { [K in keyof T]: T[K] };
+export type Copy<T> = T extends object ? (T extends infer O ? { [K in keyof O]: Copy<O[K]> } : never) : T;

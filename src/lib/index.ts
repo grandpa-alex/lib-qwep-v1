@@ -30,39 +30,39 @@ import { PIL, TypeInpVariant, TypePositionInpLabel } from './types/TypeInp';
 import { TypeTitleVariant } from './types/TypeText';
 
 export namespace TypeBase {
-    export type Margin = {} & TypeMargin;
-    export type ModalPosition = {} & TypeModalPosition;
-    export type VariantSize = {} & TypeVariantSize;
-    export type VariantColor = {} & TypeVariantColor;
-    export type ItemIconPosition = {} & TypeItemIconPosition;
-    export type OrientationContent = {} & TypeOrientationContent;
+    export type Margin = Copy<TypeMargin>;
+    export type ModalPosition = Copy<TypeModalPosition>;
+    export type VariantSize = Copy<TypeVariantSize>;
+    export type VariantColor = Copy<TypeVariantColor>;
+    export type ItemIconPosition = Copy<TypeItemIconPosition>;
+    export type OrientationContent = Copy<TypeOrientationContent>;
 }
 
 export namespace TypeBaseButton {
-    export type VariantBtn = {} & TypeVariantBtn;
-    export type BtnPosition = {} & TypeBtnPosition;
+    export type VariantBtn = Copy<TypeVariantBtn>;
+    export type BtnPosition = Copy<TypeBtnPosition>;
 }
 
 export namespace TypeBaseInput {
-    export type VariantInp = {} & TypeInpVariant;
-    export type PositionInpLabel = {} & TypePositionInpLabel;
+    export type VariantInp = Copy<TypeInpVariant>;
+    export type PositionInpLabel = Copy<TypePositionInpLabel>;
 }
 
 export namespace TypeBaseAvatar {
-    export type VariantSizeAvatar = {} & TypeVariantSizeAvatar;
+    export type VariantSizeAvatar = Copy<TypeVariantSizeAvatar>;
 }
 
 export namespace TypeBaseBox {
-    export type BoxWidthVariant = {} & TypeBoxWidthVariant;
-    export type BoxPaddingVariant = {} & TypeBoxPaddingVariant;
-    export type BoxGapVariant = {} & TypeBoxGapVariant;
-    export type BoxShadowVariant = {} & TypeBoxShadowVariant;
-    export type BoxRadiusVariant = {} & TypeBoxRadiusVariant;
-    export type BoxDisplay = {} & TypeBoxDisplay;
+    export type BoxWidthVariant = Copy<TypeBoxWidthVariant>;
+    export type BoxPaddingVariant = Copy<TypeBoxPaddingVariant>;
+    export type BoxGapVariant = Copy<TypeBoxGapVariant>;
+    export type BoxShadowVariant = Copy<TypeBoxShadowVariant>;
+    export type BoxRadiusVariant = Copy<TypeBoxRadiusVariant>;
+    export type BoxDisplay = Copy<TypeBoxDisplay>;
 }
 
 export namespace TypeText {
-    export type TitleVariant = {} & TypeTitleVariant;
+    export type TitleVariant = Copy<TypeTitleVariant>;
 }
 
 export const EnumBase = {

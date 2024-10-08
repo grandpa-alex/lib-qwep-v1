@@ -2,7 +2,8 @@ import { TypeSSTypography } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import React from 'react';
 import styled from 'styled-components';
-import { Hex } from '@src/lib/general/colors.ts';
+import { Hex, TypeColorScheme } from '@src/lib/general/colors.ts';
+import { useColorScheme } from '@src/lib/general';
 
 type TypeStyles = {
     typography: TypeSSTypography;
@@ -10,12 +11,16 @@ type TypeStyles = {
 
 type BaseInputProps = {
     inputAutofill?: Hex;
+    inputAutofillText?: Hex;
     $styles?: TypeStyles;
+    $colors?: TypeColorScheme;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 type SInputProps = {
     $styles: TypeStyles;
+    $colors: TypeColorScheme;
     $inputAutofill?: Hex;
+    $inputAutofillText?: Hex;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const SInput = styled.input<SInputProps>`
@@ -29,14 +34,27 @@ const SInput = styled.input<SInputProps>`
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
-        box-shadow: 0 0 0 10px ${(props) => props.$inputAutofill ?? '#FFF'} inset !important;
+        box-shadow: 0 0 0 10px ${(props) => props.$inputAutofill ?? props.$colors.background} inset !important;
+        -webkit-text-fill-color: ${(props) => props.$inputAutofillText ?? props.$colors.prompt} !important;
+        color: ${(props) => props.$inputAutofillText ?? props.$colors.prompt} !important;
     }
 `;
 
-export const BaseInput: React.FC<BaseInputProps> = React.memo(({ inputAutofill, $styles, ...rest }) => {
-    const styles = useStyleScheme(['typography'], $styles);
-    return <SInput $inputAutofill={inputAutofill} $styles={styles} {...rest} />;
-});
+export const BaseInput: React.FC<BaseInputProps> = React.memo(
+    ({ inputAutofill, inputAutofillText, $colors, $styles, ...rest }) => {
+        const colors = useColorScheme($colors);
+        const styles = useStyleScheme(['typography'], $styles);
+        return (
+            <SInput
+                $inputAutofill={inputAutofill}
+                $inputAutofillText={inputAutofillText}
+                $styles={styles}
+                $colors={colors}
+                {...rest}
+            />
+        );
+    }
+);
 
 //export component
 export const SBaseInput = {

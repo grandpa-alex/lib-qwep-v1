@@ -28,10 +28,12 @@ const STextarea = styled.textarea<STextareaProps>`
     resize: ${(props) => (props.$resize ? 'vertical' : 'none')};
 `;
 
-export const BaseInputArea: React.FC<BaseInputAreaProps> = React.memo(({ resize, $styles, ...rest }) => {
-    const styles = useStyleScheme(['typography'], $styles);
-    return <STextarea $styles={styles} $resize={resize} {...rest} />;
-});
+export const BaseInputArea: React.FC<BaseInputAreaProps> = React.memo(
+    React.forwardRef<HTMLTextAreaElement, BaseInputAreaProps>(({ resize, $styles, ...rest }, ref) => {
+        const styles = useStyleScheme(['typography'], $styles);
+        return <STextarea ref={ref} $styles={styles} $resize={resize} {...rest} />;
+    })
+);
 
 //export component
 export const SBaseInputArea = {

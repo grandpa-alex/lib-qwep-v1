@@ -92,77 +92,83 @@ const SLoading = styled.span<SLoadingProps>`
     }}
 `;
 
-export const SubmitButton: React.FC<SubmitButtonProps> = React.memo(
-    ({
-        isLoading,
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
-        variant = VB.CONTAINED,
-        position = BP.CENTER,
-        iconPosition = IIP.LEFT,
-        _isActiveHover = true,
-        loadingProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme(rest.$colors);
-        const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], rest.$styles);
+export const SubmitButton = React.memo(
+    React.forwardRef<HTMLButtonElement, SubmitButtonProps>(
+        (
+            {
+                isLoading,
+                sizeVariant = VS.L,
+                colorVariant = VC.DEFAULT,
+                variant = VB.CONTAINED,
+                position = BP.CENTER,
+                iconPosition = IIP.LEFT,
+                _isActiveHover = true,
+                loadingProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme(rest.$colors);
+            const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], rest.$styles);
 
-        const renderIcon = useMemo(() => {
-            return renderIconButton({ icon: rest.icon, size: styles.btn, sizeVariant, rest: { $colors: colors } });
-        }, [rest.icon, colors, styles, sizeVariant]);
+            const renderIcon = useMemo(() => {
+                return renderIconButton({ icon: rest.icon, size: styles.btn, sizeVariant, rest: { $colors: colors } });
+            }, [rest.icon, colors, styles, sizeVariant]);
 
-        const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-            itemRippleEffect(
-                event,
-                getColor({
-                    cs: colors,
-                    color: variant === VB.CONTAINED ? colors.alpha : rest.color,
-                    variant: colorVariant,
-                    opacity: '40',
-                })
-            );
-            if (rest.onClick) {
-                await rest.onClick(event);
-            }
-        };
+            const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+                itemRippleEffect(
+                    event,
+                    getColor({
+                        cs: colors,
+                        color: variant === VB.CONTAINED ? colors.alpha : rest.color,
+                        variant: colorVariant,
+                        opacity: '40',
+                    })
+                );
+                if (rest.onClick) {
+                    await rest.onClick(event);
+                }
+            };
 
-        return (
-            <SButton
-                $colors={colors}
-                $styles={styles}
-                onClick={handleClick}
-                $sizeVariant={sizeVariant}
-                $colorVariant={colorVariant}
-                $variant={variant}
-                $mr={rest.mr}
-                $isLoading={isLoading}
-                $blocked={rest.blocked}
-                $color={rest.color}
-                $_isActiveHover={!isLoading && _isActiveHover}
-                {...rest}
-            >
-                {renderIcon && (
-                    <SSimpleButton.IconContainer $iconPosition={iconPosition} {...rest.iconContainerProps}>
-                        {renderIcon}
-                    </SSimpleButton.IconContainer>
-                )}
-                <SSimpleButton.ContentContainer $position={position} {...rest.contentProps}>
-                    {rest.children}
-                </SSimpleButton.ContentContainer>
-                <SLoading
-                    $isLoading={isLoading}
-                    $disabled={rest.disabled}
+            return (
+                <SButton
+                    ref={ref}
                     $colors={colors}
                     $styles={styles}
+                    onClick={handleClick}
                     $sizeVariant={sizeVariant}
                     $colorVariant={colorVariant}
                     $variant={variant}
+                    $mr={rest.mr}
+                    $isLoading={isLoading}
+                    $blocked={rest.blocked}
                     $color={rest.color}
-                    {...loadingProps}
-                />
-            </SButton>
-        );
-    }
+                    $_isActiveHover={!isLoading && _isActiveHover}
+                    {...rest}
+                >
+                    {renderIcon && (
+                        <SSimpleButton.IconContainer $iconPosition={iconPosition} {...rest.iconContainerProps}>
+                            {renderIcon}
+                        </SSimpleButton.IconContainer>
+                    )}
+                    <SSimpleButton.ContentContainer $position={position} {...rest.contentProps}>
+                        {rest.children}
+                    </SSimpleButton.ContentContainer>
+                    <SLoading
+                        $isLoading={isLoading}
+                        $disabled={rest.disabled}
+                        $colors={colors}
+                        $styles={styles}
+                        $sizeVariant={sizeVariant}
+                        $colorVariant={colorVariant}
+                        $variant={variant}
+                        $color={rest.color}
+                        {...loadingProps}
+                    />
+                </SButton>
+            );
+        }
+    )
 );
 
 //export component

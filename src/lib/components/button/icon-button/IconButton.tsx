@@ -77,57 +77,68 @@ const SButton = styled(SBaseButton.Button)<SButtonProps>`
     }
 `;
 
-export const IconButton: React.FC<IconButtonProps> = React.memo(
-    ({
-        borderRadius = 'default',
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
-        variant = VB.CONTAINED,
-        _isActiveHover = true,
-        ...rest
-    }) => {
-        const colors = useColorScheme(rest.$colors);
-        const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], rest.$styles);
+export const IconButton = React.memo(
+    React.forwardRef<HTMLButtonElement, IconButtonProps>(
+        (
+            {
+                borderRadius = 'default',
+                sizeVariant = VS.L,
+                colorVariant = VC.DEFAULT,
+                variant = VB.CONTAINED,
+                _isActiveHover = true,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme(rest.$colors);
+            const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], rest.$styles);
 
-        const renderIcon = useMemo(() => {
-            return renderIconButton({ icon: rest.children, size: styles.btn, sizeVariant, rest: { $colors: colors } });
-        }, [rest.children, colors, styles, sizeVariant]);
+            const renderIcon = useMemo(() => {
+                return renderIconButton({
+                    icon: rest.children,
+                    size: styles.btn,
+                    sizeVariant,
+                    rest: { $colors: colors },
+                });
+            }, [rest.children, colors, styles, sizeVariant]);
 
-        const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-            itemRippleEffect(
-                event,
-                getColor({
-                    cs: colors,
-                    color: variant === VB.CONTAINED ? colors.alpha : rest.color,
-                    variant: colorVariant,
-                    opacity: '40',
-                })
+            const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+                itemRippleEffect(
+                    event,
+                    getColor({
+                        cs: colors,
+                        color: variant === VB.CONTAINED ? colors.alpha : rest.color,
+                        variant: colorVariant,
+                        opacity: '40',
+                    })
+                );
+                if (rest.onClick) {
+                    await rest.onClick(event);
+                }
+            };
+
+            return (
+                <SButton
+                    ref={ref}
+                    $colors={colors}
+                    $styles={styles}
+                    onClick={handleClick}
+                    $color={rest.color}
+                    color={rest.color}
+                    $blocked={rest.blocked}
+                    $mr={rest.mr}
+                    $sizeVariant={sizeVariant}
+                    $colorVariant={colorVariant}
+                    $variant={variant}
+                    $borderRadius={borderRadius}
+                    $_isActiveHover={_isActiveHover}
+                    {...rest}
+                >
+                    {renderIcon && renderIcon}
+                </SButton>
             );
-            if (rest.onClick) {
-                await rest.onClick(event);
-            }
-        };
-
-        return (
-            <SButton
-                $colors={colors}
-                $styles={styles}
-                onClick={handleClick}
-                $color={rest.color}
-                color={rest.color}
-                $blocked={rest.blocked}
-                $mr={rest.mr}
-                $sizeVariant={sizeVariant}
-                $colorVariant={colorVariant}
-                $variant={variant}
-                $borderRadius={borderRadius}
-                $_isActiveHover={_isActiveHover}
-                {...rest}
-            >
-                {renderIcon && renderIcon}
-            </SButton>
-        );
-    }
+        }
+    )
 );
 
 //export component

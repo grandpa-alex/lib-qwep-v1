@@ -255,18 +255,18 @@ function Select() {
 
             <h2>BASE POPUP L COLORS</h2>
             <div style={{ display: 'flex' }}>
-                <BasePopup trigger={<SimpleButton>Popup</SimpleButton>}>
+                <BasePopup trigger={<SimpleButton>Popup</SimpleButton>} {...rest}>
                     <SimpleBox
                         boxGapVariant={'g-2'}
                         boxPaddingVariant={'p-2'}
                         boxShadowVariant={'shd-3'}
                         boxRadiusVariant={'br-1'}
-                    >
-                        <SimpleTextField placeholder={'Placeholder'} />
+                    >{children}
+                        {/* <SimpleTextField placeholder={'Placeholder'} />
                         <SimpleTextField placeholder={'Placeholder'} />
                         <SubmitButton icon={<Icon.Settings />} isLoading={false}>
                             Submit
-                        </SubmitButton>
+                        </SubmitButton> */}
                     </SimpleBox>
                 </BasePopup>
 

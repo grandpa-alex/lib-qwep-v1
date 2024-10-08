@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Buttons from './Buttons';
 import Inputs from './Inputs';
 import Checkbox from './Checkbox';
@@ -25,7 +25,7 @@ import Tab from '@src/test/Tab.tsx';
 // }
 
 function Main() {
-    const [val, setVal] = useState(<Select />);
+    const [val, setVal] = useState(<Avatar />);
     // const [valTheme, setValTheme] = useState<'light' | 'dark'>('light');
 
     const handler = (val: string) => {

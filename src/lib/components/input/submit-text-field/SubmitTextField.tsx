@@ -69,95 +69,101 @@ const SLoading = styled.span<SLoaderProps>`
     }}
 `;
 
-export const SubmitTextField: React.FC<SubmitTextFieldProps> = React.memo(
-    ({
-        mr,
-        icon,
-        color,
-        iconOnClick,
-        _isActiveHover = true,
-        isLoading = false,
-        iconPosition = IIP.LEFT,
-        variant = VI.OUTLINED,
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
-        $colors,
-        $styles,
-        rootProps,
-        iconContainerProps,
-        loadingProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['base', 'inp', 'typography', 'mr'], $styles);
-        const [isFocused, setIsFocused] = useState(false);
-        const handleFocus = useCallback(
-            () => (!rest.disabled || isLoading) && setIsFocused(true),
-            [rest.disabled, isLoading]
-        );
-        const handleBlur = useCallback(
-            () => (!rest.disabled || isLoading) && setIsFocused(false),
-            [rest.disabled, isLoading]
-        );
+export const SubmitTextField = React.memo(
+    React.forwardRef<HTMLInputElement, SubmitTextFieldProps>(
+        (
+            {
+                mr,
+                icon,
+                color,
+                iconOnClick,
+                _isActiveHover = true,
+                isLoading = false,
+                iconPosition = IIP.LEFT,
+                variant = VI.OUTLINED,
+                sizeVariant = VS.L,
+                colorVariant = VC.DEFAULT,
+                $colors,
+                $styles,
+                rootProps,
+                iconContainerProps,
+                loadingProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['base', 'inp', 'typography', 'mr'], $styles);
+            const [isFocused, setIsFocused] = useState(false);
+            const handleFocus = useCallback(
+                () => (!rest.disabled || isLoading) && setIsFocused(true),
+                [rest.disabled, isLoading]
+            );
+            const handleBlur = useCallback(
+                () => (!rest.disabled || isLoading) && setIsFocused(false),
+                [rest.disabled, isLoading]
+            );
 
-        const renderIcon = useMemo(() => {
-            return renderIconTextField({ icon: icon, size: styles.inp, sizeVariant, rest: { $colors: colors } });
-        }, [icon, colors, styles, sizeVariant]);
+            const renderIcon = useMemo(() => {
+                return renderIconTextField({ icon: icon, size: styles.inp, sizeVariant, rest: { $colors: colors } });
+            }, [icon, colors, styles, sizeVariant]);
 
-        return (
-            <SSimpleTextField.Root
-                $mr={mr}
-                $colors={colors}
-                $styles={styles}
-                $color={color}
-                $colorVariant={colorVariant}
-                $sizeVariant={sizeVariant}
-                $variant={variant}
-                $disabled={rest.disabled}
-                $blocked={rest.blocked}
-                $_isFocused={isFocused}
-                $_isActiveHover={!isLoading && _isActiveHover}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                {...rootProps}
-            >
-                {icon && (
-                    <SSimpleTextField.IconContainer
-                        as={iconOnClick ? 'button' : 'div'}
-                        onClick={iconOnClick}
-                        $iconPosition={iconPosition}
-                        $disabled={rest.disabled || isLoading}
-                        $useBtn={Boolean(iconOnClick)}
-                        type={'button'}
-                        {...iconContainerProps}
-                    >
-                        {renderIcon}
-                    </SSimpleTextField.IconContainer>
-                )}
-
-                <SInput
-                    $styles={{ typography: styles.typography }}
+            return (
+                <SSimpleTextField.Root
+                    $mr={mr}
                     $colors={colors}
-                    $color={color}
-                    $colorVariant={colorVariant}
-                    $isLoading={isLoading}
-                    disabled={rest.disabled}
-                    {...rest}
-                />
-
-                <SLoading
                     $styles={styles}
-                    $colors={colors}
                     $color={color}
                     $colorVariant={colorVariant}
-                    $isLoading={isLoading}
                     $sizeVariant={sizeVariant}
+                    $variant={variant}
                     $disabled={rest.disabled}
-                    {...loadingProps}
-                />
-            </SSimpleTextField.Root>
-        );
-    }
+                    $blocked={rest.blocked}
+                    $_isFocused={isFocused}
+                    $_isActiveHover={!isLoading && _isActiveHover}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    {...rootProps}
+                >
+                    {icon && (
+                        <SSimpleTextField.IconContainer
+                            as={iconOnClick ? 'button' : 'div'}
+                            onClick={iconOnClick}
+                            $iconPosition={iconPosition}
+                            $disabled={rest.disabled || isLoading}
+                            $useBtn={Boolean(iconOnClick)}
+                            type={'button'}
+                            {...iconContainerProps}
+                        >
+                            {renderIcon}
+                        </SSimpleTextField.IconContainer>
+                    )}
+
+                    <SInput
+                        ref={ref}
+                        $styles={{ typography: styles.typography }}
+                        $colors={colors}
+                        $color={color}
+                        $colorVariant={colorVariant}
+                        $isLoading={isLoading}
+                        disabled={rest.disabled}
+                        {...rest}
+                    />
+
+                    <SLoading
+                        $styles={styles}
+                        $colors={colors}
+                        $color={color}
+                        $colorVariant={colorVariant}
+                        $isLoading={isLoading}
+                        $sizeVariant={sizeVariant}
+                        $disabled={rest.disabled}
+                        {...loadingProps}
+                    />
+                </SSimpleTextField.Root>
+            );
+        }
+    )
 );
 
 //export component

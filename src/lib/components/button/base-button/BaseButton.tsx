@@ -152,56 +152,62 @@ export const SButton = styled.button<SButtonProps>`
         `}
 `;
 
-export const BaseButton: React.FC<BaseButtonProps> = React.memo(
-    ({
-        mr,
-        color,
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
-        variant = VB.CONTAINED,
-        onClick,
-        $colors,
-        $styles,
-        blocked,
-        _isActiveHover = true,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], $styles);
+export const BaseButton = React.memo(
+    React.forwardRef<HTMLButtonElement, BaseButtonProps>(
+        (
+            {
+                mr,
+                color,
+                sizeVariant = VS.L,
+                colorVariant = VC.DEFAULT,
+                variant = VB.CONTAINED,
+                onClick,
+                $colors,
+                $styles,
+                blocked,
+                _isActiveHover = true,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], $styles);
 
-        const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-            itemRippleEffect(
-                event,
-                getColor({
-                    cs: colors,
-                    color: variant === VB.CONTAINED ? colors.alpha : color,
-                    variant: colorVariant,
-                    opacity: '40',
-                })
+            const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+                itemRippleEffect(
+                    event,
+                    getColor({
+                        cs: colors,
+                        color: variant === VB.CONTAINED ? colors.alpha : color,
+                        variant: colorVariant,
+                        opacity: '40',
+                    })
+                );
+                if (onClick) {
+                    await onClick(event);
+                }
+            };
+
+            return (
+                <SButton
+                    ref={ref}
+                    $colors={colors}
+                    $styles={styles}
+                    $sizeVariant={sizeVariant}
+                    $mr={mr}
+                    $color={color}
+                    $colorVariant={colorVariant}
+                    $variant={variant}
+                    onClick={handleClick}
+                    $blocked={blocked}
+                    $_isActiveHover={_isActiveHover}
+                    {...rest}
+                >
+                    {rest.children}
+                </SButton>
             );
-            if (onClick) {
-                await onClick(event);
-            }
-        };
-
-        return (
-            <SButton
-                $colors={colors}
-                $styles={styles}
-                $sizeVariant={sizeVariant}
-                $mr={mr}
-                $color={color}
-                $colorVariant={colorVariant}
-                $variant={variant}
-                onClick={handleClick}
-                $blocked={blocked}
-                $_isActiveHover={_isActiveHover}
-                {...rest}
-            >
-                {rest.children}
-            </SButton>
-        );
-    }
+        }
+    )
 );
 
 //export component

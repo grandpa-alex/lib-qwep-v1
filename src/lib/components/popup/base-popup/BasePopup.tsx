@@ -18,6 +18,7 @@ type BasePopupProps = {
 
 const STrigger = styled(Popover.Trigger)<React.ComponentPropsWithRef<typeof Popover.Trigger>>`
     all: unset;
+    width: fit-content;
 `;
 
 const SArrow = styled(Popover.Arrow)<React.ComponentPropsWithRef<typeof Popover.Arrow>>``;

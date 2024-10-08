@@ -98,67 +98,73 @@ const SContentContainer = styled.div<SContentContainerProps>`
     text-align: ${(props) => props.$position};
 `;
 
-export const SimpleButton: React.FC<SimpleButtonProps> = React.memo(
-    ({
-        icon,
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
-        variant = VB.CONTAINED,
-        position = BP.CENTER,
-        iconPosition = IIP.LEFT,
-        _isActiveHover = true,
-        iconContainerProps,
-        contentProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme(rest.$colors);
-        const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], rest.$styles);
+export const SimpleButton = React.memo(
+    React.forwardRef<HTMLButtonElement, SimpleButtonProps>(
+        (
+            {
+                icon,
+                sizeVariant = VS.L,
+                colorVariant = VC.DEFAULT,
+                variant = VB.CONTAINED,
+                position = BP.CENTER,
+                iconPosition = IIP.LEFT,
+                _isActiveHover = true,
+                iconContainerProps,
+                contentProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme(rest.$colors);
+            const styles = useStyleScheme(['base', 'btn', 'typography', 'mr'], rest.$styles);
 
-        const renderIcon = useMemo(() => {
-            return renderIconButton({ icon: icon, size: styles.btn, sizeVariant, rest: { $colors: colors } });
-        }, [icon, colors, styles, sizeVariant]);
+            const renderIcon = useMemo(() => {
+                return renderIconButton({ icon: icon, size: styles.btn, sizeVariant, rest: { $colors: colors } });
+            }, [icon, colors, styles, sizeVariant]);
 
-        const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-            itemRippleEffect(
-                event,
-                getColor({
-                    cs: colors,
-                    color: variant === VB.CONTAINED ? colors.alpha : rest.color,
-                    variant: colorVariant,
-                    opacity: '40',
-                })
+            const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+                itemRippleEffect(
+                    event,
+                    getColor({
+                        cs: colors,
+                        color: variant === VB.CONTAINED ? colors.alpha : rest.color,
+                        variant: colorVariant,
+                        opacity: '40',
+                    })
+                );
+                if (rest.onClick) {
+                    await rest.onClick(event);
+                }
+            };
+
+            return (
+                <SButton
+                    ref={ref}
+                    $colors={colors}
+                    $styles={styles}
+                    onClick={handleClick}
+                    $sizeVariant={sizeVariant}
+                    $colorVariant={colorVariant}
+                    $variant={variant}
+                    $color={rest.color}
+                    color={rest.color}
+                    $mr={rest.mr}
+                    $blocked={rest.blocked}
+                    $_isActiveHover={_isActiveHover}
+                    {...rest}
+                >
+                    {renderIcon && (
+                        <SIconContainer $iconPosition={iconPosition} {...iconContainerProps}>
+                            {renderIcon}
+                        </SIconContainer>
+                    )}
+                    <SContentContainer $position={position} {...contentProps}>
+                        {rest.children}
+                    </SContentContainer>
+                </SButton>
             );
-            if (rest.onClick) {
-                await rest.onClick(event);
-            }
-        };
-
-        return (
-            <SButton
-                $colors={colors}
-                $styles={styles}
-                onClick={handleClick}
-                $sizeVariant={sizeVariant}
-                $colorVariant={colorVariant}
-                $variant={variant}
-                $color={rest.color}
-                color={rest.color}
-                $mr={rest.mr}
-                $blocked={rest.blocked}
-                $_isActiveHover={_isActiveHover}
-                {...rest}
-            >
-                {renderIcon && (
-                    <SIconContainer $iconPosition={iconPosition} {...iconContainerProps}>
-                        {renderIcon}
-                    </SIconContainer>
-                )}
-                <SContentContainer $position={position} {...contentProps}>
-                    {rest.children}
-                </SContentContainer>
-            </SButton>
-        );
-    }
+        }
+    )
 );
 
 //export component

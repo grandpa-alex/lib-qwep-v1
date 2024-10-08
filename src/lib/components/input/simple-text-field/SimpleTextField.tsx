@@ -103,73 +103,79 @@ export const SInput = styled(SBaseTextField.Input)<TBaseTextField.SInput>`
     }
 `;
 
-export const SimpleTextField: React.FC<SimpleTextFieldProps> = React.memo(
-    ({
-        mr,
-        icon,
-        color,
-        iconOnClick,
-        _isActiveHover = true,
-        iconPosition = IIP.LEFT,
-        variant = VI.OUTLINED,
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
-        $colors,
-        $styles,
-        rootProps,
-        iconContainerProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['base', 'inp', 'typography', 'mr'], $styles);
-        const [isFocused, setIsFocused] = useState(false);
-        const handleFocus = useCallback(() => !rest.disabled && setIsFocused(true), [rest.disabled]);
-        const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), [rest.disabled]);
+export const SimpleTextField = React.memo(
+    React.forwardRef<HTMLInputElement, SimpleTextFieldProps>(
+        (
+            {
+                mr,
+                icon,
+                color,
+                iconOnClick,
+                _isActiveHover = true,
+                iconPosition = IIP.LEFT,
+                variant = VI.OUTLINED,
+                sizeVariant = VS.L,
+                colorVariant = VC.DEFAULT,
+                $colors,
+                $styles,
+                rootProps,
+                iconContainerProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['base', 'inp', 'typography', 'mr'], $styles);
+            const [isFocused, setIsFocused] = useState(false);
+            const handleFocus = useCallback(() => !rest.disabled && setIsFocused(true), [rest.disabled]);
+            const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), [rest.disabled]);
 
-        const renderIcon = useMemo(() => {
-            return renderIconTextField({ icon: icon, size: styles.inp, sizeVariant, rest: { $colors: colors } });
-        }, [icon, colors, styles, sizeVariant]);
+            const renderIcon = useMemo(() => {
+                return renderIconTextField({ icon: icon, size: styles.inp, sizeVariant, rest: { $colors: colors } });
+            }, [icon, colors, styles, sizeVariant]);
 
-        return (
-            <SRoot
-                $mr={mr}
-                $colors={colors}
-                $styles={styles}
-                $color={color}
-                $colorVariant={colorVariant}
-                $sizeVariant={sizeVariant}
-                $variant={variant}
-                $disabled={rest.disabled}
-                $blocked={rest.blocked}
-                $_isActiveHover={_isActiveHover}
-                $_isFocused={isFocused}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                {...rootProps}
-            >
-                {icon && (
-                    <SIconContainer
-                        as={iconOnClick ? 'button' : 'div'}
-                        onClick={iconOnClick}
-                        $disabled={rest.disabled}
-                        $iconPosition={iconPosition}
-                        $useBtn={Boolean(iconOnClick)}
-                        type={'button'}
-                        {...iconContainerProps}
-                    >
-                        {renderIcon}
-                    </SIconContainer>
-                )}
-                <SInput
-                    $styles={{ typography: styles.typography }}
+            return (
+                <SRoot
+                    $mr={mr}
                     $colors={colors}
+                    $styles={styles}
                     $color={color}
                     $colorVariant={colorVariant}
-                    {...rest}
-                />
-            </SRoot>
-        );
-    }
+                    $sizeVariant={sizeVariant}
+                    $variant={variant}
+                    $disabled={rest.disabled}
+                    $blocked={rest.blocked}
+                    $_isActiveHover={_isActiveHover}
+                    $_isFocused={isFocused}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    {...rootProps}
+                >
+                    {icon && (
+                        <SIconContainer
+                            as={iconOnClick ? 'button' : 'div'}
+                            onClick={iconOnClick}
+                            $disabled={rest.disabled}
+                            $iconPosition={iconPosition}
+                            $useBtn={Boolean(iconOnClick)}
+                            type={'button'}
+                            {...iconContainerProps}
+                        >
+                            {renderIcon}
+                        </SIconContainer>
+                    )}
+                    <SInput
+                        ref={ref}
+                        $styles={{ typography: styles.typography }}
+                        $colors={colors}
+                        $color={color}
+                        $colorVariant={colorVariant}
+                        {...rest}
+                    />
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

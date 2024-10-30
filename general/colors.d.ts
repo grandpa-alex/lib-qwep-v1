@@ -1,0 +1,38 @@
+export type Hex = `#${string}`;
+export declare const TypeDefaultColorSchemes: string[];
+export type TypeColorScheme = {
+    primary: Hex;
+    secondary: Hex;
+    lightElem: Hex;
+    primaryItem: Hex;
+    primaryItemActive: Hex;
+    successItem: Hex;
+    successItemActive: Hex;
+    infoItem: Hex;
+    infoItemActive: Hex;
+    errorItem: Hex;
+    errorItemActive: Hex;
+    warningItem: Hex;
+    warningItemActive: Hex;
+    background: Hex;
+    backgroundBox: Hex;
+    backgroundTooltip: Hex;
+    disabled: Hex;
+    shadowColor: Hex;
+    backgroundSuccess: Hex;
+    backgroundError: Hex;
+    backgroundInfo: Hex;
+    backgroundWarning: Hex;
+    title: Hex;
+    text: Hex;
+    textItem: Hex;
+    link: Hex;
+    linkActive: Hex;
+    prompt: Hex;
+    alpha: Hex;
+    omega: Hex;
+} & {
+    [key: string]: Hex;
+};
+export declare const colorsLight: TypeColorScheme;
+export declare const colorsDark: TypeColorScheme;

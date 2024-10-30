@@ -1,0 +1,9 @@
+import{j as p}from"./jsx-runtime-QvZ8i92b.js";import{S as r}from"./BaseTabWrapper-CU_7wYvq.js";import"./index-uubelm5h.js";import"./index-CfOt2XX2.js";const u={title:"Components/box/SimpleBox",component:r,tags:["autodocs"]},m=d=>p.jsx(r,{boxDisplay:"flex",style:{justifyContent:"center",margin:"50px auto",width:"300px",height:"300px"},...d}),a={render:m,args:{bg:"#ff22aa",boxBorderColor:"#22aaff",boxShadowColor:"#22aaff",boxShadowVariant:"shd-3",boxRadiusVariant:"br-3"}},o=()=>p.jsx(r,{boxDisplay:"flex",style:{justifyContent:"center",margin:"50px auto",width:"300px",height:"300px"},bg:"#ff22aa",boxBorderColor:"#22aaff",boxShadowColor:"#22aaff",boxShadowVariant:"shd-3",boxRadiusVariant:"br-3"});o.__docgenInfo={description:"",methods:[],displayName:"ExampleSimpleBox"};var e,t,n;a.parameters={...a.parameters,docs:{...(e=a.parameters)==null?void 0:e.docs,source:{originalSource:"{\n  render: Template,\n  args: {\n    bg: `#${'ff22aa'}`,\n    boxBorderColor: `#${'22aaff'}`,\n    boxShadowColor: `#${'22aaff'}`,\n    boxShadowVariant: 'shd-3',\n    boxRadiusVariant: 'br-3'\n  }\n}",...(n=(t=a.parameters)==null?void 0:t.docs)==null?void 0:n.source}}};var s,i,x;o.parameters={...o.parameters,docs:{...(s=o.parameters)==null?void 0:s.docs,source:{originalSource:`() => {
+  return <SimpleBox boxDisplay="flex" style={{
+    justifyContent: 'center',
+    margin: '50px auto',
+    // backgroundColor: 'red',
+    width: '300px',
+    height: '300px'
+  }} bg={\`#\${'ff22aa'}\`} boxBorderColor={\`#\${'22aaff'}\`} boxShadowColor={\`#\${'22aaff'}\`} boxShadowVariant={'shd-3'} boxRadiusVariant={'br-3'}></SimpleBox>;
+}`,...(x=(i=o.parameters)==null?void 0:i.docs)==null?void 0:x.source}}};const h=["Main","ExampleSimpleBox"];export{o as ExampleSimpleBox,a as Main,h as __namedExportsOrder,u as default};

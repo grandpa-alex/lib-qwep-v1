@@ -105,62 +105,68 @@ const SLabel = styled(SBaseText.Text)<SLabelProps>`
         `};
 `;
 
-export const WrapperInput: React.FC<WrapperInputProps> = React.memo(
-    ({
-        mr,
-        id,
-        children,
-        required,
-        blocked,
-        customLabel,
-        positionLabel = PIL.TOP,
-        $colors,
-        $styles,
-        label,
-        message,
-        boxGapVariant = 'g-2',
-        labelColor,
-        messageProps,
-        labelProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['box', 'mr', 'typography'], $styles);
+export const WrapperInput = React.memo(
+    React.forwardRef<HTMLDivElement, WrapperInputProps>(
+        (
+            {
+                mr,
+                id,
+                children,
+                required,
+                blocked,
+                customLabel,
+                positionLabel = PIL.TOP,
+                $colors,
+                $styles,
+                label,
+                message,
+                boxGapVariant = 'g-2',
+                labelColor,
+                messageProps,
+                labelProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['box', 'mr', 'typography'], $styles);
 
-        const renderItem = useMemo(() => {
-            return React.cloneElement(children as React.ReactElement, { id });
-        }, [children, id]);
+            const renderItem = useMemo(() => {
+                return React.cloneElement(children as React.ReactElement, { id });
+            }, [children, id]);
 
-        return (
-            <SRoot
-                $colors={colors}
-                $blocked={blocked}
-                $styles={styles}
-                $mr={mr}
-                $positionLabel={positionLabel}
-                $boxGapVariant={boxGapVariant}
-                {...rest}
-            >
-                {customLabel ? (
-                    customLabel
-                ) : (
-                    <SLabel
-                        as={'label'}
-                        htmlFor={id}
-                        $required={required}
-                        $colors={colors}
-                        $styles={{ typography: styles.typography }}
-                        $color={labelColor}
-                        {...labelProps}
-                    >
-                        {label}
-                    </SLabel>
-                )}
-                {renderItem}
-                <MessageBox $colors={colors} message={message} {...messageProps} />
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    ref={ref}
+                    $colors={colors}
+                    $blocked={blocked}
+                    $styles={styles}
+                    $mr={mr}
+                    $positionLabel={positionLabel}
+                    $boxGapVariant={boxGapVariant}
+                    {...rest}
+                >
+                    {customLabel ? (
+                        customLabel
+                    ) : (
+                        <SLabel
+                            as={'label'}
+                            htmlFor={id}
+                            $required={required}
+                            $colors={colors}
+                            $styles={{ typography: styles.typography }}
+                            $color={labelColor}
+                            {...labelProps}
+                        >
+                            {label}
+                        </SLabel>
+                    )}
+                    {renderItem}
+                    <MessageBox $colors={colors} message={message} {...messageProps} />
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

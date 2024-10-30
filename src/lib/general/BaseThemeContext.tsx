@@ -62,6 +62,10 @@ export const BaseThemeProvider = ({
     const [styles, setStyles] = useState<TypeSS>(currentStyles);
 
     useEffect(() => {
+        setCurrentColorThemeName(colorThemeName);
+    }, [colorThemeName]);
+
+    useEffect(() => {
         const theme = listThemeColors.find((theme) => theme.type === currentColorThemeName);
         if (theme) {
             setCurrentColorScheme(theme.colors);

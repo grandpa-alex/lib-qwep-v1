@@ -84,25 +84,28 @@ const STab = styled(Tabs.Trigger)<STabProps>`
         `}
 `;
 
-export const BaseTab: React.FC<BaseTabProps> = React.memo(
-    ({ mr, sizeVariant = VS.L, blocked, $colors, $styles, ...rest }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['mr', 'btn', 'typography'], $styles);
+export const BaseTab = React.memo(
+    React.forwardRef<HTMLButtonElement, BaseTabProps>(
+        ({ mr, sizeVariant = VS.L, blocked, $colors, $styles, ...rest }, ref) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['mr', 'btn', 'typography'], $styles);
 
-        return (
-            <STab
-                $mr={mr}
-                $styles={styles}
-                $colors={colors}
-                $blocked={blocked}
-                $sizeVariant={sizeVariant}
-                {...rest}
-                value={rest.value}
-            >
-                {rest.children}
-            </STab>
-        );
-    }
+            return (
+                <STab
+                    ref={ref}
+                    $mr={mr}
+                    $styles={styles}
+                    $colors={colors}
+                    $blocked={blocked}
+                    $sizeVariant={sizeVariant}
+                    {...rest}
+                    value={rest.value}
+                >
+                    {rest.children}
+                </STab>
+            );
+        }
+    )
 );
 
 //export component

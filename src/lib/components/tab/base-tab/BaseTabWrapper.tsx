@@ -76,33 +76,36 @@ const SList = styled(Tabs.List)<SListProps>`
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
 `;
 
-export const BaseTabWrapper: React.FC<BaseTabWrapperProps> = React.memo(
-    ({ mr, tabs, boxWidthVariant, boxPaddingVariant, tabsListProps, $styles, ...rest }) => {
-        const styles = useStyleScheme(['mr', 'box'], $styles);
+export const BaseTabWrapper = React.memo(
+    React.forwardRef<HTMLDivElement, BaseTabWrapperProps>(
+        ({ mr, tabs, boxWidthVariant, boxPaddingVariant, tabsListProps, $styles, ...rest }, ref) => {
+            const styles = useStyleScheme(['mr', 'box'], $styles);
 
-        return (
-            <SRoot
-                $mr={mr}
-                $styles={styles}
-                $boxWidthVariant={boxWidthVariant}
-                $boxPaddingVariant={boxPaddingVariant}
-                orientation={'vertical'}
-                {...rest}
-            >
-                <SList
+            return (
+                <SRoot
+                    ref={ref}
                     $mr={mr}
                     $styles={styles}
                     $boxWidthVariant={boxWidthVariant}
                     $boxPaddingVariant={boxPaddingVariant}
-                    $orientation={tabsListProps?.orientation ?? 'horizontal'}
-                    {...tabsListProps}
+                    orientation={'vertical'}
+                    {...rest}
                 >
-                    {...tabs}
-                </SList>
-                {rest.children}
-            </SRoot>
-        );
-    }
+                    <SList
+                        $mr={mr}
+                        $styles={styles}
+                        $boxWidthVariant={boxWidthVariant}
+                        $boxPaddingVariant={boxPaddingVariant}
+                        $orientation={tabsListProps?.orientation ?? 'horizontal'}
+                        {...tabsListProps}
+                    >
+                        {...tabs}
+                    </SList>
+                    {rest.children}
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

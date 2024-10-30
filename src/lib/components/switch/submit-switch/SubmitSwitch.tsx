@@ -58,40 +58,46 @@ const SRoot = styled(SBaseSwitch.Root)<SRootProps>`
     }}
 `;
 
-export const SubmitSwitch: React.FC<SubmitSwitchProps> = React.memo(
-    ({
-        mr,
-        color,
-        isLoading,
-        blocked,
-        colorVariant = VC.DEFAULT,
-        sizeVariant = VS.L,
-        $colors,
-        $styles,
-        _isActiveHover = true,
-        thumbProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['switch', 'mr'], $styles);
+export const SubmitSwitch = React.memo(
+    React.forwardRef<HTMLButtonElement, SubmitSwitchProps>(
+        (
+            {
+                mr,
+                color,
+                isLoading,
+                blocked,
+                colorVariant = VC.DEFAULT,
+                sizeVariant = VS.L,
+                $colors,
+                $styles,
+                _isActiveHover = true,
+                thumbProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['switch', 'mr'], $styles);
 
-        return (
-            <SRoot
-                $color={color}
-                $mr={mr}
-                $colors={colors}
-                $styles={styles}
-                $colorVariant={colorVariant}
-                $sizeVariant={sizeVariant}
-                $_isActiveHover={_isActiveHover}
-                $isLoading={isLoading}
-                $blocked={blocked}
-                {...rest}
-            >
-                <SBaseSwitch.Thumb $colors={colors} $styles={styles} $sizeVariant={sizeVariant} {...thumbProps} />
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    ref={ref}
+                    $color={color}
+                    $mr={mr}
+                    $colors={colors}
+                    $styles={styles}
+                    $colorVariant={colorVariant}
+                    $sizeVariant={sizeVariant}
+                    $_isActiveHover={_isActiveHover}
+                    $isLoading={isLoading}
+                    $blocked={blocked}
+                    {...rest}
+                >
+                    <SBaseSwitch.Thumb $colors={colors} $styles={styles} $sizeVariant={sizeVariant} {...thumbProps} />
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

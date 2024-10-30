@@ -103,59 +103,65 @@ export const SButton = styled.button<SButtonProps>`
     }
 `;
 
-export const BaseMenuItem: React.FC<BaseMenuItemProps> = React.memo(
-    ({
-        active,
-        color,
-        sizeVariant = VS.L,
-        onClick,
-        opacityHover,
-        opacityActive,
-        textColor,
-        textColorActive,
-        $colors,
-        $styles,
-        blocked,
-        _isActiveHover = true,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['base', 'btn', 'typography'], $styles);
+export const BaseMenuItem = React.memo(
+    React.forwardRef<HTMLButtonElement, BaseMenuItemProps>(
+        (
+            {
+                active,
+                color,
+                sizeVariant = VS.L,
+                onClick,
+                opacityHover,
+                opacityActive,
+                textColor,
+                textColorActive,
+                $colors,
+                $styles,
+                blocked,
+                _isActiveHover = true,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['base', 'btn', 'typography'], $styles);
 
-        const handleClick = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-            itemRippleEffect(
-                event,
-                getColor({
-                    cs: colors,
-                    color: color ?? colors.textItem,
-                    opacity: '40',
-                })
+            const handleClick = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                itemRippleEffect(
+                    event,
+                    getColor({
+                        cs: colors,
+                        color: color ?? colors.textItem,
+                        opacity: '40',
+                    })
+                );
+                if (onClick) {
+                    await onClick(event);
+                }
+            };
+
+            return (
+                <SButton
+                    ref={ref}
+                    $colors={colors}
+                    $styles={styles}
+                    $sizeVariant={sizeVariant}
+                    $opacityHover={opacityHover}
+                    $opacityActive={opacityActive}
+                    $textColor={textColor}
+                    $textColorActive={textColorActive}
+                    $color={color}
+                    $blocked={blocked}
+                    $active={active}
+                    $_isActiveHover={_isActiveHover}
+                    onClick={handleClick}
+                    {...rest}
+                >
+                    {rest.children}
+                </SButton>
             );
-            if (onClick) {
-                await onClick(event);
-            }
-        };
-
-        return (
-            <SButton
-                $colors={colors}
-                $styles={styles}
-                $sizeVariant={sizeVariant}
-                $opacityHover={opacityHover}
-                $opacityActive={opacityActive}
-                $textColor={textColor}
-                $textColorActive={textColorActive}
-                $color={color}
-                $blocked={blocked}
-                $active={active}
-                $_isActiveHover={_isActiveHover}
-                onClick={handleClick}
-                {...rest}
-            >
-                {rest.children}
-            </SButton>
-        );
-    }
+        }
+    )
 );
 
 //export component

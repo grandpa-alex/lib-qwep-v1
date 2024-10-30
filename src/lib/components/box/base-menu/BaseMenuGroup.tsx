@@ -103,102 +103,108 @@ const SRoot = styled.div<SRootProps>`
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
 `;
 
-export const BaseMenuGroup: React.FC<BaseMenuGroupProps> = React.memo(
-    ({
-        mr,
-        boxWidthVariant,
-        boxPaddingVariant = 'p-1',
-        bg,
-        boxGapVariant = 'g-1',
-        boxBorderColor,
-        boxRadiusVariant = 'br-1',
-        boxShadowVariant = 'shd-1',
-        boxShadowColor,
-        orientation = OC.HORIZONTAL,
-        onChangeActiveItem,
-        activeItem,
+export const BaseMenuGroup = React.memo(
+    React.forwardRef<HTMLDivElement, BaseMenuGroupProps>(
+        (
+            {
+                mr,
+                boxWidthVariant,
+                boxPaddingVariant = 'p-1',
+                bg,
+                boxGapVariant = 'g-1',
+                boxBorderColor,
+                boxRadiusVariant = 'br-1',
+                boxShadowVariant = 'shd-1',
+                boxShadowColor,
+                orientation = OC.HORIZONTAL,
+                onChangeActiveItem,
+                activeItem,
 
-        itemSizeVariant = VS.L,
-        itemColor,
-        itemOpacityHover,
-        itemOpacityActive,
-        itemTextColor,
-        itemTextColorActive,
+                itemSizeVariant = VS.L,
+                itemColor,
+                itemOpacityHover,
+                itemOpacityActive,
+                itemTextColor,
+                itemTextColorActive,
 
-        $styles,
-        $colors,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['box', 'mr', 'btn', 'typography'], $styles);
-        const [activeValue, setActiveValue] = useState<string>(activeItem ?? '');
-
-        const handleClick = useCallback(
-            (event: React.MouseEvent<HTMLButtonElement>) => {
-                const newValue = event.currentTarget.getAttribute('value');
-                setActiveValue(newValue || '');
-                if (onChangeActiveItem) {
-                    onChangeActiveItem(newValue || '');
-                }
+                $styles,
+                $colors,
+                ...rest
             },
-            [onChangeActiveItem]
-        );
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['box', 'mr', 'btn', 'typography'], $styles);
+            const [activeValue, setActiveValue] = useState<string>(activeItem ?? '');
 
-        const renderItems = useMemo(() => {
-            return React.Children.map(rest.children, (child: React.ReactNode) => {
-                if (React.isValidElement(child) && child.props.value) {
-                    return React.cloneElement(child, {
-                        onClick: handleClick,
-                        active: Boolean(child.props.value === activeValue),
-                        sizeVariant: itemSizeVariant,
-                        color: itemColor,
-                        opacityHover: itemOpacityHover,
-                        opacityActive: itemOpacityActive,
-                        textColor: itemTextColor,
-                        textColorActive: itemTextColorActive,
-                        $styles,
-                        $colors,
-                        tabIndex: 0,
-                        'aria-pressed': child.props.value === activeValue ? 'true' : 'false',
-                        ...child.props,
-                    });
-                }
-                return child;
-            });
-        }, [
-            rest.children,
-            handleClick,
-            activeValue,
-            itemSizeVariant,
-            itemColor,
-            $styles,
-            $colors,
-            itemOpacityActive,
-            itemOpacityHover,
-            itemTextColor,
-            itemTextColorActive,
-        ]);
+            const handleClick = useCallback(
+                (event: React.MouseEvent<HTMLButtonElement>) => {
+                    const newValue = event.currentTarget.getAttribute('value');
+                    setActiveValue(newValue || '');
+                    if (onChangeActiveItem) {
+                        onChangeActiveItem(newValue || '');
+                    }
+                },
+                [onChangeActiveItem]
+            );
 
-        return (
-            <SRoot
-                $styles={styles}
-                $colors={colors}
-                $mr={mr}
-                $boxWidthVariant={boxWidthVariant}
-                $boxPaddingVariant={boxPaddingVariant}
-                $boxGapVariant={boxGapVariant}
-                $bg={bg}
-                $boxBorderColor={boxBorderColor}
-                $boxRadiusVariant={boxRadiusVariant}
-                $boxShadowVariant={boxShadowVariant}
-                $boxShadowColor={boxShadowColor}
-                $orientation={orientation}
-                {...rest}
-            >
-                {renderItems}
-            </SRoot>
-        );
-    }
+            const renderItems = useMemo(() => {
+                return React.Children.map(rest.children, (child: React.ReactNode) => {
+                    if (React.isValidElement(child) && child.props.value) {
+                        return React.cloneElement(child, {
+                            onClick: handleClick,
+                            active: Boolean(child.props.value === activeValue),
+                            sizeVariant: itemSizeVariant,
+                            color: itemColor,
+                            opacityHover: itemOpacityHover,
+                            opacityActive: itemOpacityActive,
+                            textColor: itemTextColor,
+                            textColorActive: itemTextColorActive,
+                            $styles,
+                            $colors,
+                            tabIndex: 0,
+                            'aria-pressed': child.props.value === activeValue ? 'true' : 'false',
+                            ...child.props,
+                        });
+                    }
+                    return child;
+                });
+            }, [
+                rest.children,
+                handleClick,
+                activeValue,
+                itemSizeVariant,
+                itemColor,
+                $styles,
+                $colors,
+                itemOpacityActive,
+                itemOpacityHover,
+                itemTextColor,
+                itemTextColorActive,
+            ]);
+
+            return (
+                <SRoot
+                    ref={ref}
+                    $styles={styles}
+                    $colors={colors}
+                    $mr={mr}
+                    $boxWidthVariant={boxWidthVariant}
+                    $boxPaddingVariant={boxPaddingVariant}
+                    $boxGapVariant={boxGapVariant}
+                    $bg={bg}
+                    $boxBorderColor={boxBorderColor}
+                    $boxRadiusVariant={boxRadiusVariant}
+                    $boxShadowVariant={boxShadowVariant}
+                    $boxShadowColor={boxShadowColor}
+                    $orientation={orientation}
+                    {...rest}
+                >
+                    {renderItems}
+                </SRoot>
+            );
+        }
+    )
 );
 //export component
 export const SBaseMenuGroup = {

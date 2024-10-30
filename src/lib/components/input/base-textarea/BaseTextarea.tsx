@@ -62,46 +62,51 @@ const SRoot = styled(SRootTextarea.Root)<TRootTextarea.SRoot>`
     }
 `;
 
-export const BaseTextarea: React.FC<BaseTextareaProps> = React.memo(
-    ({
-        mr,
-        color,
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
-        $colors,
-        $styles,
-        _isActiveHover = true,
-        resize,
-        blocked,
-        propsRoot,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['base', 'mr', 'typography', 'inp'], $styles);
-        const [isFocused, setIsFocused] = useState(false);
-        const handleFocus = useCallback(() => !rest.disabled && setIsFocused(true), [rest.disabled]);
-        const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), [rest.disabled]);
+export const BaseTextarea = React.memo(
+    React.forwardRef<HTMLTextAreaElement, BaseTextareaProps>(
+        (
+            {
+                mr,
+                color,
+                sizeVariant = VS.L,
+                colorVariant = VC.DEFAULT,
+                $colors,
+                $styles,
+                _isActiveHover = true,
+                resize,
+                blocked,
+                propsRoot,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['base', 'mr', 'typography', 'inp'], $styles);
+            const [isFocused, setIsFocused] = useState(false);
+            const handleFocus = useCallback(() => !rest.disabled && setIsFocused(true), [rest.disabled]);
+            const handleBlur = useCallback(() => !rest.disabled && setIsFocused(false), [rest.disabled]);
 
-        return (
-            <SRoot
-                $mr={mr}
-                $styles={styles}
-                $colors={colors}
-                $color={color}
-                $colorVariant={colorVariant}
-                $sizeVariant={sizeVariant}
-                $_isActiveHover={_isActiveHover}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                $_isFocused={isFocused}
-                $disabled={rest.disabled}
-                $blocked={blocked}
-                {...propsRoot}
-            >
-                <STextarea $resize={resize} $styles={styles} {...rest} />
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    $mr={mr}
+                    $styles={styles}
+                    $colors={colors}
+                    $color={color}
+                    $colorVariant={colorVariant}
+                    $sizeVariant={sizeVariant}
+                    $_isActiveHover={_isActiveHover}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    $_isFocused={isFocused}
+                    $disabled={rest.disabled}
+                    $blocked={blocked}
+                    {...propsRoot}
+                >
+                    <STextarea ref={ref} $resize={resize} $styles={styles} {...rest} />
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

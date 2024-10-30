@@ -39,41 +39,47 @@ const SBox = styled(SBaseBox.Box)<SBoxProps>`
         })};
 `;
 
-export const SimpleBox: React.FC<SimpleBoxProps> = React.memo(
-    ({
-        as: Component = 'div',
-        bg,
-        boxBorderColor,
-        boxRadiusVariant,
-        boxShadowVariant,
-        boxShadowColor,
-        $colors,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['box', 'mr'], rest.$styles);
+export const SimpleBox = React.memo(
+    React.forwardRef<HTMLDivElement, SimpleBoxProps>(
+        (
+            {
+                as: Component = 'div',
+                bg,
+                boxBorderColor,
+                boxRadiusVariant,
+                boxShadowVariant,
+                boxShadowColor,
+                $colors,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['box', 'mr'], rest.$styles);
 
-        return (
-            <SBox
-                as={Component}
-                $styles={styles}
-                $colors={colors}
-                $mr={rest.mr}
-                $boxWidthVariant={rest.boxWidthVariant}
-                $boxPaddingVariant={rest.boxPaddingVariant}
-                $boxGapVariant={rest.boxGapVariant}
-                $boxDisplay={rest.boxDisplay}
-                $bg={bg}
-                $boxBorderColor={boxBorderColor}
-                $boxRadiusVariant={boxRadiusVariant}
-                $boxShadowVariant={boxShadowVariant}
-                $boxShadowColor={boxShadowColor}
-                {...rest}
-            >
-                {rest.children}
-            </SBox>
-        );
-    }
+            return (
+                <SBox
+                    ref={ref}
+                    as={Component}
+                    $styles={styles}
+                    $colors={colors}
+                    $mr={rest.mr}
+                    $boxWidthVariant={rest.boxWidthVariant}
+                    $boxPaddingVariant={rest.boxPaddingVariant}
+                    $boxGapVariant={rest.boxGapVariant}
+                    $boxDisplay={rest.boxDisplay}
+                    $bg={bg}
+                    $boxBorderColor={boxBorderColor}
+                    $boxRadiusVariant={boxRadiusVariant}
+                    $boxShadowVariant={boxShadowVariant}
+                    $boxShadowColor={boxShadowColor}
+                    {...rest}
+                >
+                    {rest.children}
+                </SBox>
+            );
+        }
+    )
 );
 
 //export component

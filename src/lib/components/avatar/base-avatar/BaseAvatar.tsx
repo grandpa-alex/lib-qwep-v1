@@ -89,34 +89,37 @@ const SRoot = styled(Avatar.Root)<SRootProps>`
     ${(props) => getMargin(props.$styles?.mr, props.$mr)};
 `;
 
-export const BaseAvatar: React.FC<BaseAvatarProps> = React.memo(
-    ({ mr, color, bg, sizeVariant = VSA.L, rootProps, fallbackProps, $colors, $styles, ...rest }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['avatar', 'mr'], $styles);
+export const BaseAvatar = React.memo(
+    React.forwardRef<HTMLSpanElement, BaseAvatarProps>(
+        ({ mr, color, bg, sizeVariant = VSA.L, rootProps, fallbackProps, $colors, $styles, ...rest }, ref) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['avatar', 'mr'], $styles);
 
-        const getFallbackText = useCallback((altText?: string) => {
-            const words = altText?.split(' ').slice(0, 2);
-            return words?.map((word) => word.slice(0, Math.min(1, word.length))).join('');
-        }, []);
+            const getFallbackText = useCallback((altText?: string) => {
+                const words = altText?.split(' ').slice(0, 2);
+                return words?.map((word) => word.slice(0, Math.min(1, word.length))).join('');
+            }, []);
 
-        return (
-            <SRoot
-                $colors={colors}
-                $styles={styles}
-                $color={color}
-                style={rest.style}
-                $mr={mr}
-                $bg={bg}
-                $sizeVariant={sizeVariant}
-                {...rootProps}
-            >
-                <SImg {...rest} />
-                <SFallback delayMs={600} {...fallbackProps}>
-                    {getFallbackText(rest.alt)}
-                </SFallback>
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    ref={ref}
+                    $colors={colors}
+                    $styles={styles}
+                    $color={color}
+                    style={rest.style}
+                    $mr={mr}
+                    $bg={bg}
+                    $sizeVariant={sizeVariant}
+                    {...rootProps}
+                >
+                    <SImg {...rest} />
+                    <SFallback delayMs={600} {...fallbackProps}>
+                        {getFallbackText(rest.alt)}
+                    </SFallback>
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

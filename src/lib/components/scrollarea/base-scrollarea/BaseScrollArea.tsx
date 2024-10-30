@@ -79,37 +79,47 @@ const SThumb = styled(SBaseScrollAreaComponent.Thumb)<SThumbProps>`
     border-radius: 2px;
 `;
 
-export const BaseScrollArea: React.FC<BaseScrollAreaProps> = React.memo(
-    ({
-        mr,
-        orientation = OC.VERTICAL,
-        width,
-        height,
-        bgScrollbar,
-        thumbColor,
-        $colors,
-        $styles,
-        viewportProps,
-        scrollbarProps,
-        thumbProps,
-        cornerProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['mr'], $styles);
+export const BaseScrollArea = React.memo(
+    React.forwardRef<HTMLDivElement, BaseScrollAreaProps>(
+        (
+            {
+                mr,
+                orientation = OC.VERTICAL,
+                width,
+                height,
+                bgScrollbar,
+                thumbColor,
+                $colors,
+                $styles,
+                viewportProps,
+                scrollbarProps,
+                thumbProps,
+                cornerProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['mr'], $styles);
 
-        return (
-            <SRoot $mr={mr} $width={width} $height={height} $styles={styles} {...rest}>
-                <SBaseScrollAreaComponent.Viewport {...viewportProps}>
-                    {rest.children}
-                </SBaseScrollAreaComponent.Viewport>
-                <SScrollbar $colors={colors} $bgScrollbar={bgScrollbar} orientation={orientation} {...scrollbarProps}>
-                    <SThumb $colors={colors} $thumbColor={thumbColor} {...thumbProps} />
-                </SScrollbar>
-                <ScrollArea.Corner {...cornerProps} />
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot ref={ref} $mr={mr} $width={width} $height={height} $styles={styles} {...rest}>
+                    <SBaseScrollAreaComponent.Viewport {...viewportProps}>
+                        {rest.children}
+                    </SBaseScrollAreaComponent.Viewport>
+                    <SScrollbar
+                        $colors={colors}
+                        $bgScrollbar={bgScrollbar}
+                        orientation={orientation}
+                        {...scrollbarProps}
+                    >
+                        <SThumb $colors={colors} $thumbColor={thumbColor} {...thumbProps} />
+                    </SScrollbar>
+                    <ScrollArea.Corner {...cornerProps} />
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

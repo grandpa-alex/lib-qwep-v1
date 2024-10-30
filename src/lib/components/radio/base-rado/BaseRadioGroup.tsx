@@ -77,38 +77,50 @@ const SRoot = styled.div<SRootProps>`
         `}
 `;
 
-export const BaseRadioGroup: React.FC<BaseRadioGroupProps> = React.memo(
-    ({
-        mr,
-        blocked,
-        $colors,
-        $styles,
-        labelColor,
-        label,
-        boxGapVariantLabel = 'g-1',
-        boxGapVariant = 'g-1',
-        orientation = OC.VERTICAL,
-        message,
-        rootProps,
-        labelProps,
-        messageProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['mr', 'box', 'typography'], $styles);
+export const BaseRadioGroup = React.memo(
+    React.forwardRef<HTMLDivElement, BaseRadioGroupProps>(
+        (
+            {
+                mr,
+                blocked,
+                $colors,
+                $styles,
+                labelColor,
+                label,
+                boxGapVariantLabel = 'g-1',
+                boxGapVariant = 'g-1',
+                orientation = OC.VERTICAL,
+                message,
+                rootProps,
+                labelProps,
+                messageProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['mr', 'box', 'typography'], $styles);
 
-        return (
-            <SRoot $mr={mr} $styles={styles} $blocked={blocked} $boxGapVariantLabel={boxGapVariantLabel} {...rootProps}>
-                <SBaseText.Text $colors={colors} $styles={styles} $color={labelColor} {...labelProps}>
-                    {label}
-                </SBaseText.Text>
-                <SGroup $styles={styles} $boxGapVariant={boxGapVariant} $orientation={orientation} {...rest}>
-                    {rest.children}
-                </SGroup>
-                <MessageBox $colors={colors} message={message} {...messageProps} />
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    ref={ref}
+                    $mr={mr}
+                    $styles={styles}
+                    $blocked={blocked}
+                    $boxGapVariantLabel={boxGapVariantLabel}
+                    {...rootProps}
+                >
+                    <SBaseText.Text $colors={colors} $styles={styles} $color={labelColor} {...labelProps}>
+                        {label}
+                    </SBaseText.Text>
+                    <SGroup $styles={styles} $boxGapVariant={boxGapVariant} $orientation={orientation} {...rest}>
+                        {rest.children}
+                    </SGroup>
+                    <MessageBox $colors={colors} message={message} {...messageProps} />
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

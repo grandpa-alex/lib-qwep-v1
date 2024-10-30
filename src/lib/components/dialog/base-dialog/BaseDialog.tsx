@@ -84,58 +84,64 @@ const SContent = styled(SBaseDialogComponent.Content)<SContentProps>`
         })};
 `;
 
-export const BaseDialog: React.FC<BaseDialogProps> = React.memo(
-    ({
-        bg,
-        boxBorderColor,
-        boxShadowColor,
-        boxShadowVariant,
-        boxRadiusVariant = 'br-2',
-        boxPaddingVariant = 'p-3',
-        boxWidthVariant,
-        boxGapVariant,
-        overlayBlur,
-        overlayColor,
-        $colors,
-        $styles,
-        overlayProps,
-        portalProps,
-        contentProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['box'], $styles);
+export const BaseDialog = React.memo(
+    React.forwardRef<HTMLDivElement, BaseDialogProps>(
+        (
+            {
+                bg,
+                boxBorderColor,
+                boxShadowColor,
+                boxShadowVariant,
+                boxRadiusVariant = 'br-2',
+                boxPaddingVariant = 'p-3',
+                boxWidthVariant,
+                boxGapVariant,
+                overlayBlur,
+                overlayColor,
+                $colors,
+                $styles,
+                overlayProps,
+                portalProps,
+                contentProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['box'], $styles);
 
-        return (
-            <Dialog.Root {...rest}>
-                <Dialog.Portal {...portalProps}>
-                    <SOverlay
-                        $colors={colors}
-                        $styles={styles}
-                        $overlayColor={overlayColor}
-                        $overlayBlur={overlayBlur}
-                        {...overlayProps}
-                    >
-                        <SContent
+            return (
+                <Dialog.Root {...rest}>
+                    <Dialog.Portal {...portalProps}>
+                        <SOverlay
                             $colors={colors}
                             $styles={styles}
-                            $boxPaddingVariant={boxPaddingVariant}
-                            $bg={bg}
-                            $boxBorderColor={boxBorderColor}
-                            $boxShadowColor={boxShadowColor}
-                            $boxShadowVariant={boxShadowVariant}
-                            $boxRadiusVariant={boxRadiusVariant}
-                            $boxWidthVariant={boxWidthVariant}
-                            $boxGapVariant={boxGapVariant}
-                            {...contentProps}
+                            $overlayColor={overlayColor}
+                            $overlayBlur={overlayBlur}
+                            {...overlayProps}
                         >
-                            {rest.children}
-                        </SContent>
-                    </SOverlay>
-                </Dialog.Portal>
-            </Dialog.Root>
-        );
-    }
+                            <SContent
+                                ref={ref}
+                                $colors={colors}
+                                $styles={styles}
+                                $boxPaddingVariant={boxPaddingVariant}
+                                $bg={bg}
+                                $boxBorderColor={boxBorderColor}
+                                $boxShadowColor={boxShadowColor}
+                                $boxShadowVariant={boxShadowVariant}
+                                $boxRadiusVariant={boxRadiusVariant}
+                                $boxWidthVariant={boxWidthVariant}
+                                $boxGapVariant={boxGapVariant}
+                                {...contentProps}
+                            >
+                                {rest.children}
+                            </SContent>
+                        </SOverlay>
+                    </Dialog.Portal>
+                </Dialog.Root>
+            );
+        }
+    )
 );
 
 //export component

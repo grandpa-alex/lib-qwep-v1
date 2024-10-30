@@ -135,38 +135,44 @@ const SItem = styled(RadioGroup.Item)<SItemProps>`
         `}
 `;
 
-export const BaseRadioItem: React.FC<BaseRadioItemProps> = React.memo(
-    ({
-        colorVariant = VC.DEFAULT,
-        sizeVariant = VS.L,
-        mr,
-        color,
-        blocked,
-        $colors,
-        $styles,
-        _isActiveHover = true,
-        indicatorProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['mr', 'radio'], $styles);
+export const BaseRadioItem = React.memo(
+    React.forwardRef<HTMLButtonElement, BaseRadioItemProps>(
+        (
+            {
+                colorVariant = VC.DEFAULT,
+                sizeVariant = VS.L,
+                mr,
+                color,
+                blocked,
+                $colors,
+                $styles,
+                _isActiveHover = true,
+                indicatorProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['mr', 'radio'], $styles);
 
-        return (
-            <SItem
-                $color={color}
-                $mr={mr}
-                $colors={colors}
-                $blocked={blocked}
-                $styles={styles}
-                $colorVariant={colorVariant}
-                $sizeVariant={sizeVariant}
-                $_isActiveHover={_isActiveHover}
-                {...rest}
-            >
-                <SIndicator $sizeVariant={sizeVariant} $styles={styles} {...indicatorProps} />
-            </SItem>
-        );
-    }
+            return (
+                <SItem
+                    ref={ref}
+                    $color={color}
+                    $mr={mr}
+                    $colors={colors}
+                    $blocked={blocked}
+                    $styles={styles}
+                    $colorVariant={colorVariant}
+                    $sizeVariant={sizeVariant}
+                    $_isActiveHover={_isActiveHover}
+                    {...rest}
+                >
+                    <SIndicator $sizeVariant={sizeVariant} $styles={styles} {...indicatorProps} />
+                </SItem>
+            );
+        }
+    )
 );
 
 //export component

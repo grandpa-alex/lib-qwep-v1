@@ -118,37 +118,43 @@ const SRoot = styled(Switch.Root)<SRootProps>`
 `;
 
 export const BaseSwitch: React.FC<BaseSwitchProps> = React.memo(
-    ({
-        mr,
-        color,
-        colorVariant = VC.DEFAULT,
-        sizeVariant = VS.L,
-        blocked,
-        $colors,
-        $styles,
-        _isActiveHover = true,
-        thumbProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['switch', 'mr'], $styles);
+    React.forwardRef<HTMLButtonElement, BaseSwitchProps>(
+        (
+            {
+                mr,
+                color,
+                colorVariant = VC.DEFAULT,
+                sizeVariant = VS.L,
+                blocked,
+                $colors,
+                $styles,
+                _isActiveHover = true,
+                thumbProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['switch', 'mr'], $styles);
 
-        return (
-            <SRoot
-                $color={color}
-                $mr={mr}
-                $blocked={blocked}
-                $colors={colors}
-                $styles={styles}
-                $colorVariant={colorVariant}
-                $sizeVariant={sizeVariant}
-                $_isActiveHover={_isActiveHover}
-                {...rest}
-            >
-                <SThumb $colors={colors} $styles={styles} $sizeVariant={sizeVariant} {...thumbProps} />
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    ref={ref}
+                    $color={color}
+                    $mr={mr}
+                    $blocked={blocked}
+                    $colors={colors}
+                    $styles={styles}
+                    $colorVariant={colorVariant}
+                    $sizeVariant={sizeVariant}
+                    $_isActiveHover={_isActiveHover}
+                    {...rest}
+                >
+                    <SThumb $colors={colors} $styles={styles} $sizeVariant={sizeVariant} {...thumbProps} />
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

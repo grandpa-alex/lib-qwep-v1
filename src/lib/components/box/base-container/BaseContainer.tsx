@@ -24,15 +24,15 @@ const SContainer = styled.div<SContainerProps>`
     background-color: ${(props) => props.$bg ?? props.$colors.background};
 `;
 
-export const BaseContainer: React.FC<BaseContainerProps> = React.memo(
-    ({ as: Component = 'div', bg, $colors, ...rest }) => {
+export const BaseContainer = React.memo(
+    React.forwardRef<HTMLDivElement, BaseContainerProps>(({ as: Component = 'div', bg, $colors, ...rest }, ref) => {
         const colors = useColorScheme($colors);
         return (
-            <SContainer as={Component} $bg={bg} $colors={colors} {...rest}>
+            <SContainer ref={ref} as={Component} $bg={bg} $colors={colors} {...rest}>
                 {rest.children}
             </SContainer>
         );
-    }
+    })
 );
 
 //export component

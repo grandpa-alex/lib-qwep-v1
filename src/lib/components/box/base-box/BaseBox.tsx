@@ -43,34 +43,40 @@ const SBox = styled.div<SBoxProps>`
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
 `;
 
-export const BaseBox: React.FC<BaseBoxProps> = React.memo(
-    ({
-        mr,
-        boxWidthVariant,
-        boxDisplay,
-        boxPaddingVariant,
-        boxGapVariant,
-        as: Component = 'div',
-        $styles,
-        ...rest
-    }) => {
-        const styles = useStyleScheme(['box', 'mr'], $styles);
+export const BaseBox = React.memo(
+    React.forwardRef<HTMLDivElement, BaseBoxProps>(
+        (
+            {
+                mr,
+                boxWidthVariant,
+                boxDisplay,
+                boxPaddingVariant,
+                boxGapVariant,
+                as: Component = 'div',
+                $styles,
+                ...rest
+            },
+            ref
+        ) => {
+            const styles = useStyleScheme(['box', 'mr'], $styles);
 
-        return (
-            <SBox
-                as={Component}
-                $styles={styles}
-                $mr={mr}
-                $boxWidthVariant={boxWidthVariant}
-                $boxPaddingVariant={boxPaddingVariant}
-                $boxGapVariant={boxGapVariant}
-                $boxDisplay={boxDisplay}
-                {...rest}
-            >
-                {rest.children}
-            </SBox>
-        );
-    }
+            return (
+                <SBox
+                    ref={ref}
+                    as={Component}
+                    $styles={styles}
+                    $mr={mr}
+                    $boxWidthVariant={boxWidthVariant}
+                    $boxPaddingVariant={boxPaddingVariant}
+                    $boxGapVariant={boxGapVariant}
+                    $boxDisplay={boxDisplay}
+                    {...rest}
+                >
+                    {rest.children}
+                </SBox>
+            );
+        }
+    )
 );
 
 //export component

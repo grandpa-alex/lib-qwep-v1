@@ -126,46 +126,52 @@ const SRoot = styled(Slider.Root)<SRootProps>`
         `}
 `;
 
-export const BaseSlider: React.FC<BaseSliderProps> = React.memo(
-    ({
-        mr,
-        color,
-        length,
-        blocked,
-        colorVariant = VC.DEFAULT,
-        sizeVariant = VS.L,
-        $colors,
-        $styles,
-        trackProps,
-        rangeProps,
-        thumbProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['slider', 'mr'], $styles);
+export const BaseSlider = React.memo(
+    React.forwardRef<HTMLSpanElement, BaseSliderProps>(
+        (
+            {
+                mr,
+                color,
+                length,
+                blocked,
+                colorVariant = VC.DEFAULT,
+                sizeVariant = VS.L,
+                $colors,
+                $styles,
+                trackProps,
+                rangeProps,
+                thumbProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['slider', 'mr'], $styles);
 
-        return (
-            <SRoot
-                $color={color}
-                $mr={mr}
-                $length={length}
-                $colors={colors}
-                $styles={styles}
-                $blocked={blocked}
-                $colorVariant={colorVariant}
-                $sizeVariant={sizeVariant}
-                {...rest}
-            >
-                <STrack {...trackProps}>
-                    <SRange {...rangeProps} />
-                </STrack>
-                {rest.defaultValue &&
-                    rest.defaultValue.map((_, idx) => {
-                        return <SThumb key={idx} {...thumbProps} />;
-                    })}
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    ref={ref}
+                    $color={color}
+                    $mr={mr}
+                    $length={length}
+                    $colors={colors}
+                    $styles={styles}
+                    $blocked={blocked}
+                    $colorVariant={colorVariant}
+                    $sizeVariant={sizeVariant}
+                    {...rest}
+                >
+                    <STrack {...trackProps}>
+                        <SRange {...rangeProps} />
+                    </STrack>
+                    {rest.defaultValue &&
+                        rest.defaultValue.map((_, idx) => {
+                            return <SThumb key={idx} {...thumbProps} />;
+                        })}
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

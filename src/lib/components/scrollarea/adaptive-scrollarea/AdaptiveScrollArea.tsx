@@ -69,40 +69,46 @@ const SRoot = styled.div<SRootProps>`
         })}
 `;
 
-export const AdaptiveScrollArea: React.FC<AdaptiveScrollAreaProps> = React.memo(
-    ({
-        mr,
-        children,
-        boxWidthVariant,
-        boxDisplay,
-        boxPaddingVariant,
-        boxGapVariant,
-        thumbColor,
-        size,
-        $colors,
-        $styles,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['mr', 'box'], $styles);
+export const AdaptiveScrollArea = React.memo(
+    React.forwardRef<HTMLDivElement, AdaptiveScrollAreaProps>(
+        (
+            {
+                mr,
+                children,
+                boxWidthVariant,
+                boxDisplay,
+                boxPaddingVariant,
+                boxGapVariant,
+                thumbColor,
+                size,
+                $colors,
+                $styles,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['mr', 'box'], $styles);
 
-        return (
-            <SRoot
-                $mr={mr}
-                $colors={colors}
-                $thumbColor={thumbColor}
-                $styles={styles}
-                $size={size}
-                $boxWidthVariant={boxWidthVariant}
-                $boxPaddingVariant={boxPaddingVariant}
-                $boxGapVariant={boxGapVariant}
-                $boxDisplay={boxDisplay}
-                {...rest}
-            >
-                {children}
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    ref={ref}
+                    $mr={mr}
+                    $colors={colors}
+                    $thumbColor={thumbColor}
+                    $styles={styles}
+                    $size={size}
+                    $boxWidthVariant={boxWidthVariant}
+                    $boxPaddingVariant={boxPaddingVariant}
+                    $boxGapVariant={boxGapVariant}
+                    $boxDisplay={boxDisplay}
+                    {...rest}
+                >
+                    {children}
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

@@ -36,22 +36,26 @@ const SContent = styled(Popover.Content)<SContentProps>`
     }
 `;
 
-export const BasePopup: React.FC<BasePopupProps> = React.memo(
-    ({ trigger, bg, $colors, triggerProps, portalProps, contentProps, arrowProps, ...rest }) => {
-        const colors = useColorScheme($colors);
+export const BasePopup = React.memo(
+    React.forwardRef<HTMLButtonElement, BasePopupProps>(
+        ({ trigger, bg, $colors, triggerProps, portalProps, contentProps, arrowProps, ...rest }, ref) => {
+            const colors = useColorScheme($colors);
 
-        return (
-            <Popover.Root {...rest}>
-                <STrigger {...triggerProps}>{trigger}</STrigger>
-                <Popover.Portal {...portalProps}>
-                    <SContent $colors={colors} $bg={bg} sideOffset={8} {...contentProps}>
-                        {rest.children}
-                        <SArrow {...arrowProps} />
-                    </SContent>
-                </Popover.Portal>
-            </Popover.Root>
-        );
-    }
+            return (
+                <Popover.Root {...rest}>
+                    <STrigger ref={ref} {...triggerProps}>
+                        {trigger}
+                    </STrigger>
+                    <Popover.Portal {...portalProps}>
+                        <SContent $colors={colors} $bg={bg} sideOffset={8} {...contentProps}>
+                            {rest.children}
+                            <SArrow {...arrowProps} />
+                        </SContent>
+                    </Popover.Portal>
+                </Popover.Root>
+            );
+        }
+    )
 );
 
 //export component

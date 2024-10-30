@@ -1,10 +1,15 @@
-import React, { useRef } from 'react';
-import { BaseAvatar, BaseBox, BaseButton, BaseCheckbox, BasePopup, BaseTextField, BaseTitle } from '../lib';
+// import React, { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { BaseAvatar, BaseBox, BaseButton, BasePopup, BaseTitle } from '../lib';
 
 function Avatar() {
     const url = 'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80';
     const urlB = 'https://images.unsplash.com/photo-1492633423870-43';
     const inputRef = useRef(null);
+
+    useEffect(() => {
+        console.log('AAAA', inputRef);
+    }, [inputRef]);
 
     return (
         <BaseBox style={{ paddingBottom: '300px' }}>
@@ -19,13 +24,6 @@ function Avatar() {
                 <BasePopup bg={'#b31f1f'} trigger={<BaseButton>rtretretr</BaseButton>}>
                     <BaseBox>kgjrekgjregjregregkerkgjkrejg</BaseBox>
                 </BasePopup>
-            </BaseBox>
-
-            <BaseBox style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <BaseTextField ref={inputRef} />
-                <input type="text" ref={inputRef} />
-                <BaseButton ref={inputRef}>gjrghjreg</BaseButton>
-                <BaseCheckbox ref={inputRef} />
             </BaseBox>
         </BaseBox>
     );

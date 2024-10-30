@@ -1,8 +1,18 @@
-import { BaseBox, BaseMenuGroup, BaseMenuItem, BaseTitle, SimpleBox, SimpleTextField } from '@src/lib';
+import { BaseBox, BaseMenuGroup, BaseMenuItem, BaseTitle, SimpleBox, SimpleTextField } from '../lib';
+import { useEffect, useRef } from 'react';
+// import React, { useEffect, useRef } from 'react';
 
 function Box() {
+    const boxRef = useRef();
+
+    useEffect(() => {
+        console.log('boxRef', boxRef);
+    }, [boxRef]);
     return (
         <BaseBox>
+            <div></div>
+            {/* <BaseAvatar ref={boxRef} /> */}
+            {/* <BaseBox ref={boxRef}>gergregreg</BaseBox> */}
             <h2>BASE BOX</h2>
             {/* <BaseBox boxGapVariant={'g-3'} mr={'m-3'} style={{ display: 'flex' }}>
                 <BaseBox
@@ -47,6 +57,7 @@ function Box() {
                     <SimpleTextField placeholder={'Placeholder'} />
                 </BaseBox>
             </BaseBox> */}
+
             <BaseTitle as={'h2'}>Simple Box</BaseTitle>
             <SimpleBox
                 mr={'m-3'}

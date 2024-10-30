@@ -30,13 +30,15 @@ const SRoot = styled.div<React.HTMLAttributes<HTMLDivElement>>`
     }
 `;
 
-export const BaseLayout: React.FC<BaseLayoutProps> = React.memo(({ as: Component = 'div', rootProps, ...rest }) => {
-    return (
-        <SRoot as={Component} {...rootProps}>
-            <SWrapper {...rest}>{rest.children}</SWrapper>
-        </SRoot>
-    );
-});
+export const BaseLayout = React.memo(
+    React.forwardRef<HTMLDivElement, BaseLayoutProps>(({ as: Component = 'div', rootProps, ...rest }, ref) => {
+        return (
+            <SRoot ref={ref} as={Component} {...rootProps}>
+                <SWrapper {...rest}>{rest.children}</SWrapper>
+            </SRoot>
+        );
+    })
+);
 
 //export component
 export const SBaseLayout = {

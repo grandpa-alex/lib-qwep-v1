@@ -1,7 +1,7 @@
 {
     "name": "orc-design-ui",
     "private": false,
-    "version": "1.0.6",
+    "version": "1.0.9",
     "type": "module",
     "files": [
         "dist/**/*"
@@ -16,9 +16,9 @@
         }
     },
     "scripts": {
+        "build:types": "tsc -p tsconfig.build.json",
         "dev": "vite",
-        "build": "tsc && vite build",
-        "build:types": "tsc",
+        "build": "mv tsconfig.json tsconfig.dev.json && mv tsconfig.build.json tsconfig.json && vite build && mv tsconfig.json tsconfig.build.json && mv tsconfig.dev.json tsconfig.json",
         "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
         "format": "prettier --write .",
         "preview": "vite preview",
@@ -45,42 +45,5 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "styled-components": "^6.1.1"
-    },
-    "dependencies": {
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
-    },
-    "devDependencies": {
-        "@chromatic-com/storybook": "^1.6.1",
-        "@storybook/addon-essentials": "^8.2.9",
-        "@storybook/addon-interactions": "^8.2.9",
-        "@storybook/addon-links": "^8.2.9",
-        "@storybook/addon-onboarding": "^8.2.9",
-        "@storybook/blocks": "^8.2.9",
-        "@storybook/builder-vite": "^8.2.9",
-        "@storybook/react": "^8.2.9",
-        "@storybook/react-vite": "^8.2.9",
-        "@storybook/test": "^8.2.9",
-        "@types/react": "^18.2.43",
-        "@types/react-dom": "^18.2.17",
-        "@types/styled-components": "^5.1.34",
-        "@typescript-eslint/eslint-plugin": "^8.1.0",
-        "@typescript-eslint/parser": "^8.1.0",
-        "@vitejs/plugin-react": "^4.2.1",
-        "dts-bundle-generator": "^9.3.1",
-        "eslint": "^8.57.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.2.1",
-        "eslint-plugin-react": "^7.35.0",
-        "eslint-plugin-react-hooks": "^4.6.2",
-        "eslint-plugin-react-refresh": "^0.4.9",
-        "eslint-plugin-storybook": "^0.8.0",
-        "json": "^11.0.0",
-        "path": "^0.12.7",
-        "prettier": "^3.3.3",
-        "storybook": "^8.2.9",
-        "typescript": "^5.3.3",
-        "vite": "^5.0.8",
-        "vite-plugin-dts": "^3.6.4"
     }
 }

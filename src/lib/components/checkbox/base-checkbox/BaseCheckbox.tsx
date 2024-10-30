@@ -135,51 +135,57 @@ const SRoot = styled(Checkbox.Root)<SRootProps>`
         `}
 `;
 
-export const BaseCheckbox: React.FC<BaseCheckboxProps> = React.memo(
-    ({
-        mr,
-        color,
-        colorVariant = VC.DEFAULT,
-        sizeVariant = VS.L,
-        blocked,
-        $colors,
-        $styles,
-        _isActiveHover = true,
-        indicatorProps,
-        iconProps,
-        polylineProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['base', 'checkbox', 'mr'], $styles);
+export const BaseCheckbox = React.memo(
+    React.forwardRef<HTMLButtonElement, BaseCheckboxProps>(
+        (
+            {
+                mr,
+                color,
+                colorVariant = VC.DEFAULT,
+                sizeVariant = VS.L,
+                blocked,
+                $colors,
+                $styles,
+                _isActiveHover = true,
+                indicatorProps,
+                iconProps,
+                polylineProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['base', 'checkbox', 'mr'], $styles);
 
-        return (
-            <SRoot
-                $color={color}
-                $mr={mr}
-                $colors={colors}
-                $blocked={blocked}
-                $styles={styles}
-                $colorVariant={colorVariant}
-                $sizeVariant={sizeVariant}
-                $_isActiveHover={_isActiveHover}
-                {...rest}
-            >
-                <Checkbox.Indicator {...indicatorProps}>
-                    <SIcon
-                        $colors={colors}
-                        $colorVariant={colorVariant}
-                        $disabled={rest.disabled}
-                        $color={color}
-                        viewBox="0 0 24 24"
-                        {...iconProps}
-                    >
-                        <polyline points="20 6 9 17 4 12" {...polylineProps} />
-                    </SIcon>
-                </Checkbox.Indicator>
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    ref={ref}
+                    $color={color}
+                    $mr={mr}
+                    $colors={colors}
+                    $blocked={blocked}
+                    $styles={styles}
+                    $colorVariant={colorVariant}
+                    $sizeVariant={sizeVariant}
+                    $_isActiveHover={_isActiveHover}
+                    {...rest}
+                >
+                    <Checkbox.Indicator {...indicatorProps}>
+                        <SIcon
+                            $colors={colors}
+                            $colorVariant={colorVariant}
+                            $disabled={rest.disabled}
+                            $color={color}
+                            viewBox="0 0 24 24"
+                            {...iconProps}
+                        >
+                            <polyline points="20 6 9 17 4 12" {...polylineProps} />
+                        </SIcon>
+                    </Checkbox.Indicator>
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

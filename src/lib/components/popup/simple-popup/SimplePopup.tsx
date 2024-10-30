@@ -145,81 +145,88 @@ const SCard = styled.div<SCardProps>`
         })}
 `;
 
-export const SimplePopup: React.FC<SimplePopupProps> = React.memo(
-    ({
-        icon,
-        title,
-        trigger,
-        bg,
-        color,
-        width,
-        height,
-        maxHeight,
-        boxPaddingVariant = 'p-1',
-        boxGapVariant,
-        boxBorderColor,
-        boxShadowColor,
-        boxShadowVariant = 'shd-1',
-        boxRadiusVariant = 'br-1',
-        $colors,
-        $styles,
-        triggerProps,
-        portalProps,
-        contentProps,
-        headerProps,
-        cardProps,
-        iconProps,
-        titleProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['mr', 'box', 'typography'], $styles);
+export const SimplePopup = React.memo(
+    React.forwardRef<HTMLButtonElement, SimplePopupProps>(
+        (
+            {
+                icon,
+                title,
+                trigger,
+                bg,
+                color,
+                width,
+                height,
+                maxHeight,
+                boxPaddingVariant = 'p-1',
+                boxGapVariant,
+                boxBorderColor,
+                boxShadowColor,
+                boxShadowVariant = 'shd-1',
+                boxRadiusVariant = 'br-1',
+                $colors,
+                $styles,
+                triggerProps,
+                portalProps,
+                contentProps,
+                headerProps,
+                cardProps,
+                iconProps,
+                titleProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['mr', 'box', 'typography'], $styles);
 
-        return (
-            <SBasePopup.Root {...rest}>
-                <SBasePopup.Trigger {...triggerProps}>{trigger}</SBasePopup.Trigger>
-                <SBasePopup.Portal {...portalProps}>
-                    <SContent
-                        $colors={colors}
-                        $styles={styles}
-                        $bg={bg}
-                        $boxBorderColor={boxBorderColor}
-                        $boxShadowColor={boxShadowColor}
-                        $boxShadowVariant={boxShadowVariant}
-                        $boxRadiusVariant={boxRadiusVariant}
-                        $width={width}
-                        $height={height}
-                        $maxHeight={maxHeight}
-                        sideOffset={8}
-                        {...contentProps}
-                    >
-                        <SHeader
+            return (
+                <SBasePopup.Root {...rest}>
+                    <SBasePopup.Trigger ref={ref} {...triggerProps}>
+                        {trigger}
+                    </SBasePopup.Trigger>
+                    <SBasePopup.Portal {...portalProps}>
+                        <SContent
                             $colors={colors}
                             $styles={styles}
-                            $color={color}
-                            $boxPaddingVariant={boxPaddingVariant}
-                            {...headerProps}
-                        >
-                            <SIcon {...iconProps}>{icon}</SIcon>
-                            <STitle {...titleProps}>{title}</STitle>
-                        </SHeader>
-                        <SCard
-                            $colors={colors}
-                            $styles={styles}
-                            $color={color}
-                            $boxPaddingVariant={boxPaddingVariant}
-                            $boxGapVariant={boxGapVariant}
+                            $bg={bg}
+                            $boxBorderColor={boxBorderColor}
+                            $boxShadowColor={boxShadowColor}
+                            $boxShadowVariant={boxShadowVariant}
+                            $boxRadiusVariant={boxRadiusVariant}
+                            $width={width}
                             $height={height}
                             $maxHeight={maxHeight}
-                            {...cardProps}
+                            sideOffset={8}
+                            {...contentProps}
                         >
-                            {rest.children}
-                        </SCard>
-                    </SContent>
-                </SBasePopup.Portal>
-            </SBasePopup.Root>
-        );
-    }
+                            <SHeader
+                                $colors={colors}
+                                $styles={styles}
+                                $color={color}
+                                $boxPaddingVariant={boxPaddingVariant}
+                                {...headerProps}
+                            >
+                                <SIcon {...iconProps}>{icon}</SIcon>
+                                <STitle {...titleProps}>{title}</STitle>
+                            </SHeader>
+                            <SCard
+                                $colors={colors}
+                                $styles={styles}
+                                $color={color}
+                                $boxPaddingVariant={boxPaddingVariant}
+                                $boxGapVariant={boxGapVariant}
+                                $height={height}
+                                $maxHeight={maxHeight}
+                                {...cardProps}
+                            >
+                                {rest.children}
+                            </SCard>
+                        </SContent>
+                    </SBasePopup.Portal>
+                </SBasePopup.Root>
+            );
+        }
+    )
 );
 
 //export component

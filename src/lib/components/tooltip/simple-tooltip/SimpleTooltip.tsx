@@ -56,53 +56,60 @@ const SContent = styled(SBaseTooltipComponent.Content)<SContentProps>`
     color: ${(props) => props.$colors.textItem};
 `;
 
-export const SimpleTooltip: React.FC<SimpleTooltipProps> = React.memo(
-    ({
-        bg,
-        tooltip,
-        boxPaddingVariant = 'p-1',
-        boxGapVariant,
-        boxBorderColor,
-        boxShadowColor,
-        boxShadowVariant = 'shd-1',
-        boxRadiusVariant = 'br-1',
-        $colors,
-        $styles,
-        providerProps,
-        rootProps,
-        triggerProps,
-        portalProps,
+export const SimpleTooltip = React.memo(
+    React.forwardRef<HTMLButtonElement, SimpleTooltipProps>(
+        (
+            {
+                bg,
+                tooltip,
+                boxPaddingVariant = 'p-1',
+                boxGapVariant,
+                boxBorderColor,
+                boxShadowColor,
+                boxShadowVariant = 'shd-1',
+                boxRadiusVariant = 'br-1',
+                $colors,
+                $styles,
+                providerProps,
+                rootProps,
+                triggerProps,
+                portalProps,
 
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['box'], $styles);
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['box'], $styles);
 
-        return (
-            <SBaseTooltip.Provider {...providerProps}>
-                <SBaseTooltip.Root {...rootProps}>
-                    <SBaseTooltip.Trigger {...triggerProps}>{rest.children}</SBaseTooltip.Trigger>
-                    <SBaseTooltip.Portal {...portalProps}>
-                        <SContent
-                            $bg={bg}
-                            $colors={colors}
-                            $styles={styles}
-                            $boxPaddingVariant={boxPaddingVariant}
-                            $boxGapVariant={boxGapVariant}
-                            $boxBorderColor={boxBorderColor}
-                            $boxShadowColor={boxShadowColor}
-                            $boxShadowVariant={boxShadowVariant}
-                            $boxRadiusVariant={boxRadiusVariant}
-                            side={'bottom'}
-                            {...rest}
-                        >
-                            {tooltip}
-                        </SContent>
-                    </SBaseTooltip.Portal>
-                </SBaseTooltip.Root>
-            </SBaseTooltip.Provider>
-        );
-    }
+            return (
+                <SBaseTooltip.Provider {...providerProps}>
+                    <SBaseTooltip.Root {...rootProps}>
+                        <SBaseTooltip.Trigger ref={ref} {...triggerProps}>
+                            {rest.children}
+                        </SBaseTooltip.Trigger>
+                        <SBaseTooltip.Portal {...portalProps}>
+                            <SContent
+                                $bg={bg}
+                                $colors={colors}
+                                $styles={styles}
+                                $boxPaddingVariant={boxPaddingVariant}
+                                $boxGapVariant={boxGapVariant}
+                                $boxBorderColor={boxBorderColor}
+                                $boxShadowColor={boxShadowColor}
+                                $boxShadowVariant={boxShadowVariant}
+                                $boxRadiusVariant={boxRadiusVariant}
+                                side={'bottom'}
+                                {...rest}
+                            >
+                                {tooltip}
+                            </SContent>
+                        </SBaseTooltip.Portal>
+                    </SBaseTooltip.Root>
+                </SBaseTooltip.Provider>
+            );
+        }
+    )
 );
 
 //export component

@@ -44,24 +44,28 @@ const SContent = styled(SBaseTooltipComponent.Content)<SContentProps>`
     box-shadow: ${(props) => `${props.$styles.box.boxShadow_1} ${props.$colors.shadowColor}`};
 `;
 
-export const BaseTooltip: React.FC<BaseTooltipProps> = React.memo(
-    ({ tooltip, providerProps, rootProps, triggerProps, portalProps, $colors, $styles, ...rest }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['box'], $styles);
+export const BaseTooltip = React.memo(
+    React.forwardRef<HTMLButtonElement, BaseTooltipProps>(
+        ({ tooltip, providerProps, rootProps, triggerProps, portalProps, $colors, $styles, ...rest }, ref) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['box'], $styles);
 
-        return (
-            <Tooltip.Provider {...providerProps}>
-                <Tooltip.Root {...rootProps}>
-                    <STrigger {...triggerProps}>{rest.children}</STrigger>
-                    <Tooltip.Portal {...portalProps}>
-                        <SContent $colors={colors} $styles={styles} side={'bottom'} {...rest}>
-                            {tooltip}
-                        </SContent>
-                    </Tooltip.Portal>
-                </Tooltip.Root>
-            </Tooltip.Provider>
-        );
-    }
+            return (
+                <Tooltip.Provider {...providerProps}>
+                    <Tooltip.Root {...rootProps}>
+                        <STrigger ref={ref} {...triggerProps}>
+                            {rest.children}
+                        </STrigger>
+                        <Tooltip.Portal {...portalProps}>
+                            <SContent $colors={colors} $styles={styles} side={'bottom'} {...rest}>
+                                {tooltip}
+                            </SContent>
+                        </Tooltip.Portal>
+                    </Tooltip.Root>
+                </Tooltip.Provider>
+            );
+        }
+    )
 );
 
 //export component

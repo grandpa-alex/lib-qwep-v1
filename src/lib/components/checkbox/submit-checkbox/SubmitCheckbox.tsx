@@ -57,37 +57,40 @@ const SRoot = styled(SBaseCheckbox.Root)<SRootProps>`
 `;
 
 export const SubmitCheckbox: React.FC<SubmitCheckboxProps> = React.memo(
-    ({ isLoading, colorVariant = VC.DEFAULT, sizeVariant = VS.L, _isActiveHover = true, ...rest }) => {
-        const colors = useColorScheme(rest.$colors);
-        const styles = useStyleScheme(['base', 'checkbox', 'mr'], rest.$styles);
+    React.forwardRef<HTMLButtonElement, SubmitCheckboxProps>(
+        ({ isLoading, colorVariant = VC.DEFAULT, sizeVariant = VS.L, _isActiveHover = true, ...rest }, ref) => {
+            const colors = useColorScheme(rest.$colors);
+            const styles = useStyleScheme(['base', 'checkbox', 'mr'], rest.$styles);
 
-        return (
-            <SRoot
-                $isLoading={isLoading}
-                $color={rest.color}
-                $mr={rest.mr}
-                $colors={colors}
-                $blocked={rest.blocked}
-                $styles={styles}
-                $colorVariant={colorVariant}
-                $sizeVariant={sizeVariant}
-                $_isActiveHover={_isActiveHover}
-                {...rest}
-            >
-                <SBaseCheckbox.Indicator {...rest.indicatorProps}>
-                    <SBaseCheckbox.Icon
-                        $colors={colors}
-                        $disabled={rest.disabled}
-                        $colorVariant={colorVariant}
-                        viewBox="0 0 24 24"
-                        {...rest.iconProps}
-                    >
-                        <polyline points="20 6 9 17 4 12" {...rest.polylineProps} />
-                    </SBaseCheckbox.Icon>
-                </SBaseCheckbox.Indicator>
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    ref={ref}
+                    $isLoading={isLoading}
+                    $color={rest.color}
+                    $mr={rest.mr}
+                    $colors={colors}
+                    $blocked={rest.blocked}
+                    $styles={styles}
+                    $colorVariant={colorVariant}
+                    $sizeVariant={sizeVariant}
+                    $_isActiveHover={_isActiveHover}
+                    {...rest}
+                >
+                    <SBaseCheckbox.Indicator {...rest.indicatorProps}>
+                        <SBaseCheckbox.Icon
+                            $colors={colors}
+                            $disabled={rest.disabled}
+                            $colorVariant={colorVariant}
+                            viewBox="0 0 24 24"
+                            {...rest.iconProps}
+                        >
+                            <polyline points="20 6 9 17 4 12" {...rest.polylineProps} />
+                        </SBaseCheckbox.Icon>
+                    </SBaseCheckbox.Indicator>
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

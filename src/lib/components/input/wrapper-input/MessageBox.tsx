@@ -32,15 +32,17 @@ const SMessage = styled.span<SMessageProps>`
         })};
 `;
 
-export const MessageBox: React.FC<MessageBoxProps> = React.memo(({ $colors, message, ...rest }) => {
-    const colors = useColorScheme($colors);
-    if (!message) return;
-    return (
-        <SMessage $colors={colors} $colorVariant={message.colorVariant ?? 'error'} {...rest}>
-            {message.text}
-        </SMessage>
-    );
-});
+export const MessageBox = React.memo(
+    React.forwardRef<HTMLSpanElement, MessageBoxProps>(({ $colors, message, ...rest }, ref) => {
+        const colors = useColorScheme($colors);
+        if (!message) return;
+        return (
+            <SMessage ref={ref} $colors={colors} $colorVariant={message.colorVariant ?? 'error'} {...rest}>
+                {message.text}
+            </SMessage>
+        );
+    })
+);
 
 //export component
 export const SMessageBox = {

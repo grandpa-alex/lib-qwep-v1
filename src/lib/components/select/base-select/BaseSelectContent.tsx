@@ -326,85 +326,91 @@ const SViewport = styled.div<SViewportProps>`
         })}
 `;
 
-export const BaseSelectContent: React.FC<BaseSelectContentProps> = React.memo(
-    ({
-        mr,
-        color,
-        width,
-        maxHeight,
-        placeholder,
-        positionTrigger = BP.CENTER,
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
-        boxPaddingVariant = 'p-1',
-        boxShadowVariant = 'shd-1',
-        blocked,
-        $colors,
-        $styles,
-        _isActiveHover = true,
-        triggerProps,
-        valueProps,
-        iconProps,
-        iconArrowProps,
-        portalProps,
-        contentProps,
-        viewportProps,
-        ...rest
-    }) => {
-        const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['base', 'box', 'select', 'typography', 'mr'], $styles);
+export const BaseSelectContent = React.memo(
+    React.forwardRef<HTMLButtonElement, BaseSelectContentProps>(
+        (
+            {
+                mr,
+                color,
+                width,
+                maxHeight,
+                placeholder,
+                positionTrigger = BP.CENTER,
+                sizeVariant = VS.L,
+                colorVariant = VC.DEFAULT,
+                boxPaddingVariant = 'p-1',
+                boxShadowVariant = 'shd-1',
+                blocked,
+                $colors,
+                $styles,
+                _isActiveHover = true,
+                triggerProps,
+                valueProps,
+                iconProps,
+                iconArrowProps,
+                portalProps,
+                contentProps,
+                viewportProps,
+                ...rest
+            },
+            ref
+        ) => {
+            const colors = useColorScheme($colors);
+            const styles = useStyleScheme(['base', 'box', 'select', 'typography', 'mr'], $styles);
 
-        return (
-            <Select.Root {...rest}>
-                <STrigger
-                    $mr={mr}
-                    $colors={colors}
-                    $styles={styles}
-                    $color={color}
-                    $width={width}
-                    $sizeVariant={sizeVariant}
-                    $colorVariant={colorVariant}
-                    $positionTrigger={positionTrigger}
-                    $_isActiveHover={_isActiveHover}
-                    $blocked={blocked}
-                    disabled={rest.disabled}
-                    {...triggerProps}
-                >
-                    <Select.Value placeholder={placeholder} {...valueProps} />
-                    <SBaseSelectComponent.Icon {...iconProps}>
-                        <Arrow {...iconArrowProps} />
-                    </SBaseSelectComponent.Icon>
-                </STrigger>
-                <Select.Portal {...portalProps}>
-                    <SContent
-                        side={'bottom'}
-                        position="popper"
-                        $colorVariant={colorVariant}
+            return (
+                <Select.Root {...rest}>
+                    <STrigger
+                        ref={ref}
+                        $mr={mr}
                         $colors={colors}
                         $styles={styles}
                         $color={color}
                         $width={width}
-                        sideOffset={5}
-                        $boxPaddingVariant={boxPaddingVariant}
-                        $boxShadowVariant={boxShadowVariant}
+                        $sizeVariant={sizeVariant}
+                        $colorVariant={colorVariant}
+                        $positionTrigger={positionTrigger}
                         $_isActiveHover={_isActiveHover}
-                        {...contentProps}
+                        $blocked={blocked}
+                        disabled={rest.disabled}
+                        {...triggerProps}
                     >
-                        <SViewport
-                            $colors={colors}
-                            $color={color}
+                        <Select.Value placeholder={placeholder} {...valueProps} />
+                        <SBaseSelectComponent.Icon {...iconProps}>
+                            <Arrow {...iconArrowProps} />
+                        </SBaseSelectComponent.Icon>
+                    </STrigger>
+                    <Select.Portal {...portalProps}>
+                        <SContent
+                            side={'bottom'}
+                            position="popper"
                             $colorVariant={colorVariant}
-                            $maxHeight={maxHeight}
+                            $colors={colors}
+                            $styles={styles}
+                            $color={color}
+                            $width={width}
+                            sideOffset={5}
+                            $boxPaddingVariant={boxPaddingVariant}
+                            $boxShadowVariant={boxShadowVariant}
                             $_isActiveHover={_isActiveHover}
-                            {...viewportProps}
+                            {...contentProps}
                         >
-                            {rest.children}
-                        </SViewport>
-                    </SContent>
-                </Select.Portal>
-            </Select.Root>
-        );
-    }
+                            <SViewport
+                                $colors={colors}
+                                $color={color}
+                                $colorVariant={colorVariant}
+                                $maxHeight={maxHeight}
+                                $_isActiveHover={_isActiveHover}
+                                {...viewportProps}
+                            >
+                                {rest.children}
+                            </SViewport>
+                        </SContent>
+                    </Select.Portal>
+                </Select.Root>
+            );
+        }
+    )
 );
 
 // //export component

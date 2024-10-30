@@ -42,23 +42,26 @@ const SRoot = styled(Tabs.Content)<SRootProps>`
     ${(props) => getMargin(props.$styles.mr, props.$mr)};
 `;
 
-export const BaseTabContent: React.FC<BaseTabContentProps> = React.memo(
-    ({ mr, boxWidthVariant, boxPaddingVariant, boxDisplay, $styles, ...rest }) => {
-        const styles = useStyleScheme(['mr', 'box'], $styles);
+export const BaseTabContent = React.memo(
+    React.forwardRef<HTMLDivElement, BaseTabContentProps>(
+        ({ mr, boxWidthVariant, boxPaddingVariant, boxDisplay, $styles, ...rest }, ref) => {
+            const styles = useStyleScheme(['mr', 'box'], $styles);
 
-        return (
-            <SRoot
-                $mr={mr}
-                $styles={styles}
-                $boxWidthVariant={boxWidthVariant}
-                $boxPaddingVariant={boxPaddingVariant}
-                $boxDisplay={boxDisplay}
-                {...rest}
-            >
-                {rest.children}
-            </SRoot>
-        );
-    }
+            return (
+                <SRoot
+                    ref={ref}
+                    $mr={mr}
+                    $styles={styles}
+                    $boxWidthVariant={boxWidthVariant}
+                    $boxPaddingVariant={boxPaddingVariant}
+                    $boxDisplay={boxDisplay}
+                    {...rest}
+                >
+                    {rest.children}
+                </SRoot>
+            );
+        }
+    )
 );
 
 //export component

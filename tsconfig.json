@@ -4,11 +4,17 @@
         "declaration": true,
         "outDir": "dist/types",
         "paths": {
-            "@src/*": ["src/*"]
+            "@src/*": [
+                "src/*"
+            ]
         },
-        "target": "ES2020",
+        "target": "ES2021",
         "useDefineForClassFields": true,
-        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "lib": [
+            "ES2021",
+            "DOM",
+            "DOM.Iterable"
+        ],
         "module": "ESNext",
         "skipLibCheck": true,
         "moduleResolution": "bundler",
@@ -17,12 +23,23 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
-        "strict": true,
+        // "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["src/lib"],
-    "exclude": ["node_modules", "dist", "build", "some_other_dir"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "build",
+        "some_other_dir"
+    ],
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
+        }
+    ]
 }

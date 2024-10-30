@@ -16,9 +16,8 @@
         }
     },
     "scripts": {
-        "build:types": "tsc -p tsconfig.build.json",
         "dev": "vite",
-        "build": "mv tsconfig.json tsconfig.dev.json && mv tsconfig.build.json tsconfig.json && vite build && mv tsconfig.json tsconfig.build.json && mv tsconfig.dev.json tsconfig.json",
+        "build": "tsc && vite build",
         "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
         "format": "prettier --write .",
         "preview": "vite preview",

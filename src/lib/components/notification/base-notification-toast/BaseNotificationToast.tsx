@@ -1,30 +1,31 @@
 import { Icon } from '@src/lib';
 import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox';
 import { getColor } from '@src/lib/common/getColor';
-import { getMargin } from '@src/lib/common/getMargin';
 import { useColorScheme } from '@src/lib/general';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
-import { TypeSSBase, TypeSSBox, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
+import { TypeSSBase, TypeSSBox, TypeSSTypography } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { ENotificationPosition, EVariantToast, TypeMargin, VS } from '@src/lib/types/TypeBase';
 import { TypeBoxGapVariant, TypeBoxPaddingVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 type TypeStyles = {
-    mr: TypeSSMR;
     typography: TypeSSTypography;
     box: TypeSSBox;
     base: TypeSSBase;
 };
 
 type BaseNotificationToastProps = {
-    id?: string;
-    position?: ENotificationPosition;
+    id: string;
     count?: number;
     onClose?: (id: string, position: ENotificationPosition) => void;
-    title?: string;
-    message?: React.ReactNode;
+    title: string;
+    message: React.ReactNode;
+} & BaseProps;
+
+type BaseProps = {
+    position: ENotificationPosition;
     variant?: EVariantToast;
     iconSizeVariant?: VS;
     isClose?: boolean;
@@ -33,30 +34,219 @@ type BaseNotificationToastProps = {
     mr?: TypeMargin;
     boxPaddingVariant?: TypeBoxPaddingVariant;
     boxGapVariant?: TypeBoxGapVariant;
+    animationDuration?: number;
     $styles?: TypeStyles;
     $colors?: TypeColorScheme;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type SNotificationToastProps = {
-    $mr?: TypeMargin;
     $bg?: Hex;
     $variant: EVariantToast;
+    $position: ENotificationPosition;
     $boxPaddingVariant?: TypeBoxPaddingVariant;
     $boxGapVariant?: TypeBoxGapVariant;
+    $animationDuration?: number;
     $styles: TypeStyles;
     $colors: TypeColorScheme;
 } & React.HTMLAttributes<HTMLDivElement>;
+//     [ENotificationPosition.BOTTOM_RIGHT]: css`
+//         @keyframes ToastBottomRight {
+//             from {
+//                 opacity: 0;
+//                 transform: translateX(50%);
+//             }
+//             to {
+//                 opacity: 0.8;
+//                 transform: translateX(0);
+//             }
+//         }
+//         animation: ToastBottomRight;
+//     `,
+//     [ENotificationPosition.BOTTOM_CENTER]: css`
+//         @keyframes ToastBottomCenter {
+//             from {
+//                 opacity: 0;
+//                 transform: translateY(50%);
+//             }
+//             to {
+//                 opacity: 0.8;
+//                 transform: translateY(0);
+//             }
+//         }
+//         animation: ToastBottomCenter;
+//     `,
+//     [ENotificationPosition.BOTTOM_LEFT]: css`
+//         @keyframes ToastBottomLeft {
+//             from {
+//                 opacity: 0;
+//                 transform: translateX(-50%);
+//             }
+//             to {
+//                 opacity: 0.8;
+//                 transform: translateX(0);
+//             }
+//         }
+//         animation: ToastBottomLeft;
+//     `,
+//     [ENotificationPosition.CENTER_RIGHT]: css`
+//         @keyframes ToastCenterRight {
+//             from {
+//                 opacity: 0;
+//                 transform: translateX(50%);
+//             }
+//             to {
+//                 opacity: 0.8;
+//                 transform: translateX(0);
+//             }
+//         }
+//         animation: ToastCenterRight;
+//     `,
+//     [ENotificationPosition.CENTER]: css`
+//         @keyframes ToastCenter {
+//             from {
+//                 opacity: 0;
+//                 transform: scale(0.8);
+//             }
+//             to {
+//                 opacity: 0.8;
+//                 transform: scale(1);
+//             }
+//         }
+//         animation: ToastCenter;
+//     `,
+//     [ENotificationPosition.CENTER_LEFT]: css`
+//         @keyframes ToastCenterLeft {
+//             from {
+//                 opacity: 0;
+//                 transform: translateX(-50%);
+//             }
+//             to {
+//                 opacity: 0.8;
+//                 transform: translateX(0);
+//             }
+//         }
+//         animation: ToastCenterLeft;
+//     `,
+//     [ENotificationPosition.TOP_RIGHT]: css`
+//         @keyframes ToastTopRight {
+//             from {
+//                 opacity: 0;
+//                 transform: translateX(50%);
+//             }
+//             to {
+//                 opacity: 0.8;
+//                 transform: translateX(0);
+//             }
+//         }
+//         animation: ToastTopRight;
+//     `,
+//     [ENotificationPosition.TOP_CENTER]: css`
+//         @keyframes ToastTopCenter {
+//             from {
+//                 opacity: 0;
+//                 transform: translateY(-50%);
+//             }
+//             to {
+//                 opacity: 0.8;
+//                 transform: translateY(0);
+//             }
+//         }
+//         animation: ToastTopCenter;
+//     `,
+//     [ENotificationPosition.TOP_LEFT]: css`
+//         @keyframes ToastTopLeft {
+//             from {
+//                 opacity: 0;
+//                 transform: translateX(-50%);
+//             }
+//             to {
+//                 opacity: 0.8;
+//                 transform: translateX(0);
+//             }
+//         }
+//         animation: ToastTopLeft;
+//     `,
+// };
+
+const SCount = styled.p`
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    font-size: 8px;
+    font-weight: 600;
+    width: 13px;
+    height: 13px;
+    min-height: 13px;
+    min-width: 13px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const SIconContent = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    min-height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+`;
+
+const createKeyframeAnimation = (name: string, transformFrom: string) => css`
+    @keyframes ${name} {
+        from {
+            opacity: 0;
+            transform: ${transformFrom};
+        }
+        to {
+            opacity: 0.9;
+            transform: translateX(0);
+        }
+    }
+    animation: ${name};
+`;
+
+const ANIMATION_VARIANT = {
+    [ENotificationPosition.BOTTOM_RIGHT]: createKeyframeAnimation('ToastBottomRight', 'translateX(50%)'),
+    [ENotificationPosition.BOTTOM_CENTER]: createKeyframeAnimation('ToastBottomCenter', 'translateY(50%)'),
+    [ENotificationPosition.BOTTOM_LEFT]: createKeyframeAnimation('ToastBottomLeft', 'translateX(-50%)'),
+    [ENotificationPosition.CENTER_RIGHT]: createKeyframeAnimation('ToastCenterRight', 'translateX(50%)'),
+    [ENotificationPosition.CENTER]: css`
+        @keyframes ToastCenter {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 0.9;
+                transform: scale(1);
+            }
+        }
+        animation: ToastCenter;
+    `,
+    [ENotificationPosition.CENTER_LEFT]: createKeyframeAnimation('ToastCenterLeft', 'translateX(-50%)'),
+    [ENotificationPosition.TOP_RIGHT]: createKeyframeAnimation('ToastTopRight', 'translateX(50%)'),
+    [ENotificationPosition.TOP_CENTER]: createKeyframeAnimation('ToastTopCenter', 'translateY(-50%)'),
+    [ENotificationPosition.TOP_LEFT]: createKeyframeAnimation('ToastTopLeft', 'translateX(-50%)'),
+};
+
+const createGradient = (startColor: string, endColor: string) => `linear-gradient(180deg, ${startColor}, ${endColor})`;
 
 const COLOR_VARIANT = {
-    [EVariantToast.INFO]: (colors: TypeColorScheme) =>
-        `linear-gradient(180deg, ${colors.infoItem}2d, ${colors.infoItem}03)`,
-    [EVariantToast.WARNING]: (colors: TypeColorScheme) =>
-        `linear-gradient(180deg, ${colors.warningItem}2d, ${colors.warningItem}03)`,
-    [EVariantToast.ERROR]: (colors: TypeColorScheme) =>
-        `linear-gradient(180deg, ${colors.errorItem}2d, ${colors.errorItem}03)`,
-    [EVariantToast.SUCCESS]: (colors: TypeColorScheme) =>
-        `linear-gradient(180deg, ${colors.successItem}2d, ${colors.successItem}03)`,
+    [EVariantToast.INFO]: (colors: TypeColorScheme) => createGradient(colors.backgroundInfo, colors.background),
+    [EVariantToast.WARNING]: (colors: TypeColorScheme) => createGradient(colors.backgroundWarning, colors.background),
+    [EVariantToast.ERROR]: (colors: TypeColorScheme) => createGradient(colors.backgroundError, colors.background),
+    [EVariantToast.SUCCESS]: (colors: TypeColorScheme) => createGradient(colors.backgroundSuccess, colors.background),
 };
+
+const applyBoxShadow = ($styles: TypeSSBox, $colors: TypeColorScheme) =>
+    `${$styles.boxShadow_1} ${$colors.shadowColor}`;
+
+const applyGradient = ($variant: EVariantToast, $colors: TypeColorScheme) => COLOR_VARIANT[$variant]($colors);
 
 const SNotificationToast = styled.div<SNotificationToastProps>`
     box-sizing: border-box;
@@ -68,68 +258,41 @@ const SNotificationToast = styled.div<SNotificationToastProps>`
     max-width: 400px;
     min-width: 250px;
     height: 100%;
-    border: 2px solid ${(props) => props.$colors.background};
-    box-shadow: ${({ $styles }) => $styles.box.boxShadow_1} ${({ $colors }) => $colors.shadowColor};
-    background: ${({ $colors, $variant }) => COLOR_VARIANT[$variant]($colors)};
+    border-bottom: 2px solid transparent;
+    box-shadow: ${({ $styles, $colors }) => applyBoxShadow($styles.box, $colors)};
+    background: ${({ $colors, $variant }) => applyGradient($variant, $colors)};
+    ${({ $animationDuration, $position }) => css`
+        ${ANIMATION_VARIANT[$position]}
+        animation-duration: ${$animationDuration ?? 0.5}s;
+        animation-timing-function: ease-in-out;
+    `}
+    opacity: 0.9;
+    &:hover {
+        transition: all 0.3s ease-in-out;
+        opacity: 1;
+    }
+
+    ${SIconContent} {
+        background: ${({ $colors, $variant }) => applyGradient($variant, $colors)};
+        box-shadow: ${({ $styles, $colors }) => applyBoxShadow($styles.box, $colors)};
+
+        ${SCount} {
+            background-color: ${(props) =>
+                getColor({
+                    cs: props.$colors,
+                    variant: props.$variant,
+                    opacity: 'dd',
+                })};
+            color: ${(props) => props.$colors.alpha};
+        }
+    }
+
     ${(props) =>
         CSSBaseBox({
             $boxPaddingVariant: props.$boxPaddingVariant,
             $boxGapVariant: props.$boxGapVariant,
             $styles: props.$styles.box,
         })};
-    ${(props) => getMargin(props.$styles.mr, props.$mr)};
-    opacity: 0.8;
-    &:hover {
-        transition: all 0.3s ease-in-out;
-        opacity: 1;
-    }
-`;
-
-type SIconContentProps = {
-    $variant: EVariantToast;
-    $bg?: Hex;
-    $colors: TypeColorScheme;
-    $styles: TypeStyles;
-} & React.HTMLAttributes<HTMLDivElement>;
-
-const SCount = styled.p`
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    font-size: 8px;
-    font-weight: 600;
-    color: black;
-`;
-
-const SIconContent = styled.div<SIconContentProps>`
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    min-height: 36px;
-    min-width: 36px;
-    border-radius: 50%;
-    background: ${({ $colors, $variant }) => COLOR_VARIANT[$variant]($colors)};
-    box-shadow: ${({ $styles }) => $styles.box.boxShadow_1} ${({ $colors }) => $colors.shadowColor};
-    ${SCount} {
-        background-color: ${(props) =>
-            getColor({
-                cs: props.$colors,
-                variant: props.$variant,
-                opacity: 'dd',
-            })};
-        color: ${(props) => props.$colors.alpha};
-        width: 13px;
-        height: 13px;
-        min-height: 13px;
-        min-width: 13px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 `;
 
 const STitle = styled.p`
@@ -172,7 +335,6 @@ const iconVariant = {
 export const BaseNotificationToast: React.FC<BaseNotificationToastProps> = React.memo(
     ({
         id = '1',
-        mr = 'mx-2',
         title,
         count = 1,
         message,
@@ -185,25 +347,28 @@ export const BaseNotificationToast: React.FC<BaseNotificationToastProps> = React
         icon,
         bg,
         boxGapVariant,
+        animationDuration,
         $styles,
         $colors,
         ...rest
     }) => {
         const colors = useColorScheme($colors);
-        const styles = useStyleScheme(['box', 'mr', 'typography', 'base'], $styles);
+        const styles = useStyleScheme(['box', 'typography', 'base'], $styles);
+        console.log('AA', id);
 
         return (
             <SNotificationToast
                 $bg={bg}
-                $mr={mr}
                 $styles={styles}
                 $colors={colors}
+                $position={position}
                 $variant={variant}
                 $boxPaddingVariant={boxPaddingVariant}
                 $boxGapVariant={boxGapVariant}
+                $animationDuration={animationDuration}
                 {...rest}
             >
-                <SIconContent $styles={styles} $colors={colors} $variant={variant}>
+                <SIconContent>
                     {count > 1 && <SCount>{count}</SCount>}
                     {icon ? icon : iconVariant[variant](variant, iconSizeVariant)}
                 </SIconContent>
@@ -230,6 +395,7 @@ export const SBaseNotificationToast = {
 
 //export type
 export namespace TBaseNotificationToast {
+    export type Base = BaseProps;
     export type Main = BaseNotificationToastProps;
     export type Styles = TypeStyles;
     export type SNotificationToast = SNotificationToastProps;

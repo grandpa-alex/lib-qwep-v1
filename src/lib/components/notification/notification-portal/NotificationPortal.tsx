@@ -2,7 +2,7 @@ import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox'
 import { useStyleScheme } from '@src/lib/general';
 import { TypeSSBase, TypeSSBox } from '@src/lib/general/styleScheme';
 import { ENotificationPosition } from '@src/lib/types/TypeBase';
-import { TypeBoxGapVariant } from '@src/lib/types/TypeBox';
+import { TypeBoxGapVariant, TypeBoxPaddingVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { css, styled } from 'styled-components';
@@ -17,8 +17,12 @@ type TypeStyles = {
 type NotificationPortalProps = {
     notifications: TypeNotification[];
     position: ENotificationPosition;
+} & BaseProps;
+
+type BaseProps = {
     zIndex?: number;
     boxGapVariant?: TypeBoxGapVariant;
+    boxPaddingVariant?: TypeBoxPaddingVariant;
     $styles?: TypeStyles;
 } & React.HTMLAttributes<HTMLDivElement>;
 
@@ -26,6 +30,7 @@ type SRootProps = {
     $position: ENotificationPosition;
     $zIndex?: number;
     $boxGapVariant?: TypeBoxGapVariant;
+    $boxPaddingVariant?: TypeBoxPaddingVariant;
     $styles: TypeStyles;
 } & React.HTMLAttributes<HTMLDivElement>;
 
@@ -82,28 +87,63 @@ const SRoot = styled.div<SRootProps>`
     ${(props) => POSITION[props.$position]};
     ${(props) =>
         CSSBaseBox({
+            $boxPaddingVariant: props.$boxPaddingVariant,
             $boxGapVariant: props.$boxGapVariant,
             $styles: props.$styles.box,
         })};
 `;
 
 export const NotificationPortal: React.FC<NotificationPortalProps> = React.memo(
-    ({ notifications, position, boxGapVariant = 'g-2', zIndex, $styles, ...rest }) => {
+    ({ notifications, position, boxPaddingVariant = 'p-2', boxGapVariant = 'g-2', zIndex, $styles, ...rest }) => {
         const styles = useStyleScheme(['box', 'base'], $styles);
 
         return ReactDOM.createPortal(
-            <SRoot $position={position} $zIndex={zIndex} $boxGapVariant={boxGapVariant} $styles={styles} {...rest}>
-                {notifications.map(({ type, id, position, ...notification }: TypeNotification) => {
-                    switch (type) {
-                        case 'base':
-                            return <BaseNotificationToast id={id} position={position} {...notification} />;
-
-                        case 'custom':
-                            return <div {...notification} />;
+            <SRoot
+                $position={position}
+                $zIndex={zIndex}
+                $boxPaddingVariant={boxPaddingVariant}
+                $boxGapVariant={boxGapVariant}
+                $styles={styles}
+                {...rest}
+            >
+                {notifications.map(
+                    ({ type, id, position, title, message, content, ...notification }: TypeNotification) => {
+                        switch (type) {
+                            case 'base':
+                                return (
+                                    <BaseNotificationToast
+                                        title={title}
+                                        message={message}
+                                        key={id}
+                                        id={id as string}
+                                        position={position}
+                                        {...notification}
+                                    />
+                                );
+                            case 'custom':
+                                return (
+                                    <div key={id} id={id} {...notification}>
+                                        {content}
+                                    </div>
+                                );
+                        }
                     }
-                })}
+                )}
             </SRoot>,
             document.body
         );
     }
 );
+
+//export component
+export const SNotificationPortal = {
+    Root: SRoot,
+};
+
+//export type
+export namespace TNotificationPortal {
+    export type Base = BaseProps;
+    export type Main = NotificationPortalProps;
+    export type Styles = TypeStyles;
+    export type SNotificationPortal = SRootProps;
+}

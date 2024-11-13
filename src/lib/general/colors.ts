@@ -8,6 +8,10 @@ export type TypeColorScheme = {
 
     //other
     lightElem: Hex;
+    backgroundInfo: Hex;
+    backgroundSuccess: Hex;
+    backgroundWarning: Hex;
+    backgroundError: Hex;
 
     //items
     primaryItem: Hex;
@@ -27,12 +31,6 @@ export type TypeColorScheme = {
     backgroundTooltip: Hex;
     disabled: Hex;
     shadowColor: Hex;
-
-    //sec base
-    backgroundSuccess: Hex;
-    backgroundError: Hex;
-    backgroundInfo: Hex;
-    backgroundWarning: Hex;
 
     //text
     title: Hex;
@@ -55,6 +53,10 @@ export const colorsLight: TypeColorScheme = {
 
     //other
     lightElem: '#A9C1CF',
+    backgroundInfo: '#BFDBFE',
+    backgroundSuccess: '#BBF7D0',
+    backgroundWarning: '#FED7AA',
+    backgroundError: '#FECACA',
 
     //items
     primaryItem: '#2563EB',
@@ -67,17 +69,13 @@ export const colorsLight: TypeColorScheme = {
     errorItemActive: '#B91C1C',
     warningItem: '#EA580C',
     warningItemActive: '#C2410C',
+
     //base
     background: '#ffffff',
     backgroundBox: '#ffffff',
     backgroundTooltip: '#1f1f1fc8',
     disabled: '#B9BCBE',
     shadowColor: '#002B4D40',
-    //sec base
-    backgroundSuccess: '#DCFCE740',
-    backgroundError: '#FEE2E240',
-    backgroundInfo: '#DBEAFE40',
-    backgroundWarning: '#FFEDD540',
 
     //text
     title: '#1A242A',
@@ -94,148 +92,43 @@ export const colorsLight: TypeColorScheme = {
 
 export const colorsDark: TypeColorScheme = {
     primary: '#3B82F6',
-    secondary: '#21222D',
+    secondary: '#1E293B',
 
     //other
     lightElem: '#A9C1CF',
+    backgroundInfo: '#18338C',
+    backgroundSuccess: '#12512A',
+    backgroundWarning: '#7B2A0E',
+    backgroundError: '#7A1616',
 
     //items
     primaryItem: '#3B82F6',
     primaryItemActive: '#2563EB',
-    successItem: '#4ADE80',
-    successItemActive: '#22C55E',
+    successItem: '#22C55E',
+    successItemActive: '#6A34A',
     infoItem: '#60A5FA',
     infoItemActive: '#3B82F6',
-    errorItem: '#F87171',
-    errorItemActive: '#EF4444',
-    warningItem: '#FB923C',
-    warningItemActive: '#F97316',
+    errorItem: '#EF4444',
+    errorItemActive: '#DC2626',
+    warningItem: '#F97316',
+    warningItemActive: '#EA580C',
 
     //base
-    background: '#171821',
-    backgroundBox: '#21222D',
-    backgroundTooltip: '#171821',
-    disabled: '#B9BCBE',
+    background: '#121923',
+    backgroundBox: '#1E293B',
+    backgroundTooltip: '#334155',
+    disabled: '#CBD5E1',
     shadowColor: '#00000000',
 
-    //sec base
-    backgroundSuccess: '#4ADE8040',
-    backgroundError: '#F8717140',
-    backgroundInfo: '#60A5FA40',
-    backgroundWarning: '#FB923C40',
-
     //text
-    title: '#F0F4FE',
-    text: '#F0F4FE',
-    textItem: '#F0F4FE',
-    link: '#2563EB',
-    linkActive: '#1D4ED8',
+    title: '#F8FAFC',
+    text: '#A9C1CF',
+    textItem: '#F8FAFC',
+    link: '#3B82F6',
+    linkActive: '#2563EB',
     prompt: '#94A3B8',
 
     //general
     alpha: '#ffffff',
     omega: '#000000',
 };
-
-// D
-// primary: '#2563EB',
-//     secondary: '#171821',
-
-//     //items
-//     primaryItem: '#2563EB',
-//     primaryItemActive: '#1D4ED8',
-//     successItem: '#4ADE80',
-//     successItemActive: '#22C55E',
-//     infoItem: '#60A5FA',
-//     infoItemActive: '#3B82F6',
-//     errorItem: '#F87171',
-//     errorItemActive: '#EF4444',
-//     warningItem: '#FB923C',
-//     warningItemActive: '#F97316,
-
-//     //base
-//     background: '#171821',
-//     backgroundBox: '#21222D',
-//     backgroundTooltip: '#171821',
-//     disabled: '#B9BCBE',
-//     shadowColor: '#9CACB9',
-
-// backgroundSuccess: '#4ADE80'
-// backgroundError: '#F87171'
-// backgroundInfo: '#60A5FA'
-// backgroundwarning: '#FB923C'
-
-// //icons
-// primaryicon: '#2563EB'
-// secondaryIconGreen: '#22C55E'
-// secondaryIconYellow: '#EAB308'
-// secondaryIconViolet: '#5E5CE6'
-
-// backgroundIconBlue: '#2563EB'
-// backgroundIconGreen: '#22C55E'
-// backgroundIconYelloe: '#EAB308'
-// backgroundIconViolet: '#5E5CE6'
-
-//     //text
-//     title: '#F0F4FE',
-//     text: '#F0F4FE',
-//     textItem: '#94A3B8',
-//     link: '#2563EB',
-//     linkActive: '1D4ED8',
-//     prompt: '#94A3B8',
-
-//     //general
-//     alpha: '#ffffff',
-//     omega: '#000000',
-
-//L
-
-// primary: '#2563EB',
-//     secondary: '#E5F1FF',
-
-//     //items
-//     primaryItem: '#2563EB',
-//     primaryItemActive: '#1D4ED8',
-//     successItem: '#16A34A',
-//     successItemActive: '#15803D',
-//     infoItem: '#1E40AF',
-//     infoItemActive: '#18338C',
-//     errorItem: '#DC2626',
-//     errorItemActive: '#B91C1C',
-//     warningItem: '#EA580C',
-//     warningItemActive: '#C2410C,
-
-//     //base
-//     background: '#ffffff',
-//     backgroundBox: '#ffffff',
-//     backgroundTooltip: '#1f1f1fc8',
-//     disabled: '#B9BCBE',
-//     shadowColor: '#002B4D',
-
-// backgroundSuccess: '#DCFCE7'
-// backgroundError: '#FEE2E2'
-// backgroundInfo: '#DBEAFE'
-// backgroundwarning: '#FFEDD5'
-
-// //icons
-// primaryIcon: '#2563EB'
-// secondaryIconGreen: '#16A34A'
-// secondaryIconYellow: '#CA8A04'
-// secondaryIconViolet: '#92179D'
-
-// backgroundIconBlue: '#EFF6FF'
-// backgroundIconGreen: '#FEFCE8'
-// backgroundIconYellow: '#F0FDF4'
-// backgroundIconViolet: '#FCF2FD'
-
-//     //text
-//     title: '#1A242A',
-//     text: '#1A242A',
-//     textItem: '#F5F5F5',
-//     link: '#2563EB',
-//     linkActive: '1D4ED8',
-//     prompt: '#4f4f4f',
-
-//     //general
-//     alpha: '#ffffff',
-//     omega: '#000000',

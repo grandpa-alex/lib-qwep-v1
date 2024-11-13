@@ -6,7 +6,7 @@ import { BaseThemeProvider } from './lib/general';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <BaseThemeProvider>
+        <BaseThemeProvider colorThemeName={'dark'}>
             <Main />
         </BaseThemeProvider>
     </React.StrictMode>

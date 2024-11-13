@@ -32,7 +32,7 @@ interface ThemeProviderProps {
 }
 const BaseThemeContext = createContext<TypeBaseThemeContext>({
     // COLORS
-    currentColorThemeName: 'light',
+    currentColorThemeName: '',
     currentColorScheme: colorsLight,
     listThemeColors: [],
     changeColorThemeHandler: () => {},

@@ -1,0 +1,109 @@
+import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox';
+import { useStyleScheme } from '@src/lib/general';
+import { TypeSSBase, TypeSSBox } from '@src/lib/general/styleScheme';
+import { ENotificationPosition } from '@src/lib/types/TypeBase';
+import { TypeBoxGapVariant } from '@src/lib/types/TypeBox';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { css, styled } from 'styled-components';
+import { BaseNotificationToast } from '../base-notification-toast/BaseNotificationToast';
+import { TypeNotification } from '../notification-provider/NotificationProvider';
+
+type TypeStyles = {
+    box: TypeSSBox;
+    base: TypeSSBase;
+};
+
+type NotificationPortalProps = {
+    notifications: TypeNotification[];
+    position: ENotificationPosition;
+    zIndex?: number;
+    boxGapVariant?: TypeBoxGapVariant;
+    $styles?: TypeStyles;
+} & React.HTMLAttributes<HTMLDivElement>;
+
+type SRootProps = {
+    $position: ENotificationPosition;
+    $zIndex?: number;
+    $boxGapVariant?: TypeBoxGapVariant;
+    $styles: TypeStyles;
+} & React.HTMLAttributes<HTMLDivElement>;
+
+const POSITION = {
+    [ENotificationPosition.BOTTOM_RIGHT]: css`
+        bottom: 0;
+        right: 0;
+    `,
+    [ENotificationPosition.BOTTOM_CENTER]: css`
+        bottom: 0;
+        right: 50%;
+        transform: translateX(50%);
+    `,
+    [ENotificationPosition.BOTTOM_LEFT]: css`
+        bottom: 0;
+        left: 0;
+    `,
+    [ENotificationPosition.CENTER_RIGHT]: css`
+        bottom: 50%;
+        right: 0;
+        transform: translateY(50%);
+    `,
+    [ENotificationPosition.CENTER]: css`
+        bottom: 50%;
+        left: 50%;
+        transform: translate(-50%, 0);
+    `,
+    [ENotificationPosition.CENTER_LEFT]: css`
+        bottom: 50%;
+        left: 0;
+        transform: translateY(50%);
+    `,
+    [ENotificationPosition.TOP_RIGHT]: css`
+        top: 0;
+        right: 0;
+    `,
+    [ENotificationPosition.TOP_CENTER]: css`
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    `,
+    [ENotificationPosition.TOP_LEFT]: css`
+        top: 0;
+        left: 0;
+    `,
+};
+
+const SRoot = styled.div<SRootProps>`
+    position: fixed;
+    z-index: ${(props) => props.$zIndex ?? 100000};
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    ${(props) => POSITION[props.$position]};
+    ${(props) =>
+        CSSBaseBox({
+            $boxGapVariant: props.$boxGapVariant,
+            $styles: props.$styles.box,
+        })};
+`;
+
+export const NotificationPortal: React.FC<NotificationPortalProps> = React.memo(
+    ({ notifications, position, boxGapVariant = 'g-2', zIndex, $styles, ...rest }) => {
+        const styles = useStyleScheme(['box', 'base'], $styles);
+
+        return ReactDOM.createPortal(
+            <SRoot $position={position} $zIndex={zIndex} $boxGapVariant={boxGapVariant} $styles={styles} {...rest}>
+                {notifications.map(({ type, id, position, ...notification }: TypeNotification) => {
+                    switch (type) {
+                        case 'base':
+                            return <BaseNotificationToast id={id} position={position} {...notification} />;
+
+                        case 'custom':
+                            return <div {...notification} />;
+                    }
+                })}
+            </SRoot>,
+            document.body
+        );
+    }
+);

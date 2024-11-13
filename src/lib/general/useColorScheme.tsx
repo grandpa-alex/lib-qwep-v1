@@ -6,7 +6,7 @@ export const useColorScheme = ($colors?: TypeColorScheme) => {
     if ($colors) {
         return $colors;
     }
-    if (context?.currentColorScheme) {
+    if (context?.currentColorScheme && context.currentColorThemeName) {
         return context.currentColorScheme as TypeColorScheme;
     } else {
         return colorsLight as TypeColorScheme;

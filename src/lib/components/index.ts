@@ -13,3 +13,4 @@ export * from './avatar';
 export * from './radio';
 export * from './scrollarea';
 export * from './tab';
+export * from './notification';

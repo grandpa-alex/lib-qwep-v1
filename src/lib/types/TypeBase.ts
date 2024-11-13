@@ -122,3 +122,31 @@ export enum OC {
 }
 
 export type TypeOrientationContent = 'vertical' | 'horizontal';
+
+///
+export enum EVariantToast {
+    INFO = 'info',
+    WARNING = 'warning',
+    ERROR = 'error',
+    SUCCESS = 'success',
+}
+
+export enum EModalPosition {
+    BOTTOM = 'bottom',
+    TOP = 'top',
+    RIGHT = 'right',
+    LEFT = 'left',
+    CENTER = 'center',
+}
+
+export enum ENotificationPosition {
+    BOTTOM_LEFT = 'bottom_left',
+    BOTTOM_CENTER = 'bottom_center',
+    BOTTOM_RIGHT = 'bottom_right',
+    CENTER_LEFT = 'center_left',
+    CENTER = 'center',
+    CENTER_RIGHT = 'center_right',
+    TOP_LEFT = 'top_left',
+    TOP_CENTER = 'top_center',
+    TOP_RIGHT = 'top_right',
+}

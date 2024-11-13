@@ -1,6 +1,6 @@
 import { TypeSSBox, TypeSSBtn, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { css, styled } from 'styled-components';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { CSSBaseBox, CSSSimpleBox } from '@src/lib/common-styled-component/StyledComponentBox';
@@ -147,6 +147,12 @@ export const BaseMenuGroup = React.memo(
                 },
                 [onChangeActiveItem]
             );
+
+            useEffect(() => {
+                if (activeItem !== undefined && activeItem !== activeValue) {
+                    setActiveValue(activeItem);
+                }
+            }, [activeItem, activeValue]);
 
             const renderItems = useMemo(() => {
                 return React.Children.map(rest.children, (child: React.ReactNode) => {

@@ -1,11 +1,12 @@
 {
     "name": "orc-design-ui",
     "private": false,
-    "version": "1.0.10",
+    "version": "1.0.11",
     "type": "module",
     "files": [
         "dist/**/*"
     ],
+    "homepage": "https://grandpa-alex.github.io/lib-qwep-v1",
     "main": "./dist/orc-design-ui.umd.js",
     "module": "./dist/orc-design-ui.es.js",
     "types": "./dist/index.d.ts",

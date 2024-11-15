@@ -3,7 +3,7 @@ import { NotificationPortal, TNotificationPortal } from '../notification-portal/
 import { ENotificationPosition, EVariantToast } from '@src/lib/types/TypeBase';
 import { TBaseNotificationToast } from '../base-notification-toast/BaseNotificationToast';
 
-type TypeOptionsBase = {
+export type TypeOptionsBase = {
     id?: string;
     type: 'base';
     title: string;
@@ -21,8 +21,6 @@ type TypeOptionsCustom = {
     id?: string;
     type: 'custom';
     count?: number;
-    title?: string;
-    message?: string;
     isEternal?: boolean;
     content: ReactNode;
     duration?: number;
@@ -37,10 +35,10 @@ type NotificationProviderState = Partial<
     Record<ENotificationPosition, { notifications: TypeNotification[]; portalProps: TNotificationPortal.Base }>
 >;
 
-type TypeOptions<T = 'base'> = T extends 'base' ? TypeOptionsBase : TypeOptionsCustom;
+type TypeOptions = TypeOptionsBase | TypeOptionsCustom;
 
 export type TypeNotificationContext = {
-    showAlert: <T extends 'base' | 'custom'>(options: TypeOptions<T>) => void;
+    alert: (options: TypeOptions) => void;
 };
 
 interface NotificationProviderProps {
@@ -75,14 +73,14 @@ export const NotificationProvider = ({
         });
     };
 
-    const showAlert = useCallback(
-        <T extends 'base' | 'custom'>({
+    const alert = useCallback(
+        ({
             duration,
             isEternal,
             position = ENotificationPosition.BOTTOM_RIGHT,
             portalProps = defaultPortalProps,
             ...options
-        }: TypeOptions<T>) => {
+        }: TypeOptions) => {
             const id: string = Date.now().toString();
 
             setNotificationsByPosition((prev) => {
@@ -91,8 +89,8 @@ export const NotificationProvider = ({
                 const existingNotification = currentPosition.notifications.find(
                     (notification) =>
                         notification.type === 'base' &&
-                        notification.title === options?.title &&
-                        notification.message === options?.message
+                        notification.title === (options as TypeOptionsBase).title &&
+                        notification.message === (options as TypeOptionsBase).message
                 );
 
                 if (existingNotification) {
@@ -140,7 +138,7 @@ export const NotificationProvider = ({
     const timer = (duration?: number, defaultDuration?: number) => duration ?? defaultDuration ?? 6000;
 
     const contextValue: TypeNotificationContext = {
-        showAlert,
+        alert,
     };
     return (
         <NotificationContext.Provider value={contextValue}>

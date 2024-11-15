@@ -5,10 +5,10 @@ import { ENotificationPosition } from '../lib/types/TypeBase';
 
 function Alert() {
     const [count, setCount] = useState(1);
-    const { showAlert } = useNotificationContext();
+    const { alert } = useNotificationContext();
     const alertHandler = () => {
         setCount(count + 1);
-        showAlert<'base'>({
+        alert({
             title: 'Alert',
             message: `Alert ${count}`,
             variant: 'error',
@@ -16,17 +16,17 @@ function Alert() {
             position: ENotificationPosition.BOTTOM_RIGHT,
             type: 'base',
             portalProps: {
-                boxGapVariant: 'g-5',
+                boxGapVariant: 'g-2',
                 boxPaddingVariant: 'p-5',
             },
         });
-        showAlert<'custom'>({
+        alert({
             duration: 3000,
             content: <div>ferjifjreijg</div>,
             position: ENotificationPosition.BOTTOM_LEFT,
             type: 'custom',
             portalProps: {
-                boxGapVariant: 'g-5',
+                boxGapVariant: 'g-2',
                 boxPaddingVariant: 'p-5',
             },
         });

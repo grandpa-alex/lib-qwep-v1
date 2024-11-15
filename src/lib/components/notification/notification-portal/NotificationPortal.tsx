@@ -7,7 +7,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { css, styled } from 'styled-components';
 import { BaseNotificationToast } from '../base-notification-toast/BaseNotificationToast';
-import { TypeNotification } from '../notification-provider/NotificationProvider';
+import { TypeNotification, TypeOptionsBase } from '../notification-provider/NotificationProvider';
 
 type TypeStyles = {
     box: TypeSSBox;
@@ -106,29 +106,27 @@ export const NotificationPortal: React.FC<NotificationPortalProps> = React.memo(
                 $styles={styles}
                 {...rest}
             >
-                {notifications.map(
-                    ({ type, id, position, title, message, content, ...notification }: TypeNotification) => {
-                        switch (type) {
-                            case 'base':
-                                return (
-                                    <BaseNotificationToast
-                                        title={title}
-                                        message={message}
-                                        key={id}
-                                        id={id as string}
-                                        position={position}
-                                        {...notification}
-                                    />
-                                );
-                            case 'custom':
-                                return (
-                                    <div key={id} id={id} {...notification}>
-                                        {content}
-                                    </div>
-                                );
-                        }
+                {notifications.map(({ type, id, position, content, ...notification }: TypeNotification) => {
+                    switch (type) {
+                        case 'base':
+                            return (
+                                <BaseNotificationToast
+                                    title={(notification as TypeOptionsBase)?.title}
+                                    message={(notification as TypeOptionsBase)?.message}
+                                    key={id}
+                                    id={id as string}
+                                    position={position}
+                                    {...notification}
+                                />
+                            );
+                        case 'custom':
+                            return (
+                                <div key={id} id={id} {...notification}>
+                                    {content}
+                                </div>
+                            );
                     }
-                )}
+                })}
             </SRoot>,
             document.body
         );

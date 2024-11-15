@@ -20,8 +20,8 @@ type BaseNotificationToastProps = {
     id: string;
     count?: number;
     onClose?: (id: string, position: ENotificationPosition) => void;
-    title: string;
-    message: React.ReactNode;
+    title?: string;
+    message?: React.ReactNode;
 } & BaseProps;
 
 type BaseProps = {
@@ -354,7 +354,6 @@ export const BaseNotificationToast: React.FC<BaseNotificationToastProps> = React
     }) => {
         const colors = useColorScheme($colors);
         const styles = useStyleScheme(['box', 'typography', 'base'], $styles);
-        console.log('AA', id);
 
         return (
             <SNotificationToast

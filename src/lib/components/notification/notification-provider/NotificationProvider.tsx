@@ -1,64 +1,61 @@
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import { NotificationPortal, TNotificationPortal } from '../notification-portal/NotificationPortal';
-import { ENotificationPosition, EVariantToast } from '@src/lib/types/TypeBase';
+import { ENotificationPosition, TNotificationPosition, TVariantToast } from '@src/lib/types/TypeBase';
 import { TBaseNotificationToast } from '../base-notification-toast/BaseNotificationToast';
 
-export type TypeOptionsBase = {
+type TypeBaseOptions = {
     id?: string;
-    type: 'base';
-    title: string;
-    message: string;
     count?: number;
-    variant: EVariantToast;
     isEternal?: boolean;
     duration?: number;
-    position?: ENotificationPosition;
-    onClose?: (id: string, position: ENotificationPosition) => void;
-    portalProps?: TNotificationPortal.Base;
-} & TBaseNotificationToast.Base;
 
-type TypeOptionsCustom = {
-    id?: string;
-    type: 'custom';
-    count?: number;
-    isEternal?: boolean;
-    content: ReactNode;
-    duration?: number;
-    position?: ENotificationPosition;
-    onClose?: (id: string, position: ENotificationPosition) => void;
+    onClose?: (id: string, position: TNotificationPosition) => void;
     portalProps?: TNotificationPortal.Base;
 };
 
-export type TypeNotification = TypeOptionsBase | TypeOptionsCustom;
+export type TypeOptionsBase = {
+    type: 'base';
+    title: string;
+    message: string;
+    variant: TVariantToast;
+    position?: TNotificationPosition;
+} & TBaseNotificationToast.Base &
+    TypeBaseOptions;
+
+export type TypeOptionsCustom = {
+    type: 'custom';
+    content: ReactNode;
+    position?: TNotificationPosition;
+} & TypeBaseOptions;
 
 type NotificationProviderState = Partial<
-    Record<ENotificationPosition, { notifications: TypeNotification[]; portalProps: TNotificationPortal.Base }>
+    Record<ENotificationPosition, { notifications: TypeOptions[]; portalProps: TNotificationPortal.Base }>
 >;
 
-type TypeOptions = TypeOptionsBase | TypeOptionsCustom;
+export type TypeOptions = TypeOptionsBase | TypeOptionsCustom;
 
 export type TypeNotificationContext = {
     alert: (options: TypeOptions) => void;
 };
 
-interface NotificationProviderProps {
+export type TypeNotificationProvider = {
     children: ReactNode;
     defaultPortalProps?: TNotificationPortal.Base;
     defaultDuration?: number;
     defaultIsEternal?: boolean;
-}
+};
 
 const NotificationContext = createContext<TypeNotificationContext | null>(null);
 
-export const NotificationProvider = ({
+const NotificationProvider = ({
     children,
     defaultPortalProps,
     defaultDuration,
     defaultIsEternal,
-}: NotificationProviderProps) => {
+}: TypeNotificationProvider) => {
     const [notificationsByPosition, setNotificationsByPosition] = useState<NotificationProviderState>({});
 
-    const onCloseHandler = (id: string, position: ENotificationPosition) => {
+    const onCloseHandler = (id: string, position: TNotificationPosition) => {
         setNotificationsByPosition((prev) => {
             const currentPosition = prev[position];
             if (!currentPosition) return prev;
@@ -157,10 +154,12 @@ export const NotificationProvider = ({
     );
 };
 
-export const useNotificationContext = (): TypeNotificationContext => {
+const useNotificationContext = (): TypeNotificationContext => {
     const context = useContext(NotificationContext);
     if (!context) {
         throw new Error('useNotificationContext must be used within a NotificationProvider');
     }
     return context;
 };
+
+export { useNotificationContext, NotificationProvider };

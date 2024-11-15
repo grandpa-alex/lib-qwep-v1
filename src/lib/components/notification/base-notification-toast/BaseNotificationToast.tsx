@@ -2,10 +2,17 @@ import { Icon } from '@src/lib';
 import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox';
 import { getColor } from '@src/lib/common/getColor';
 import { useColorScheme } from '@src/lib/general';
-import { Hex, TypeColorScheme } from '@src/lib/general/colors';
+import { TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSBox, TypeSSTypography } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { ENotificationPosition, EVariantToast, TypeMargin, VS } from '@src/lib/types/TypeBase';
+import {
+    ENotificationPosition,
+    EVariantToast,
+    TNotificationPosition,
+    TVariantToast,
+    TypeMargin,
+    VS,
+} from '@src/lib/types/TypeBase';
 import { TypeBoxGapVariant, TypeBoxPaddingVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
 import { css, styled } from 'styled-components';
@@ -19,18 +26,17 @@ type TypeStyles = {
 type BaseNotificationToastProps = {
     id: string;
     count?: number;
-    onClose?: (id: string, position: ENotificationPosition) => void;
+    onClose?: (id: string, position: TNotificationPosition) => void;
     title?: string;
     message?: React.ReactNode;
 } & BaseProps;
 
 type BaseProps = {
-    position: ENotificationPosition;
-    variant?: EVariantToast;
+    position: TNotificationPosition;
+    variant?: TVariantToast;
     iconSizeVariant?: VS;
     isClose?: boolean;
     icon?: React.ReactNode;
-    bg?: Hex;
     mr?: TypeMargin;
     boxPaddingVariant?: TypeBoxPaddingVariant;
     boxGapVariant?: TypeBoxGapVariant;
@@ -39,10 +45,9 @@ type BaseProps = {
     $colors?: TypeColorScheme;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-type SNotificationToastProps = {
-    $bg?: Hex;
-    $variant: EVariantToast;
-    $position: ENotificationPosition;
+type SRootProps = {
+    $variant: TVariantToast;
+    $position: TNotificationPosition;
     $boxPaddingVariant?: TypeBoxPaddingVariant;
     $boxGapVariant?: TypeBoxGapVariant;
     $animationDuration?: number;
@@ -246,9 +251,9 @@ const COLOR_VARIANT = {
 const applyBoxShadow = ($styles: TypeSSBox, $colors: TypeColorScheme) =>
     `${$styles.boxShadow_1} ${$colors.shadowColor}`;
 
-const applyGradient = ($variant: EVariantToast, $colors: TypeColorScheme) => COLOR_VARIANT[$variant]($colors);
+const applyGradient = ($variant: TVariantToast, $colors: TypeColorScheme) => COLOR_VARIANT[$variant]($colors);
 
-const SNotificationToast = styled.div<SNotificationToastProps>`
+const SRoot = styled.div<SRootProps>`
     box-sizing: border-box;
     position: relative;
     display: flex;
@@ -318,16 +323,16 @@ const SCloseBtn = styled.button`
 `;
 
 const iconVariant = {
-    [EVariantToast.ERROR]: (colorVariant: EVariantToast, sizeVariant: VS) => (
+    [EVariantToast.ERROR]: (colorVariant: TVariantToast, sizeVariant: VS) => (
         <Icon.Error colorVariant={colorVariant} sizeVariant={sizeVariant} />
     ),
-    [EVariantToast.INFO]: (colorVariant: EVariantToast, sizeVariant: VS) => (
+    [EVariantToast.INFO]: (colorVariant: TVariantToast, sizeVariant: VS) => (
         <Icon.Info colorVariant={colorVariant} sizeVariant={sizeVariant} />
     ),
-    [EVariantToast.SUCCESS]: (colorVariant: EVariantToast, sizeVariant: VS) => (
+    [EVariantToast.SUCCESS]: (colorVariant: TVariantToast, sizeVariant: VS) => (
         <Icon.Success colorVariant={colorVariant} sizeVariant={sizeVariant} />
     ),
-    [EVariantToast.WARNING]: (colorVariant: EVariantToast, sizeVariant: VS) => (
+    [EVariantToast.WARNING]: (colorVariant: TVariantToast, sizeVariant: VS) => (
         <Icon.Warning colorVariant={colorVariant} sizeVariant={sizeVariant} />
     ),
 };
@@ -345,7 +350,6 @@ export const BaseNotificationToast: React.FC<BaseNotificationToastProps> = React
         boxPaddingVariant = 'p-2',
         isClose = true,
         icon,
-        bg,
         boxGapVariant,
         animationDuration,
         $styles,
@@ -356,8 +360,7 @@ export const BaseNotificationToast: React.FC<BaseNotificationToastProps> = React
         const styles = useStyleScheme(['box', 'typography', 'base'], $styles);
 
         return (
-            <SNotificationToast
-                $bg={bg}
+            <SRoot
                 $styles={styles}
                 $colors={colors}
                 $position={position}
@@ -382,14 +385,14 @@ export const BaseNotificationToast: React.FC<BaseNotificationToastProps> = React
                     </SHeader>
                     {message}
                 </SContent>
-            </SNotificationToast>
+            </SRoot>
         );
     }
 );
 
 //export component
 export const SBaseNotificationToast = {
-    NotificationToast: SNotificationToast,
+    Root: SRoot,
 };
 
 //export type
@@ -397,5 +400,5 @@ export namespace TBaseNotificationToast {
     export type Base = BaseProps;
     export type Main = BaseNotificationToastProps;
     export type Styles = TypeStyles;
-    export type SNotificationToast = SNotificationToastProps;
+    export type SRoot = SRootProps;
 }

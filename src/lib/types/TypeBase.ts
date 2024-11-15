@@ -131,13 +131,7 @@ export enum EVariantToast {
     SUCCESS = 'success',
 }
 
-export enum EModalPosition {
-    BOTTOM = 'bottom',
-    TOP = 'top',
-    RIGHT = 'right',
-    LEFT = 'left',
-    CENTER = 'center',
-}
+export type TVariantToast = 'info' | 'warning' | 'error' | 'success';
 
 export enum ENotificationPosition {
     BOTTOM_LEFT = 'bottom_left',
@@ -150,3 +144,14 @@ export enum ENotificationPosition {
     TOP_CENTER = 'top_center',
     TOP_RIGHT = 'top_right',
 }
+
+export type TNotificationPosition =
+    | 'bottom_left'
+    | 'bottom_center'
+    | 'bottom_right'
+    | 'top_left'
+    | 'top_center'
+    | 'top_right'
+    | 'center'
+    | 'center_left'
+    | 'center_right';

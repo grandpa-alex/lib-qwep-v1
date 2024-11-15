@@ -1,13 +1,13 @@
 import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox';
 import { useStyleScheme } from '@src/lib/general';
 import { TypeSSBase, TypeSSBox } from '@src/lib/general/styleScheme';
-import { ENotificationPosition } from '@src/lib/types/TypeBase';
+import { ENotificationPosition, TNotificationPosition } from '@src/lib/types/TypeBase';
 import { TypeBoxGapVariant, TypeBoxPaddingVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { css, styled } from 'styled-components';
 import { BaseNotificationToast } from '../base-notification-toast/BaseNotificationToast';
-import { TypeNotification, TypeOptionsBase } from '../notification-provider/NotificationProvider';
+import { TypeOptions, TypeOptionsBase } from '../notification-provider/NotificationProvider';
 
 type TypeStyles = {
     box: TypeSSBox;
@@ -15,8 +15,8 @@ type TypeStyles = {
 };
 
 type NotificationPortalProps = {
-    notifications: TypeNotification[];
-    position: ENotificationPosition;
+    notifications: TypeOptions[];
+    position: TNotificationPosition;
 } & BaseProps;
 
 type BaseProps = {
@@ -27,7 +27,7 @@ type BaseProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type SRootProps = {
-    $position: ENotificationPosition;
+    $position: TNotificationPosition;
     $zIndex?: number;
     $boxGapVariant?: TypeBoxGapVariant;
     $boxPaddingVariant?: TypeBoxPaddingVariant;
@@ -106,7 +106,7 @@ export const NotificationPortal: React.FC<NotificationPortalProps> = React.memo(
                 $styles={styles}
                 {...rest}
             >
-                {notifications.map(({ type, id, position, content, ...notification }: TypeNotification) => {
+                {notifications.map(({ type, id, position, content, ...notification }: TypeOptions) => {
                     switch (type) {
                         case 'base':
                             return (
@@ -143,5 +143,5 @@ export namespace TNotificationPortal {
     export type Base = BaseProps;
     export type Main = NotificationPortalProps;
     export type Styles = TypeStyles;
-    export type SNotificationPortal = SRootProps;
+    export type SRoot = SRootProps;
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { BaseBox, BaseButton, useNotificationContext } from '../lib';
-import { ENotificationPosition } from '../lib/types/TypeBase';
 
 function Alert() {
     const [count, setCount] = useState(1);
@@ -13,7 +12,7 @@ function Alert() {
             message: `Alert ${count}`,
             variant: 'error',
             duration: 3000,
-            position: ENotificationPosition.BOTTOM_RIGHT,
+            position: 'bottom_right',
             type: 'base',
             portalProps: {
                 boxGapVariant: 'g-2',
@@ -23,7 +22,7 @@ function Alert() {
         alert({
             duration: 3000,
             content: <div>ferjifjreijg</div>,
-            position: ENotificationPosition.BOTTOM_LEFT,
+            position: 'bottom_right',
             type: 'custom',
             portalProps: {
                 boxGapVariant: 'g-2',

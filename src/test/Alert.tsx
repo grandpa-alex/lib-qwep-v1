@@ -22,7 +22,7 @@ function Alert() {
         alert({
             duration: 3000,
             content: <div>ferjifjreijg</div>,
-            position: 'bottom_right',
+            position: 'bottom_left',
             type: 'custom',
             portalProps: {
                 boxGapVariant: 'g-2',

@@ -1,12 +1,13 @@
 import { Copy } from '../types/CopyType';
-import {
-    BaseThemeProvider,
-    TypeBaseThemeContext,
-    TypeColorTheme,
-    TypeCustomColorTheme,
-    useBaseThemeContext,
-} from './BaseThemeContext';
+// import {
+//     BaseThemeProvider,
+//     TypeBaseThemeContext,
+//     TypeColorTheme,
+//     TypeCustomColorTheme,
+//     useBaseThemeContext,
+// } from './BaseThemeContext';
 import { TypeColorScheme, colorsDark, colorsLight } from './colors';
+import { StyledProvider, useStyledContext } from './StyledContext';
 import {
     TypeSS,
     TypeSSAvatar,
@@ -24,13 +25,16 @@ import {
     TypeSSTypography,
     styleScheme,
 } from './styleScheme';
+import { ThemeProvider, TypeColorTheme, TypeCustomColorTheme, TypeThemeContext, useThemeContext } from './ThemeContext';
 import { useColorScheme } from './useColorScheme';
 import { useStyleScheme } from './useStyleScheme';
 
 export {
     //core
-    BaseThemeProvider,
-    useBaseThemeContext,
+    ThemeProvider,
+    useThemeContext,
+    StyledProvider,
+    useStyledContext,
     //hooks
     useColorScheme,
     useStyleScheme,
@@ -43,7 +47,7 @@ export {
 export namespace TypeGeneral {
     export type ColorTheme = Copy<TypeColorTheme>;
     export type CustomColorTheme = Copy<TypeCustomColorTheme>;
-    export type BaseThemeContext = Copy<TypeBaseThemeContext>;
+    export type ThemeContext = Copy<TypeThemeContext>;
     export type Hex = `#${string}`;
     export type ColorScheme = Copy<TypeColorScheme>;
     export type SS = Copy<TypeSS>;

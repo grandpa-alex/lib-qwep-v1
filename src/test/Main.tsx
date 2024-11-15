@@ -14,17 +14,23 @@ import { BaseButton, BaseContainer, BaseLayout, NotificationProvider } from '../
 import WrapperItem from './WrapperItem';
 import Tab from './Tab';
 import Alert from './Alert';
-import { useBaseThemeContext } from '../lib/general';
+import { useThemeContext } from '@src/lib/general/ThemeContext';
+// import { useStyledContext } from '@src/lib/general/StyledContext';
 
 function Main() {
-    const [val, setVal] = useState(<Alert />);
-    const { currentColorThemeName, changeColorThemeHandler } = useBaseThemeContext();
+    const [val, setVal] = useState(<Inputs />);
+    // const { currentColorThemeName, changeColorThemeHandler } = useBaseThemeContext();
+
+    const { currentColorThemeName, changeColorThemeHandler } = useThemeContext();
+    // const { currentStyles } = useStyledContext();
 
     const themeChange = () => {
         if (currentColorThemeName === 'light') {
             changeColorThemeHandler('dark');
+            localStorage.setItem('theme', 'dark');
         } else {
             changeColorThemeHandler('light');
+            localStorage.setItem('theme', 'light');
         }
     };
 

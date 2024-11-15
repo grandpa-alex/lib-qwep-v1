@@ -1,7 +1,5 @@
 export type Hex = `#${string}`;
 
-export const TypeDefaultColorSchemes = ['light', 'dark'];
-
 export type TypeColorScheme = {
     primary: Hex;
     secondary: Hex;

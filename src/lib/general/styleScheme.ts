@@ -168,6 +168,8 @@ export type TypeSS = {
 
     //box
     box: TypeSSBox;
+} & {
+    [key: string]: string | { [key: string]: string | object };
 };
 
 export const styleScheme: TypeSS = {

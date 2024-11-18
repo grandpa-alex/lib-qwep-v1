@@ -203,7 +203,7 @@ export const styleScheme: TypeSS = {
         btnHeight_L: '38px',
         btnHeight_M: '32px',
         btnIconSize_L: '20px',
-        btnIconSize_M: '18px',
+        btnIconSize_M: '16px',
     },
 
     //inp
@@ -215,7 +215,7 @@ export const styleScheme: TypeSS = {
         inpHeight_L: '38px',
         inpHeight_M: '32px',
         inpIconSize_L: '20px',
-        inpIconSize_M: '18px',
+        inpIconSize_M: '16px',
     },
 
     //select
@@ -227,7 +227,7 @@ export const styleScheme: TypeSS = {
         selectHeight_L: '38px',
         selectHeight_M: '32px',
         selectIconSize_L: '20px',
-        selectIconSize_M: '18px',
+        selectIconSize_M: '16px',
     },
 
     //avatar
@@ -277,8 +277,8 @@ export const styleScheme: TypeSS = {
 
     // icon
     icon: {
-        iconSize_L: '24px',
-        iconSize_M: '20px',
+        iconSize_L: '20px',
+        iconSize_M: '16px',
     },
 
     //text

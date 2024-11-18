@@ -3,7 +3,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBox } from '@src/lib/general/styleScheme';
-import { TypeMargin } from '@src/lib/types/TypeBase';
+import { TMargin } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled from 'styled-components';
 import { SBaseTooltipComponent, TBaseTooltipComponent } from './BaseTooltipComponent';
@@ -14,7 +14,7 @@ type TypeStyles = {
 
 type BaseTooltipProps = {
     tooltip: React.ReactNode;
-    mr?: TypeMargin;
+    mr?: TMargin;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     providerProps?: React.ComponentPropsWithRef<typeof Tooltip.Provider>;

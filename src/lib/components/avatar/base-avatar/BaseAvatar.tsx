@@ -3,10 +3,10 @@ import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSAvatar, TypeSSMR } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeMargin } from '@src/lib/types/TypeBase';
+import { TMargin } from '@src/lib/types/TypeBase';
 import React, { useCallback } from 'react';
 import styled, { css } from 'styled-components';
-import { TypeVariantSizeAvatar, VSA } from '@src/lib/types/TypeAvatar';
+import { TVariantSizeAvatar, EVariantSizeAvatar } from '@src/lib/types/TypeAvatar';
 import { getMargin } from '@src/lib/common/getMargin';
 
 type TypeStyles = {
@@ -15,8 +15,8 @@ type TypeStyles = {
 };
 
 type BaseAvatarProps = {
-    mr?: TypeMargin;
-    sizeVariant?: TypeVariantSizeAvatar;
+    mr?: TMargin;
+    sizeVariant?: TVariantSizeAvatar;
     color?: Hex;
     bg?: Hex;
     rootProps?: React.ComponentPropsWithRef<typeof Avatar.Root>;
@@ -28,26 +28,26 @@ type BaseAvatarProps = {
 type SRootProps = {
     $color?: Hex;
     $bg?: Hex;
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $sizeVariant: TypeVariantSizeAvatar;
+    $sizeVariant: TVariantSizeAvatar;
 } & React.ComponentPropsWithRef<typeof Avatar.Root>;
 
 const SIZE = {
-    [VSA.S]: (props: TypeSSAvatar) => css`
+    [EVariantSizeAvatar.S]: (props: TypeSSAvatar) => css`
         width: ${props.avatarSize_1};
         min-width: ${props.avatarSize_1};
         height: ${props.avatarSize_1};
         font-size: ${props.avatarFontSize_1};
     `,
-    [VSA.M]: (props: TypeSSAvatar) => css`
+    [EVariantSizeAvatar.M]: (props: TypeSSAvatar) => css`
         width: ${props.avatarSize_2};
         min-width: ${props.avatarSize_2};
         height: ${props.avatarSize_2};
         font-size: ${props.avatarFontSize_2};
     `,
-    [VSA.L]: (props: TypeSSAvatar) => css`
+    [EVariantSizeAvatar.L]: (props: TypeSSAvatar) => css`
         width: ${props.avatarSize_3};
         min-width: ${props.avatarSize_3};
         height: ${props.avatarSize_3};
@@ -91,7 +91,10 @@ const SRoot = styled(Avatar.Root)<SRootProps>`
 
 export const BaseAvatar = React.memo(
     React.forwardRef<HTMLSpanElement, BaseAvatarProps>(
-        ({ mr, color, bg, sizeVariant = VSA.L, rootProps, fallbackProps, $colors, $styles, ...rest }, ref) => {
+        (
+            { mr, color, bg, sizeVariant = EVariantSizeAvatar.L, rootProps, fallbackProps, $colors, $styles, ...rest },
+            ref
+        ) => {
             const colors = useColorScheme($colors);
             const styles = useStyleScheme(['avatar', 'mr'], $styles);
 

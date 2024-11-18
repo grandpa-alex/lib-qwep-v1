@@ -2,8 +2,8 @@ import { getColor } from '@src/lib/common/getColor';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
-import { TypeInpVariant, VI } from '@src/lib/types/TypeInp';
+import { TVariantColor, TMargin, TVariantSize, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
+import { TInpVariant, EInpVariant } from '@src/lib/types/TypeInp';
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { SBaseInput, TBaseInput } from './BaseInput';
@@ -18,10 +18,10 @@ type TypeStyles = {
 };
 
 type BaseTextFieldProps = {
-    mr?: TypeMargin;
-    sizeVariant?: TypeVariantSize;
-    variant?: TypeInpVariant;
-    colorVariant?: TypeVariantColor;
+    mr?: TMargin;
+    sizeVariant?: TVariantSize;
+    variant?: TInpVariant;
+    colorVariant?: TVariantColor;
     color?: Hex;
     blocked?: boolean;
     inputAutofill?: Hex;
@@ -35,7 +35,7 @@ type BaseTextFieldProps = {
 type SInputProps = {
     $color?: Hex;
     $colors: TypeColorScheme;
-    $colorVariant: TypeVariantColor;
+    $colorVariant: TVariantColor;
 } & TBaseInput.SInput;
 
 const SInput = styled(SBaseInput.Input)<SInputProps>`
@@ -69,9 +69,9 @@ export const BaseTextField = React.memo(
                 mr,
                 blocked,
                 color,
-                variant = VI.OUTLINED,
-                sizeVariant = VS.L,
-                colorVariant = VC.DEFAULT,
+                variant = EInpVariant.OUTLINED,
+                sizeVariant = EVariantSize.L,
+                colorVariant = EVariantColor.DEFAULT,
                 _isActiveHover = true,
                 $colors,
                 $styles,

@@ -4,7 +4,7 @@ import { useColorScheme } from '@src/lib/general';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSInp, TypeSSMR } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeMargin, TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { TMargin, TVariantColor, TVariantSize, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -15,9 +15,9 @@ type TypeStyles = {
 };
 
 type RootTextareaProps = {
-    mr?: TypeMargin;
-    sizeVariant?: TypeVariantSize;
-    colorVariant?: TypeVariantColor;
+    mr?: TMargin;
+    sizeVariant?: TVariantSize;
+    colorVariant?: TVariantColor;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     color?: Hex;
@@ -30,9 +30,9 @@ type RootTextareaProps = {
 type SRootProps = {
     $styles: TypeStyles;
     $colors: TypeColorScheme;
-    $mr?: TypeMargin;
-    $sizeVariant: TypeVariantSize;
-    $colorVariant: TypeVariantColor;
+    $mr?: TMargin;
+    $sizeVariant: TVariantSize;
+    $colorVariant: TVariantColor;
     $disabled?: boolean;
     $color?: Hex;
     $blocked?: boolean;
@@ -41,10 +41,10 @@ type SRootProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const SIZE = {
-    [VS.L]: (props: TypeSSInp) => css`
+    [EVariantSize.L]: (props: TypeSSInp) => css`
         padding: ${props.inpPadding_Y_L} 5px ${props.inpPadding_Y_L} ${props.inpPadding_X_L};
     `,
-    [VS.M]: (props: TypeSSInp) => css`
+    [EVariantSize.M]: (props: TypeSSInp) => css`
         padding: ${props.inpPadding_Y_M} 3px ${props.inpPadding_Y_M} ${props.inpPadding_X_M};
     `,
 };
@@ -114,8 +114,8 @@ export const RootTextarea: React.FC<RootTextareaProps> = React.memo(
         color,
         disabled,
         blocked,
-        sizeVariant = VS.L,
-        colorVariant = VC.DEFAULT,
+        sizeVariant = EVariantSize.L,
+        colorVariant = EVariantColor.DEFAULT,
         $colors,
         $styles,
         _isActiveHover = true,

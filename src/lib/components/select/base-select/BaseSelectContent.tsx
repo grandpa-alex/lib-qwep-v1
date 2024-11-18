@@ -4,12 +4,12 @@ import { getColor } from '@src/lib/common/getColor';
 import { getMargin } from '@src/lib/common/getMargin';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSBox, TypeSSMR, TypeSSSelect, TypeSSTypography } from '@src/lib/general/styleScheme';
-import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
-import { TypeBtnPosition, BP } from '@src/lib/types/TypeBtn';
+import { TVariantColor, TMargin, TVariantSize, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
+import { TBtnPosition, EBtnPosition } from '@src/lib/types/TypeBtn';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import * as Select from '@radix-ui/react-select';
-import { TypeBoxPaddingVariant, TypeBoxShadowVariant } from '@src/lib/types/TypeBox';
+import { TBoxPaddingVariant, TBoxShadowVariant } from '@src/lib/types/TypeBox';
 import { BOX_PADDING_VARIANT, BOX_SHADOW_VARIANT } from '@src/lib/common-styled-component/StyledComponentBox';
 import { Arrow } from '@src/lib/icons';
 import { SBaseSelectComponent, TBaseSelectComponent } from './BaseSelectComponent';
@@ -28,17 +28,17 @@ type TypeStyles = {
 
 type BaseSelectContentProps = {
     children?: React.ReactNode;
-    mr?: TypeMargin;
+    mr?: TMargin;
     width?: string;
-    sizeVariant?: TypeVariantSize;
-    colorVariant?: TypeVariantColor;
+    sizeVariant?: TVariantSize;
+    colorVariant?: TVariantColor;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-    boxShadowVariant?: TypeBoxShadowVariant;
-    boxPaddingVariant?: TypeBoxPaddingVariant;
+    boxShadowVariant?: TBoxShadowVariant;
+    boxPaddingVariant?: TBoxPaddingVariant;
     color?: Hex;
     blocked?: boolean;
-    positionTrigger?: TypeBtnPosition;
+    positionTrigger?: TBtnPosition;
     maxHeight?: string;
     placeholder?: React.ReactNode;
     _isActiveHover?: boolean;
@@ -52,33 +52,33 @@ type BaseSelectContentProps = {
 } & React.ComponentPropsWithRef<typeof Select.Root>;
 
 type STriggerProps = {
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $color?: Hex;
     $width?: string;
     $blocked?: boolean;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $positionTrigger: TypeBtnPosition;
-    $sizeVariant: TypeVariantSize;
-    $colorVariant: TypeVariantColor;
+    $positionTrigger: TBtnPosition;
+    $sizeVariant: TVariantSize;
+    $colorVariant: TVariantColor;
     $_isActiveHover?: boolean;
 } & React.ComponentPropsWithRef<typeof Select.Trigger>;
 
 const SELECT_SIZE = {
-    [VS.L]: (props: TypeSSSelect) => css`
+    [EVariantSize.L]: (props: TypeSSSelect) => css`
         height: ${props.selectHeight_L};
         padding: ${`${props.selectPadding_Y_L} ${props.selectPadding_X_L}`};
     `,
-    [VS.M]: (props: TypeSSSelect) => css`
+    [EVariantSize.M]: (props: TypeSSSelect) => css`
         height: ${props.selectHeight_M};
         padding: ${`${props.selectPadding_Y_M} ${props.selectPadding_X_M}`};
     `,
 };
 
 const POSITION_TRIGGER = {
-    [BP.CENTER]: 'center',
-    [BP.LEFT]: 'space-between',
-    [BP.RIGHT]: 'right',
+    [EBtnPosition.CENTER]: 'center',
+    [EBtnPosition.LEFT]: 'space-between',
+    [EBtnPosition.RIGHT]: 'right',
 };
 
 const STrigger = styled(Select.Trigger)<STriggerProps>`
@@ -237,9 +237,9 @@ type SContentProps = {
     $width?: string;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $colorVariant: TypeVariantColor;
-    $boxShadowVariant: TypeBoxShadowVariant;
-    $boxPaddingVariant: TypeBoxPaddingVariant;
+    $colorVariant: TVariantColor;
+    $boxShadowVariant: TBoxShadowVariant;
+    $boxPaddingVariant: TBoxPaddingVariant;
     $_isActiveHover?: boolean;
 } & React.ComponentPropsWithRef<typeof Select.Content>;
 
@@ -308,7 +308,7 @@ type SViewportProps = {
     $color?: Hex;
     $maxHeight?: string;
     $colors: TypeColorScheme;
-    $colorVariant: TypeVariantColor;
+    $colorVariant: TVariantColor;
     $_isActiveHover?: boolean;
 } & React.ComponentPropsWithRef<typeof Select.Viewport>;
 
@@ -335,9 +335,9 @@ export const BaseSelectContent = React.memo(
                 width,
                 maxHeight,
                 placeholder,
-                positionTrigger = BP.CENTER,
-                sizeVariant = VS.L,
-                colorVariant = VC.DEFAULT,
+                positionTrigger = EBtnPosition.CENTER,
+                sizeVariant = EVariantSize.L,
+                colorVariant = EVariantColor.DEFAULT,
                 boxPaddingVariant = 'p-1',
                 boxShadowVariant = 'shd-1',
                 blocked,

@@ -1,11 +1,4 @@
 import { Copy } from '../types/CopyType';
-// import {
-//     BaseThemeProvider,
-//     TypeBaseThemeContext,
-//     TypeColorTheme,
-//     TypeCustomColorTheme,
-//     useBaseThemeContext,
-// } from './BaseThemeContext';
 import { TypeColorScheme, colorsDark, colorsLight } from './colors';
 import { StyledProvider, useStyledContext } from './StyledContext';
 import {

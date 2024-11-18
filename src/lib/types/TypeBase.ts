@@ -1,4 +1,4 @@
-export type TypeMargin =
+export type TMargin =
     | 'm-1'
     | 'm-2'
     | 'm-3'
@@ -84,7 +84,7 @@ export type TypeMargin =
     | 'my-11'
     | 'my-12';
 
-export enum MP {
+export enum EModalPosition {
     BOTTOM = 'bottom',
     TOP = 'top',
     RIGHT = 'right',
@@ -92,36 +92,36 @@ export enum MP {
     CENTER = 'center',
 }
 
-export type TypeModalPosition = 'bottom' | 'top' | 'right' | 'left' | 'center';
+export type TModalPosition = 'bottom' | 'top' | 'right' | 'left' | 'center';
 
-export enum VS {
+export enum EVariantSize {
     M = 'M',
     L = 'L',
 }
-export type TypeVariantSize = 'M' | 'L';
+export type TVariantSize = 'M' | 'L';
 
-export enum VC {
+export enum EVariantColor {
     ERROR = 'error',
     INFO = 'info',
     WARNING = 'warning',
     SUCCESS = 'success',
     DEFAULT = 'default',
 }
-export type TypeVariantColor = 'error' | 'info' | 'warning' | 'success' | 'default';
+export type TVariantColor = 'error' | 'info' | 'warning' | 'success' | 'default';
 
-export enum IIP {
+export enum EItemIconPosition {
     RIGHT = 'right',
     LEFT = 'left',
 }
 
-export type TypeItemIconPosition = 'right' | 'left';
+export type TItemIconPosition = 'right' | 'left';
 
-export enum OC {
+export enum EOrientationContent {
     VERTICAL = 'vertical',
     HORIZONTAL = 'horizontal',
 }
 
-export type TypeOrientationContent = 'vertical' | 'horizontal';
+export type TOrientationContent = 'vertical' | 'horizontal';
 
 ///
 export enum EVariantToast {

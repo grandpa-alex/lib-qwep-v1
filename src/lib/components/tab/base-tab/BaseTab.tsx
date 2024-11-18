@@ -3,7 +3,7 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { getMargin } from '@src/lib/common/getMargin';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBtn, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
-import { TypeMargin, TypeVariantSize, VS } from '@src/lib/types/TypeBase';
+import { TMargin, TVariantSize, EVariantSize } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useColorScheme } from '@src/lib/general';
@@ -15,28 +15,28 @@ type TypeStyles = {
 };
 
 type BaseTabProps = {
-    mr?: TypeMargin;
+    mr?: TMargin;
     color?: Hex;
-    sizeVariant?: TypeVariantSize;
+    sizeVariant?: TVariantSize;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     blocked?: boolean;
 } & React.ComponentPropsWithRef<typeof Tabs.Trigger>;
 
 type STabProps = {
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $blocked?: boolean;
-    $sizeVariant: TypeVariantSize;
+    $sizeVariant: TVariantSize;
     $styles: TypeStyles;
     $colors: TypeColorScheme;
 } & React.ComponentPropsWithRef<typeof Tabs.Trigger>;
 
 const TAB_SIZE = {
-    [VS.L]: (btn: TypeSSBtn) => css`
+    [EVariantSize.L]: (btn: TypeSSBtn) => css`
         height: ${btn.btnHeight_L};
         padding: ${`${btn.btnPadding_Y_L} ${btn.btnPadding_X_L}`};
     `,
-    [VS.M]: (btn: TypeSSBtn) => css`
+    [EVariantSize.M]: (btn: TypeSSBtn) => css`
         height: ${btn.btnHeight_M};
         padding: ${`${btn.btnPadding_Y_M} ${btn.btnPadding_X_M}`};
     `,
@@ -86,7 +86,7 @@ const STab = styled(Tabs.Trigger)<STabProps>`
 
 export const BaseTab = React.memo(
     React.forwardRef<HTMLButtonElement, BaseTabProps>(
-        ({ mr, sizeVariant = VS.L, blocked, $colors, $styles, ...rest }, ref) => {
+        ({ mr, sizeVariant = EVariantSize.L, blocked, $colors, $styles, ...rest }, ref) => {
             const colors = useColorScheme($colors);
             const styles = useStyleScheme(['mr', 'btn', 'typography'], $styles);
 

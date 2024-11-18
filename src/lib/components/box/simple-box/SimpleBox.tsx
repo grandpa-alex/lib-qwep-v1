@@ -1,5 +1,5 @@
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeBoxRadiusVariant, TypeBoxShadowVariant } from '@src/lib/types/TypeBox';
+import { TBoxRadiusVariant, TBoxShadowVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
@@ -11,8 +11,8 @@ type SimpleBoxProps = {
     bg?: Hex;
     boxBorderColor?: Hex;
     boxShadowColor?: Hex;
-    boxShadowVariant?: TypeBoxShadowVariant;
-    boxRadiusVariant?: TypeBoxRadiusVariant;
+    boxShadowVariant?: TBoxShadowVariant;
+    boxRadiusVariant?: TBoxRadiusVariant;
     $colors?: TypeColorScheme;
 } & TBaseBox.Main;
 
@@ -21,8 +21,8 @@ type SBoxProps = {
     $bg?: Hex;
     $boxBorderColor?: Hex;
     $boxShadowColor?: Hex;
-    $boxShadowVariant?: TypeBoxShadowVariant;
-    $boxRadiusVariant?: TypeBoxRadiusVariant;
+    $boxShadowVariant?: TBoxShadowVariant;
+    $boxRadiusVariant?: TBoxRadiusVariant;
 } & TBaseBox.SBox;
 
 const SBox = styled(SBaseBox.Box)<SBoxProps>`

@@ -2,12 +2,12 @@ import { css } from 'styled-components';
 import { TypeSSBox } from '../general/styleScheme';
 import { Hex, TypeColorScheme } from '../general/colors';
 import {
-    TypeBoxDisplay,
-    TypeBoxGapVariant,
-    TypeBoxPaddingVariant,
-    TypeBoxRadiusVariant,
-    TypeBoxShadowVariant,
-    TypeBoxWidthVariant,
+    TBoxDisplay,
+    TBoxGapVariant,
+    TBoxPaddingVariant,
+    TBoxRadiusVariant,
+    TBoxShadowVariant,
+    TBoxWidthVariant,
 } from '../types/TypeBox';
 
 export const BOX_WIDTH_VARIANT = {
@@ -119,10 +119,10 @@ export const BOX_SHADOW_VARIANT = {
 };
 
 export type CSSBaseBoxProps = {
-    $boxWidthVariant?: TypeBoxWidthVariant;
-    $boxPaddingVariant?: TypeBoxPaddingVariant;
-    $boxGapVariant?: TypeBoxGapVariant;
-    $boxDisplay?: TypeBoxDisplay;
+    $boxWidthVariant?: TBoxWidthVariant;
+    $boxPaddingVariant?: TBoxPaddingVariant;
+    $boxGapVariant?: TBoxGapVariant;
+    $boxDisplay?: TBoxDisplay;
     $styles: TypeSSBox;
 };
 
@@ -141,8 +141,8 @@ export type CSSSimplePropsBox = {
     $colors: TypeColorScheme;
     $boxBorderColor?: Hex;
     $boxShadowColor?: Hex;
-    $boxShadowVariant?: TypeBoxShadowVariant;
-    $boxRadiusVariant?: TypeBoxRadiusVariant;
+    $boxShadowVariant?: TBoxShadowVariant;
+    $boxRadiusVariant?: TBoxRadiusVariant;
 };
 
 export const CSSSimpleBox = (props: CSSSimplePropsBox) => css`

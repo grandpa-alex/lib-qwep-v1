@@ -5,9 +5,9 @@ import { TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 import React from 'react';
 import styled from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
-import { TypeMargin } from '@src/lib/types/TypeBase';
+import { TMargin } from '@src/lib/types/TypeBase';
 import { css } from 'styled-components';
-import { TypeTitleVariant } from '@src/lib/types/TypeText';
+import { TTitleVariant } from '@src/lib/types/TypeText';
 
 type TypeStyles = {
     typography: TypeSSTypography;
@@ -18,16 +18,16 @@ type BaseTitleProps = {
     children?: React.ReactNode;
     color?: Hex;
     isEllipsis?: boolean;
-    mr?: TypeMargin;
+    mr?: TMargin;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
-    as?: TypeTitleVariant;
+    as?: TTitleVariant;
 } & React.HTMLAttributes<HTMLElement>;
 
 type STitleProps = {
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $isEllipsis?: boolean;
-    $as: TypeTitleVariant;
+    $as: TTitleVariant;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $color?: Hex;

@@ -1,11 +1,11 @@
 import { css } from 'styled-components';
 import { Hex, TypeColorScheme } from '../general/colors';
 import { getColor } from '../common/getColor';
-import { TypeVariantColor } from '../types/TypeBase';
+import { TVariantColor } from '../types/TypeBase';
 
 export type StyledScrollbarItemProps = {
     $color?: Hex;
-    $colorVariant?: TypeVariantColor;
+    $colorVariant?: TVariantColor;
     $hover?: boolean;
     $colors: TypeColorScheme;
 };

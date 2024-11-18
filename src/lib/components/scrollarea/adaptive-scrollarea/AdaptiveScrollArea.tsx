@@ -4,11 +4,11 @@ import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
 import React from 'react';
 import styled from 'styled-components';
-import { TypeMargin, TypeOrientationContent } from '@src/lib/types/TypeBase';
+import { TMargin, TOrientationContent } from '@src/lib/types/TypeBase';
 import { getMargin } from '@src/lib/common/getMargin';
 import { StyledScrollbarItem } from '@src/lib/common-styled-component/StyledBase';
 import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox';
-import { TypeBoxDisplay, TypeBoxGapVariant, TypeBoxPaddingVariant, TypeBoxWidthVariant } from '@src/lib/types/TypeBox';
+import { TBoxDisplay, TBoxGapVariant, TBoxPaddingVariant, TBoxWidthVariant } from '@src/lib/types/TypeBox';
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -25,13 +25,13 @@ type TypeSize = {
 };
 
 type AdaptiveScrollAreaProps = {
-    mr?: TypeMargin;
-    boxWidthVariant?: TypeBoxWidthVariant;
-    boxPaddingVariant?: TypeBoxPaddingVariant;
-    boxGapVariant?: TypeBoxGapVariant;
-    boxDisplay?: TypeBoxDisplay;
+    mr?: TMargin;
+    boxWidthVariant?: TBoxWidthVariant;
+    boxPaddingVariant?: TBoxPaddingVariant;
+    boxGapVariant?: TBoxGapVariant;
+    boxDisplay?: TBoxDisplay;
     thumbColor?: Hex;
-    orientation?: TypeOrientationContent;
+    orientation?: TOrientationContent;
     children?: React.ReactNode;
     size?: TypeSize;
     $colors?: TypeColorScheme;
@@ -39,15 +39,15 @@ type AdaptiveScrollAreaProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type SRootProps = {
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $styles: TypeStyles;
     $colors: TypeColorScheme;
     $size?: TypeSize;
     $thumbColor?: Hex;
-    $boxWidthVariant?: TypeBoxWidthVariant;
-    $boxPaddingVariant?: TypeBoxPaddingVariant;
-    $boxGapVariant?: TypeBoxGapVariant;
-    $boxDisplay?: TypeBoxDisplay;
+    $boxWidthVariant?: TBoxWidthVariant;
+    $boxPaddingVariant?: TBoxPaddingVariant;
+    $boxGapVariant?: TBoxGapVariant;
+    $boxDisplay?: TBoxDisplay;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const SRoot = styled.div<SRootProps>`

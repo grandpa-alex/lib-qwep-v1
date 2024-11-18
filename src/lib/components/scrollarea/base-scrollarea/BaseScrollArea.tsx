@@ -5,7 +5,7 @@ import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSMR } from '@src/lib/general/styleScheme';
 import React from 'react';
 import styled from 'styled-components';
-import { OC, TypeMargin, TypeOrientationContent } from '@src/lib/types/TypeBase';
+import { EOrientationContent, TMargin, TOrientationContent } from '@src/lib/types/TypeBase';
 import { SBaseScrollAreaComponent, TBaseScrollAreaComponent } from './BaseScrollAreaComponent';
 import { getMargin } from '@src/lib/common/getMargin';
 import { getColor } from '@src/lib/common/getColor';
@@ -15,12 +15,12 @@ type TypeStyles = {
 };
 
 type BaseScrollAreaProps = {
-    mr?: TypeMargin;
+    mr?: TMargin;
     width?: string;
     height?: string;
     bgScrollbar?: Hex;
     thumbColor?: Hex;
-    orientation?: TypeOrientationContent;
+    orientation?: TOrientationContent;
     children?: React.ReactNode;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
@@ -31,7 +31,7 @@ type BaseScrollAreaProps = {
 } & TBaseScrollAreaComponent.SRoot;
 
 type SRootProps = {
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $styles: TypeStyles;
     $width?: string;
     $height?: string;
@@ -84,7 +84,7 @@ export const BaseScrollArea = React.memo(
         (
             {
                 mr,
-                orientation = OC.VERTICAL,
+                orientation = EOrientationContent.VERTICAL,
                 width,
                 height,
                 bgScrollbar,

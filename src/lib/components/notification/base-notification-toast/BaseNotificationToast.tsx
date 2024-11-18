@@ -10,10 +10,10 @@ import {
     EVariantToast,
     TNotificationPosition,
     TVariantToast,
-    TypeMargin,
-    VS,
+    TMargin,
+    EVariantSize,
 } from '@src/lib/types/TypeBase';
-import { TypeBoxGapVariant, TypeBoxPaddingVariant } from '@src/lib/types/TypeBox';
+import { TBoxGapVariant, TBoxPaddingVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
 import { css, styled } from 'styled-components';
 
@@ -34,12 +34,12 @@ type BaseNotificationToastProps = {
 type BaseProps = {
     position: TNotificationPosition;
     variant?: TVariantToast;
-    iconSizeVariant?: VS;
+    iconSizeVariant?: EVariantSize;
     isClose?: boolean;
     icon?: React.ReactNode;
-    mr?: TypeMargin;
-    boxPaddingVariant?: TypeBoxPaddingVariant;
-    boxGapVariant?: TypeBoxGapVariant;
+    mr?: TMargin;
+    boxPaddingVariant?: TBoxPaddingVariant;
+    boxGapVariant?: TBoxGapVariant;
     animationDuration?: number;
     $styles?: TypeStyles;
     $colors?: TypeColorScheme;
@@ -48,8 +48,8 @@ type BaseProps = {
 type SRootProps = {
     $variant: TVariantToast;
     $position: TNotificationPosition;
-    $boxPaddingVariant?: TypeBoxPaddingVariant;
-    $boxGapVariant?: TypeBoxGapVariant;
+    $boxPaddingVariant?: TBoxPaddingVariant;
+    $boxGapVariant?: TBoxGapVariant;
     $animationDuration?: number;
     $styles: TypeStyles;
     $colors: TypeColorScheme;
@@ -263,7 +263,6 @@ const SRoot = styled.div<SRootProps>`
     max-width: 400px;
     min-width: 250px;
     height: 100%;
-    border-bottom: 2px solid transparent;
     box-shadow: ${({ $styles, $colors }) => applyBoxShadow($styles.box, $colors)};
     background: ${({ $colors, $variant }) => applyGradient($variant, $colors)};
     ${({ $animationDuration, $position }) => css`
@@ -323,16 +322,16 @@ const SCloseBtn = styled.button`
 `;
 
 const iconVariant = {
-    [EVariantToast.ERROR]: (colorVariant: TVariantToast, sizeVariant: VS) => (
+    [EVariantToast.ERROR]: (colorVariant: TVariantToast, sizeVariant: EVariantSize) => (
         <Icon.Error colorVariant={colorVariant} sizeVariant={sizeVariant} />
     ),
-    [EVariantToast.INFO]: (colorVariant: TVariantToast, sizeVariant: VS) => (
+    [EVariantToast.INFO]: (colorVariant: TVariantToast, sizeVariant: EVariantSize) => (
         <Icon.Info colorVariant={colorVariant} sizeVariant={sizeVariant} />
     ),
-    [EVariantToast.SUCCESS]: (colorVariant: TVariantToast, sizeVariant: VS) => (
+    [EVariantToast.SUCCESS]: (colorVariant: TVariantToast, sizeVariant: EVariantSize) => (
         <Icon.Success colorVariant={colorVariant} sizeVariant={sizeVariant} />
     ),
-    [EVariantToast.WARNING]: (colorVariant: TVariantToast, sizeVariant: VS) => (
+    [EVariantToast.WARNING]: (colorVariant: TVariantToast, sizeVariant: EVariantSize) => (
         <Icon.Warning colorVariant={colorVariant} sizeVariant={sizeVariant} />
     ),
 };
@@ -346,7 +345,7 @@ export const BaseNotificationToast: React.FC<BaseNotificationToastProps> = React
         position = ENotificationPosition.BOTTOM_RIGHT,
         onClose,
         variant = EVariantToast.ERROR,
-        iconSizeVariant = VS.M,
+        iconSizeVariant = EVariantSize.M,
         boxPaddingVariant = 'p-2',
         isClose = true,
         icon,

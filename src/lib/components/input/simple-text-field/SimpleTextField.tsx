@@ -1,8 +1,8 @@
 import { getColor } from '@src/lib/common/getColor';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { IIP, TypeItemIconPosition, VC, VS } from '@src/lib/types/TypeBase';
-import { VI } from '@src/lib/types/TypeInp';
+import { EItemIconPosition, TItemIconPosition, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
+import { EInpVariant } from '@src/lib/types/TypeInp';
 import React, { useCallback, useMemo, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { renderIconTextField } from '@src/lib/common/renderIconItem';
@@ -10,14 +10,14 @@ import { SBaseTextField, TBaseTextField } from '../base-text-field/BaseTextField
 
 type SimpleTextFieldProps = {
     icon?: React.ReactNode;
-    iconPosition?: TypeItemIconPosition;
+    iconPosition?: TItemIconPosition;
     iconOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
     rootProps?: React.HTMLAttributes<HTMLDivElement>;
     iconContainerProps?: React.HTMLAttributes<HTMLDivElement> & React.ButtonHTMLAttributes<HTMLButtonElement>;
 } & TBaseTextField.Main;
 
 type SIconContProps = {
-    $iconPosition: TypeItemIconPosition;
+    $iconPosition: TItemIconPosition;
     $useBtn: boolean;
     $disabled?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
@@ -39,7 +39,7 @@ export const SIconContainer = styled.div<SIconContProps>`
             cursor: pointer;
         `};
     ${(props) => {
-        if (props.$iconPosition === IIP.RIGHT) {
+        if (props.$iconPosition === EItemIconPosition.RIGHT) {
             return css`
                 order: 1;
                 margin-left: 6px;
@@ -112,10 +112,10 @@ export const SimpleTextField = React.memo(
                 color,
                 iconOnClick,
                 _isActiveHover = true,
-                iconPosition = IIP.LEFT,
-                variant = VI.OUTLINED,
-                sizeVariant = VS.L,
-                colorVariant = VC.DEFAULT,
+                iconPosition = EItemIconPosition.LEFT,
+                variant = EInpVariant.OUTLINED,
+                sizeVariant = EVariantSize.L,
+                colorVariant = EVariantColor.DEFAULT,
                 $colors,
                 $styles,
                 rootProps,

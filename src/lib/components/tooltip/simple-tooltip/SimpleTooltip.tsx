@@ -3,34 +3,29 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { Hex } from '@src/lib/general/colors';
 import React from 'react';
 import styled from 'styled-components';
-import {
-    TypeBoxGapVariant,
-    TypeBoxPaddingVariant,
-    TypeBoxRadiusVariant,
-    TypeBoxShadowVariant,
-} from '@src/lib/types/TypeBox';
+import { TBoxGapVariant, TBoxPaddingVariant, TBoxRadiusVariant, TBoxShadowVariant } from '@src/lib/types/TypeBox';
 import { CSSBaseBox, CSSSimpleBox } from '@src/lib/common-styled-component/StyledComponentBox';
 import { TBaseTooltip, SBaseTooltip } from '../base-tooltip/BaseTooltip';
 import { SBaseTooltipComponent } from '../base-tooltip/BaseTooltipComponent';
 
 type SimpleTooltipProps = {
-    boxPaddingVariant?: TypeBoxPaddingVariant;
-    boxGapVariant?: TypeBoxGapVariant;
+    boxPaddingVariant?: TBoxPaddingVariant;
+    boxGapVariant?: TBoxGapVariant;
     boxBorderColor?: Hex;
     boxShadowColor?: Hex;
-    boxShadowVariant?: TypeBoxShadowVariant;
-    boxRadiusVariant?: TypeBoxRadiusVariant;
+    boxShadowVariant?: TBoxShadowVariant;
+    boxRadiusVariant?: TBoxRadiusVariant;
     bg?: Hex;
 } & TBaseTooltip.Main;
 
 type SContentProps = {
     $bg?: Hex;
-    $boxGapVariant?: TypeBoxGapVariant;
+    $boxGapVariant?: TBoxGapVariant;
     $boxBorderColor?: Hex;
     $boxShadowColor?: Hex;
-    $boxShadowVariant?: TypeBoxShadowVariant;
-    $boxRadiusVariant: TypeBoxRadiusVariant;
-    $boxPaddingVariant: TypeBoxPaddingVariant;
+    $boxShadowVariant?: TBoxShadowVariant;
+    $boxRadiusVariant: TBoxRadiusVariant;
+    $boxPaddingVariant: TBoxPaddingVariant;
 } & TBaseTooltip.SContent;
 
 const SContent = styled(SBaseTooltipComponent.Content)<SContentProps>`

@@ -1,22 +1,22 @@
 import React from 'react';
 import { IconSVGContainerProps, IconSVGContainer } from './IconSVGContainer';
-import { IP, TypeIconPosition } from '../types/TypeIcon';
+import { EIconPosition, TIconPosition } from '../types/TypeIcon';
 import { styled } from 'styled-components';
 
 export type ArrowLineProps = {
-    position?: TypeIconPosition;
+    position?: TIconPosition;
 } & IconSVGContainerProps;
 
 const IconSVGContainerArrowLine = styled(IconSVGContainer)<{ $rotate?: string }>`
     transform: ${(props) => props.$rotate};
 `;
 
-export const ArrowLine: React.FC<ArrowLineProps> = ({ position = IP.TOP, ...rest }) => {
+export const ArrowLine: React.FC<ArrowLineProps> = ({ position = EIconPosition.TOP, ...rest }) => {
     const rotate = {
-        [IP.LEFT]: 'rotate(90deg)',
-        [IP.BOTTOM]: 'rotate(0deg)',
-        [IP.TOP]: 'rotate(180deg)',
-        [IP.RIGHT]: 'rotate(-90deg)',
+        [EIconPosition.LEFT]: 'rotate(90deg)',
+        [EIconPosition.BOTTOM]: 'rotate(0deg)',
+        [EIconPosition.TOP]: 'rotate(180deg)',
+        [EIconPosition.RIGHT]: 'rotate(-90deg)',
     };
     return (
         <IconSVGContainerArrowLine

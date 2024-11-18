@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { getColor } from '@src/lib/common/getColor';
 import { TypeColorScheme } from '@src/lib/general/colors';
-import { TypeVariantColor } from '@src/lib/types/TypeBase';
+import { TVariantColor } from '@src/lib/types/TypeBase';
 
 type TypeMessage = {
     text?: React.ReactNode;
-    colorVariant?: TypeVariantColor;
+    colorVariant?: TVariantColor;
 };
 
 type MessageBoxProps = {
@@ -17,7 +17,7 @@ type MessageBoxProps = {
 
 type SMessageProps = {
     $colors: TypeColorScheme;
-    $colorVariant: TypeVariantColor;
+    $colorVariant: TVariantColor;
 } & React.HTMLAttributes<HTMLSpanElement>;
 
 const SMessage = styled.span<SMessageProps>`

@@ -3,85 +3,91 @@ export * as General from './general';
 export * as Icon from './icons';
 
 import { Copy } from './types/CopyType';
-import { TypeVariantSizeAvatar, VSA } from './types/TypeAvatar';
+import { TVariantSizeAvatar, EVariantSizeAvatar } from './types/TypeAvatar';
 import {
-    MP,
-    TypeVariantColor,
-    TypeItemIconPosition,
-    TypeMargin,
-    TypeModalPosition,
-    TypeVariantSize,
-    VC,
-    VS,
-    IIP,
-    TypeOrientationContent,
-    OC,
+    EModalPosition,
+    TVariantColor,
+    TItemIconPosition,
+    TMargin,
+    TModalPosition,
+    TVariantSize,
+    EVariantColor,
+    EVariantSize,
+    EItemIconPosition,
+    TOrientationContent,
+    EOrientationContent,
+    EVariantToast,
+    ENotificationPosition,
+    TNotificationPosition,
 } from './types/TypeBase';
 import {
-    TypeBoxDisplay,
-    TypeBoxGapVariant,
-    TypeBoxPaddingVariant,
-    TypeBoxRadiusVariant,
-    TypeBoxShadowVariant,
-    TypeBoxWidthVariant,
+    TBoxDisplay,
+    TBoxGapVariant,
+    TBoxPaddingVariant,
+    TBoxRadiusVariant,
+    TBoxShadowVariant,
+    TBoxWidthVariant,
 } from './types/TypeBox';
-import { BP, TypeBtnPosition, TypeVariantBtn, VB } from './types/TypeBtn';
-import { PIL, TypeInpVariant, TypePositionInpLabel } from './types/TypeInp';
-import { TypeTitleVariant } from './types/TypeText';
+import { EBtnPosition, TBtnPosition, TVariantBtn, EVariantBtn } from './types/TypeBtn';
+import { EPositionInpLabel, TInpVariant, TPositionInpLabel } from './types/TypeInp';
+import { TTitleVariant } from './types/TypeText';
 
-export namespace TypeBase {
-    export type Margin = Copy<TypeMargin>;
-    export type ModalPosition = Copy<TypeModalPosition>;
-    export type VariantSize = Copy<TypeVariantSize>;
-    export type VariantColor = Copy<TypeVariantColor>;
-    export type ItemIconPosition = Copy<TypeItemIconPosition>;
-    export type OrientationContent = Copy<TypeOrientationContent>;
+export namespace TPropsBase {
+    export type Margin = Copy<TMargin>;
+    export type ModalPosition = Copy<TModalPosition>;
+    export type VariantSize = Copy<TVariantSize>;
+    export type VariantColor = Copy<TVariantColor>;
+    export type ItemIconPosition = Copy<TItemIconPosition>;
+    export type OrientationContent = Copy<TOrientationContent>;
+    export type NotificationPosition = Copy<TNotificationPosition>;
 }
 
-export namespace TypeBaseButton {
-    export type VariantBtn = Copy<TypeVariantBtn>;
-    export type BtnPosition = Copy<TypeBtnPosition>;
+export namespace TPropsButton {
+    export type VariantBtn = Copy<TVariantBtn>;
+    export type BtnPosition = Copy<TBtnPosition>;
 }
 
-export namespace TypeBaseInput {
-    export type VariantInp = Copy<TypeInpVariant>;
-    export type PositionInpLabel = Copy<TypePositionInpLabel>;
+export namespace TPropsInput {
+    export type VariantInp = Copy<TInpVariant>;
+    export type PositionInpLabel = Copy<TPositionInpLabel>;
 }
 
-export namespace TypeBaseAvatar {
-    export type VariantSizeAvatar = Copy<TypeVariantSizeAvatar>;
+export namespace TPropsAvatar {
+    export type VariantSizeAvatar = Copy<TVariantSizeAvatar>;
 }
 
-export namespace TypeBaseBox {
-    export type BoxWidthVariant = Copy<TypeBoxWidthVariant>;
-    export type BoxPaddingVariant = Copy<TypeBoxPaddingVariant>;
-    export type BoxGapVariant = Copy<TypeBoxGapVariant>;
-    export type BoxShadowVariant = Copy<TypeBoxShadowVariant>;
-    export type BoxRadiusVariant = Copy<TypeBoxRadiusVariant>;
-    export type BoxDisplay = Copy<TypeBoxDisplay>;
+export namespace TPropsBox {
+    export type BoxWidthVariant = Copy<TBoxWidthVariant>;
+    export type BoxPaddingVariant = Copy<TBoxPaddingVariant>;
+    export type BoxGapVariant = Copy<TBoxGapVariant>;
+    export type BoxShadowVariant = Copy<TBoxShadowVariant>;
+    export type BoxRadiusVariant = Copy<TBoxRadiusVariant>;
+    export type BoxDisplay = Copy<TBoxDisplay>;
 }
 
-export namespace TypeText {
-    export type TitleVariant = Copy<TypeTitleVariant>;
+export namespace TPropsText {
+    export type TitleVariant = Copy<TTitleVariant>;
 }
 
-export const EnumBase = {
-    ModalPosition: MP,
-    VariantSize: VS,
-    VariantColor: VC,
-    ItemIconPosition: IIP,
-    OrientationContent: OC,
+export const EPropsBase = {
+    ModalPosition: EModalPosition,
+    VariantSize: EVariantSize,
+    VariantColor: EVariantColor,
+    ItemIconPosition: EItemIconPosition,
+    OrientationContent: EOrientationContent,
+    VariantToast: EVariantToast,
+    NotificationPosition: ENotificationPosition,
 };
 
-export const EnumBaseButton = {
-    VariantBtn: VB,
-    BtnPosition: BP,
+export const EPropsButton = {
+    VariantBtn: EVariantBtn,
+    BtnPosition: EBtnPosition,
 };
 
-export const EnumBaseInput = {
-    PositionInpLabel: PIL,
+export const EPropsInput = {
+    PositionInpLabel: EPositionInpLabel,
 };
 
-export const EnumBaseAvatar = {
-    VariantSizeAvatar: VSA,
+export const EPropsAvatar = {
+    VariantSizeAvatar: EVariantSizeAvatar,
 };

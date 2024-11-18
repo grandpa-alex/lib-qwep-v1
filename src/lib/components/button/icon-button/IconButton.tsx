@@ -1,10 +1,10 @@
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { VC, VS } from '@src/lib/types/TypeBase';
+import { EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import { getColor } from '@src/lib/common/getColor';
-import { VB } from '@src/lib/types/TypeBtn';
+import { EVariantBtn } from '@src/lib/types/TypeBtn';
 import { renderIconButton } from '@src/lib/common/renderIconItem';
 import { SBaseButton, TBaseButton } from '../base-button/BaseButton';
 import { TypeSSBtn } from '@src/lib/general/styleScheme';
@@ -17,10 +17,10 @@ type VariantProps = {
 } & TBaseButton.SButton;
 
 const BTN_ICON_VARIANT = {
-    [VB.CONTAINED]: (props: VariantProps) => css`
+    [EVariantBtn.CONTAINED]: (props: VariantProps) => css`
         color: ${props.$colors.textItem};
     `,
-    [VB.TEXT]: (props: VariantProps) => css`
+    [EVariantBtn.TEXT]: (props: VariantProps) => css`
         color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
@@ -29,7 +29,7 @@ const BTN_ICON_VARIANT = {
             hover: props.hover,
         })};
     `,
-    [VB.OUTLINED]: (props: VariantProps) => css`
+    [EVariantBtn.OUTLINED]: (props: VariantProps) => css`
         color: ${getColor({
             cs: props.$colors,
             color: props.$color,
@@ -41,11 +41,11 @@ const BTN_ICON_VARIANT = {
 };
 
 const SIZE_VARIANT_ROUND = {
-    [VS.L]: (btn: TypeSSBtn) => css`
+    [EVariantSize.L]: (btn: TypeSSBtn) => css`
         width: ${btn.btnHeight_L};
         height: ${btn.btnHeight_L};
     `,
-    [VS.M]: (btn: TypeSSBtn) => css`
+    [EVariantSize.M]: (btn: TypeSSBtn) => css`
         width: ${btn.btnHeight_M};
         height: ${btn.btnHeight_M};
     `,
@@ -82,9 +82,9 @@ export const IconButton = React.memo(
         (
             {
                 borderRadius = 'default',
-                sizeVariant = VS.L,
-                colorVariant = VC.DEFAULT,
-                variant = VB.CONTAINED,
+                sizeVariant = EVariantSize.L,
+                colorVariant = EVariantColor.DEFAULT,
+                variant = EVariantBtn.CONTAINED,
                 _isActiveHover = true,
                 ...rest
             },
@@ -107,7 +107,7 @@ export const IconButton = React.memo(
                     event,
                     getColor({
                         cs: colors,
-                        color: variant === VB.CONTAINED ? colors.alpha : rest.color,
+                        color: variant === EVariantBtn.CONTAINED ? colors.alpha : rest.color,
                         variant: colorVariant,
                         opacity: '40',
                     })

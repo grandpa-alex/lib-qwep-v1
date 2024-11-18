@@ -4,7 +4,7 @@ import { getColor, opacity } from '@src/lib/common/getColor';
 import { itemRippleEffect } from '@src/lib/common/itemRippleEffect';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSBtn, TypeSSTypography } from '@src/lib/general/styleScheme';
-import { TypeVariantSize, VS } from '@src/lib/types/TypeBase';
+import { TVariantSize, EVariantSize } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -17,7 +17,7 @@ type TypeStyles = {
 type BaseMenuItemProps = {
     value: string;
     active?: boolean;
-    sizeVariant?: TypeVariantSize;
+    sizeVariant?: TVariantSize;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     color?: Hex;
@@ -34,7 +34,7 @@ type SButtonProps = {
     $color?: Hex;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $sizeVariant: TypeVariantSize;
+    $sizeVariant: TVariantSize;
     $opacityHover?: opacity;
     $opacityActive?: opacity;
     $textColor?: Hex;
@@ -45,11 +45,11 @@ type SButtonProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const BTN_SIZE = {
-    [VS.L]: (props: SButtonProps) => css`
+    [EVariantSize.L]: (props: SButtonProps) => css`
         height: ${props.$styles.btn.btnHeight_L};
         padding: ${`${props.$styles.btn.btnPadding_Y_L} ${props.$styles.btn.btnPadding_X_L}`};
     `,
-    [VS.M]: (props: SButtonProps) => css`
+    [EVariantSize.M]: (props: SButtonProps) => css`
         height: ${props.$styles.btn.btnHeight_M};
         padding: ${`${props.$styles.btn.btnPadding_Y_M} ${props.$styles.btn.btnPadding_X_M}`};
     `,
@@ -109,7 +109,7 @@ export const BaseMenuItem = React.memo(
             {
                 active,
                 color,
-                sizeVariant = VS.L,
+                sizeVariant = EVariantSize.L,
                 onClick,
                 opacityHover,
                 opacityActive,

@@ -1,13 +1,13 @@
-export enum VB {
+export enum EVariantBtn {
     TEXT = 'text',
     CONTAINED = 'contained',
     OUTLINED = 'outlined',
 }
-export type TypeVariantBtn = 'text' | 'contained' | 'outlined';
+export type TVariantBtn = 'text' | 'contained' | 'outlined';
 
-export enum BP {
+export enum EBtnPosition {
     LEFT = 'left',
     CENTER = 'center',
     RIGHT = 'right',
 }
-export type TypeBtnPosition = 'left' | 'center' | 'right';
+export type TBtnPosition = 'left' | 'center' | 'right';

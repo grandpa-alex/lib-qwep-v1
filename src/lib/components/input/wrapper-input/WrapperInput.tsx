@@ -5,10 +5,10 @@ import { TypeSSBox, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleSch
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
-import { TypeMargin } from '@src/lib/types/TypeBase';
+import { TMargin } from '@src/lib/types/TypeBase';
 import { BOX_GAP_VARIANT } from '@src/lib/common-styled-component/StyledComponentBox';
-import { TypeBoxGapVariant } from '@src/lib/types/TypeBox';
-import { PIL, TypePositionInpLabel } from '@src/lib/types/TypeInp';
+import { TBoxGapVariant } from '@src/lib/types/TypeBox';
+import { EPositionInpLabel, TPositionInpLabel } from '@src/lib/types/TypeInp';
 import { MessageBox, TMessageBox } from './MessageBox';
 import { SBaseText, TBaseText } from '@src/lib/components/typography/base/BaseText.tsx';
 
@@ -23,9 +23,9 @@ type WrapperInputProps = {
     label?: string;
     customLabel?: React.ReactNode;
     required?: boolean;
-    positionLabel?: TypePositionInpLabel;
-    mr?: TypeMargin;
-    boxGapVariant?: TypeBoxGapVariant;
+    positionLabel?: TPositionInpLabel;
+    mr?: TMargin;
+    boxGapVariant?: TBoxGapVariant;
     message?: TMessageBox.Message;
     labelColor?: Hex;
     blocked?: boolean;
@@ -36,19 +36,19 @@ type WrapperInputProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type SRootProps = {
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $blocked?: boolean;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $positionLabel: TypePositionInpLabel;
-    $boxGapVariant: TypeBoxGapVariant;
+    $positionLabel: TPositionInpLabel;
+    $boxGapVariant: TBoxGapVariant;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const POSITION = {
-    [PIL.TOP]: css`
+    [EPositionInpLabel.TOP]: css`
         display: grid;
     `,
-    [PIL.RIGHT]: css`
+    [EPositionInpLabel.RIGHT]: css`
         display: flex;
         align-items: center;
         > * {
@@ -58,7 +58,7 @@ const POSITION = {
             order: 2;
         }
     `,
-    [PIL.LEFT]: css`
+    [EPositionInpLabel.LEFT]: css`
         display: flex;
         align-items: center;
     `,
@@ -115,7 +115,7 @@ export const WrapperInput = React.memo(
                 required,
                 blocked,
                 customLabel,
-                positionLabel = PIL.TOP,
+                positionLabel = EPositionInpLabel.TOP,
                 $colors,
                 $styles,
                 label,

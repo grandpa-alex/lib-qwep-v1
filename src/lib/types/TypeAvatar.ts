@@ -1,6 +1,6 @@
-export enum VSA {
+export enum EVariantSizeAvatar {
     S = 'small',
     M = 'medium',
     L = 'large',
 }
-export type TypeVariantSizeAvatar = 'small' | 'medium' | 'large';
+export type TVariantSizeAvatar = 'small' | 'medium' | 'large';

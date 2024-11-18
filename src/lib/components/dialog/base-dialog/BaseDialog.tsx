@@ -7,11 +7,11 @@ import React from 'react';
 import styled from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
 import {
-    TypeBoxGapVariant,
-    TypeBoxPaddingVariant,
-    TypeBoxRadiusVariant,
-    TypeBoxShadowVariant,
-    TypeBoxWidthVariant,
+    TBoxGapVariant,
+    TBoxPaddingVariant,
+    TBoxRadiusVariant,
+    TBoxShadowVariant,
+    TBoxWidthVariant,
 } from '@src/lib/types/TypeBox';
 import { CSSBaseBox, CSSSimpleBox } from '@src/lib/common-styled-component/StyledComponentBox';
 import { SBaseDialogComponent, TBaseDialogComponent } from './BaseDialogComponents';
@@ -26,11 +26,11 @@ type BaseDialogProps = {
     bg?: Hex;
     boxBorderColor?: Hex;
     boxShadowColor?: Hex;
-    boxShadowVariant?: TypeBoxShadowVariant;
-    boxRadiusVariant?: TypeBoxRadiusVariant;
-    boxWidthVariant?: TypeBoxWidthVariant;
-    boxPaddingVariant?: TypeBoxPaddingVariant;
-    boxGapVariant?: TypeBoxGapVariant;
+    boxShadowVariant?: TBoxShadowVariant;
+    boxRadiusVariant?: TBoxRadiusVariant;
+    boxWidthVariant?: TBoxWidthVariant;
+    boxPaddingVariant?: TBoxPaddingVariant;
+    boxGapVariant?: TBoxGapVariant;
     overlayBlur?: string;
     overlayColor?: Hex;
     portalProps?: React.ComponentPropsWithoutRef<typeof Dialog.Portal>;
@@ -54,13 +54,13 @@ const SOverlay = styled(SBaseDialogComponent.Overlay)<SOverlayProps>`
 type SContentProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $boxPaddingVariant: TypeBoxPaddingVariant;
-    $boxShadowVariant?: TypeBoxShadowVariant;
-    $boxRadiusVariant: TypeBoxRadiusVariant;
+    $boxPaddingVariant: TBoxPaddingVariant;
+    $boxShadowVariant?: TBoxShadowVariant;
+    $boxRadiusVariant: TBoxRadiusVariant;
     $boxBorderColor?: Hex;
     $boxShadowColor?: Hex;
-    $boxWidthVariant?: TypeBoxWidthVariant;
-    $boxGapVariant?: TypeBoxGapVariant;
+    $boxWidthVariant?: TBoxWidthVariant;
+    $boxGapVariant?: TBoxGapVariant;
     $bg?: Hex;
 } & TBaseDialogComponent.SContent;
 

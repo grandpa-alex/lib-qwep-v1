@@ -1,18 +1,18 @@
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { IIP, TypeItemIconPosition, VC, VS } from '@src/lib/types/TypeBase';
+import { EItemIconPosition, TItemIconPosition, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import { getColor } from '@src/lib/common/getColor';
-import { TypeBtnPosition, VB, BP } from '@src/lib/types/TypeBtn';
+import { TBtnPosition, EVariantBtn, EBtnPosition } from '@src/lib/types/TypeBtn';
 import { renderIconButton } from '@src/lib/common/renderIconItem';
 import { SBaseButton, TBaseButton } from '../base-button/BaseButton';
 import { itemRippleEffect } from '@src/lib/common/itemRippleEffect.ts';
 
 type SimpleButtonProps = {
-    position?: TypeBtnPosition;
+    position?: TBtnPosition;
     icon?: React.ReactNode;
-    iconPosition?: TypeItemIconPosition;
+    iconPosition?: TItemIconPosition;
     iconContainerProps?: React.HTMLAttributes<HTMLDivElement>;
     contentProps?: React.HTMLAttributes<HTMLDivElement>;
 } & TBaseButton.Main;
@@ -22,16 +22,16 @@ type VariantProps = {
 } & TBaseButton.SButton;
 
 type SIconContainerProps = {
-    $iconPosition: TypeItemIconPosition;
+    $iconPosition: TItemIconPosition;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type SContentContainerProps = {
-    $position: TypeBtnPosition;
+    $position: TBtnPosition;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const SIconContainer = styled.div<SIconContainerProps>`
     ${(props) => {
-        if (props.$iconPosition === IIP.RIGHT) {
+        if (props.$iconPosition === EItemIconPosition.RIGHT) {
             return css`
                 order: 1;
                 margin-left: 6px;
@@ -46,10 +46,10 @@ const SIconContainer = styled.div<SIconContainerProps>`
 `;
 
 const BTN_VARIANT = {
-    [VB.CONTAINED]: (props: VariantProps) => css`
+    [EVariantBtn.CONTAINED]: (props: VariantProps) => css`
         color: ${props.$colors.textItem};
     `,
-    [VB.TEXT]: (props: VariantProps) => css`
+    [EVariantBtn.TEXT]: (props: VariantProps) => css`
         color: ${getColor({
             cs: props.$colors,
             disabled: props.disabled,
@@ -58,7 +58,7 @@ const BTN_VARIANT = {
             hover: props.hover,
         })};
     `,
-    [VB.OUTLINED]: (props: VariantProps) => css`
+    [EVariantBtn.OUTLINED]: (props: VariantProps) => css`
         color: ${getColor({
             cs: props.$colors,
             color: props.$color,
@@ -103,11 +103,11 @@ export const SimpleButton = React.memo(
         (
             {
                 icon,
-                sizeVariant = VS.L,
-                colorVariant = VC.DEFAULT,
-                variant = VB.CONTAINED,
-                position = BP.CENTER,
-                iconPosition = IIP.LEFT,
+                sizeVariant = EVariantSize.L,
+                colorVariant = EVariantColor.DEFAULT,
+                variant = EVariantBtn.CONTAINED,
+                position = EBtnPosition.CENTER,
+                iconPosition = EItemIconPosition.LEFT,
                 _isActiveHover = true,
                 iconContainerProps,
                 contentProps,
@@ -127,7 +127,7 @@ export const SimpleButton = React.memo(
                     event,
                     getColor({
                         cs: colors,
-                        color: variant === VB.CONTAINED ? colors.alpha : rest.color,
+                        color: variant === EVariantBtn.CONTAINED ? colors.alpha : rest.color,
                         variant: colorVariant,
                         opacity: '40',
                     })

@@ -3,7 +3,7 @@ import { TypeSSIcon, TypeSSMR } from '../general/styleScheme';
 import { getMargin } from '../common/getMargin';
 import { Hex, TypeColorScheme } from '../general/colors';
 import { getColor } from '../common/getColor';
-import { TypeVariantColor, TypeMargin, TypeVariantSize, VS } from '../types/TypeBase';
+import { TVariantColor, TMargin, TVariantSize, EVariantSize } from '../types/TypeBase';
 
 export type TypeStyleIconContainer = {
     icon: TypeSSIcon;
@@ -11,24 +11,24 @@ export type TypeStyleIconContainer = {
 };
 
 export type StyledIconContainerProps = {
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $color?: Hex;
     $disabled?: boolean;
     $_importantColor?: boolean;
-    $colorVariant?: TypeVariantColor;
-    $sizeVariant: TypeVariantSize;
+    $colorVariant?: TVariantColor;
+    $sizeVariant: TVariantSize;
     $colors: TypeColorScheme;
     $styles: TypeStyleIconContainer;
 };
 
 const ICON_SIZE = {
-    [VS.L]: (props: StyledIconContainerProps) => css`
+    [EVariantSize.L]: (props: StyledIconContainerProps) => css`
         width: ${props.$styles.icon.iconSize_L};
         height: ${props.$styles.icon.iconSize_L};
         min-width: ${props.$styles.icon.iconSize_L};
         min-height: ${props.$styles.icon.iconSize_L};
     `,
-    [VS.M]: (props: StyledIconContainerProps) => css`
+    [EVariantSize.M]: (props: StyledIconContainerProps) => css`
         width: ${props.$styles.icon.iconSize_M};
         height: ${props.$styles.icon.iconSize_M};
         min-width: ${props.$styles.icon.iconSize_M};

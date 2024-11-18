@@ -3,11 +3,11 @@ import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
-import { TypeMargin } from '@src/lib/types/TypeBase';
+import { TMargin } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled from 'styled-components';
 import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox.ts';
-import { TypeBoxDisplay, TypeBoxPaddingVariant, TypeBoxWidthVariant } from '@src/lib/types/TypeBox.ts';
+import { TBoxDisplay, TBoxPaddingVariant, TBoxWidthVariant } from '@src/lib/types/TypeBox.ts';
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -15,19 +15,19 @@ type TypeStyles = {
 };
 
 type BaseTabContentProps = {
-    boxWidthVariant?: TypeBoxWidthVariant;
-    boxPaddingVariant?: TypeBoxPaddingVariant;
-    boxDisplay?: TypeBoxDisplay;
-    mr?: TypeMargin;
+    boxWidthVariant?: TBoxWidthVariant;
+    boxPaddingVariant?: TBoxPaddingVariant;
+    boxDisplay?: TBoxDisplay;
+    mr?: TMargin;
     $styles?: TypeStyles;
     $colors?: TypeColorScheme;
 } & React.ComponentPropsWithRef<typeof Tabs.Content>;
 
 type SRootProps = {
-    $mr?: TypeMargin;
-    $boxWidthVariant?: TypeBoxWidthVariant;
-    $boxPaddingVariant?: TypeBoxPaddingVariant;
-    $boxDisplay?: TypeBoxDisplay;
+    $mr?: TMargin;
+    $boxWidthVariant?: TBoxWidthVariant;
+    $boxPaddingVariant?: TBoxPaddingVariant;
+    $boxDisplay?: TBoxDisplay;
     $styles: TypeStyles;
 } & React.ComponentPropsWithRef<typeof Tabs.Content>;
 

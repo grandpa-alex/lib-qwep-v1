@@ -2,8 +2,8 @@ import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox'
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeMargin } from '@src/lib/types/TypeBase';
-import { TypeBoxDisplay, TypeBoxGapVariant, TypeBoxPaddingVariant, TypeBoxWidthVariant } from '@src/lib/types/TypeBox';
+import { TMargin } from '@src/lib/types/TypeBase';
+import { TBoxDisplay, TBoxGapVariant, TBoxPaddingVariant, TBoxWidthVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
 import { styled } from 'styled-components';
 
@@ -13,21 +13,21 @@ type TypeStyles = {
 };
 
 type BaseBoxProps = {
-    mr?: TypeMargin;
-    boxWidthVariant?: TypeBoxWidthVariant;
-    boxPaddingVariant?: TypeBoxPaddingVariant;
-    boxGapVariant?: TypeBoxGapVariant;
-    boxDisplay?: TypeBoxDisplay;
+    mr?: TMargin;
+    boxWidthVariant?: TBoxWidthVariant;
+    boxPaddingVariant?: TBoxPaddingVariant;
+    boxGapVariant?: TBoxGapVariant;
+    boxDisplay?: TBoxDisplay;
     as?: keyof JSX.IntrinsicElements;
     $styles?: TypeStyles;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type SBoxProps = {
-    $boxWidthVariant?: TypeBoxWidthVariant;
-    $boxPaddingVariant?: TypeBoxPaddingVariant;
-    $boxGapVariant?: TypeBoxGapVariant;
-    $boxDisplay?: TypeBoxDisplay;
-    $mr?: TypeMargin;
+    $boxWidthVariant?: TBoxWidthVariant;
+    $boxPaddingVariant?: TBoxPaddingVariant;
+    $boxGapVariant?: TBoxGapVariant;
+    $boxDisplay?: TBoxDisplay;
+    $mr?: TMargin;
     $styles: TypeStyles;
 } & React.HTMLAttributes<HTMLDivElement>;
 

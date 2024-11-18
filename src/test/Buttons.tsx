@@ -1,13 +1,13 @@
 import { BaseButton, BaseTitle, Icon, IconButton, SimpleButton, SubmitButton, SubmitTextField } from '@src/lib';
-import { TypeVariantColor } from '@src/lib/types/TypeBase';
-import { TypeVariantBtn } from '@src/lib/types/TypeBtn';
+import { TVariantColor } from '@src/lib/types/TypeBase';
+import { TVariantBtn } from '@src/lib/types/TypeBtn';
 import { useState } from 'react';
 
 function Buttons() {
     const [loading, setLoading] = useState(false);
 
-    const [status, setStatus] = useState<TypeVariantColor>('default');
-    const [v, setV] = useState<TypeVariantBtn>('contained');
+    const [status, setStatus] = useState<TVariantColor>('default');
+    const [v, setV] = useState<TVariantBtn>('contained');
 
     const simpleBtnH = () => {
         if (status === 'default') {
@@ -19,7 +19,7 @@ function Buttons() {
         }
     };
 
-    const [c, setC] = useState<TypeVariantColor>('default');
+    const [c, setC] = useState<TVariantColor>('default');
     const [l, setL] = useState(false);
 
     const subCustH = async () => {

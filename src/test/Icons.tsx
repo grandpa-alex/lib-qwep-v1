@@ -1,4 +1,4 @@
-import { BaseBox, BaseTitle, EnumBase, Icon, SimpleBox, SimpleButton, TypeBase } from '@src/lib';
+import { BaseBox, BaseTitle, EPropsBase, Icon, SimpleBox, SimpleButton, TPropsBase } from '@src/lib';
 import { useState } from 'react';
 
 const Item = ({ icon, text }: { icon: React.ReactNode; text: string }) => {
@@ -14,28 +14,28 @@ const Item = ({ icon, text }: { icon: React.ReactNode; text: string }) => {
 };
 
 function Icons() {
-    const [size, setSize] = useState<TypeBase.VariantSize>(EnumBase.VariantSize.L);
-    const [colorVariant, setColorVariant] = useState<TypeBase.VariantColor>(EnumBase.VariantColor.DEFAULT);
+    const [size, setSize] = useState<TPropsBase.VariantSize>(EPropsBase.VariantSize.L);
+    const [colorVariant, setColorVariant] = useState<TPropsBase.VariantColor>(EPropsBase.VariantColor.DEFAULT);
 
     const sizeHandler = () => {
-        if (size === EnumBase.VariantSize.L) {
-            setSize(EnumBase.VariantSize.M);
+        if (size === EPropsBase.VariantSize.L) {
+            setSize(EPropsBase.VariantSize.M);
         } else {
-            setSize(EnumBase.VariantSize.L);
+            setSize(EPropsBase.VariantSize.L);
         }
     };
 
     const colorVariantHandler = () => {
-        if (colorVariant === EnumBase.VariantColor.DEFAULT) {
-            setColorVariant(EnumBase.VariantColor.INFO);
-        } else if (colorVariant === EnumBase.VariantColor.INFO) {
-            setColorVariant(EnumBase.VariantColor.SUCCESS);
-        } else if (colorVariant === EnumBase.VariantColor.SUCCESS) {
-            setColorVariant(EnumBase.VariantColor.WARNING);
-        } else if (colorVariant === EnumBase.VariantColor.WARNING) {
-            setColorVariant(EnumBase.VariantColor.ERROR);
-        } else if (colorVariant === EnumBase.VariantColor.ERROR) {
-            setColorVariant(EnumBase.VariantColor.DEFAULT);
+        if (colorVariant === EPropsBase.VariantColor.DEFAULT) {
+            setColorVariant(EPropsBase.VariantColor.INFO);
+        } else if (colorVariant === EPropsBase.VariantColor.INFO) {
+            setColorVariant(EPropsBase.VariantColor.SUCCESS);
+        } else if (colorVariant === EPropsBase.VariantColor.SUCCESS) {
+            setColorVariant(EPropsBase.VariantColor.WARNING);
+        } else if (colorVariant === EPropsBase.VariantColor.WARNING) {
+            setColorVariant(EPropsBase.VariantColor.ERROR);
+        } else if (colorVariant === EPropsBase.VariantColor.ERROR) {
+            setColorVariant(EPropsBase.VariantColor.DEFAULT);
         }
     };
     return (

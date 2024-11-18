@@ -5,7 +5,7 @@ import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSBase, TypeSSCheckbox, TypeSSMR } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { TVariantColor, TMargin, TVariantSize, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -16,9 +16,9 @@ type TypeStyles = {
 };
 
 type BaseCheckboxProps = {
-    mr?: TypeMargin;
-    colorVariant?: TypeVariantColor;
-    sizeVariant?: TypeVariantSize;
+    mr?: TMargin;
+    colorVariant?: TVariantColor;
+    sizeVariant?: TVariantSize;
     color?: Hex;
     blocked?: boolean;
     $colors?: TypeColorScheme;
@@ -31,17 +31,17 @@ type BaseCheckboxProps = {
 
 type SRootProps = {
     $color?: Hex;
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $colorVariant: TypeVariantColor;
-    $sizeVariant: TypeVariantSize;
+    $colorVariant: TVariantColor;
+    $sizeVariant: TVariantSize;
     $blocked?: boolean;
     $_isActiveHover?: boolean;
 } & React.ComponentPropsWithRef<typeof Checkbox.Root>;
 
 type SIconProps = {
-    $colorVariant: TypeVariantColor;
+    $colorVariant: TVariantColor;
     $colors: TypeColorScheme;
     $color?: Hex;
     $disabled?: boolean;
@@ -68,13 +68,13 @@ const SIcon = styled.svg<SIconProps>`
 `;
 
 const SIZE_CHECKBOX = {
-    [VS.L]: (props: TypeSSCheckbox) => css`
+    [EVariantSize.L]: (props: TypeSSCheckbox) => css`
         width: ${props.checkboxSize_L};
         height: ${props.checkboxSize_L};
         min-width: ${props.checkboxSize_L};
         min-height: ${props.checkboxSize_L};
     `,
-    [VS.M]: (props: TypeSSCheckbox) => css`
+    [EVariantSize.M]: (props: TypeSSCheckbox) => css`
         width: ${props.checkboxSize_M};
         height: ${props.checkboxSize_M};
         min-width: ${props.checkboxSize_M};
@@ -141,8 +141,8 @@ export const BaseCheckbox = React.memo(
             {
                 mr,
                 color,
-                colorVariant = VC.DEFAULT,
-                sizeVariant = VS.L,
+                colorVariant = EVariantColor.DEFAULT,
+                sizeVariant = EVariantSize.L,
                 blocked,
                 $colors,
                 $styles,

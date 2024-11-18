@@ -2,11 +2,11 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import { getMargin } from '@src/lib/common/getMargin';
 import { TypeSSBox, TypeSSMR } from '@src/lib/general/styleScheme';
-import { TypeMargin, TypeOrientationContent } from '@src/lib/types/TypeBase';
+import { TMargin, TOrientationContent } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled from 'styled-components';
 import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox.ts';
-import { TypeBoxPaddingVariant, TypeBoxWidthVariant } from '@src/lib/types/TypeBox.ts';
+import { TBoxPaddingVariant, TBoxWidthVariant } from '@src/lib/types/TypeBox.ts';
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -14,14 +14,14 @@ type TypeStyles = {
 };
 
 type Box = {
-    boxWidthVariant?: TypeBoxWidthVariant;
-    boxPaddingVariant?: TypeBoxPaddingVariant;
-    mr?: TypeMargin;
+    boxWidthVariant?: TBoxWidthVariant;
+    boxPaddingVariant?: TBoxPaddingVariant;
+    mr?: TMargin;
     $styles?: TypeStyles;
 };
 
 type TypeTabsListProps = {
-    orientation?: TypeOrientationContent;
+    orientation?: TOrientationContent;
 } & Box &
     React.ComponentPropsWithRef<typeof Tabs.List>;
 
@@ -32,9 +32,9 @@ type BaseTabWrapperProps = {
     React.ComponentPropsWithRef<typeof Tabs.Root>;
 
 type SBox = {
-    $mr?: TypeMargin;
-    $boxWidthVariant?: TypeBoxWidthVariant;
-    $boxPaddingVariant?: TypeBoxPaddingVariant;
+    $mr?: TMargin;
+    $boxWidthVariant?: TBoxWidthVariant;
+    $boxPaddingVariant?: TBoxPaddingVariant;
     $styles: TypeStyles;
 };
 
@@ -58,7 +58,7 @@ const SRoot = styled(Tabs.Root)<SRootProps>`
 `;
 
 type SListProps = {
-    $orientation: TypeOrientationContent;
+    $orientation: TOrientationContent;
 } & SBox &
     React.ComponentPropsWithRef<typeof Tabs.List>;
 

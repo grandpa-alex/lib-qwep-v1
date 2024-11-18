@@ -1,7 +1,7 @@
 import { TypeSSMR } from '../general/styleScheme';
-import { TypeMargin } from '../types/TypeBase';
+import { TMargin } from '../types/TypeBase';
 
-export const getMargin = (margins: TypeSSMR, marginKey?: TypeMargin): string => {
+export const getMargin = (margins: TypeSSMR, marginKey?: TMargin): string => {
     if (!marginKey) return '';
     const marginSizeRegex = /(?:m[trblxy]?)-(\d+)/;
     const matches = marginKey.match(marginSizeRegex);

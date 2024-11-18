@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { BaseBox, BaseButton, useNotificationContext } from '../lib';
+import { BaseBox, BaseButton, BaseNotificationToast, useNotificationContext } from '../lib';
 
 function Alert() {
     const [count, setCount] = useState(1);
@@ -122,7 +122,7 @@ function Alert() {
         <BaseBox boxDisplay={'grid'} boxGapVariant={'g-2'}>
             <BaseButton onClick={() => alertHandler()}>Show</BaseButton>
 
-            {/* <BaseNotificationToast title={'Alert'} message={'Lorem ipsum do'} />
+            <BaseNotificationToast title={'Alert'} message={'Lorem ipsum do'} />
             <BaseNotificationToast
                 title={'Alert Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}
                 message={
@@ -143,7 +143,7 @@ function Alert() {
                 message={
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis nemo ipsum similique, atque illo perspiciatis ab? Officiis nemo ipsum similique, atque illo perspiciatis ab?'
                 }
-            /> */}
+            />
         </BaseBox>
     );
 }

@@ -1,7 +1,7 @@
 import { getColor } from '@src/lib/common/getColor';
 import { TypeSSBase, TypeSSInp, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeMargin, TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { TMargin, TVariantColor, TVariantSize, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { SRootTextarea, TRootTextarea } from './RootTextarea';
@@ -18,10 +18,10 @@ type TypeStyles = {
 };
 
 type BaseTextareaProps = {
-    mr?: TypeMargin;
+    mr?: TMargin;
     resize?: boolean;
-    sizeVariant?: TypeVariantSize;
-    colorVariant?: TypeVariantColor;
+    sizeVariant?: TVariantSize;
+    colorVariant?: TVariantColor;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
     color?: Hex;
@@ -68,8 +68,8 @@ export const BaseTextarea = React.memo(
             {
                 mr,
                 color,
-                sizeVariant = VS.L,
-                colorVariant = VC.DEFAULT,
+                sizeVariant = EVariantSize.L,
+                colorVariant = EVariantColor.DEFAULT,
                 $colors,
                 $styles,
                 _isActiveHover = true,

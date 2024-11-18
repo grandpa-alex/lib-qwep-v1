@@ -1,7 +1,7 @@
 {
     "name": "orc-design-ui",
     "private": false,
-    "version": "1.0.11",
+    "version": "1.1.11",
     "type": "module",
     "files": [
         "dist/**/*"

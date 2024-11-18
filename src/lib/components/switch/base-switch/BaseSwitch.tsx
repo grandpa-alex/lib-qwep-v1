@@ -5,7 +5,7 @@ import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSMR, TypeSSSwitch } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { TVariantColor, TMargin, TVariantSize, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -15,9 +15,9 @@ type TypeStyles = {
 };
 
 type BaseSwitchProps = {
-    mr?: TypeMargin;
-    colorVariant?: TypeVariantColor;
-    sizeVariant?: TypeVariantSize;
+    mr?: TMargin;
+    colorVariant?: TVariantColor;
+    sizeVariant?: TVariantSize;
     color?: Hex;
     blocked?: boolean;
     $colors?: TypeColorScheme;
@@ -28,11 +28,11 @@ type BaseSwitchProps = {
 
 export type SRootProps = {
     $color?: Hex;
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $colorVariant: TypeVariantColor;
-    $sizeVariant: TypeVariantSize;
+    $colorVariant: TVariantColor;
+    $sizeVariant: TVariantSize;
     $blocked?: boolean;
     $_isActiveHover?: boolean;
 } & React.ComponentPropsWithRef<typeof Switch.Root>;
@@ -40,34 +40,34 @@ export type SRootProps = {
 export type SThumbProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $sizeVariant: TypeVariantSize;
+    $sizeVariant: TVariantSize;
 } & React.ComponentPropsWithoutRef<typeof Switch.Thumb>;
 
 const SWITCH_THUMB_SIZE = {
-    [VS.L]: (props: TypeSSSwitch) => css`
+    [EVariantSize.L]: (props: TypeSSSwitch) => css`
         width: ${props.switchThumbSize_L};
         height: ${props.switchThumbSize_L};
     `,
-    [VS.M]: (props: TypeSSSwitch) => css`
+    [EVariantSize.M]: (props: TypeSSSwitch) => css`
         width: ${props.switchThumbSize_M};
         height: ${props.switchThumbSize_M};
     `,
 };
 
 const SWITCH_THUMB_TRANSLATE = {
-    [VS.L]: (props: TypeSSSwitch) => css`
+    [EVariantSize.L]: (props: TypeSSSwitch) => css`
         transform: translateX(${props.switchThumbTranslateX_L});
     `,
-    [VS.M]: (props: TypeSSSwitch) => css`
+    [EVariantSize.M]: (props: TypeSSSwitch) => css`
         transform: translateX(${props.switchThumbTranslateX_M});
     `,
 };
 const SWITCH_SIZE = {
-    [VS.L]: (props: TypeSSSwitch) => css`
+    [EVariantSize.L]: (props: TypeSSSwitch) => css`
         width: ${props.switchSize_X_L};
         height: ${props.switchSize_Y_L};
     `,
-    [VS.M]: (props: TypeSSSwitch) => css`
+    [EVariantSize.M]: (props: TypeSSSwitch) => css`
         width: ${props.switchSize_X_M};
         height: ${props.switchSize_Y_M};
     `,
@@ -123,8 +123,8 @@ export const BaseSwitch: React.FC<BaseSwitchProps> = React.memo(
             {
                 mr,
                 color,
-                colorVariant = VC.DEFAULT,
-                sizeVariant = VS.L,
+                colorVariant = EVariantColor.DEFAULT,
+                sizeVariant = EVariantSize.L,
                 blocked,
                 $colors,
                 $styles,

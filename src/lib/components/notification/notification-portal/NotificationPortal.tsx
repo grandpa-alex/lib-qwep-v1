@@ -2,7 +2,7 @@ import { CSSBaseBox } from '@src/lib/common-styled-component/StyledComponentBox'
 import { useStyleScheme } from '@src/lib/general';
 import { TypeSSBase, TypeSSBox } from '@src/lib/general/styleScheme';
 import { ENotificationPosition, TNotificationPosition } from '@src/lib/types/TypeBase';
-import { TypeBoxGapVariant, TypeBoxPaddingVariant } from '@src/lib/types/TypeBox';
+import { TBoxGapVariant, TBoxPaddingVariant } from '@src/lib/types/TypeBox';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { css, styled } from 'styled-components';
@@ -21,16 +21,16 @@ type NotificationPortalProps = {
 
 type BaseProps = {
     zIndex?: number;
-    boxGapVariant?: TypeBoxGapVariant;
-    boxPaddingVariant?: TypeBoxPaddingVariant;
+    boxGapVariant?: TBoxGapVariant;
+    boxPaddingVariant?: TBoxPaddingVariant;
     $styles?: TypeStyles;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type SRootProps = {
     $position: TNotificationPosition;
     $zIndex?: number;
-    $boxGapVariant?: TypeBoxGapVariant;
-    $boxPaddingVariant?: TypeBoxPaddingVariant;
+    $boxGapVariant?: TBoxGapVariant;
+    $boxPaddingVariant?: TBoxPaddingVariant;
     $styles: TypeStyles;
 } & React.HTMLAttributes<HTMLDivElement>;
 

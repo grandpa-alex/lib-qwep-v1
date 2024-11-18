@@ -1,12 +1,12 @@
-export enum VI {
+export enum EInpVariant {
     OUTLINED = 'outlined',
 }
-export type TypeInpVariant = 'outlined';
+export type TInpVariant = 'outlined';
 
-export enum PIL {
+export enum EPositionInpLabel {
     LEFT = 'left',
     TOP = 'top',
     RIGHT = 'right',
 }
 
-export type TypePositionInpLabel = 'top' | 'left' | 'right';
+export type TPositionInpLabel = 'top' | 'left' | 'right';

@@ -5,7 +5,7 @@ import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { TypeSSMR, TypeSSSlider } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { TVariantColor, TMargin, TVariantSize, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -15,9 +15,9 @@ type TypeStyles = {
 };
 
 type BaseSliderProps = {
-    mr?: TypeMargin;
-    colorVariant?: TypeVariantColor;
-    sizeVariant?: TypeVariantSize;
+    mr?: TMargin;
+    colorVariant?: TVariantColor;
+    sizeVariant?: TVariantSize;
     length?: string;
     color?: Hex;
     blocked?: boolean;
@@ -29,14 +29,14 @@ type BaseSliderProps = {
 } & React.ComponentPropsWithRef<typeof Slider.Root>;
 
 type SRootProps = {
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $color?: Hex;
     $length?: string;
     $blocked?: boolean;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $colorVariant: TypeVariantColor;
-    $sizeVariant: TypeVariantSize;
+    $colorVariant: TVariantColor;
+    $sizeVariant: TVariantSize;
 } & React.ComponentPropsWithRef<typeof Slider.Root>;
 
 const STrack = styled(Slider.Track)<React.ComponentPropsWithRef<typeof Slider.Track>>`
@@ -68,8 +68,8 @@ const SThumb = styled(Slider.Thumb)<React.ComponentPropsWithRef<typeof Slider.Th
 `;
 
 const THUMB_SIZE = {
-    [VS.L]: (props: TypeSSSlider) => props.thumbSize_L,
-    [VS.M]: (props: TypeSSSlider) => props.thumbSize_M,
+    [EVariantSize.L]: (props: TypeSSSlider) => props.thumbSize_L,
+    [EVariantSize.M]: (props: TypeSSSlider) => props.thumbSize_M,
 };
 
 const SRoot = styled(Slider.Root)<SRootProps>`
@@ -134,8 +134,8 @@ export const BaseSlider = React.memo(
                 color,
                 length,
                 blocked,
-                colorVariant = VC.DEFAULT,
-                sizeVariant = VS.L,
+                colorVariant = EVariantColor.DEFAULT,
+                sizeVariant = EVariantSize.L,
                 $colors,
                 $styles,
                 trackProps,

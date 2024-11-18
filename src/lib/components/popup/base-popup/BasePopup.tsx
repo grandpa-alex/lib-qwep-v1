@@ -3,12 +3,13 @@ import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import React from 'react';
 import styled from 'styled-components';
-import { TypeMargin } from '@src/lib/types/TypeBase';
+import { TMargin } from '@src/lib/types/TypeBase';
 
 type BasePopupProps = {
     trigger: React.ReactNode;
-    mr?: TypeMargin;
+    mr?: TMargin;
     bg?: Hex;
+    isArray?: boolean;
     $colors?: TypeColorScheme;
     triggerProps?: React.ComponentPropsWithRef<typeof Popover.Trigger>;
     portalProps?: React.ComponentPropsWithRef<typeof Popover.Portal>;
@@ -38,7 +39,7 @@ const SContent = styled(Popover.Content)<SContentProps>`
 
 export const BasePopup = React.memo(
     React.forwardRef<HTMLButtonElement, BasePopupProps>(
-        ({ trigger, bg, $colors, triggerProps, portalProps, contentProps, arrowProps, ...rest }, ref) => {
+        ({ trigger, isArray, bg, $colors, triggerProps, portalProps, contentProps, arrowProps, ...rest }, ref) => {
             const colors = useColorScheme($colors);
 
             return (
@@ -49,7 +50,7 @@ export const BasePopup = React.memo(
                     <Popover.Portal {...portalProps}>
                         <SContent $colors={colors} $bg={bg} sideOffset={8} {...contentProps}>
                             {rest.children}
-                            <SArrow {...arrowProps} />
+                            {isArray && <SArrow {...arrowProps} />}
                         </SContent>
                     </Popover.Portal>
                 </Popover.Root>

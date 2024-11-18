@@ -2,8 +2,8 @@ import { getColor } from '@src/lib/common/getColor';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { IIP, TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
-import { VI } from '@src/lib/types/TypeInp';
+import { EItemIconPosition, TVariantColor, TVariantSize, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
+import { EInpVariant } from '@src/lib/types/TypeInp';
 import React, { useCallback, useMemo, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { SSimpleTextField, TSimpleTextField } from '../simple-text-field/SimpleTextField';
@@ -26,8 +26,8 @@ type SLoaderProps = {
     $disabled?: boolean;
     $colors: TypeColorScheme;
     $styles: TBaseTextField.Styles;
-    $colorVariant: TypeVariantColor;
-    $sizeVariant: TypeVariantSize;
+    $colorVariant: TVariantColor;
+    $sizeVariant: TVariantSize;
 } & React.HTMLAttributes<HTMLSpanElement>;
 
 const SInput = styled(SSimpleTextField.Input)<SInpProps>`
@@ -39,11 +39,11 @@ const SInput = styled(SSimpleTextField.Input)<SInpProps>`
 `;
 
 const LOADING_SIZE = {
-    [VS.L]: (props: SLoaderProps) => css`
+    [EVariantSize.L]: (props: SLoaderProps) => css`
         width: ${props.$styles.inp.inpIconSize_L};
         height: ${props.$styles.inp.inpIconSize_L};
     `,
-    [VS.M]: (props: SLoaderProps) => css`
+    [EVariantSize.M]: (props: SLoaderProps) => css`
         width: ${props.$styles.inp.inpIconSize_M};
         height: ${props.$styles.inp.inpIconSize_M};
     `,
@@ -79,10 +79,10 @@ export const SubmitTextField = React.memo(
                 iconOnClick,
                 _isActiveHover = true,
                 isLoading = false,
-                iconPosition = IIP.LEFT,
-                variant = VI.OUTLINED,
-                sizeVariant = VS.L,
-                colorVariant = VC.DEFAULT,
+                iconPosition = EItemIconPosition.LEFT,
+                variant = EInpVariant.OUTLINED,
+                sizeVariant = EVariantSize.L,
+                colorVariant = EVariantColor.DEFAULT,
                 $colors,
                 $styles,
                 rootProps,

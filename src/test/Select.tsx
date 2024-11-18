@@ -1,5 +1,6 @@
 import {
     AdaptiveScrollArea,
+    BaseButton,
     BasePopup,
     BaseScrollArea,
     BaseSelectContent,
@@ -12,6 +13,7 @@ import {
     SimpleTextField,
     SubmitButton,
 } from '@src/lib';
+import React from 'react';
 
 function Select() {
     return (
@@ -255,6 +257,7 @@ function Select() {
 
             <h2>BASE POPUP L COLORS</h2>
             <div style={{ display: 'flex' }}>
+                <BasePopup trigger={<BaseButton>Base</BaseButton>}>gherhgureukhgiueriughrehghreuighrg</BasePopup>
                 <SimplePopup
                     // color={'#830088'}
                     icon={<Icon.Settings />}

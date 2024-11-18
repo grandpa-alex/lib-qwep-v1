@@ -6,9 +6,9 @@ import { TypeSSBox, TypeSSMR, TypeSSTypography } from '@src/lib/general/styleSch
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
-import { TypeMargin, TypeOrientationContent, OC } from '@src/lib/types/TypeBase';
+import { TMargin, TOrientationContent, EOrientationContent } from '@src/lib/types/TypeBase';
 import { BOX_GAP_VARIANT } from '@src/lib/common-styled-component/StyledComponentBox';
-import { TypeBoxGapVariant } from '@src/lib/types/TypeBox';
+import { TBoxGapVariant } from '@src/lib/types/TypeBox';
 import { MessageBox, TMessageBox } from '../../input/wrapper-input/MessageBox';
 import { SBaseText, TBaseText } from '../../typography/base/BaseText';
 
@@ -19,13 +19,13 @@ type TypeStyles = {
 };
 
 type BaseRadioGroupProps = {
-    mr?: TypeMargin;
-    orientation?: TypeOrientationContent;
+    mr?: TMargin;
+    orientation?: TOrientationContent;
     label?: string;
     labelColor?: Hex;
-    boxGapVariant?: TypeBoxGapVariant;
+    boxGapVariant?: TBoxGapVariant;
     message?: TMessageBox.Message;
-    boxGapVariantLabel?: TypeBoxGapVariant;
+    boxGapVariantLabel?: TBoxGapVariant;
     blocked?: boolean;
     $colors?: TypeColorScheme;
     $styles?: TypeStyles;
@@ -35,24 +35,24 @@ type BaseRadioGroupProps = {
 } & React.ComponentPropsWithRef<typeof RadioGroup.Root>;
 
 type SRootProps = {
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $styles: TypeStyles;
     $blocked?: boolean;
-    $boxGapVariantLabel: TypeBoxGapVariant;
+    $boxGapVariantLabel: TBoxGapVariant;
 } & React.RefAttributes<HTMLDivElement>;
 
 type SGroupProps = {
     $styles: TypeStyles;
-    $orientation: TypeOrientationContent;
-    $boxGapVariant: TypeBoxGapVariant;
+    $orientation: TOrientationContent;
+    $boxGapVariant: TBoxGapVariant;
 } & React.ComponentPropsWithRef<typeof RadioGroup.Root>;
 
 const ORIENTATION = {
-    [OC.HORIZONTAL]: css`
+    [EOrientationContent.HORIZONTAL]: css`
         flex-direction: row;
         align-items: center;
     `,
-    [OC.VERTICAL]: css`
+    [EOrientationContent.VERTICAL]: css`
         flex-direction: column;
         align-items: start;
     `,
@@ -89,7 +89,7 @@ export const BaseRadioGroup = React.memo(
                 label,
                 boxGapVariantLabel = 'g-1',
                 boxGapVariant = 'g-1',
-                orientation = OC.VERTICAL,
+                orientation = EOrientationContent.VERTICAL,
                 message,
                 rootProps,
                 labelProps,

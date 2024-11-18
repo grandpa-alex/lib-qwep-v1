@@ -1,9 +1,9 @@
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { IIP, TypeVariantColor, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { EItemIconPosition, TVariantColor, TVariantSize, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
-import { TypeVariantBtn, VB, BP } from '@src/lib/types/TypeBtn';
+import { TVariantBtn, EVariantBtn, EBtnPosition } from '@src/lib/types/TypeBtn';
 import { SSimpleButton, TSimpleButton } from '../simple-button/SimpleButton';
 import { TBaseButton } from '../base-button/BaseButton';
 import { Hex, TypeColorScheme } from '@src/lib/general/colors';
@@ -28,34 +28,34 @@ type SLoadingProps = {
     $disabled?: boolean;
     $colors: TypeColorScheme;
     $styles: TBaseButton.Styles;
-    $colorVariant: TypeVariantColor;
-    $sizeVariant: TypeVariantSize;
-    $variant: TypeVariantBtn;
+    $colorVariant: TVariantColor;
+    $sizeVariant: TVariantSize;
+    $variant: TVariantBtn;
 } & React.HTMLAttributes<HTMLSpanElement>;
 
 const LOADING_SIZE = {
-    [VS.L]: (props: TypeSSBtn) => css`
+    [EVariantSize.L]: (props: TypeSSBtn) => css`
         width: ${props.btnIconSize_L};
         height: ${props.btnIconSize_L};
     `,
-    [VS.M]: (props: TypeSSBtn) => css`
+    [EVariantSize.M]: (props: TypeSSBtn) => css`
         width: ${props.btnIconSize_M};
         height: ${props.btnIconSize_M};
     `,
 };
 
 const LOADING_BTN_VARIANT = {
-    [VB.CONTAINED]: (props: SLoadingProps) => css`
+    [EVariantBtn.CONTAINED]: (props: SLoadingProps) => css`
         border-color: ${props.$colors.textItem};
     `,
-    [VB.TEXT]: (props: SLoadingProps) => css`
+    [EVariantBtn.TEXT]: (props: SLoadingProps) => css`
         border-color: ${getColor({
             cs: props.$colors,
             color: props.$color,
             variant: props.$colorVariant,
         })};
     `,
-    [VB.OUTLINED]: (props: SLoadingProps) => css`
+    [EVariantBtn.OUTLINED]: (props: SLoadingProps) => css`
         border-color: ${getColor({
             cs: props.$colors,
             color: props.$color,
@@ -97,11 +97,11 @@ export const SubmitButton = React.memo(
         (
             {
                 isLoading,
-                sizeVariant = VS.L,
-                colorVariant = VC.DEFAULT,
-                variant = VB.CONTAINED,
-                position = BP.CENTER,
-                iconPosition = IIP.LEFT,
+                sizeVariant = EVariantSize.L,
+                colorVariant = EVariantColor.DEFAULT,
+                variant = EVariantBtn.CONTAINED,
+                position = EBtnPosition.CENTER,
+                iconPosition = EItemIconPosition.LEFT,
                 _isActiveHover = true,
                 loadingProps,
                 ...rest
@@ -120,7 +120,7 @@ export const SubmitButton = React.memo(
                     event,
                     getColor({
                         cs: colors,
-                        color: variant === VB.CONTAINED ? colors.alpha : rest.color,
+                        color: variant === EVariantBtn.CONTAINED ? colors.alpha : rest.color,
                         variant: colorVariant,
                         opacity: '40',
                     })

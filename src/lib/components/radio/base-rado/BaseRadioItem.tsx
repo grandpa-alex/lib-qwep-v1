@@ -7,7 +7,7 @@ import { TypeSSMR, TypeSSRadio } from '@src/lib/general/styleScheme';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
-import { TypeVariantColor, TypeMargin, TypeVariantSize, VC, VS } from '@src/lib/types/TypeBase';
+import { TVariantColor, TMargin, TVariantSize, EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 
 type TypeStyles = {
     mr: TypeSSMR;
@@ -15,9 +15,9 @@ type TypeStyles = {
 };
 
 type BaseRadioItemProps = {
-    mr?: TypeMargin;
-    colorVariant?: TypeVariantColor;
-    sizeVariant?: TypeVariantSize;
+    mr?: TMargin;
+    colorVariant?: TVariantColor;
+    sizeVariant?: TVariantSize;
     color?: Hex;
     blocked?: boolean;
     $colors?: TypeColorScheme;
@@ -28,32 +28,32 @@ type BaseRadioItemProps = {
 
 type SItemProps = {
     $color?: Hex;
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $colors: TypeColorScheme;
     $styles: TypeStyles;
-    $colorVariant: TypeVariantColor;
-    $sizeVariant: TypeVariantSize;
+    $colorVariant: TVariantColor;
+    $sizeVariant: TVariantSize;
     $blocked?: boolean;
     $_isActiveHover?: boolean;
 } & React.ComponentPropsWithRef<typeof RadioGroup.Item>;
 
 const SIZE_RADIO = {
-    [VS.L]: (props: TypeSSRadio) => css`
+    [EVariantSize.L]: (props: TypeSSRadio) => css`
         width: ${props.radioSize_L};
         height: ${props.radioSize_L};
     `,
-    [VS.M]: (props: TypeSSRadio) => css`
+    [EVariantSize.M]: (props: TypeSSRadio) => css`
         width: ${props.radioSize_M};
         height: ${props.radioSize_M};
     `,
 };
 
 const SIZE_RADIO_INDICATOR = {
-    [VS.L]: (props: TypeSSRadio) => css`
+    [EVariantSize.L]: (props: TypeSSRadio) => css`
         width: ${props.radioSizeIndicator_L};
         height: ${props.radioSizeIndicator_L};
     `,
-    [VS.M]: (props: TypeSSRadio) => css`
+    [EVariantSize.M]: (props: TypeSSRadio) => css`
         width: ${props.radioSizeIndicator_M};
         height: ${props.radioSizeIndicator_M};
     `,
@@ -61,7 +61,7 @@ const SIZE_RADIO_INDICATOR = {
 
 type SIndicatorProps = {
     $styles: TypeStyles;
-    $sizeVariant: TypeVariantSize;
+    $sizeVariant: TVariantSize;
 } & React.ComponentPropsWithRef<typeof RadioGroup.Indicator>;
 
 const SIndicator = styled(RadioGroup.Indicator)<SIndicatorProps>`
@@ -139,8 +139,8 @@ export const BaseRadioItem = React.memo(
     React.forwardRef<HTMLButtonElement, BaseRadioItemProps>(
         (
             {
-                colorVariant = VC.DEFAULT,
-                sizeVariant = VS.L,
+                colorVariant = EVariantColor.DEFAULT,
+                sizeVariant = EVariantSize.L,
                 mr,
                 color,
                 blocked,

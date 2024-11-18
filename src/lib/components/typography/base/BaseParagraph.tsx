@@ -4,7 +4,7 @@ import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
 import styled from 'styled-components';
 import { getMargin } from '@src/lib/common/getMargin';
-import { TypeMargin } from '@src/lib/types/TypeBase';
+import { TMargin } from '@src/lib/types/TypeBase';
 import { SBaseText, TBaseText } from './BaseText';
 import { css } from 'styled-components';
 
@@ -13,13 +13,13 @@ type TypeStyles = {
 } & TBaseText.Styles;
 
 type BaseParagraphProps = {
-    mr?: TypeMargin;
+    mr?: TMargin;
     isEllipsis?: boolean;
     $styles?: TypeStyles;
 } & TBaseText.Main;
 
 type SParagraphProps = {
-    $mr?: TypeMargin;
+    $mr?: TMargin;
     $styles: TypeStyles;
     $isEllipsis?: boolean;
 } & TBaseText.SText;

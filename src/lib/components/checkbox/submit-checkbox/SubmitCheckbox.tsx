@@ -1,5 +1,5 @@
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { VC, VS } from '@src/lib/types/TypeBase';
+import { EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { getColor } from '@src/lib/common/getColor';
@@ -17,11 +17,11 @@ type SRootProps = {
 } & TBaseCheckbox.SRoot;
 
 const LOADING_SIZE = {
-    [VS.L]: (props: TypeSSCheckbox) => css`
+    [EVariantSize.L]: (props: TypeSSCheckbox) => css`
         width: ${props.checkboxLoadingSize_L};
         height: ${props.checkboxLoadingSize_L};
     `,
-    [VS.M]: (props: TypeSSCheckbox) => css`
+    [EVariantSize.M]: (props: TypeSSCheckbox) => css`
         width: ${props.checkboxLoadingSize_M};
         height: ${props.checkboxLoadingSize_M};
     `,
@@ -58,7 +58,16 @@ const SRoot = styled(SBaseCheckbox.Root)<SRootProps>`
 
 export const SubmitCheckbox: React.FC<SubmitCheckboxProps> = React.memo(
     React.forwardRef<HTMLButtonElement, SubmitCheckboxProps>(
-        ({ isLoading, colorVariant = VC.DEFAULT, sizeVariant = VS.L, _isActiveHover = true, ...rest }, ref) => {
+        (
+            {
+                isLoading,
+                colorVariant = EVariantColor.DEFAULT,
+                sizeVariant = EVariantSize.L,
+                _isActiveHover = true,
+                ...rest
+            },
+            ref
+        ) => {
             const colors = useColorScheme(rest.$colors);
             const styles = useStyleScheme(['base', 'checkbox', 'mr'], rest.$styles);
 

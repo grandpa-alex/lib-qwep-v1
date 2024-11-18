@@ -2,7 +2,7 @@ import { getColor } from '@src/lib/common/getColor';
 import { TypeSSSwitch } from '@src/lib/general/styleScheme';
 import { useColorScheme } from '@src/lib/general/useColorScheme';
 import { useStyleScheme } from '@src/lib/general/useStyleScheme';
-import { VC, VS } from '@src/lib/types/TypeBase';
+import { EVariantColor, EVariantSize } from '@src/lib/types/TypeBase';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { SBaseSwitch, TBaseSwitch } from '../base-switch/BaseSwitch';
@@ -16,11 +16,11 @@ type SRootProps = {
 } & TBaseSwitch.SRoot;
 
 const LOADING_SIZE = {
-    [VS.L]: (props: TypeSSSwitch) => css`
+    [EVariantSize.L]: (props: TypeSSSwitch) => css`
         width: ${props.switchThumbSize_L};
         height: ${props.switchThumbSize_L};
     `,
-    [VS.M]: (props: TypeSSSwitch) => css`
+    [EVariantSize.M]: (props: TypeSSSwitch) => css`
         width: ${props.switchThumbSize_M};
         height: ${props.switchThumbSize_M};
     `,
@@ -66,8 +66,8 @@ export const SubmitSwitch = React.memo(
                 color,
                 isLoading,
                 blocked,
-                colorVariant = VC.DEFAULT,
-                sizeVariant = VS.L,
+                colorVariant = EVariantColor.DEFAULT,
+                sizeVariant = EVariantSize.L,
                 $colors,
                 $styles,
                 _isActiveHover = true,

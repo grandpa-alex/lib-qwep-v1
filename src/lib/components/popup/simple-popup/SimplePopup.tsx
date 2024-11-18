@@ -6,12 +6,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { SBasePopup, TBasePopup } from '../base-popup/BasePopup';
 import { CSSBaseBox, CSSSimpleBox } from '@src/lib/common-styled-component/StyledComponentBox';
-import {
-    TypeBoxGapVariant,
-    TypeBoxPaddingVariant,
-    TypeBoxRadiusVariant,
-    TypeBoxShadowVariant,
-} from '@src/lib/types/TypeBox';
+import { TBoxGapVariant, TBoxPaddingVariant, TBoxRadiusVariant, TBoxShadowVariant } from '@src/lib/types/TypeBox';
 import { StyledScrollbarItem } from '@src/lib/common-styled-component/StyledBase';
 
 type TypeStyles = {
@@ -23,12 +18,12 @@ type TypeStyles = {
 type SimplePopupProps = {
     icon: React.ReactNode;
     title: React.ReactNode;
-    boxPaddingVariant?: TypeBoxPaddingVariant;
-    boxGapVariant?: TypeBoxGapVariant;
+    boxPaddingVariant?: TBoxPaddingVariant;
+    boxGapVariant?: TBoxGapVariant;
     boxBorderColor?: Hex;
     boxShadowColor?: Hex;
-    boxShadowVariant?: TypeBoxShadowVariant;
-    boxRadiusVariant?: TypeBoxRadiusVariant;
+    boxShadowVariant?: TBoxShadowVariant;
+    boxRadiusVariant?: TBoxRadiusVariant;
     width?: string;
     height?: string;
     maxHeight?: string;
@@ -49,15 +44,15 @@ type SContentProps = {
     $maxHeight?: string;
     $boxBorderColor?: Hex;
     $boxShadowColor?: Hex;
-    $boxShadowVariant?: TypeBoxShadowVariant;
-    $boxRadiusVariant?: TypeBoxRadiusVariant;
+    $boxShadowVariant?: TBoxShadowVariant;
+    $boxRadiusVariant?: TBoxRadiusVariant;
 } & TBasePopup.SContent;
 
 type SHeaderProps = {
     $colors: TypeColorScheme;
     $styles: TypeStyles;
     $color?: Hex;
-    $boxPaddingVariant: TypeBoxPaddingVariant;
+    $boxPaddingVariant: TBoxPaddingVariant;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type SCardProps = {
@@ -66,8 +61,8 @@ type SCardProps = {
     $color?: Hex;
     $height?: string;
     $maxHeight?: string;
-    $boxPaddingVariant: TypeBoxPaddingVariant;
-    $boxGapVariant?: TypeBoxGapVariant;
+    $boxPaddingVariant: TBoxPaddingVariant;
+    $boxGapVariant?: TBoxGapVariant;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const SContent = styled(SBasePopup.Content)<SContentProps>`

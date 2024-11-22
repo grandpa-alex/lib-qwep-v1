@@ -26,6 +26,7 @@ type TypeTabsListProps = {
     React.ComponentPropsWithRef<typeof Tabs.List>;
 
 type BaseTabWrapperProps = {
+    component?: React.ReactNode;
     tabs: React.ReactNode[];
     tabsListProps?: TypeTabsListProps;
 } & Box &
@@ -78,7 +79,7 @@ const SList = styled(Tabs.List)<SListProps>`
 
 export const BaseTabWrapper = React.memo(
     React.forwardRef<HTMLDivElement, BaseTabWrapperProps>(
-        ({ mr, tabs, boxWidthVariant, boxPaddingVariant, tabsListProps, $styles, ...rest }, ref) => {
+        ({ mr, tabs, boxWidthVariant, component, boxPaddingVariant, tabsListProps, $styles, ...rest }, ref) => {
             const styles = useStyleScheme(['mr', 'box'], $styles);
 
             return (
@@ -91,6 +92,7 @@ export const BaseTabWrapper = React.memo(
                     orientation={'vertical'}
                     {...rest}
                 >
+                    {component}
                     <SList
                         $mr={mr}
                         $styles={styles}

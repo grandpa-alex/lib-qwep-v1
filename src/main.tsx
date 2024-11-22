@@ -16,7 +16,7 @@ const Root = () => {
                     customButton: { color: 'white', backgroundColor: 'darkblue' },
                 }}
                 // currentStyles={{
-                //     base: { borderRadiusItem: '8px' },
+                //     base: { borderRadiusItem: '12px' },
                 // }}
             >
                 <Main />

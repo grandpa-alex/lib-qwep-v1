@@ -12,6 +12,7 @@ export type TypeCustomColorTheme = {
 export type TypeThemeContext = {
     currentColorThemeName: TypeColorTheme;
     currentColorScheme: TypeColorScheme;
+    themes: TypeCustomColorTheme[];
     changeColorThemeHandler: (themeName: TypeColorTheme) => void;
     _isActive: boolean;
 };
@@ -27,6 +28,7 @@ type ThemeProvider = {
 const ThemeContext = createContext<TypeThemeContext>({
     currentColorThemeName: 'light',
     currentColorScheme: colorsLight,
+    themes: [],
     changeColorThemeHandler: () => {},
     _isActive: false,
 });
@@ -62,6 +64,7 @@ export const ThemeProvider = ({
         //values
         currentColorThemeName: currentTheme.type,
         currentColorScheme: currentTheme.colors,
+        themes: initialThemes,
         _isActive: true,
         //methods
         changeColorThemeHandler,

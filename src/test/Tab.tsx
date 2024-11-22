@@ -7,15 +7,22 @@ function Tab() {
 
             <BaseTabWrapper
                 defaultValue={'t-3'}
-                // orientation={'horizontal'}
-                tabsListProps={
-                    {
-                        // orientation: 'vertical'
-                        // style: {
-                        //     display: 'flex'
-                        // },
-                    }
+                component={
+                    <div style={{ paddingBottom: '30px' }}>
+                        <div>Настройки профиля</div>
+                        <div>Вы можете менять свои личные данные, управлять аккаунтом и настройками безопасности</div>
+                    </div>
                 }
+                style={{ background: 'red', display: 'flex', flexDirection: 'column' }}
+                // orientation={'horizontal'}
+                tabsListProps={{
+                    style: {
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+
+                        alignItems: 'center',
+                    },
+                }}
                 tabs={[
                     <BaseTab key={1} value={'t-1'}>
                         BaseTab_1
